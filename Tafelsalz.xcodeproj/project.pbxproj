@@ -1,0 +1,618 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		60C695501DBDE36100CE9435 /* Tafelsalz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C695461DBDE36100CE9435 /* Tafelsalz.framework */; };
+		60C695571DBDE36100CE9435 /* Tafelsalz.h in Headers */ = {isa = PBXBuildFile; fileRef = 60C695491DBDE36100CE9435 /* Tafelsalz.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		60C696551DBDE5CA00CE9435 /* Tafelsalz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C696541DBDE5CA00CE9435 /* Tafelsalz.swift */; };
+		60C696931DBDF26400CE9435 /* libsodium-osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C6968A1DBDEB1500CE9435 /* libsodium-osx.a */; };
+		60C696971DBDFB3600CE9435 /* SecretBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C696961DBDFB3600CE9435 /* SecretBox.swift */; };
+		60C6969A1DBE02A500CE9435 /* EncryptedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C696991DBE02A500CE9435 /* EncryptedData.swift */; };
+		60C696A41DBF908F00CE9435 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C696A31DBF908F00CE9435 /* Random.swift */; };
+		60C696A91DBFAE4A00CE9435 /* RandomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C696A81DBFAE4A00CE9435 /* RandomTests.swift */; };
+		60D73F671DC0D91400AAAC59 /* SecretBoxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D73F661DC0D91400AAAC59 /* SecretBoxTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		60C695511DBDE36100CE9435 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60C6953D1DBDE36000CE9435 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 60C695451DBDE36000CE9435;
+			remoteInfo = Tafelsalz;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		60C695461DBDE36100CE9435 /* Tafelsalz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Tafelsalz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		60C695491DBDE36100CE9435 /* Tafelsalz.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tafelsalz.h; sourceTree = "<group>"; };
+		60C6954A1DBDE36100CE9435 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		60C6954F1DBDE36100CE9435 /* TafelsalzTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TafelsalzTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		60C695561DBDE36100CE9435 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		60C696541DBDE5CA00CE9435 /* Tafelsalz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tafelsalz.swift; sourceTree = "<group>"; };
+		60C696571DBDEB1500CE9435 /* core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = core.h; path = Dependencies/libsodium/core.h; sourceTree = "<group>"; };
+		60C696581DBDEB1500CE9435 /* crypto_aead_aes256gcm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_aead_aes256gcm.h; path = Dependencies/libsodium/crypto_aead_aes256gcm.h; sourceTree = "<group>"; };
+		60C696591DBDEB1500CE9435 /* crypto_aead_chacha20poly1305.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_aead_chacha20poly1305.h; path = Dependencies/libsodium/crypto_aead_chacha20poly1305.h; sourceTree = "<group>"; };
+		60C6965A1DBDEB1500CE9435 /* crypto_auth_hmacsha256.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_auth_hmacsha256.h; path = Dependencies/libsodium/crypto_auth_hmacsha256.h; sourceTree = "<group>"; };
+		60C6965B1DBDEB1500CE9435 /* crypto_auth_hmacsha512.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_auth_hmacsha512.h; path = Dependencies/libsodium/crypto_auth_hmacsha512.h; sourceTree = "<group>"; };
+		60C6965C1DBDEB1500CE9435 /* crypto_auth_hmacsha512256.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_auth_hmacsha512256.h; path = Dependencies/libsodium/crypto_auth_hmacsha512256.h; sourceTree = "<group>"; };
+		60C6965D1DBDEB1500CE9435 /* crypto_auth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_auth.h; path = Dependencies/libsodium/crypto_auth.h; sourceTree = "<group>"; };
+		60C6965E1DBDEB1500CE9435 /* crypto_box_curve25519xsalsa20poly1305.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_box_curve25519xsalsa20poly1305.h; path = Dependencies/libsodium/crypto_box_curve25519xsalsa20poly1305.h; sourceTree = "<group>"; };
+		60C6965F1DBDEB1500CE9435 /* crypto_box.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_box.h; path = Dependencies/libsodium/crypto_box.h; sourceTree = "<group>"; };
+		60C696601DBDEB1500CE9435 /* crypto_core_hchacha20.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_core_hchacha20.h; path = Dependencies/libsodium/crypto_core_hchacha20.h; sourceTree = "<group>"; };
+		60C696611DBDEB1500CE9435 /* crypto_core_hsalsa20.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_core_hsalsa20.h; path = Dependencies/libsodium/crypto_core_hsalsa20.h; sourceTree = "<group>"; };
+		60C696621DBDEB1500CE9435 /* crypto_core_salsa20.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_core_salsa20.h; path = Dependencies/libsodium/crypto_core_salsa20.h; sourceTree = "<group>"; };
+		60C696631DBDEB1500CE9435 /* crypto_core_salsa208.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_core_salsa208.h; path = Dependencies/libsodium/crypto_core_salsa208.h; sourceTree = "<group>"; };
+		60C696641DBDEB1500CE9435 /* crypto_core_salsa2012.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_core_salsa2012.h; path = Dependencies/libsodium/crypto_core_salsa2012.h; sourceTree = "<group>"; };
+		60C696651DBDEB1500CE9435 /* crypto_generichash_blake2b.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_generichash_blake2b.h; path = Dependencies/libsodium/crypto_generichash_blake2b.h; sourceTree = "<group>"; };
+		60C696661DBDEB1500CE9435 /* crypto_generichash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_generichash.h; path = Dependencies/libsodium/crypto_generichash.h; sourceTree = "<group>"; };
+		60C696671DBDEB1500CE9435 /* crypto_hash_sha256.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_hash_sha256.h; path = Dependencies/libsodium/crypto_hash_sha256.h; sourceTree = "<group>"; };
+		60C696681DBDEB1500CE9435 /* crypto_hash_sha512.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_hash_sha512.h; path = Dependencies/libsodium/crypto_hash_sha512.h; sourceTree = "<group>"; };
+		60C696691DBDEB1500CE9435 /* crypto_hash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_hash.h; path = Dependencies/libsodium/crypto_hash.h; sourceTree = "<group>"; };
+		60C6966A1DBDEB1500CE9435 /* crypto_int32.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_int32.h; path = Dependencies/libsodium/crypto_int32.h; sourceTree = "<group>"; };
+		60C6966B1DBDEB1500CE9435 /* crypto_int64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_int64.h; path = Dependencies/libsodium/crypto_int64.h; sourceTree = "<group>"; };
+		60C6966C1DBDEB1500CE9435 /* crypto_onetimeauth_poly1305.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_onetimeauth_poly1305.h; path = Dependencies/libsodium/crypto_onetimeauth_poly1305.h; sourceTree = "<group>"; };
+		60C6966D1DBDEB1500CE9435 /* crypto_onetimeauth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_onetimeauth.h; path = Dependencies/libsodium/crypto_onetimeauth.h; sourceTree = "<group>"; };
+		60C6966E1DBDEB1500CE9435 /* crypto_pwhash_argon2i.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_pwhash_argon2i.h; path = Dependencies/libsodium/crypto_pwhash_argon2i.h; sourceTree = "<group>"; };
+		60C6966F1DBDEB1500CE9435 /* crypto_pwhash_scryptsalsa208sha256.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_pwhash_scryptsalsa208sha256.h; path = Dependencies/libsodium/crypto_pwhash_scryptsalsa208sha256.h; sourceTree = "<group>"; };
+		60C696701DBDEB1500CE9435 /* crypto_pwhash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_pwhash.h; path = Dependencies/libsodium/crypto_pwhash.h; sourceTree = "<group>"; };
+		60C696711DBDEB1500CE9435 /* crypto_scalarmult_curve25519.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_scalarmult_curve25519.h; path = Dependencies/libsodium/crypto_scalarmult_curve25519.h; sourceTree = "<group>"; };
+		60C696721DBDEB1500CE9435 /* crypto_scalarmult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_scalarmult.h; path = Dependencies/libsodium/crypto_scalarmult.h; sourceTree = "<group>"; };
+		60C696731DBDEB1500CE9435 /* crypto_secretbox_xsalsa20poly1305.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_secretbox_xsalsa20poly1305.h; path = Dependencies/libsodium/crypto_secretbox_xsalsa20poly1305.h; sourceTree = "<group>"; };
+		60C696741DBDEB1500CE9435 /* crypto_secretbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_secretbox.h; path = Dependencies/libsodium/crypto_secretbox.h; sourceTree = "<group>"; };
+		60C696751DBDEB1500CE9435 /* crypto_shorthash_siphash24.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_shorthash_siphash24.h; path = Dependencies/libsodium/crypto_shorthash_siphash24.h; sourceTree = "<group>"; };
+		60C696761DBDEB1500CE9435 /* crypto_shorthash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_shorthash.h; path = Dependencies/libsodium/crypto_shorthash.h; sourceTree = "<group>"; };
+		60C696771DBDEB1500CE9435 /* crypto_sign_ed25519.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_sign_ed25519.h; path = Dependencies/libsodium/crypto_sign_ed25519.h; sourceTree = "<group>"; };
+		60C696781DBDEB1500CE9435 /* crypto_sign_edwards25519sha512batch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_sign_edwards25519sha512batch.h; path = Dependencies/libsodium/crypto_sign_edwards25519sha512batch.h; sourceTree = "<group>"; };
+		60C696791DBDEB1500CE9435 /* crypto_sign.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_sign.h; path = Dependencies/libsodium/crypto_sign.h; sourceTree = "<group>"; };
+		60C6967A1DBDEB1500CE9435 /* crypto_stream_aes128ctr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_stream_aes128ctr.h; path = Dependencies/libsodium/crypto_stream_aes128ctr.h; sourceTree = "<group>"; };
+		60C6967B1DBDEB1500CE9435 /* crypto_stream_chacha20.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_stream_chacha20.h; path = Dependencies/libsodium/crypto_stream_chacha20.h; sourceTree = "<group>"; };
+		60C6967C1DBDEB1500CE9435 /* crypto_stream_salsa20.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_stream_salsa20.h; path = Dependencies/libsodium/crypto_stream_salsa20.h; sourceTree = "<group>"; };
+		60C6967D1DBDEB1500CE9435 /* crypto_stream_salsa208.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_stream_salsa208.h; path = Dependencies/libsodium/crypto_stream_salsa208.h; sourceTree = "<group>"; };
+		60C6967E1DBDEB1500CE9435 /* crypto_stream_salsa2012.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_stream_salsa2012.h; path = Dependencies/libsodium/crypto_stream_salsa2012.h; sourceTree = "<group>"; };
+		60C6967F1DBDEB1500CE9435 /* crypto_stream_xsalsa20.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_stream_xsalsa20.h; path = Dependencies/libsodium/crypto_stream_xsalsa20.h; sourceTree = "<group>"; };
+		60C696801DBDEB1500CE9435 /* crypto_stream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_stream.h; path = Dependencies/libsodium/crypto_stream.h; sourceTree = "<group>"; };
+		60C696811DBDEB1500CE9435 /* crypto_uint8.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_uint8.h; path = Dependencies/libsodium/crypto_uint8.h; sourceTree = "<group>"; };
+		60C696821DBDEB1500CE9435 /* crypto_uint16.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_uint16.h; path = Dependencies/libsodium/crypto_uint16.h; sourceTree = "<group>"; };
+		60C696831DBDEB1500CE9435 /* crypto_uint32.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_uint32.h; path = Dependencies/libsodium/crypto_uint32.h; sourceTree = "<group>"; };
+		60C696841DBDEB1500CE9435 /* crypto_uint64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_uint64.h; path = Dependencies/libsodium/crypto_uint64.h; sourceTree = "<group>"; };
+		60C696851DBDEB1500CE9435 /* crypto_verify_16.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_verify_16.h; path = Dependencies/libsodium/crypto_verify_16.h; sourceTree = "<group>"; };
+		60C696861DBDEB1500CE9435 /* crypto_verify_32.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_verify_32.h; path = Dependencies/libsodium/crypto_verify_32.h; sourceTree = "<group>"; };
+		60C696871DBDEB1500CE9435 /* crypto_verify_64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_verify_64.h; path = Dependencies/libsodium/crypto_verify_64.h; sourceTree = "<group>"; };
+		60C696881DBDEB1500CE9435 /* export.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = export.h; path = Dependencies/libsodium/export.h; sourceTree = "<group>"; };
+		60C696891DBDEB1500CE9435 /* libsodium-ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libsodium-ios.a"; path = "Dependencies/libsodium/libsodium-ios.a"; sourceTree = "<group>"; };
+		60C6968A1DBDEB1500CE9435 /* libsodium-osx.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libsodium-osx.a"; path = "Dependencies/libsodium/libsodium-osx.a"; sourceTree = "<group>"; };
+		60C6968B1DBDEB1500CE9435 /* randombytes_salsa20_random.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = randombytes_salsa20_random.h; path = Dependencies/libsodium/randombytes_salsa20_random.h; sourceTree = "<group>"; };
+		60C6968C1DBDEB1500CE9435 /* randombytes_sysrandom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = randombytes_sysrandom.h; path = Dependencies/libsodium/randombytes_sysrandom.h; sourceTree = "<group>"; };
+		60C6968D1DBDEB1500CE9435 /* randombytes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = randombytes.h; path = Dependencies/libsodium/randombytes.h; sourceTree = "<group>"; };
+		60C6968E1DBDEB1500CE9435 /* runtime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = runtime.h; path = Dependencies/libsodium/runtime.h; sourceTree = "<group>"; };
+		60C6968F1DBDEB1500CE9435 /* sodium_lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = sodium_lib.h; path = Dependencies/libsodium/sodium_lib.h; sourceTree = "<group>"; };
+		60C696901DBDEB1500CE9435 /* utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = utils.h; path = Dependencies/libsodium/utils.h; sourceTree = "<group>"; };
+		60C696911DBDEB1500CE9435 /* version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = version.h; path = Dependencies/libsodium/version.h; sourceTree = "<group>"; };
+		60C696921DBDEB9300CE9435 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = Dependencies/libsodium/module.modulemap; sourceTree = "<group>"; };
+		60C696961DBDFB3600CE9435 /* SecretBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecretBox.swift; sourceTree = "<group>"; };
+		60C696991DBE02A500CE9435 /* EncryptedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptedData.swift; sourceTree = "<group>"; };
+		60C696A31DBF908F00CE9435 /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
+		60C696A81DBFAE4A00CE9435 /* RandomTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RandomTests.swift; path = TafelsalzTests/RandomTests.swift; sourceTree = SOURCE_ROOT; };
+		60D73F661DC0D91400AAAC59 /* SecretBoxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecretBoxTests.swift; path = TafelsalzTests/SecretBoxTests.swift; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		60C695421DBDE36000CE9435 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60C696931DBDF26400CE9435 /* libsodium-osx.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		60C6954C1DBDE36100CE9435 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60C695501DBDE36100CE9435 /* Tafelsalz.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		60C6953C1DBDE36000CE9435 = {
+			isa = PBXGroup;
+			children = (
+				60C695D81DBDE50300CE9435 /* Dependencies */,
+				60C695481DBDE36100CE9435 /* Tafelsalz */,
+				60C695531DBDE36100CE9435 /* TafelsalzTests */,
+				60C695471DBDE36100CE9435 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		60C695471DBDE36100CE9435 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				60C695461DBDE36100CE9435 /* Tafelsalz.framework */,
+				60C6954F1DBDE36100CE9435 /* TafelsalzTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		60C695481DBDE36100CE9435 /* Tafelsalz */ = {
+			isa = PBXGroup;
+			children = (
+				60C696941DBDF40600CE9435 /* Supporting Files */,
+				60C696981DBE027300CE9435 /* Public */,
+			);
+			path = Tafelsalz;
+			sourceTree = "<group>";
+		};
+		60C695531DBDE36100CE9435 /* TafelsalzTests */ = {
+			isa = PBXGroup;
+			children = (
+				60C696951DBDF41700CE9435 /* Supporting Files */,
+				60C696A81DBFAE4A00CE9435 /* RandomTests.swift */,
+				60D73F661DC0D91400AAAC59 /* SecretBoxTests.swift */,
+			);
+			path = TafelsalzTests;
+			sourceTree = "<group>";
+		};
+		60C695D81DBDE50300CE9435 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				60C695D91DBDE50E00CE9435 /* libsodium */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		60C695D91DBDE50E00CE9435 /* libsodium */ = {
+			isa = PBXGroup;
+			children = (
+				60C696921DBDEB9300CE9435 /* module.modulemap */,
+				60C696571DBDEB1500CE9435 /* core.h */,
+				60C696581DBDEB1500CE9435 /* crypto_aead_aes256gcm.h */,
+				60C696591DBDEB1500CE9435 /* crypto_aead_chacha20poly1305.h */,
+				60C6965A1DBDEB1500CE9435 /* crypto_auth_hmacsha256.h */,
+				60C6965B1DBDEB1500CE9435 /* crypto_auth_hmacsha512.h */,
+				60C6965C1DBDEB1500CE9435 /* crypto_auth_hmacsha512256.h */,
+				60C6965D1DBDEB1500CE9435 /* crypto_auth.h */,
+				60C6965E1DBDEB1500CE9435 /* crypto_box_curve25519xsalsa20poly1305.h */,
+				60C6965F1DBDEB1500CE9435 /* crypto_box.h */,
+				60C696601DBDEB1500CE9435 /* crypto_core_hchacha20.h */,
+				60C696611DBDEB1500CE9435 /* crypto_core_hsalsa20.h */,
+				60C696621DBDEB1500CE9435 /* crypto_core_salsa20.h */,
+				60C696631DBDEB1500CE9435 /* crypto_core_salsa208.h */,
+				60C696641DBDEB1500CE9435 /* crypto_core_salsa2012.h */,
+				60C696651DBDEB1500CE9435 /* crypto_generichash_blake2b.h */,
+				60C696661DBDEB1500CE9435 /* crypto_generichash.h */,
+				60C696671DBDEB1500CE9435 /* crypto_hash_sha256.h */,
+				60C696681DBDEB1500CE9435 /* crypto_hash_sha512.h */,
+				60C696691DBDEB1500CE9435 /* crypto_hash.h */,
+				60C6966A1DBDEB1500CE9435 /* crypto_int32.h */,
+				60C6966B1DBDEB1500CE9435 /* crypto_int64.h */,
+				60C6966C1DBDEB1500CE9435 /* crypto_onetimeauth_poly1305.h */,
+				60C6966D1DBDEB1500CE9435 /* crypto_onetimeauth.h */,
+				60C6966E1DBDEB1500CE9435 /* crypto_pwhash_argon2i.h */,
+				60C6966F1DBDEB1500CE9435 /* crypto_pwhash_scryptsalsa208sha256.h */,
+				60C696701DBDEB1500CE9435 /* crypto_pwhash.h */,
+				60C696711DBDEB1500CE9435 /* crypto_scalarmult_curve25519.h */,
+				60C696721DBDEB1500CE9435 /* crypto_scalarmult.h */,
+				60C696731DBDEB1500CE9435 /* crypto_secretbox_xsalsa20poly1305.h */,
+				60C696741DBDEB1500CE9435 /* crypto_secretbox.h */,
+				60C696751DBDEB1500CE9435 /* crypto_shorthash_siphash24.h */,
+				60C696761DBDEB1500CE9435 /* crypto_shorthash.h */,
+				60C696771DBDEB1500CE9435 /* crypto_sign_ed25519.h */,
+				60C696781DBDEB1500CE9435 /* crypto_sign_edwards25519sha512batch.h */,
+				60C696791DBDEB1500CE9435 /* crypto_sign.h */,
+				60C6967A1DBDEB1500CE9435 /* crypto_stream_aes128ctr.h */,
+				60C6967B1DBDEB1500CE9435 /* crypto_stream_chacha20.h */,
+				60C6967C1DBDEB1500CE9435 /* crypto_stream_salsa20.h */,
+				60C6967D1DBDEB1500CE9435 /* crypto_stream_salsa208.h */,
+				60C6967E1DBDEB1500CE9435 /* crypto_stream_salsa2012.h */,
+				60C6967F1DBDEB1500CE9435 /* crypto_stream_xsalsa20.h */,
+				60C696801DBDEB1500CE9435 /* crypto_stream.h */,
+				60C696811DBDEB1500CE9435 /* crypto_uint8.h */,
+				60C696821DBDEB1500CE9435 /* crypto_uint16.h */,
+				60C696831DBDEB1500CE9435 /* crypto_uint32.h */,
+				60C696841DBDEB1500CE9435 /* crypto_uint64.h */,
+				60C696851DBDEB1500CE9435 /* crypto_verify_16.h */,
+				60C696861DBDEB1500CE9435 /* crypto_verify_32.h */,
+				60C696871DBDEB1500CE9435 /* crypto_verify_64.h */,
+				60C696881DBDEB1500CE9435 /* export.h */,
+				60C696891DBDEB1500CE9435 /* libsodium-ios.a */,
+				60C6968A1DBDEB1500CE9435 /* libsodium-osx.a */,
+				60C6968B1DBDEB1500CE9435 /* randombytes_salsa20_random.h */,
+				60C6968C1DBDEB1500CE9435 /* randombytes_sysrandom.h */,
+				60C6968D1DBDEB1500CE9435 /* randombytes.h */,
+				60C6968E1DBDEB1500CE9435 /* runtime.h */,
+				60C6968F1DBDEB1500CE9435 /* sodium_lib.h */,
+				60C696901DBDEB1500CE9435 /* utils.h */,
+				60C696911DBDEB1500CE9435 /* version.h */,
+			);
+			name = libsodium;
+			sourceTree = "<group>";
+		};
+		60C696941DBDF40600CE9435 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				60C695491DBDE36100CE9435 /* Tafelsalz.h */,
+				60C6954A1DBDE36100CE9435 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		60C696951DBDF41700CE9435 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				60C695561DBDE36100CE9435 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		60C696981DBE027300CE9435 /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				60C696541DBDE5CA00CE9435 /* Tafelsalz.swift */,
+				60C696991DBE02A500CE9435 /* EncryptedData.swift */,
+				60C696A31DBF908F00CE9435 /* Random.swift */,
+				60C696961DBDFB3600CE9435 /* SecretBox.swift */,
+			);
+			name = Public;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		60C695431DBDE36000CE9435 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60C695571DBDE36100CE9435 /* Tafelsalz.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		60C695451DBDE36000CE9435 /* Tafelsalz */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 60C6955A1DBDE36100CE9435 /* Build configuration list for PBXNativeTarget "Tafelsalz" */;
+			buildPhases = (
+				60C695411DBDE36000CE9435 /* Sources */,
+				60C695421DBDE36000CE9435 /* Frameworks */,
+				60C695431DBDE36000CE9435 /* Headers */,
+				60C695441DBDE36000CE9435 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tafelsalz;
+			productName = Tafelsalz;
+			productReference = 60C695461DBDE36100CE9435 /* Tafelsalz.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		60C6954E1DBDE36100CE9435 /* TafelsalzTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 60C6955D1DBDE36100CE9435 /* Build configuration list for PBXNativeTarget "TafelsalzTests" */;
+			buildPhases = (
+				60C6954B1DBDE36100CE9435 /* Sources */,
+				60C6954C1DBDE36100CE9435 /* Frameworks */,
+				60C6954D1DBDE36100CE9435 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				60C695521DBDE36100CE9435 /* PBXTargetDependency */,
+			);
+			name = TafelsalzTests;
+			productName = TafelsalzTests;
+			productReference = 60C6954F1DBDE36100CE9435 /* TafelsalzTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		60C6953D1DBDE36000CE9435 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Universität Hamburg";
+				TargetAttributes = {
+					60C695451DBDE36000CE9435 = {
+						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
+					};
+					60C6954E1DBDE36100CE9435 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 60C695401DBDE36000CE9435 /* Build configuration list for PBXProject "Tafelsalz" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 60C6953C1DBDE36000CE9435;
+			productRefGroup = 60C695471DBDE36100CE9435 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				60C695451DBDE36000CE9435 /* Tafelsalz */,
+				60C6954E1DBDE36100CE9435 /* TafelsalzTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		60C695441DBDE36000CE9435 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		60C6954D1DBDE36100CE9435 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		60C695411DBDE36000CE9435 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60C696A41DBF908F00CE9435 /* Random.swift in Sources */,
+				60C6969A1DBE02A500CE9435 /* EncryptedData.swift in Sources */,
+				60C696971DBDFB3600CE9435 /* SecretBox.swift in Sources */,
+				60C696551DBDE5CA00CE9435 /* Tafelsalz.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		60C6954B1DBDE36100CE9435 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60C696A91DBFAE4A00CE9435 /* RandomTests.swift in Sources */,
+				60D73F671DC0D91400AAAC59 /* SecretBoxTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		60C695521DBDE36100CE9435 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 60C695451DBDE36000CE9435 /* Tafelsalz */;
+			targetProxy = 60C695511DBDE36100CE9435 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		60C695581DBDE36100CE9435 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Dependencies/libsodium";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/Dependencies/libsodium";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		60C695591DBDE36100CE9435 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Dependencies/libsodium";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/Dependencies/libsodium";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		60C6955B1DBDE36100CE9435 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = Tafelsalz/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Dependencies/libsodium",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "de.uni-hamburg.informatik.Tafelsalz";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		60C6955C1DBDE36100CE9435 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = Tafelsalz/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Dependencies/libsodium",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "de.uni-hamburg.informatik.Tafelsalz";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		60C6955E1DBDE36100CE9435 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = TafelsalzTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.uni-hamburg.informatik.TafelsalzTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		60C6955F1DBDE36100CE9435 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = TafelsalzTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.uni-hamburg.informatik.TafelsalzTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		60C695401DBDE36000CE9435 /* Build configuration list for PBXProject "Tafelsalz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60C695581DBDE36100CE9435 /* Debug */,
+				60C695591DBDE36100CE9435 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		60C6955A1DBDE36100CE9435 /* Build configuration list for PBXNativeTarget "Tafelsalz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60C6955B1DBDE36100CE9435 /* Debug */,
+				60C6955C1DBDE36100CE9435 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		60C6955D1DBDE36100CE9435 /* Build configuration list for PBXNativeTarget "TafelsalzTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60C6955E1DBDE36100CE9435 /* Debug */,
+				60C6955F1DBDE36100CE9435 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 60C6953D1DBDE36000CE9435 /* Project object */;
+}
