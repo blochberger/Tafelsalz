@@ -19,4 +19,4 @@ Note that the goal is not to prevent malicious attackers to circumvent the estab
 ---
 
 1. D. J. Bernstein, T. Lange, and P. Schwabe, **The Security Impact of a New Cryptographic Library** in *Progress in Cryptology – LATINCRYPT 2012 – 2nd International Conference on Cryptology and Information Security in Latin America, Santiago, Chile, October 7-10, 2012. Proceedings* (A. Hevia and G. Neven, eds.), pp. 159–176
-2. M. Green, **The anatomy of a bad idea**, 2012, URL: http://blog.cryptographyengineering.com/2012/12/the-anatomy-of-bad-idea.html
+2. M. Green, **The Anatomy of a Bad Idea**, 2012, URL: http://blog.cryptographyengineering.com/2012/12/the-anatomy-of-bad-idea.html
