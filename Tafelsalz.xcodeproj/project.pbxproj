@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		604E24C91DC7720F00942D54 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 604E24C81DC7720F00942D54 /* README.md */; };
 		60C695501DBDE36100CE9435 /* Tafelsalz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C695461DBDE36100CE9435 /* Tafelsalz.framework */; };
 		60C695571DBDE36100CE9435 /* Tafelsalz.h in Headers */ = {isa = PBXBuildFile; fileRef = 60C695491DBDE36100CE9435 /* Tafelsalz.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		60C696551DBDE5CA00CE9435 /* Tafelsalz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C696541DBDE5CA00CE9435 /* Tafelsalz.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		604E24C81DC7720F00942D54 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		60C695461DBDE36100CE9435 /* Tafelsalz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Tafelsalz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		60C695491DBDE36100CE9435 /* Tafelsalz.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tafelsalz.h; sourceTree = "<group>"; };
 		60C6954A1DBDE36100CE9435 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -122,9 +124,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		604E24CA1DC7721B00942D54 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				604E24C81DC7720F00942D54 /* README.md */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		60C6953C1DBDE36000CE9435 = {
 			isa = PBXGroup;
 			children = (
+				604E24CA1DC7721B00942D54 /* Supporting Files */,
 				60C695D81DBDE50300CE9435 /* Dependencies */,
 				60C695481DBDE36100CE9435 /* Tafelsalz */,
 				60C695531DBDE36100CE9435 /* TafelsalzTests */,
@@ -357,6 +368,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				604E24C91DC7720F00942D54 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
