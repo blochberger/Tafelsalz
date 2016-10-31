@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		604E24C91DC7720F00942D54 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 604E24C81DC7720F00942D54 /* README.md */; };
+		604E24CC1DC77F5A00942D54 /* Examples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604E24CB1DC77F5A00942D54 /* Examples.swift */; };
 		60C695501DBDE36100CE9435 /* Tafelsalz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C695461DBDE36100CE9435 /* Tafelsalz.framework */; };
 		60C695571DBDE36100CE9435 /* Tafelsalz.h in Headers */ = {isa = PBXBuildFile; fileRef = 60C695491DBDE36100CE9435 /* Tafelsalz.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		60C696551DBDE5CA00CE9435 /* Tafelsalz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C696541DBDE5CA00CE9435 /* Tafelsalz.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		604E24C81DC7720F00942D54 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		604E24CB1DC77F5A00942D54 /* Examples.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Examples.swift; sourceTree = "<group>"; };
 		60C695461DBDE36100CE9435 /* Tafelsalz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Tafelsalz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		60C695491DBDE36100CE9435 /* Tafelsalz.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tafelsalz.h; sourceTree = "<group>"; };
 		60C6954A1DBDE36100CE9435 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				60C696951DBDF41700CE9435 /* Supporting Files */,
 				60C696A81DBFAE4A00CE9435 /* RandomTests.swift */,
 				60D73F661DC0D91400AAAC59 /* SecretBoxTests.swift */,
+				604E24CB1DC77F5A00942D54 /* Examples.swift */,
 			);
 			path = TafelsalzTests;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				60C696A91DBFAE4A00CE9435 /* RandomTests.swift in Sources */,
+				604E24CC1DC77F5A00942D54 /* Examples.swift in Sources */,
 				60D73F671DC0D91400AAAC59 /* SecretBoxTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -16,6 +16,19 @@ Note that the goal is not to prevent malicious attackers to circumvent the estab
 
 ⚠️ **WARNING**: This project is still work in progress and the API is highly unstable. It is recommended to use a more stable library for the time being, such as [jedisct1/swift-sodium](https://github.com/jedisct1/swift-sodium).
 
+## Examples
+
+### Symmetric Encryption
+
+```swift
+let secretBox = SecretBox()!
+let plaintext = "Hello, World!".data(using: .utf8)!
+let ciphertext = secretBox.encrypt(data: plaintext)!
+let decrypted = secretBox.decrypt(data: ciphertext)!
+```
+
+
+
 ---
 
 1. D. J. Bernstein, T. Lange, and P. Schwabe, **The Security Impact of a New Cryptographic Library** in *Progress in Cryptology – LATINCRYPT 2012 – 2nd International Conference on Cryptology and Information Security in Latin America, Santiago, Chile, October 7-10, 2012. Proceedings* (A. Hevia and G. Neven, eds.), pp. 159–176
