@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6023DFC81DE42DA900E0B95E /* Hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6023DFC71DE42DA900E0B95E /* Hash.swift */; };
+		6023DFCA1DE4322100E0B95E /* HashTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6023DFC91DE4322100E0B95E /* HashTest.swift */; };
 		604E24C91DC7720F00942D54 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 604E24C81DC7720F00942D54 /* README.md */; };
 		604E24CC1DC77F5A00942D54 /* Examples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604E24CB1DC77F5A00942D54 /* Examples.swift */; };
 		60C695501DBDE36100CE9435 /* Tafelsalz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C695461DBDE36100CE9435 /* Tafelsalz.framework */; };
@@ -31,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6023DFC71DE42DA900E0B95E /* Hash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hash.swift; sourceTree = "<group>"; };
+		6023DFC91DE4322100E0B95E /* HashTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HashTest.swift; sourceTree = "<group>"; };
 		604E24C81DC7720F00942D54 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		604E24CB1DC77F5A00942D54 /* Examples.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Examples.swift; sourceTree = "<group>"; };
 		60C695461DBDE36100CE9435 /* Tafelsalz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Tafelsalz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				60C696951DBDF41700CE9435 /* Supporting Files */,
+				6023DFC91DE4322100E0B95E /* HashTest.swift */,
 				60C696A81DBFAE4A00CE9435 /* RandomTests.swift */,
 				60D73F661DC0D91400AAAC59 /* SecretBoxTests.swift */,
 				604E24CB1DC77F5A00942D54 /* Examples.swift */,
@@ -273,6 +278,7 @@
 				60C696991DBE02A500CE9435 /* EncryptedData.swift */,
 				60C696A31DBF908F00CE9435 /* Random.swift */,
 				60C696961DBDFB3600CE9435 /* SecretBox.swift */,
+				6023DFC71DE42DA900E0B95E /* Hash.swift */,
 			);
 			name = Public;
 			sourceTree = "<group>";
@@ -389,6 +395,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6023DFC81DE42DA900E0B95E /* Hash.swift in Sources */,
 				60C696A41DBF908F00CE9435 /* Random.swift in Sources */,
 				60C6969A1DBE02A500CE9435 /* EncryptedData.swift in Sources */,
 				60C696971DBDFB3600CE9435 /* SecretBox.swift in Sources */,
@@ -401,6 +408,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				60C696A91DBFAE4A00CE9435 /* RandomTests.swift in Sources */,
+				6023DFCA1DE4322100E0B95E /* HashTest.swift in Sources */,
 				604E24CC1DC77F5A00942D54 /* Examples.swift in Sources */,
 				60D73F671DC0D91400AAAC59 /* SecretBoxTests.swift in Sources */,
 			);
