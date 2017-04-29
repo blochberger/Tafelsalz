@@ -6,8 +6,8 @@ public class Hash {
 		- warning:
 			Values for `enum`s can only be assigned as literals. Due to this
 			limitation it is not possible to detect differences to the values
-			defined in `libsodium` at compile time. Validation is performed at
-			runtime and during tests.
+			defined in `libsodium` at compile time. Validation is performed by
+			tests.
 
 			The actual values are defined in `libsodium/crypto_pwhash_argon2i.h`
 	*/
@@ -24,8 +24,8 @@ public class Hash {
 		- warning:
 			Values for `enum`s can only be assigned as literals. Due to this
 			limitation it is not possible to detect differences to the values
-			defined in `libsodium` at compile time. Validation is performed at
-			runtime and during tests.
+			defined in `libsodium` at compile time. Validation is performed by
+			tests.
 
 			The actual values are defined in `libsodium/crypto_pwhash_argon2i.h`
 	*/
@@ -42,8 +42,8 @@ public class Hash {
 		- warning:
 			Values for `enum`s can only be assigned as literals. Due to this
 			limitation it is not possible to detect differences to the values
-			defined in `libsodium` at compile time. Validation is performed at
-			runtime and during tests.
+			defined in `libsodium` at compile time. Validation is performed by
+			tests.
 
 			The actual values are defined in `libsodium/crypto_pwhash_argon2i.h`
 	*/
@@ -68,58 +68,13 @@ public class Hash {
 		}
 	}
 
-	/// - see: `libsodium.crypto_pwhash_alg_default()`
-	static let DefaultPasswordHashingAlgorithm = PasswordHashingAlgorithm.Argon2i_v13
-
-	// For additional integrity/sanity checks that are necessary due to compiler
-	// or language limitations.
-
-	static let ExpectedMemoryLimitInBytes_Interactive = PInt(libsodium.crypto_pwhash_memlimit_interactive())
-	static let ExpectedMemoryLimitInBytes_Moderate = PInt(libsodium.crypto_pwhash_memlimit_moderate())
-	static let ExpectedMemoryLimitInBytes_Sensitive = PInt(libsodium.crypto_pwhash_memlimit_sensitive())
-
-	static let ExpectedComplexityLimit_Interactive = PInt(libsodium.crypto_pwhash_opslimit_interactive())
-	static let ExpectedComplexityLimit_Moderate = PInt(libsodium.crypto_pwhash_opslimit_moderate())
-	static let ExpectedComplexityLimit_Sensitive = PInt(libsodium.crypto_pwhash_opslimit_sensitive())
-
-	static let ExpectedPasswordHashingAlgorithm_Argon2i_v13 = PInt(libsodium.crypto_pwhash_alg_argon2i13())
-	static let ExpectedPasswordHashingAlgorithm_Default = PInt(libsodium.crypto_pwhash_alg_default())
-
-	static func memoryLimitsAreSane() -> Bool {
-		return MemoryLimitInBytes.Interactive.rawValue == ExpectedMemoryLimitInBytes_Interactive
-			&& MemoryLimitInBytes.Moderate.rawValue == ExpectedMemoryLimitInBytes_Moderate
-			&& MemoryLimitInBytes.Sensitive.rawValue == ExpectedMemoryLimitInBytes_Sensitive
-	}
-
-	static func complexityLimitsAreSane() -> Bool {
-		return ComplexityLimit.Interactive.rawValue == ExpectedComplexityLimit_Interactive
-			&& ComplexityLimit.Moderate.rawValue == ExpectedComplexityLimit_Moderate
-			&& ComplexityLimit.Sensitive.rawValue == ExpectedComplexityLimit_Sensitive
-	}
-
-	static func limitsAreSane() -> Bool {
-		return memoryLimitsAreSane() && complexityLimitsAreSane()
-	}
-
-	static func passwordHashingAlgorithmValuesAreSane() -> Bool {
-		return PasswordHashingAlgorithm.Argon2i_v13.rawValue == ExpectedPasswordHashingAlgorithm_Argon2i_v13
-			&& DefaultPasswordHashingAlgorithm.rawValue == ExpectedPasswordHashingAlgorithm_Default
-			&& DefaultPasswordHashingAlgorithm == PasswordHashingAlgorithm.Argon2i_v13
-	}
-
-	static func mappedValuesAreSane() -> Bool {
-		return limitsAreSane() && passwordHashingAlgorithmValuesAreSane()
-	}
+	static let DefaultPasswordHashingAlgorithm = PasswordHashingAlgorithm(rawValue: PInt(libsodium.crypto_pwhash_alg_default()))!
 
 	public let bytes: Data
 	public let salt: Salt
 
 	public init?(withConfidentialValue value: Data, andOutputLengthInBytes outputLength: PInt, andSalt salt: Salt) {
 		guard Tafelsalz.isInitialized() else {
-			return nil
-		}
-
-		guard Hash.mappedValuesAreSane() else {
 			return nil
 		}
 
@@ -143,7 +98,7 @@ public class Hash {
 						UInt64(ComplexityLimit.Sensitive.rawValue),
 						Int(MemoryLimitInBytes.Sensitive.rawValue),
 						Int32(Hash.DefaultPasswordHashingAlgorithm.rawValue)
-						) == 0;
+					) == 0;
 				}
 			}
 
@@ -159,10 +114,6 @@ public class Hash {
 
 	public convenience init?(withConfidentialValue value: Data, andOutputLengthInBytes outputLength: PInt) {
 		guard Tafelsalz.isInitialized() else {
-			return nil
-		}
-
-		guard Hash.mappedValuesAreSane() else {
 			return nil
 		}
 

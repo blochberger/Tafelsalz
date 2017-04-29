@@ -1,63 +1,51 @@
 import XCTest
 @testable import Tafelsalz
 
+import libsodium
+
 class HashTest: XCTestCase {
 
-	// MARK: - Sanitize mapped values
+	// MARK: - Sanitize mapped enumeration values
 
     func testMemoryLimitInBytesValues() {
 		XCTAssertEqual(
 			Hash.MemoryLimitInBytes.Interactive.rawValue,
-			Hash.ExpectedMemoryLimitInBytes_Interactive
+			PInt(libsodium.crypto_pwhash_memlimit_interactive())
 		)
 		XCTAssertEqual(
 			Hash.MemoryLimitInBytes.Moderate.rawValue,
-			Hash.ExpectedMemoryLimitInBytes_Moderate
+			PInt(libsodium.crypto_pwhash_memlimit_moderate())
 		)
 		XCTAssertEqual(
 			Hash.MemoryLimitInBytes.Sensitive.rawValue,
-			Hash.ExpectedMemoryLimitInBytes_Sensitive
+			PInt(libsodium.crypto_pwhash_memlimit_sensitive())
 		)
-
-		XCTAssertTrue(Hash.memoryLimitsAreSane())
     }
 
 	func testComplexityLimitValues() {
 		XCTAssertEqual(
 			Hash.ComplexityLimit.Interactive.rawValue,
-			Hash.ExpectedComplexityLimit_Interactive
+			PInt(libsodium.crypto_pwhash_opslimit_interactive())
 		)
 		XCTAssertEqual(
 			Hash.ComplexityLimit.Moderate.rawValue,
-			Hash.ExpectedComplexityLimit_Moderate
+			PInt(libsodium.crypto_pwhash_opslimit_moderate())
 		)
 		XCTAssertEqual(
 			Hash.ComplexityLimit.Sensitive.rawValue,
-			Hash.ExpectedComplexityLimit_Sensitive
+			PInt(libsodium.crypto_pwhash_opslimit_sensitive())
 		)
-
-		XCTAssertTrue(Hash.complexityLimitsAreSane())
 	}
 
 	func testPasswordHashingAlgorithmValues() {
 		XCTAssertEqual(
 			Hash.PasswordHashingAlgorithm.Argon2i_v13.rawValue,
-			Hash.ExpectedPasswordHashingAlgorithm_Argon2i_v13
+			PInt(libsodium.crypto_pwhash_alg_argon2i13())
 		)
 		XCTAssertEqual(
 			Hash.DefaultPasswordHashingAlgorithm.rawValue,
-			Hash.ExpectedPasswordHashingAlgorithm_Default
+			PInt(libsodium.crypto_pwhash_alg_default())
 		)
-		XCTAssertEqual(
-			Hash.DefaultPasswordHashingAlgorithm,
-			Hash.PasswordHashingAlgorithm.Argon2i_v13
-		)
-		XCTAssertTrue(Hash.passwordHashingAlgorithmValuesAreSane())
-	}
-
-	func testMappedValues() {
-		XCTAssertTrue(Hash.limitsAreSane())
-		XCTAssertTrue(Hash.mappedValuesAreSane())
 	}
 
 	// MARK: - Hash.Salt

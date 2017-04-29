@@ -20,6 +20,7 @@
 		60C696A41DBF908F00CE9435 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C696A31DBF908F00CE9435 /* Random.swift */; };
 		60C696A91DBFAE4A00CE9435 /* RandomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C696A81DBFAE4A00CE9435 /* RandomTests.swift */; };
 		60D73F671DC0D91400AAAC59 /* SecretBoxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D73F661DC0D91400AAAC59 /* SecretBoxTests.swift */; };
+		60E0F3291E38AF200005C5AE /* libsodium-osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C6968A1DBDEB1500CE9435 /* libsodium-osx.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				60C695501DBDE36100CE9435 /* Tafelsalz.framework in Frameworks */,
+				60E0F3291E38AF200005C5AE /* libsodium-osx.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,7 +550,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "de.uni-hamburg.informatik.Tafelsalz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -576,7 +577,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "de.uni-hamburg.informatik.Tafelsalz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
@@ -589,6 +589,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = TafelsalzTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Dependencies/libsodium",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "de.uni-hamburg.informatik.TafelsalzTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -602,6 +606,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = TafelsalzTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Dependencies/libsodium",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "de.uni-hamburg.informatik.TafelsalzTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
