@@ -33,7 +33,7 @@ class RandomTests: XCTestCase {
 		XCTAssertNotEqual(
 			Random()!.bytes(count: randomCount),
 			Random()!.bytes(count: randomCount),
-			"Two random byte sequences from newly instanciated random generators should not be equal."
+			"Two random byte sequences from newly instantiated random generators should not be equal."
 		)
 	}
 
