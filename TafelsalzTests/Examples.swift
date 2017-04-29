@@ -12,4 +12,17 @@ class Examples: XCTestCase {
 		XCTAssertEqual(decrypted, plaintext)
 	}
 
+	func testPasswordHashing() {
+		let password = Password("Correct Horse Battery Staple")!
+		let hashedPassword = password.hash()!
+
+		// Store `hashedPassword.string` to database.
+
+		// If a user wants to authenticate, just read it from the database and
+		// verify it against the password given by the user.
+		if hashedPassword.isVerified(by: password) {
+			// The user is authenticated successfully.
+		}
+	}
+
 }
