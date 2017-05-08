@@ -1,6 +1,6 @@
 import libsodium
 
-class Random {
+public class Random {
 
 	public init?() {
 		if !Tafelsalz.isInitialized() {
