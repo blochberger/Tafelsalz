@@ -29,7 +29,7 @@ import libsodium
 #endif
 
 class Tafelsalz {
-	static private let instance = Tafelsalz()
+	private static let instance = Tafelsalz()
 
 	init?() {
 		guard libsodium.sodium_init() == 0 else {
