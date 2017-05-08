@@ -32,7 +32,7 @@ class Tafelsalz {
 	static private let instance = Tafelsalz()
 
 	init?() {
-		if libsodium.sodium_init() == -1 {
+		guard libsodium.sodium_init() == 0 else {
 			return nil
 		}
 	}
