@@ -8,7 +8,7 @@ import XCTest
 class RandomTests: XCTestCase {
 
     func testInitializer() {
-		XCTAssertNotNil(Random(), "Failed to initialize `libsodium`.")
+		XCTAssertNotNil(Random())
     }
 
 	func testBytes() {
@@ -16,24 +16,19 @@ class RandomTests: XCTestCase {
 		let randomCount = 100 + random.number(withUpperBound: 100)
 		let bytes = random.bytes(count: randomCount)
 
-		XCTAssertEqual(
-			bytes.count,
-			Int(randomCount),
-			"Returned byte sequence has invalid size."
-		)
+		XCTAssertEqual(bytes.count, Int(randomCount))
 
 		let otherBytes = random.bytes(count: randomCount)
 
-		XCTAssertNotEqual(
-			bytes,
-			otherBytes,
-			"Two random byte sequences should not be equal, the probability of that to happen is very low: 1/(2^(randomCount*8))."
-		)
+		// Two random byte sequences should not be equal, the probability of
+		// that to happen is very low: 1/(2^(randomCount*8)).
+		XCTAssertNotEqual(bytes, otherBytes)
 
+		// Two random byte sequences from newly instantiated random generators
+		// should not be equal.
 		XCTAssertNotEqual(
 			Random()!.bytes(count: randomCount),
-			Random()!.bytes(count: randomCount),
-			"Two random byte sequences from newly instantiated random generators should not be equal."
+			Random()!.bytes(count: randomCount)
 		)
 	}
 
@@ -46,10 +41,9 @@ class RandomTests: XCTestCase {
 				occurrences += 1
 			}
 		}
-		XCTAssert(
-			occurrences < 10,
-			"The reference number occurred more frequently than expected."
-		)
+
+		// Test if the reference number occurred more frequently than expected.
+		XCTAssert(occurrences < 10)
 	}
 
 	func testNumberWithUpperBoundDistribution() {
@@ -62,9 +56,8 @@ class RandomTests: XCTestCase {
 				occurrences += 1
 			}
 		}
-		XCTAssert(
-			occurrences < 10,
-			"The reference number occurred more frequently than expected."
-		)
+
+		// Test if the reference number occurred more frequently than expected.
+		XCTAssert(occurrences < 10)
 	}
 }

@@ -5,84 +5,87 @@ class SecretBoxTests: XCTestCase {
 
 	// MARK: - SecretBox.SecretKey
 
-    func testSecretKeyInitializer() {
-		XCTAssertNotNil(SecretBox.SecretKey(), "Failed to initialize `libsodium`.")
+    func testSecretKey() {
+		typealias SecretKey = SecretBox.SecretKey
 
-		let secretKey = SecretBox.SecretKey()!
+		let defaultInitializer = { SecretKey() }
+		let capturingInitializer: (inout Data) -> SecretKey? = { SecretKey(bytes: &$0) }
 
-		XCTAssertEqual(
-			secretKey.bytes.count,
-			Int(SecretBox.SecretKey.SizeInBytes),
-			"The secret key has an invalid size."
-		)
-
-		let otherSecretKey = SecretBox.SecretKey()!
-
-		XCTAssertNotEqual(
-			secretKey.bytes,
-			otherSecretKey.bytes,
-			"Two secret keys should not be equal."
-		)
+		KeyMaterialTest.metaTestDefaultInitializer(of: SecretKey.SizeInBytes, with: defaultInitializer)
+		KeyMaterialTest.metaTestCapturingInitializer(of: SecretKey.SizeInBytes, with: capturingInitializer)
+		KeyMaterialTest.metaTestEquality(of: SecretKey.SizeInBytes, withCapturingInitializer: capturingInitializer)
     }
 
-	func testSecretKeyInitWithBytes() {
-		let secretKey1 = SecretBox.SecretKey()!
-		let optionalSecretKey2 = SecretBox.SecretKey(withBytes: secretKey1.bytes)
+	// MARK: - SecretBox.Nonce
 
-		XCTAssertNotNil(
-			optionalSecretKey2,
-			"Unexpectedly rejected valid byte sequence."
-		)
+	func testNonce() {
+		typealias Nonce = SecretBox.Nonce
 
-		let secretKey2 = optionalSecretKey2!
+		let defaultInitializer = { Nonce() }
+		let capturingInitializer: (inout Data) -> Nonce? = { Nonce(bytes: &$0) }
 
-		XCTAssertEqual(
-			secretKey1.bytes,
-			secretKey2.bytes,
-			"Byte sequence was unexpectedly transformed."
-		)
+		KeyMaterialTest.metaTestDefaultInitializer(of: Nonce.SizeInBytes, with: defaultInitializer)
+		KeyMaterialTest.metaTestCapturingInitializer(of: Nonce.SizeInBytes, with: capturingInitializer)
+		KeyMaterialTest.metaTestEquality(of: Nonce.SizeInBytes, withCapturingInitializer: capturingInitializer)
+	}
+
+	// MARK: - AuthenticationCode
+
+	func testAuthenticationCode() {
+		typealias AuthenticationCode = SecretBox.AuthenticationCode
+
+		let capturingInitializer: (inout Data) -> AuthenticationCode? = { AuthenticationCode(bytes: &$0) }
+
+		KeyMaterialTest.metaTestCapturingInitializer(of: AuthenticationCode.SizeInBytes, with: capturingInitializer)
+		KeyMaterialTest.metaTestEquality(of: AuthenticationCode.SizeInBytes, withCapturingInitializer: capturingInitializer)
+	}
+
+	// MARK: - AuthenticatedCiphertext
+
+	func testAuthenticatedCiphertext() {
+		typealias Nonce = SecretBox.Nonce
+		typealias AuthenticationCode = SecretBox.AuthenticationCode
+		typealias AuthenticatedCiphertext = SecretBox.AuthenticatedCiphertext
 
 		let random = Random()!
-		let randomBytes = random.bytes(count: SecretBox.SecretKey.SizeInBytes)
-		let optionalSecretKey3 = SecretBox.SecretKey(withBytes: randomBytes)
+		let ciphertextSizeInBytes: PInt = 32
+		let sizeInBytes = AuthenticatedCiphertext.PrefixSizeInBytes + ciphertextSizeInBytes
 
-		XCTAssertNotNil(
-			optionalSecretKey2,
-			"Unexpectedly rejected valid byte sequence."
-		)
+		let nonce = Nonce()!
+		var authenticationCodeBytes = random.bytes(count: AuthenticationCode.SizeInBytes)
+		let authenticationCode = AuthenticationCode(bytes: &authenticationCodeBytes)!
+		let ciphertext = random.bytes(count: ciphertextSizeInBytes)
+		let bytes = nonce.copyBytes() + authenticationCode.copyBytes() + ciphertext
 
-		let secretKey3 = optionalSecretKey3!
+		let authenticatedCiphertext1 = AuthenticatedCiphertext(nonce: nonce, authenticationCode: authenticationCode, ciphertext: ciphertext)
 
-		XCTAssertEqual(
-			secretKey3.bytes,
-			randomBytes,
-			"Byte sequence was unexpectedly transformed."
-		)
+		XCTAssertEqual(authenticatedCiphertext1.sizeInBytes, sizeInBytes)
+		XCTAssertEqual(authenticatedCiphertext1.nonce, nonce)
+		XCTAssertEqual(authenticatedCiphertext1.authenticationCode, authenticationCode)
+		XCTAssertEqual(authenticatedCiphertext1.ciphertext, ciphertext)
+		XCTAssertEqual(authenticatedCiphertext1.bytes, bytes)
 
-		// Negative tests
+		let optionalAuthenticatedCiphertext2 = AuthenticatedCiphertext(bytes: bytes)
 
-		let lessBytes = random.bytes(count: SecretBox.SecretKey.SizeInBytes - 1)
+		XCTAssertNotNil(optionalAuthenticatedCiphertext2)
 
-		XCTAssertNil(
-			SecretBox.SecretKey(withBytes: lessBytes),
-			"Unexpectedly accepted byte sequence that is too short."
-		)
+		let authenticatedCiphertext2 = optionalAuthenticatedCiphertext2!
 
-		let moreBytes = random.bytes(count: SecretBox.SecretKey.SizeInBytes + 1)
+		XCTAssertEqual(authenticatedCiphertext2.sizeInBytes, sizeInBytes)
+		XCTAssertEqual(authenticatedCiphertext2.nonce, nonce)
+		XCTAssertEqual(authenticatedCiphertext2.authenticationCode, authenticationCode)
+		XCTAssertEqual(authenticatedCiphertext2.ciphertext, ciphertext)
+		XCTAssertEqual(authenticatedCiphertext2.bytes, bytes)
 
-		XCTAssertNil(
-			SecretBox.SecretKey(withBytes: moreBytes),
-			"Unexpectedly accepted byte sequence that is too long."
-		)
+		let tooShort = random.bytes(count: AuthenticatedCiphertext.PrefixSizeInBytes)
+
+		XCTAssertNil(AuthenticatedCiphertext(bytes: tooShort))
 	}
 
 	// MARK: - SecretBox
 
 	func testInitializer() {
-		XCTAssertNotNil(
-			SecretBox(),
-			"Failed to initialize `libsodium` or to generate a secret key."
-		)
+		XCTAssertNotNil(SecretBox())
 	}
 
 	func testEncryptionAndDecryption() {
@@ -91,73 +94,65 @@ class SecretBoxTests: XCTestCase {
 		let originalPlaintext = "Hello, World!".data(using: .utf8)!
 		let optionalCiphertext = secretBox.encrypt(data: originalPlaintext)
 
-		XCTAssertNotNil(optionalCiphertext, "Failed to encrypt.")
+		// Test if decryption did succeed
+		XCTAssertNotNil(optionalCiphertext)
 
 		let ciphertext = optionalCiphertext!
 		let otherCiphertext = secretBox.encrypt(data: originalPlaintext)!
 
-		XCTAssertNotEqual(
-			otherCiphertext.data,
-			ciphertext.data,
-			"Ciphertext of two encryption operations on the same plaintext is equal. Make sure the nonce was used only once!"
-		)
+		// Test for nonce reuse
+		XCTAssertNotEqual(otherCiphertext.nonce, ciphertext.nonce)
+
+		// Test that a different nonce results in a different authentication code
+		XCTAssertNotEqual(otherCiphertext.authenticationCode, ciphertext.authenticationCode)
+
+		// Test that a different nonce results in a different ciphertext
+		XCTAssertNotEqual(otherCiphertext.ciphertext, ciphertext.ciphertext)
 
 		// Decryption of both ciphertexts should reveal the original plaintext
 
 		let plaintext = secretBox.decrypt(data: ciphertext)
 		let otherPlaintext = secretBox.decrypt(data: otherCiphertext)
 
-		XCTAssertNotNil(plaintext, "Decryption failed.")
-		XCTAssertNotNil(otherPlaintext, "Decryption failed.")
+		// Test if decryption did succeed
+		XCTAssertNotNil(plaintext)
+		XCTAssertNotNil(otherPlaintext)
 
-		XCTAssertEqual(plaintext, originalPlaintext, "Decrypted result is invalid.")
-		XCTAssertEqual(otherPlaintext, originalPlaintext, "Decrypted result is invalid.")
+		// Test if the decrypted text is equal to the original text
+		XCTAssertEqual(plaintext, originalPlaintext)
+		XCTAssertEqual(otherPlaintext, originalPlaintext)
 
 		// Decryption should not be possible with invalid nonce
 
-		let bytePosInNonce = Int(random.number(withUpperBound: SecretBox.SizeOfNonceInBytes))
-		var dataWithInvalidNonce = ciphertext.data
+		let bytePosInNonce = Int(random.number(withUpperBound: SecretBox.Nonce.SizeInBytes))
+		var dataWithInvalidNonce = ciphertext.bytes
 		dataWithInvalidNonce[bytePosInNonce] = ~dataWithInvalidNonce[bytePosInNonce]
+		let ciphertextWithInvalidNonce = SecretBox.AuthenticatedCiphertext(bytes: dataWithInvalidNonce)!
 
-		XCTAssertNil(
-			secretBox.decrypt(data: EncryptedData(dataWithInvalidNonce)),
-			"Decryption should not be possible with invalid nonce."
-		)
+		XCTAssertNil(secretBox.decrypt(data: ciphertextWithInvalidNonce))
 
 		// Decryption should not be possible with invalid MAC
 
-		let bytePosInMac = Int(SecretBox.SizeOfNonceInBytes + random.number(withUpperBound: SecretBox.SizeOfMacInBytes))
-		var dataWithInvalidMac = ciphertext.data
+		let bytePosInMac = Int(SecretBox.Nonce.SizeInBytes + random.number(withUpperBound: SecretBox.AuthenticationCode.SizeInBytes))
+		var dataWithInvalidMac = ciphertext.bytes
 		dataWithInvalidMac[bytePosInMac] = ~dataWithInvalidMac[bytePosInMac]
-		XCTAssertNil(
-			secretBox.decrypt(data: EncryptedData(dataWithInvalidMac)),
-			"Decryption should not be possible with invalid MAC"
-		)
+		let ciphertextWithInvalidMac = SecretBox.AuthenticatedCiphertext(bytes: dataWithInvalidMac)!
+
+		XCTAssertNil(secretBox.decrypt(data: ciphertextWithInvalidMac))
 
 		// Decryption should not be possible with invalid ciphertext
 
-		let prefixSize = SecretBox.SizeOfNonceInBytes + SecretBox.SizeOfMacInBytes
-		let bytePosInCiphertext = Int(prefixSize + random.number(withUpperBound: PInt(ciphertext.data.count) - prefixSize))
-		var dataWithInvalidCiphertext = ciphertext.data
+		let prefixSize = SecretBox.Nonce.SizeInBytes + SecretBox.AuthenticationCode.SizeInBytes
+		let bytePosInCiphertext = Int(prefixSize + random.number(withUpperBound: PInt(ciphertext.bytes.count) - prefixSize))
+		var dataWithInvalidCiphertext = ciphertext.bytes
 		dataWithInvalidCiphertext[bytePosInCiphertext] = ~dataWithInvalidCiphertext[bytePosInCiphertext]
-		XCTAssertNil(
-			secretBox.decrypt(data: EncryptedData(dataWithInvalidCiphertext)),
-			"Decryption should not be possible with invalid ciphertext"
-		)
+		let ciphertextWithInvalidBytes = SecretBox.AuthenticatedCiphertext(bytes: dataWithInvalidCiphertext)!
+
+		XCTAssertNil(secretBox.decrypt(data: ciphertextWithInvalidBytes))
 
 		// Decryption should not be possible with invalid key
 
 		let otherSecretBox = SecretBox()!
-		XCTAssertNil(
-			otherSecretBox.decrypt(data: ciphertext),
-			"Decryption should not be possible with invalid key."
-		)
-
-		// Try to decrypt byte sequence that is too short
-
-		XCTAssertNil(
-			secretBox.decrypt(data: EncryptedData(random.bytes(count: prefixSize))),
-			"Decryption should fail if there is no ciphertext."
-		)
+		XCTAssertNil(otherSecretBox.decrypt(data: ciphertext))
 	}
 }

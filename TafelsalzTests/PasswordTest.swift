@@ -4,12 +4,12 @@ import XCTest
 class PasswordTest: XCTestCase {
 
     func testInitializer() {
-		XCTAssertNotNil(Password("Unicorn", withEncoding: .ascii))
-		XCTAssertNotNil(Password("Unicorn", withEncoding: .utf8))
-		XCTAssertNotNil(Password("🦄", withEncoding: .utf8))
+		XCTAssertNotNil(Password("Unicorn", using: .ascii))
+		XCTAssertNotNil(Password("Unicorn", using: .utf8))
+		XCTAssertNotNil(Password("🦄", using: .utf8))
 		XCTAssertNotNil(Password("Unicorn"))
 		XCTAssertNotNil(Password("🦄"))
-		XCTAssertNil(Password("🦄", withEncoding: .ascii))
+		XCTAssertNil(Password("🦄", using: .ascii))
     }
 
 	func testHash() {

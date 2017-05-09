@@ -9,13 +9,11 @@ class HashedPasswordTest: XCTestCase {
 		)
 
         XCTAssertNil(
-			HashedPassword(Random()!.bytes(count: HashedPassword.SizeInBytes - 1)),
-			"Unexpectedly created HashedPassword with input that is too small!"
+			HashedPassword(Random()!.bytes(count: HashedPassword.SizeInBytes - 1))
 		)
 
 		XCTAssertNil(
-			HashedPassword(Random()!.bytes(count: HashedPassword.SizeInBytes + 1)),
-			"Unexpectedly created HashedPassword with input that is too big!"
+			HashedPassword(Random()!.bytes(count: HashedPassword.SizeInBytes + 1))
 		)
     }
 
