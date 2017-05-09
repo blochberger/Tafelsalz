@@ -1,6 +1,41 @@
 import libsodium
 
 public class Password: KeyMaterial {
+
+	public enum ComplexityLimit {
+		case medium
+		case high
+		case veryHigh
+	}
+
+	public enum MemoryLimit {
+		case medium
+		case high
+		case veryHigh
+	}
+
+	private static func sodiumValue(_ value: ComplexityLimit) -> Int {
+		switch value {
+			case .medium:
+				return libsodium.crypto_pwhash_opslimit_interactive()
+			case .high:
+				return libsodium.crypto_pwhash_opslimit_moderate()
+			case .veryHigh:
+				return libsodium.crypto_pwhash_opslimit_sensitive()
+		}
+	}
+
+	private static func sodiumValue(_ value: MemoryLimit) -> Int {
+		switch value {
+		case .medium:
+			return libsodium.crypto_pwhash_memlimit_interactive()
+		case .high:
+			return libsodium.crypto_pwhash_memlimit_moderate()
+		case .veryHigh:
+			return libsodium.crypto_pwhash_memlimit_sensitive()
+		}
+	}
+
 	public init?(_ password: String, using encoding: String.Encoding = .utf8) {
 		guard var bytes = password.data(using: encoding) else {
 			// Invalid encoding
@@ -10,7 +45,7 @@ public class Password: KeyMaterial {
 		super.init(bytes: &bytes)
 	}
 
-	public func hash() -> HashedPassword? {
+	public func hash(complexity: ComplexityLimit = .high, memory: MemoryLimit = .high) -> HashedPassword? {
 		var hashedPasswordBytes = Data(count: Int(HashedPassword.SizeInBytes))
 
 		let successfullyHashed = hashedPasswordBytes.withUnsafeMutableBytes {
@@ -23,8 +58,8 @@ public class Password: KeyMaterial {
 					hashedPasswordBytesPtr,
 					passwordBytesPtr,
 					UInt64(sizeInBytes),
-					UInt64(libsodium.crypto_pwhash_opslimit_sensitive()),
-					libsodium.crypto_pwhash_memlimit_sensitive()
+					UInt64(Password.sodiumValue(complexity)),
+					Password.sodiumValue(memory)
 				) == 0
 			}
 		}

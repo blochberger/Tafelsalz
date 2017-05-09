@@ -15,7 +15,7 @@ class PasswordTest: XCTestCase {
 	func testHash() {
 		let password1 = Password("Correct Horse Battery Staple")!
 		let password2 = Password("Wrong Horse Battery Staple")!
-		let optionalHashedPassword1 = password1.hash()
+		let optionalHashedPassword1 = password1.hash(complexity: .medium, memory: .medium)
 
 		XCTAssertNotNil(optionalHashedPassword1)
 
