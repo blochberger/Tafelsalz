@@ -3,77 +3,117 @@ import XCTest
 
 class KeyMaterialTest: XCTestCase {
 
+	// MARK: - Meta tests
+
+	static func metaTestDefaultInitializer<T: KeyMaterial>(
+		of fixedSizeInBytes: PInt,
+		with initializer: () -> T?
+	) {
+		let instance1 = initializer()!
+
+		// Test expected size limitation
+		XCTAssertEqual(instance1.sizeInBytes, fixedSizeInBytes)
+
+		// Test reflexivity
+		XCTAssertEqual(instance1, instance1)
+
+		// Test uniqueness after initialization
+		XCTAssertNotEqual(instance1, initializer()!)
+	}
+
+	static func metaTestCapturingInitializer<T: KeyMaterial>(
+		of fixedSizeInBytes: PInt,
+		with initializer: (inout Data) -> T?
+	) {
+		let random = Random()!
+		let expectedBytes = random.bytes(count: fixedSizeInBytes)
+		var bytes = Data(expectedBytes)
+		let optionalInstance = initializer(&bytes)
+
+		// Test creating instance from byte sequence with correct size
+		XCTAssertNotNil(optionalInstance)
+
+		let instance = optionalInstance!
+
+		// Test expected size limitation
+		XCTAssertEqual(instance.sizeInBytes, fixedSizeInBytes)
+
+		// Test equality of byte sequences
+		XCTAssertEqual(instance.copyBytes(), expectedBytes)
+
+		// Test that passed argument is zeroed
+		XCTAssertEqual(bytes, Data(count: Int(fixedSizeInBytes)))
+
+		XCTAssertEqual(instance, instance)
+
+		// Test creating instance from byte sequence with incorrect size
+		var tooShort = random.bytes(count: fixedSizeInBytes - 1)
+		var tooLong = random.bytes(count: fixedSizeInBytes + 1)
+
+		XCTAssertNil(initializer(&tooShort))
+		XCTAssertNil(initializer(&tooLong))
+
+		// Test if arguments passed have been wiped unexpectedly
+		XCTAssertNotEqual(tooShort, Data(count: tooShort.count))
+		XCTAssertNotEqual(tooLong, Data(count: tooLong.count))
+	}
+
+	static func metaTestEquality<T: KeyMaterial>(
+		of fixedSizeInBytes: PInt,
+		withCapturingInitializer initializer: (inout Data) -> T?
+	) {
+		let random = Random()!
+		let bytes = random.bytes(count: fixedSizeInBytes)
+		let otherBytes = random.bytes(count: fixedSizeInBytes)
+		var tmpBytes1 = Data(bytes)
+		var tmpBytes2 = Data(bytes)
+		var tmpBytes3 = Data(otherBytes)
+		let keyMaterial1 = initializer(&tmpBytes1)!
+		let keyMaterial2 = initializer(&tmpBytes2)!
+		let keyMaterial3 = initializer(&tmpBytes3)!
+
+		// Reflexivity
+		XCTAssertEqual(keyMaterial1, keyMaterial1)
+
+		// Symmetry
+		XCTAssertEqual(keyMaterial1, keyMaterial2)
+		XCTAssertEqual(keyMaterial2, keyMaterial1)
+
+		// Inequality due to different byte sequences
+		XCTAssertNotEqual(keyMaterial1, keyMaterial3)
+		XCTAssertNotEqual(keyMaterial3, keyMaterial1)
+	}
+
+
+	// MARK: - Tests
+
 	func testDefaultInitializer() {
 		let sizeInBytes: PInt = 32
 
-		XCTAssertNotNil(
-			KeyMaterial(sizeInBytes: sizeInBytes),
-			"Failed to initialize `libsodium`."
-		)
-
-		let keyMaterial = KeyMaterial(sizeInBytes: sizeInBytes)!
-
-		XCTAssertEqual(
-			keyMaterial.sizeInBytes,
-			sizeInBytes,
-			"The size does not match!"
-		)
-
-		let otherKeyMaterial = KeyMaterial(sizeInBytes: sizeInBytes)!
-
-		XCTAssertEqual(keyMaterial, keyMaterial) // Reflexivity
-
-		XCTAssertNotEqual(
-			keyMaterial,
-			otherKeyMaterial,
-			"Generated key material should not be equal!"
-		)
-
-		XCTAssertNotEqual(
-			keyMaterial,
-			KeyMaterial(sizeInBytes: sizeInBytes - 1),
-			"Generated key material of different size should not be equal"
-		)
+		KeyMaterialTest.metaTestDefaultInitializer(of: sizeInBytes) { KeyMaterial(sizeInBytes: sizeInBytes) }
 	}
 
     func testCapturingInitializer() {
 		let sizeInBytes: PInt = 32
-		let random = Random()!
-		let data = random.bytes(count: sizeInBytes)
 
-		var tmp = Data(data)
-		let optionalKeyMaterial = KeyMaterial(bytes: &tmp)
-
-		XCTAssertNotNil(optionalKeyMaterial)
-
-		let keyMaterial = optionalKeyMaterial!
-
-		XCTAssertEqual(keyMaterial.copyBytes(), data)
+		KeyMaterialTest.metaTestCapturingInitializer(of: sizeInBytes) {
+			PInt($0.count) == sizeInBytes ? KeyMaterial(bytes: &$0) : nil
+		}
     }
 
 	func testEquality() {
 		let sizeInBytes: PInt = 32
 
-		let keyMaterial1 = KeyMaterial(sizeInBytes: sizeInBytes)!
-		var bytes = keyMaterial1.withUnsafeBytes { Data(bytes: $0, count: Int(sizeInBytes)) }
-		let keyMaterial2 = KeyMaterial(bytes: &bytes)!
-		let otherKeyMaterial = KeyMaterial(sizeInBytes: sizeInBytes)!
+		KeyMaterialTest.metaTestEquality(of: sizeInBytes) { KeyMaterial(bytes: &$0) }
 
-		// Reflexivity
-		XCTAssertEqual(keyMaterial1, keyMaterial1)
-		XCTAssertEqual(keyMaterial1, keyMaterial2)
-		XCTAssertEqual(keyMaterial2, keyMaterial1)
+		// Inequality due to different lengths
+		var moreBytes = Random()!.bytes(count: sizeInBytes + 1)
+		var lessBytes = moreBytes.subdata(in: 0..<Int(sizeInBytes))
+		let more = KeyMaterial(bytes: &lessBytes)!
+		let less = KeyMaterial(bytes: &moreBytes)!
 
-		XCTAssertNotEqual(keyMaterial1, otherKeyMaterial)
-
-		var long = Random()!.bytes(count: sizeInBytes + 1)
-		var short = long.subdata(in: 0..<Int(sizeInBytes))
-
-		XCTAssertNotEqual(
-			KeyMaterial(bytes: &long)!,
-			KeyMaterial(bytes: &short)!,
-			"Keys with different lengths should not be equal!"
-		)
+		XCTAssertNotEqual(more, less)
+		XCTAssertNotEqual(less, more)
 	}
 
 }
