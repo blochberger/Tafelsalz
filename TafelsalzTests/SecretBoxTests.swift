@@ -54,15 +54,15 @@ class SecretBoxTests: XCTestCase {
 		let nonce = Nonce()!
 		var authenticationCodeBytes = random.bytes(count: AuthenticationCode.SizeInBytes)
 		let authenticationCode = AuthenticationCode(bytes: &authenticationCodeBytes)!
-		let ciphertext = random.bytes(count: ciphertextSizeInBytes)
-		let bytes = nonce.copyBytes() + authenticationCode.copyBytes() + ciphertext
+		let ciphertext = Ciphertext(random.bytes(count: ciphertextSizeInBytes))
+		let bytes = nonce.copyBytes() + authenticationCode.copyBytes() + ciphertext.bytes
 
 		let authenticatedCiphertext1 = AuthenticatedCiphertext(nonce: nonce, authenticationCode: authenticationCode, ciphertext: ciphertext)
 
 		XCTAssertEqual(authenticatedCiphertext1.sizeInBytes, sizeInBytes)
 		XCTAssertEqual(authenticatedCiphertext1.nonce, nonce)
 		XCTAssertEqual(authenticatedCiphertext1.authenticationCode, authenticationCode)
-		XCTAssertEqual(authenticatedCiphertext1.ciphertext, ciphertext)
+		XCTAssertEqual(authenticatedCiphertext1.ciphertext.bytes, ciphertext.bytes)
 		XCTAssertEqual(authenticatedCiphertext1.bytes, bytes)
 
 		let optionalAuthenticatedCiphertext2 = AuthenticatedCiphertext(bytes: bytes)
@@ -74,7 +74,7 @@ class SecretBoxTests: XCTestCase {
 		XCTAssertEqual(authenticatedCiphertext2.sizeInBytes, sizeInBytes)
 		XCTAssertEqual(authenticatedCiphertext2.nonce, nonce)
 		XCTAssertEqual(authenticatedCiphertext2.authenticationCode, authenticationCode)
-		XCTAssertEqual(authenticatedCiphertext2.ciphertext, ciphertext)
+		XCTAssertEqual(authenticatedCiphertext2.ciphertext.bytes, ciphertext.bytes)
 		XCTAssertEqual(authenticatedCiphertext2.bytes, bytes)
 
 		let tooShort = random.bytes(count: AuthenticatedCiphertext.PrefixSizeInBytes)
@@ -107,7 +107,7 @@ class SecretBoxTests: XCTestCase {
 		XCTAssertNotEqual(otherCiphertext.authenticationCode, ciphertext.authenticationCode)
 
 		// Test that a different nonce results in a different ciphertext
-		XCTAssertNotEqual(otherCiphertext.ciphertext, ciphertext.ciphertext)
+		XCTAssertNotEqual(otherCiphertext.ciphertext.bytes, ciphertext.ciphertext.bytes)
 
 		// Decryption of both ciphertexts should reveal the original plaintext
 

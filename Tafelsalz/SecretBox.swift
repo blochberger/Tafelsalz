@@ -51,11 +51,11 @@ public class SecretBox {
 
 		public let nonce: Nonce
 		public let authenticationCode: AuthenticationCode
-		public let ciphertext: Data
+		public let ciphertext: Ciphertext
 
 		public var sizeInBytes: PInt {
 			get {
-				return AuthenticatedCiphertext.PrefixSizeInBytes + PInt(ciphertext.count)
+				return AuthenticatedCiphertext.PrefixSizeInBytes + ciphertext.sizeInBytes
 			}
 		}
 
@@ -64,12 +64,12 @@ public class SecretBox {
 				var result = Data()
 				nonce.withUnsafeBytes { result.append($0, count: Int(nonce.sizeInBytes)) }
 				authenticationCode.withUnsafeBytes { result.append($0, count: Int(authenticationCode.sizeInBytes)) }
-				result.append(ciphertext)
+				result.append(ciphertext.bytes)
 				return result
 			}
 		}
 
-		public init(nonce: Nonce, authenticationCode: AuthenticationCode, ciphertext: Data) {
+		public init(nonce: Nonce, authenticationCode: AuthenticationCode, ciphertext: Ciphertext) {
 			self.nonce = nonce
 			self.authenticationCode = authenticationCode
 			self.ciphertext = ciphertext
@@ -94,7 +94,7 @@ public class SecretBox {
 
 			self.nonce = nonce
 			self.authenticationCode = authenticationCode
-			self.ciphertext = bytes.subdata(in: Int(AuthenticatedCiphertext.PrefixSizeInBytes)..<bytes.count)
+			self.ciphertext = Ciphertext(bytes.subdata(in: Int(AuthenticatedCiphertext.PrefixSizeInBytes)..<bytes.count))
 		}
 	}
 
@@ -159,17 +159,17 @@ public class SecretBox {
 			return nil
 		}
 
-		return AuthenticatedCiphertext(nonce: nonce, authenticationCode: authenticationCode, ciphertext: ciphertext)
+		return AuthenticatedCiphertext(nonce: nonce, authenticationCode: authenticationCode, ciphertext: Ciphertext(ciphertext))
 	}
 
 	public func decrypt(data authenticatedCiphertext: AuthenticatedCiphertext) -> Data? {
 
-		var plaintext = Data(count: authenticatedCiphertext.ciphertext.count)
+		var plaintext = Data(count: Int(authenticatedCiphertext.ciphertext.sizeInBytes))
 
 		let successfullyDecrypted = plaintext.withUnsafeMutableBytes {
 			plaintextPtr in
 
-			return authenticatedCiphertext.ciphertext.withUnsafeBytes {
+			return authenticatedCiphertext.ciphertext.bytes.withUnsafeBytes {
 				ciphertextPtr in
 
 				return authenticatedCiphertext.authenticationCode.withUnsafeBytes {
@@ -185,7 +185,7 @@ public class SecretBox {
 								plaintextPtr,
 								ciphertextPtr,
 								macPtr,
-								UInt64(authenticatedCiphertext.ciphertext.count),
+								UInt64(authenticatedCiphertext.ciphertext.sizeInBytes),
 								noncePtr,
 								secretKeyPtr
 							) == 0
