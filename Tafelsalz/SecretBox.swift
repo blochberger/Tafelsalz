@@ -191,3 +191,15 @@ public class SecretBox {
 		return successfullyDecrypted ? plaintext : nil
 	}
 }
+
+extension SecretBox.Nonce: Equatable {
+	public static func ==(lhs: SecretBox.Nonce, rhs: SecretBox.Nonce) -> Bool {
+		return lhs.isEqual(to: rhs)
+	}
+}
+
+extension SecretBox.AuthenticationCode: Equatable {
+	public static func ==(lhs: SecretBox.AuthenticationCode, rhs: SecretBox.AuthenticationCode) -> Bool {
+		return lhs.isEqual(to: rhs)
+	}
+}

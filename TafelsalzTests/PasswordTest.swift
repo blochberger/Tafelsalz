@@ -28,4 +28,27 @@ class PasswordTest: XCTestCase {
 		XCTAssertFalse(hashedPassword1.isVerified(by: password2))
 		XCTAssertFalse(password2.verifies(hashedPassword1))
 	}
+
+	func testEquality() {
+		let password1 = Password("foo")!
+		let password2 = Password("foo")!
+
+		// Reflexivity
+		XCTAssertEqual(password1, password1)
+
+		// Symmetry
+		XCTAssertEqual(password1, password2)
+		XCTAssertEqual(password2, password1)
+
+		// Test inequality
+		XCTAssertNotEqual(password1, Password("FOO")!)
+		XCTAssertNotEqual(password1, Password("bar")!)
+
+		// Inequality due to different lengths
+		let less = Password("foobar")!
+		let more = Password("foo")!
+
+		XCTAssertNotEqual(more, less)
+		XCTAssertNotEqual(less, more)
+	}
 }

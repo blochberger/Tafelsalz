@@ -15,10 +15,10 @@ class KeyMaterialTest: XCTestCase {
 		XCTAssertEqual(instance1.sizeInBytes, fixedSizeInBytes)
 
 		// Test reflexivity
-		XCTAssertEqual(instance1, instance1)
+		XCTAssertEqual(instance1.copyBytes(), instance1.copyBytes())
 
 		// Test uniqueness after initialization
-		XCTAssertNotEqual(instance1, initializer()!)
+		XCTAssertNotEqual(instance1.copyBytes(), initializer()!.copyBytes())
 	}
 
 	static func metaTestCapturingInitializer<T: KeyMaterial>(
@@ -44,7 +44,7 @@ class KeyMaterialTest: XCTestCase {
 		// Test that passed argument is zeroed
 		XCTAssertEqual(bytes, Data(count: Int(fixedSizeInBytes)))
 
-		XCTAssertEqual(instance, instance)
+		XCTAssertEqual(instance.copyBytes(), instance.copyBytes())
 
 		// Test creating instance from byte sequence with incorrect size
 		var tooShort = random.bytes(count: fixedSizeInBytes - 1)
@@ -73,17 +73,21 @@ class KeyMaterialTest: XCTestCase {
 		let keyMaterial3 = initializer(&tmpBytes3)!
 
 		// Reflexivity
-		XCTAssertEqual(keyMaterial1, keyMaterial1)
+		XCTAssertTrue(keyMaterial1.isEqual(to: keyMaterial1))
+		XCTAssertTrue(keyMaterial1.isFingerprintEqual(to: keyMaterial1))
 
 		// Symmetry
-		XCTAssertEqual(keyMaterial1, keyMaterial2)
-		XCTAssertEqual(keyMaterial2, keyMaterial1)
+		XCTAssertTrue(keyMaterial1.isEqual(to: keyMaterial2))
+		XCTAssertTrue(keyMaterial2.isEqual(to: keyMaterial1))
+		XCTAssertTrue(keyMaterial1.isFingerprintEqual(to: keyMaterial2))
+		XCTAssertTrue(keyMaterial2.isFingerprintEqual(to: keyMaterial1))
 
 		// Inequality due to different byte sequences
-		XCTAssertNotEqual(keyMaterial1, keyMaterial3)
-		XCTAssertNotEqual(keyMaterial3, keyMaterial1)
+		XCTAssertFalse(keyMaterial1.isEqual(to: keyMaterial3))
+		XCTAssertFalse(keyMaterial3.isEqual(to: keyMaterial1))
+		XCTAssertFalse(keyMaterial1.isFingerprintEqual(to: keyMaterial3))
+		XCTAssertFalse(keyMaterial3.isFingerprintEqual(to: keyMaterial1))
 	}
-
 
 	// MARK: - Tests
 
@@ -112,8 +116,9 @@ class KeyMaterialTest: XCTestCase {
 		let more = KeyMaterial(bytes: &lessBytes)!
 		let less = KeyMaterial(bytes: &moreBytes)!
 
-		XCTAssertNotEqual(more, less)
-		XCTAssertNotEqual(less, more)
+		// Inequality can only be tested via fingerprints, see documentation.
+		XCTAssertFalse(more.isFingerprintEqual(to: less))
+		XCTAssertFalse(less.isFingerprintEqual(to: more))
 	}
 
 }

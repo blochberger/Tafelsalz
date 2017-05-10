@@ -1,6 +1,6 @@
 import libsodium
 
-public class Password: KeyMaterial {
+public class Password {
 
 	public enum ComplexityLimit {
 		case medium
@@ -36,13 +36,25 @@ public class Password: KeyMaterial {
 		}
 	}
 
+	let bytes: KeyMaterial
+
+	var sizeInBytes: PInt {
+		get {
+			return bytes.sizeInBytes
+		}
+	}
+
 	public init?(_ password: String, using encoding: String.Encoding = .utf8) {
-		guard var bytes = password.data(using: encoding) else {
+		guard var passwordBytes = password.data(using: encoding) else {
 			// Invalid encoding
 			return nil
 		}
 
-		super.init(bytes: &bytes)
+		guard let bytes = KeyMaterial(bytes: &passwordBytes) else {
+			return nil
+		}
+
+		self.bytes = bytes
 	}
 
 	public func hash(complexity: ComplexityLimit = .high, memory: MemoryLimit = .high) -> HashedPassword? {
@@ -51,7 +63,7 @@ public class Password: KeyMaterial {
 		let successfullyHashed = hashedPasswordBytes.withUnsafeMutableBytes {
 			hashedPasswordBytesPtr in
 
-			return withUnsafeBytes {
+			return bytes.withUnsafeBytes {
 				passwordBytesPtr in
 
 				return libsodium.crypto_pwhash_str(
@@ -72,7 +84,7 @@ public class Password: KeyMaterial {
 	}
 
 	public func verifies(_ hashedPassword: HashedPassword) -> Bool {
-		return withUnsafeBytes {
+		return bytes.withUnsafeBytes {
 			bytesPtr in
 
 			return hashedPassword.bytes.withUnsafeBytes {
@@ -85,5 +97,11 @@ public class Password: KeyMaterial {
 				) == 0
 			}
 		}
+	}
+}
+
+extension Password: Equatable {
+	public static func ==(lhs: Password, rhs: Password) -> Bool {
+		return lhs.bytes.isFingerprintEqual(to: rhs.bytes)
 	}
 }

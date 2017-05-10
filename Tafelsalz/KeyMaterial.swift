@@ -130,16 +130,54 @@ public class KeyMaterial {
 
 		return cachedHash
 	}
-}
 
-extension KeyMaterial: Equatable {
-	public static func ==(lhs: KeyMaterial, rhs: KeyMaterial) -> Bool {
+	/**
+		Constant time comparison of the key material.
+	
+		- warning: Do not use if `other` might have a different size.
 
-		guard let lhsHash = lhs.fingerprint() else {
+		- note:
+			Explicitly do not conform to the `Equatable` protocol, as its
+			invocation is determined statically. Therefore subclasses might end
+			up being compared with this method. This can lead to problems if
+			their sizes do not match, i.e. the application might crash or worse
+			consider two instances equal if this instance is a prefix of the
+			`other`. Hence, if a subclass is used to guarantee a fixed size,
+			this method can safely called in an implementation of the `==`
+			operator of the `Equatable` protocol. Then the compiler will only
+			allow to compare instances of fixed length types. To compare
+			instances of possibly different sizes, use
+			`isFingerprintEqual(to:)`.
+	*/
+	func isEqual(to other: KeyMaterial) -> Bool {
+		// This should never be called if the sizes do not match, as this would
+		// allow timing attacks.
+		assert(sizeInBytes == other.sizeInBytes)
+
+		return withUnsafeBytes {
+			lhsPtr in
+
+			return other.withUnsafeBytes {
+				rhsPtr in
+
+				return libsodium.sodium_memcmp(lhsPtr, rhsPtr, Int(sizeInBytes)) == 0
+			}
+		}
+	}
+
+	/**
+		Constant time comparison of the hash representing the key material.
+	
+		This can be used to compare instances that potentially have different
+		sizes. If they are guaranteed to have the same size, use `isEqual(to:)`
+		instead, as it is faster.
+	*/
+	func isFingerprintEqual(to other: KeyMaterial) -> Bool {
+		guard let lhsHash = fingerprint() else {
 			return false
 		}
 
-		guard let rhsHash = rhs.fingerprint() else {
+		guard let rhsHash = other.fingerprint() else {
 			return false
 		}
 
@@ -152,5 +190,7 @@ extension KeyMaterial: Equatable {
 				return libsodium.memcmp(lhsHashPtr, rhsHashPtr, lhsHash.count) == 0
 			}
 		}
+
 	}
+
 }
