@@ -100,11 +100,18 @@ public class SecretBox {
 
 	private let secretKey: SecretKey
 
-	public init?() {
-		guard let secretKey = SecretKey() else {
+	public init?(secretKey: SecretKey) {
+		guard Tafelsalz.isInitialized() else {
 			return nil
 		}
 		self.secretKey = secretKey
+	}
+
+	public convenience init?() {
+		guard let secretKey = SecretKey() else {
+			return nil
+		}
+		self.init(secretKey: secretKey)
 	}
 
 	public func encrypt(data plaintext: Data) -> AuthenticatedCiphertext? {
