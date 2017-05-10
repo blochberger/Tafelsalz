@@ -25,7 +25,6 @@
 		60C696A41DBF908F00CE9435 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C696A31DBF908F00CE9435 /* Random.swift */; };
 		60C696A91DBFAE4A00CE9435 /* RandomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C696A81DBFAE4A00CE9435 /* RandomTests.swift */; };
 		60D73F671DC0D91400AAAC59 /* SecretBoxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D73F661DC0D91400AAAC59 /* SecretBoxTests.swift */; };
-		60E0F3291E38AF200005C5AE /* libsodium-osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C6968A1DBDEB1500CE9435 /* libsodium-osx.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,7 +134,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				60C695501DBDE36100CE9435 /* Tafelsalz.framework in Frameworks */,
-				60E0F3291E38AF200005C5AE /* libsodium-osx.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
