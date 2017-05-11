@@ -148,11 +148,16 @@ public class KeyMaterial {
 			allow to compare instances of fixed length types. To compare
 			instances of possibly different sizes, use
 			`isFingerprintEqual(to:)`.
+	
+		- precondition:
+			```swift
+			self.sizeInBytes == other.sizeInBytes
+			```
 	*/
 	func isEqual(to other: KeyMaterial) -> Bool {
 		// This should never be called if the sizes do not match, as this would
 		// allow timing attacks.
-		assert(sizeInBytes == other.sizeInBytes)
+		precondition(sizeInBytes == other.sizeInBytes)
 
 		return withUnsafeBytes {
 			lhsPtr in
