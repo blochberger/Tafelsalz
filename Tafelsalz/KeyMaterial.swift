@@ -94,7 +94,8 @@ public class KeyMaterial {
 		return result
 	}
 
-	@inline(__always) public func copyBytes() -> Data {
+	@inline(__always)
+	public func copyBytes() -> Data {
 		return withUnsafeBytes { Data(bytes: $0, count: Int(sizeInBytes)) }
 	}
 
