@@ -1,9 +1,9 @@
 import Foundation
 
 public struct Ciphertext {
-	let bytes: Data
+	public let bytes: Data
 
-	var sizeInBytes: PInt {
+	public var sizeInBytes: PInt {
 		get {
 			return PInt(bytes.count)
 		}

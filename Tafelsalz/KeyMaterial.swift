@@ -8,7 +8,7 @@ public class KeyMaterial {
 	public let sizeInBytes: PInt
 	private let bytesPtr: UnsafeMutableRawPointer
 
-	var cachedHash: Data? = nil
+	private var cachedHash: Data? = nil
 
 	public init?(sizeInBytes: PInt) {
 		guard Tafelsalz.isInitialized() else {
