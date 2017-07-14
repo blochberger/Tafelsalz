@@ -10,7 +10,7 @@ public class KeyMaterial {
 
 	private var cachedHash: Data? = nil
 
-	public init?(sizeInBytes: PInt) {
+	public init?(sizeInBytes: PInt, initialize: Bool = true) {
 		guard Tafelsalz.isInitialized() else {
 			return nil
 		}
@@ -19,7 +19,9 @@ public class KeyMaterial {
 			return nil
 		}
 
-		libsodium.randombytes_buf(bytesPtr, Int(sizeInBytes))
+		if initialize {
+			libsodium.randombytes_buf(bytesPtr, Int(sizeInBytes))
+		}
 
 		self.bytesPtr = bytesPtr
 		self.sizeInBytes = sizeInBytes
@@ -86,6 +88,20 @@ public class KeyMaterial {
 		}
 
 		let result = try body(UnsafeRawPointer(bytesPtr).bindMemory(to: ContentType.self, capacity: Int(sizeInBytes)))
+
+		guard makeInaccessible() else {
+			abort()
+		}
+
+		return result
+	}
+
+	internal func withUnsafeMutableBytes<ResultType, ContentType>(body: (UnsafeMutablePointer<ContentType>) throws -> ResultType) rethrows -> ResultType {
+		guard makeReadWritable() else {
+			abort()
+		}
+
+		let result = try body(UnsafeMutableRawPointer(bytesPtr).bindMemory(to: ContentType.self, capacity: Int(sizeInBytes)))
 
 		guard makeInaccessible() else {
 			abort()

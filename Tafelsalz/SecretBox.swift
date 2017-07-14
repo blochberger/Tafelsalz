@@ -6,7 +6,13 @@ public class SecretBox {
 		public static let SizeInBytes = PInt(libsodium.crypto_secretbox_keybytes())
 
 		public init?() {
-			super.init(sizeInBytes: SecretKey.SizeInBytes)
+			super.init(sizeInBytes: SecretKey.SizeInBytes, initialize: false)
+
+			self.withUnsafeMutableBytes {
+				bytesPtr in
+
+				libsodium.crypto_secretbox_keygen(bytesPtr)
+			}
 		}
 
 		public override init?(bytes: inout Data) {
