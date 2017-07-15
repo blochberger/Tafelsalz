@@ -113,6 +113,13 @@ public class SecretBox {
 		self.secretKey = secretKey
 	}
 
+	public convenience init?(persona: Persona) {
+		guard let secretKey = persona.secret() else {
+			return nil
+		}
+		self.init(secretKey: secretKey)
+	}
+
 	public convenience init?() {
 		guard let secretKey = SecretKey() else {
 			return nil

@@ -13,6 +13,9 @@
 		603F3C4A1EC313F600FEEBD9 /* Ciphertext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603F3C491EC313F600FEEBD9 /* Ciphertext.swift */; };
 		604E24C91DC7720F00942D54 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 604E24C81DC7720F00942D54 /* README.md */; };
 		604E24CC1DC77F5A00942D54 /* Examples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604E24CB1DC77F5A00942D54 /* Examples.swift */; };
+		6096E7031F18FF9300E6599F /* Persona.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6096E7021F18FF9300E6599F /* Persona.swift */; };
+		6096E7641F1A492600E6599F /* Keychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6096E75B1F1A490A00E6599F /* Keychain.framework */; };
+		6096E7661F1A540300E6599F /* PersonaTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6096E7651F1A540300E6599F /* PersonaTest.swift */; };
 		60C211E21EB503CC00882AD0 /* Password.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C211E11EB503CC00882AD0 /* Password.swift */; };
 		60C211E41EB504E500882AD0 /* PasswordTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C211E31EB504E500882AD0 /* PasswordTest.swift */; };
 		60C211E61EB50AF500882AD0 /* HashedPasswordTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C211E51EB50AF500882AD0 /* HashedPasswordTest.swift */; };
@@ -28,6 +31,41 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		6096E75A1F1A490A00E6599F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6096E7531F1A490A00E6599F /* Keychain.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6096E7141F19099400E6599F;
+			remoteInfo = Keychain_macOS;
+		};
+		6096E75C1F1A490A00E6599F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6096E7531F1A490A00E6599F /* Keychain.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6096E7391F1A34DB00E6599F;
+			remoteInfo = Keychain_iOS;
+		};
+		6096E75E1F1A490A00E6599F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6096E7531F1A490A00E6599F /* Keychain.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6096E71D1F19099400E6599F;
+			remoteInfo = KeychainTests_macOS;
+		};
+		6096E7601F1A490A00E6599F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6096E7531F1A490A00E6599F /* Keychain.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6096E7411F1A34DB00E6599F;
+			remoteInfo = KeychainTests_iOS;
+		};
+		6096E7621F1A491400E6599F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6096E7531F1A490A00E6599F /* Keychain.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6096E7131F19099400E6599F;
+			remoteInfo = Keychain_macOS;
+		};
 		60C695511DBDE36100CE9435 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 60C6953D1DBDE36000CE9435 /* Project object */;
@@ -44,6 +82,9 @@
 		603F3C491EC313F600FEEBD9 /* Ciphertext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ciphertext.swift; sourceTree = "<group>"; };
 		604E24C81DC7720F00942D54 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		604E24CB1DC77F5A00942D54 /* Examples.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Examples.swift; sourceTree = "<group>"; };
+		6096E7021F18FF9300E6599F /* Persona.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persona.swift; sourceTree = "<group>"; };
+		6096E7531F1A490A00E6599F /* Keychain.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Keychain.xcodeproj; path = Dependencies/Keychain/Keychain.xcodeproj; sourceTree = "<group>"; };
+		6096E7651F1A540300E6599F /* PersonaTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaTest.swift; sourceTree = "<group>"; };
 		60C211E11EB503CC00882AD0 /* Password.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Password.swift; sourceTree = "<group>"; };
 		60C211E31EB504E500882AD0 /* PasswordTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordTest.swift; sourceTree = "<group>"; };
 		60C211E51EB50AF500882AD0 /* HashedPasswordTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HashedPasswordTest.swift; sourceTree = "<group>"; };
@@ -125,6 +166,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6096E7641F1A492600E6599F /* Keychain.framework in Frameworks */,
 				60C696931DBDF26400CE9435 /* libsodium-osx.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -146,6 +188,17 @@
 				604E24C81DC7720F00942D54 /* README.md */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6096E7541F1A490A00E6599F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6096E75B1F1A490A00E6599F /* Keychain.framework */,
+				6096E75D1F1A490A00E6599F /* Keychain.framework */,
+				6096E75F1F1A490A00E6599F /* KeychainTests_macOS.xctest */,
+				6096E7611F1A490A00E6599F /* KeychainTests_iOS.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		60C6953C1DBDE36000CE9435 = {
@@ -187,6 +240,7 @@
 				60C211E31EB504E500882AD0 /* PasswordTest.swift */,
 				60C696A81DBFAE4A00CE9435 /* RandomTests.swift */,
 				60D73F661DC0D91400AAAC59 /* SecretBoxTests.swift */,
+				6096E7651F1A540300E6599F /* PersonaTest.swift */,
 			);
 			path = TafelsalzTests;
 			sourceTree = "<group>";
@@ -194,6 +248,7 @@
 		60C695D81DBDE50300CE9435 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				6096E7531F1A490A00E6599F /* Keychain.xcodeproj */,
 				60C695D91DBDE50E00CE9435 /* libsodium */,
 			);
 			name = Dependencies;
@@ -294,6 +349,7 @@
 				60C696961DBDFB3600CE9435 /* SecretBox.swift */,
 				6012BC1D1EBDF28400E47DB8 /* KeyMaterial.swift */,
 				603F3C491EC313F600FEEBD9 /* Ciphertext.swift */,
+				6096E7021F18FF9300E6599F /* Persona.swift */,
 			);
 			name = Public;
 			sourceTree = "<group>";
@@ -324,6 +380,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				6096E7631F1A491400E6599F /* PBXTargetDependency */,
 			);
 			name = Tafelsalz;
 			productName = Tafelsalz;
@@ -379,6 +436,12 @@
 			mainGroup = 60C6953C1DBDE36000CE9435;
 			productRefGroup = 60C695471DBDE36100CE9435 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 6096E7541F1A490A00E6599F /* Products */;
+					ProjectRef = 6096E7531F1A490A00E6599F /* Keychain.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				60C695451DBDE36000CE9435 /* Tafelsalz */,
@@ -386,6 +449,37 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		6096E75B1F1A490A00E6599F /* Keychain.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Keychain.framework;
+			remoteRef = 6096E75A1F1A490A00E6599F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6096E75D1F1A490A00E6599F /* Keychain.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Keychain.framework;
+			remoteRef = 6096E75C1F1A490A00E6599F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6096E75F1F1A490A00E6599F /* KeychainTests_macOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = KeychainTests_macOS.xctest;
+			remoteRef = 6096E75E1F1A490A00E6599F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6096E7611F1A490A00E6599F /* KeychainTests_iOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = KeychainTests_iOS.xctest;
+			remoteRef = 6096E7601F1A490A00E6599F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		60C695441DBDE36000CE9435 /* Resources */ = {
@@ -413,6 +507,7 @@
 				60C211E21EB503CC00882AD0 /* Password.swift in Sources */,
 				6023DFC81DE42DA900E0B95E /* HashedPassword.swift in Sources */,
 				60C696A41DBF908F00CE9435 /* Random.swift in Sources */,
+				6096E7031F18FF9300E6599F /* Persona.swift in Sources */,
 				603F3C4A1EC313F600FEEBD9 /* Ciphertext.swift in Sources */,
 				6012BC1E1EBDF28400E47DB8 /* KeyMaterial.swift in Sources */,
 				60C6969A1DBE02A500CE9435 /* EncryptedData.swift in Sources */,
@@ -428,6 +523,7 @@
 				6012BC201EBE0B5F00E47DB8 /* KeyMaterialTest.swift in Sources */,
 				60C696A91DBFAE4A00CE9435 /* RandomTests.swift in Sources */,
 				604E24CC1DC77F5A00942D54 /* Examples.swift in Sources */,
+				6096E7661F1A540300E6599F /* PersonaTest.swift in Sources */,
 				60C211E61EB50AF500882AD0 /* HashedPasswordTest.swift in Sources */,
 				60C211E41EB504E500882AD0 /* PasswordTest.swift in Sources */,
 				60D73F671DC0D91400AAAC59 /* SecretBoxTests.swift in Sources */,
@@ -437,6 +533,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		6096E7631F1A491400E6599F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Keychain_macOS;
+			targetProxy = 6096E7621F1A491400E6599F /* PBXContainerItemProxy */;
+		};
 		60C695521DBDE36100CE9435 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 60C695451DBDE36000CE9435 /* Tafelsalz */;
@@ -564,11 +665,13 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Dependencies/libsodium",
+					"$(PROJECT_DIR)/Dependencies/**",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.uni-hamburg.informatik.Tafelsalz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/Dependencies/**";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -591,11 +694,13 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Dependencies/libsodium",
+					"$(PROJECT_DIR)/Dependencies/**",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.uni-hamburg.informatik.Tafelsalz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/Dependencies/**";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -611,6 +716,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Dependencies/libsodium",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.uni-hamburg.informatik.TafelsalzTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -628,6 +734,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Dependencies/libsodium",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.uni-hamburg.informatik.TafelsalzTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;

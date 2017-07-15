@@ -14,17 +14,58 @@ This is achieved by leveraging programming language features in a way that an op
 
 Note that the goal is not to prevent malicious attackers to circumvent the established protection mechanisms by the programming language features but to prevent accidental misuse of cryptographic APIs.
 
+Check out the project with:
+
+```sh
+git clone --recursive https://github.com/blochberger/Tafelsalz.git
+```
+
 ⚠️ **WARNING**: This project is still work in progress and the API is highly unstable. It is recommended to use a more stable library for the time being, such as [jedisct1/swift-sodium](https://github.com/jedisct1/swift-sodium).
+
+## Concept
+
+There are several basic ideas:
+- Let the compiler catch/enforce as much as possible.
+- Avoid common mistakes.
+- Combine convenience and security.
+
+### Identity Management
+There are basically two different kinds of identities or actors: personas and contacts. For personas you are in posession of the secret keys. For contacts you are only in possession of the public keys.
+
+### Persistence of Secrets
+
+The secrets for personas are automatically persisted in the system's Keychain. This is the place, where you want to store your secrets, as storing them in the file system might lead to them being compromised easily.
 
 ## Examples
 
 ### Symmetric Encryption
+
+#### Ephemeral Keys
 
 ```swift
 let secretBox = SecretBox()!
 let plaintext = "Hello, World!".data(using: .utf8)!
 let ciphertext = secretBox.encrypt(data: plaintext)!
 let decrypted = secretBox.decrypt(data: ciphertext)!
+```
+
+#### Persisted Keys
+
+```swift
+// Create a persona
+let alice = Persona(uniqueName: "Alice")
+
+// Once a secret of that persona is used, it will be persisted in the
+// system's Keychain.
+let secretBox = SecretBox(persona: alice)!
+
+// Use your SecretBox as usual
+let plaintext = "Hello, World!".data(using: .utf8)!
+let ciphertext = secretBox.encrypt(data: plaintext)!
+let decrypted = secretBox.decrypt(data: ciphertext)!
+
+// Forget the persona and remove all related Keychain entries
+try! Persona.forget(alice)
 ```
 
 ### Password Hashing
@@ -41,7 +82,6 @@ if hashedPassword.isVerified(by: password) {
     // The user is authenticated successfully.
 }
 ```
-
 
 ---
 
