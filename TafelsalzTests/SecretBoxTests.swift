@@ -98,6 +98,9 @@ class SecretBoxTests: XCTestCase {
 		XCTAssertNotNil(optionalCiphertext)
 
 		let ciphertext = optionalCiphertext!
+
+		XCTAssertNotEqual(originalPlaintext, ciphertext.bytes)
+
 		let otherCiphertext = secretBox.encrypt(data: originalPlaintext)!
 
 		// Test for nonce reuse
