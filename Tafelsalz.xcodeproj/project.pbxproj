@@ -121,6 +121,64 @@
 		6096E7651F1A540300E6599F /* PersonaTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaTest.swift; sourceTree = "<group>"; };
 		6096E76C1F1A654000E6599F /* Tafelsalz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Tafelsalz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6096E7741F1A654100E6599F /* TafelsalzTests_iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TafelsalzTests_iOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6096E7D81F1A69CF00E6599F /* core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = core.h; path = Dependencies/libsodium/core.h; sourceTree = "<group>"; };
+		6096E7D91F1A69CF00E6599F /* crypto_aead_aes256gcm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_aead_aes256gcm.h; path = Dependencies/libsodium/crypto_aead_aes256gcm.h; sourceTree = "<group>"; };
+		6096E7DA1F1A69CF00E6599F /* crypto_aead_chacha20poly1305.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_aead_chacha20poly1305.h; path = Dependencies/libsodium/crypto_aead_chacha20poly1305.h; sourceTree = "<group>"; };
+		6096E7DB1F1A69CF00E6599F /* crypto_aead_xchacha20poly1305.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_aead_xchacha20poly1305.h; path = Dependencies/libsodium/crypto_aead_xchacha20poly1305.h; sourceTree = "<group>"; };
+		6096E7DC1F1A69CF00E6599F /* crypto_auth_hmacsha256.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_auth_hmacsha256.h; path = Dependencies/libsodium/crypto_auth_hmacsha256.h; sourceTree = "<group>"; };
+		6096E7DD1F1A69CF00E6599F /* crypto_auth_hmacsha512.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_auth_hmacsha512.h; path = Dependencies/libsodium/crypto_auth_hmacsha512.h; sourceTree = "<group>"; };
+		6096E7DE1F1A69CF00E6599F /* crypto_auth_hmacsha512256.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_auth_hmacsha512256.h; path = Dependencies/libsodium/crypto_auth_hmacsha512256.h; sourceTree = "<group>"; };
+		6096E7DF1F1A69CF00E6599F /* crypto_auth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_auth.h; path = Dependencies/libsodium/crypto_auth.h; sourceTree = "<group>"; };
+		6096E7E01F1A69CF00E6599F /* crypto_box_curve25519xchacha20poly1305.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_box_curve25519xchacha20poly1305.h; path = Dependencies/libsodium/crypto_box_curve25519xchacha20poly1305.h; sourceTree = "<group>"; };
+		6096E7E11F1A69CF00E6599F /* crypto_box_curve25519xsalsa20poly1305.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_box_curve25519xsalsa20poly1305.h; path = Dependencies/libsodium/crypto_box_curve25519xsalsa20poly1305.h; sourceTree = "<group>"; };
+		6096E7E21F1A69CF00E6599F /* crypto_box.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_box.h; path = Dependencies/libsodium/crypto_box.h; sourceTree = "<group>"; };
+		6096E7E31F1A69CF00E6599F /* crypto_core_hchacha20.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_core_hchacha20.h; path = Dependencies/libsodium/crypto_core_hchacha20.h; sourceTree = "<group>"; };
+		6096E7E41F1A69CF00E6599F /* crypto_core_hsalsa20.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_core_hsalsa20.h; path = Dependencies/libsodium/crypto_core_hsalsa20.h; sourceTree = "<group>"; };
+		6096E7E51F1A69CF00E6599F /* crypto_core_salsa20.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_core_salsa20.h; path = Dependencies/libsodium/crypto_core_salsa20.h; sourceTree = "<group>"; };
+		6096E7E61F1A69CF00E6599F /* crypto_core_salsa208.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_core_salsa208.h; path = Dependencies/libsodium/crypto_core_salsa208.h; sourceTree = "<group>"; };
+		6096E7E71F1A69CF00E6599F /* crypto_core_salsa2012.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_core_salsa2012.h; path = Dependencies/libsodium/crypto_core_salsa2012.h; sourceTree = "<group>"; };
+		6096E7E81F1A69CF00E6599F /* crypto_generichash_blake2b.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_generichash_blake2b.h; path = Dependencies/libsodium/crypto_generichash_blake2b.h; sourceTree = "<group>"; };
+		6096E7E91F1A69CF00E6599F /* crypto_generichash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_generichash.h; path = Dependencies/libsodium/crypto_generichash.h; sourceTree = "<group>"; };
+		6096E7EA1F1A69CF00E6599F /* crypto_hash_sha256.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_hash_sha256.h; path = Dependencies/libsodium/crypto_hash_sha256.h; sourceTree = "<group>"; };
+		6096E7EB1F1A69CF00E6599F /* crypto_hash_sha512.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_hash_sha512.h; path = Dependencies/libsodium/crypto_hash_sha512.h; sourceTree = "<group>"; };
+		6096E7EC1F1A69CF00E6599F /* crypto_hash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_hash.h; path = Dependencies/libsodium/crypto_hash.h; sourceTree = "<group>"; };
+		6096E7ED1F1A69CF00E6599F /* crypto_kdf_blake2b.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_kdf_blake2b.h; path = Dependencies/libsodium/crypto_kdf_blake2b.h; sourceTree = "<group>"; };
+		6096E7EE1F1A69CF00E6599F /* crypto_kdf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_kdf.h; path = Dependencies/libsodium/crypto_kdf.h; sourceTree = "<group>"; };
+		6096E7EF1F1A69CF00E6599F /* crypto_kx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_kx.h; path = Dependencies/libsodium/crypto_kx.h; sourceTree = "<group>"; };
+		6096E7F01F1A69CF00E6599F /* crypto_onetimeauth_poly1305.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_onetimeauth_poly1305.h; path = Dependencies/libsodium/crypto_onetimeauth_poly1305.h; sourceTree = "<group>"; };
+		6096E7F11F1A69CF00E6599F /* crypto_onetimeauth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_onetimeauth.h; path = Dependencies/libsodium/crypto_onetimeauth.h; sourceTree = "<group>"; };
+		6096E7F21F1A69CF00E6599F /* crypto_pwhash_argon2i.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_pwhash_argon2i.h; path = Dependencies/libsodium/crypto_pwhash_argon2i.h; sourceTree = "<group>"; };
+		6096E7F31F1A69CF00E6599F /* crypto_pwhash_scryptsalsa208sha256.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_pwhash_scryptsalsa208sha256.h; path = Dependencies/libsodium/crypto_pwhash_scryptsalsa208sha256.h; sourceTree = "<group>"; };
+		6096E7F41F1A69CF00E6599F /* crypto_pwhash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_pwhash.h; path = Dependencies/libsodium/crypto_pwhash.h; sourceTree = "<group>"; };
+		6096E7F51F1A69CF00E6599F /* crypto_scalarmult_curve25519.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_scalarmult_curve25519.h; path = Dependencies/libsodium/crypto_scalarmult_curve25519.h; sourceTree = "<group>"; };
+		6096E7F61F1A69CF00E6599F /* crypto_scalarmult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_scalarmult.h; path = Dependencies/libsodium/crypto_scalarmult.h; sourceTree = "<group>"; };
+		6096E7F71F1A69CF00E6599F /* crypto_secretbox_xchacha20poly1305.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_secretbox_xchacha20poly1305.h; path = Dependencies/libsodium/crypto_secretbox_xchacha20poly1305.h; sourceTree = "<group>"; };
+		6096E7F81F1A69CF00E6599F /* crypto_secretbox_xsalsa20poly1305.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_secretbox_xsalsa20poly1305.h; path = Dependencies/libsodium/crypto_secretbox_xsalsa20poly1305.h; sourceTree = "<group>"; };
+		6096E7F91F1A69CF00E6599F /* crypto_secretbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_secretbox.h; path = Dependencies/libsodium/crypto_secretbox.h; sourceTree = "<group>"; };
+		6096E7FA1F1A69CF00E6599F /* crypto_shorthash_siphash24.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_shorthash_siphash24.h; path = Dependencies/libsodium/crypto_shorthash_siphash24.h; sourceTree = "<group>"; };
+		6096E7FB1F1A69CF00E6599F /* crypto_shorthash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_shorthash.h; path = Dependencies/libsodium/crypto_shorthash.h; sourceTree = "<group>"; };
+		6096E7FC1F1A69CF00E6599F /* crypto_sign_ed25519.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_sign_ed25519.h; path = Dependencies/libsodium/crypto_sign_ed25519.h; sourceTree = "<group>"; };
+		6096E7FD1F1A69CF00E6599F /* crypto_sign_edwards25519sha512batch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_sign_edwards25519sha512batch.h; path = Dependencies/libsodium/crypto_sign_edwards25519sha512batch.h; sourceTree = "<group>"; };
+		6096E7FE1F1A69CF00E6599F /* crypto_sign.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_sign.h; path = Dependencies/libsodium/crypto_sign.h; sourceTree = "<group>"; };
+		6096E7FF1F1A69CF00E6599F /* crypto_stream_aes128ctr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_stream_aes128ctr.h; path = Dependencies/libsodium/crypto_stream_aes128ctr.h; sourceTree = "<group>"; };
+		6096E8001F1A69CF00E6599F /* crypto_stream_chacha20.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_stream_chacha20.h; path = Dependencies/libsodium/crypto_stream_chacha20.h; sourceTree = "<group>"; };
+		6096E8011F1A69CF00E6599F /* crypto_stream_salsa20.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_stream_salsa20.h; path = Dependencies/libsodium/crypto_stream_salsa20.h; sourceTree = "<group>"; };
+		6096E8021F1A69CF00E6599F /* crypto_stream_salsa208.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_stream_salsa208.h; path = Dependencies/libsodium/crypto_stream_salsa208.h; sourceTree = "<group>"; };
+		6096E8031F1A69CF00E6599F /* crypto_stream_salsa2012.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_stream_salsa2012.h; path = Dependencies/libsodium/crypto_stream_salsa2012.h; sourceTree = "<group>"; };
+		6096E8041F1A69CF00E6599F /* crypto_stream_xchacha20.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_stream_xchacha20.h; path = Dependencies/libsodium/crypto_stream_xchacha20.h; sourceTree = "<group>"; };
+		6096E8051F1A69CF00E6599F /* crypto_stream_xsalsa20.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_stream_xsalsa20.h; path = Dependencies/libsodium/crypto_stream_xsalsa20.h; sourceTree = "<group>"; };
+		6096E8061F1A69CF00E6599F /* crypto_stream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_stream.h; path = Dependencies/libsodium/crypto_stream.h; sourceTree = "<group>"; };
+		6096E8071F1A69CF00E6599F /* crypto_verify_16.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_verify_16.h; path = Dependencies/libsodium/crypto_verify_16.h; sourceTree = "<group>"; };
+		6096E8081F1A69CF00E6599F /* crypto_verify_32.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_verify_32.h; path = Dependencies/libsodium/crypto_verify_32.h; sourceTree = "<group>"; };
+		6096E8091F1A69CF00E6599F /* crypto_verify_64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_verify_64.h; path = Dependencies/libsodium/crypto_verify_64.h; sourceTree = "<group>"; };
+		6096E80A1F1A69CF00E6599F /* export.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = export.h; path = Dependencies/libsodium/export.h; sourceTree = "<group>"; };
+		6096E80B1F1A69CF00E6599F /* randombytes_salsa20_random.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = randombytes_salsa20_random.h; path = Dependencies/libsodium/randombytes_salsa20_random.h; sourceTree = "<group>"; };
+		6096E80C1F1A69CF00E6599F /* randombytes_sysrandom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = randombytes_sysrandom.h; path = Dependencies/libsodium/randombytes_sysrandom.h; sourceTree = "<group>"; };
+		6096E80D1F1A69CF00E6599F /* randombytes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = randombytes.h; path = Dependencies/libsodium/randombytes.h; sourceTree = "<group>"; };
+		6096E80E1F1A69CF00E6599F /* runtime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = runtime.h; path = Dependencies/libsodium/runtime.h; sourceTree = "<group>"; };
+		6096E80F1F1A69CF00E6599F /* sodium_lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = sodium_lib.h; path = Dependencies/libsodium/sodium_lib.h; sourceTree = "<group>"; };
+		6096E8101F1A69CF00E6599F /* utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = utils.h; path = Dependencies/libsodium/utils.h; sourceTree = "<group>"; };
+		6096E8111F1A69CF00E6599F /* version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = version.h; path = Dependencies/libsodium/version.h; sourceTree = "<group>"; };
 		60C211E11EB503CC00882AD0 /* Password.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Password.swift; sourceTree = "<group>"; };
 		60C211E31EB504E500882AD0 /* PasswordTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordTest.swift; sourceTree = "<group>"; };
 		60C211E51EB50AF500882AD0 /* HashedPasswordTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HashedPasswordTest.swift; sourceTree = "<group>"; };
@@ -130,65 +188,8 @@
 		60C6954F1DBDE36100CE9435 /* TafelsalzTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TafelsalzTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		60C695561DBDE36100CE9435 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		60C696541DBDE5CA00CE9435 /* Tafelsalz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tafelsalz.swift; sourceTree = "<group>"; };
-		60C696571DBDEB1500CE9435 /* core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = core.h; path = Dependencies/libsodium/core.h; sourceTree = "<group>"; };
-		60C696581DBDEB1500CE9435 /* crypto_aead_aes256gcm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_aead_aes256gcm.h; path = Dependencies/libsodium/crypto_aead_aes256gcm.h; sourceTree = "<group>"; };
-		60C696591DBDEB1500CE9435 /* crypto_aead_chacha20poly1305.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_aead_chacha20poly1305.h; path = Dependencies/libsodium/crypto_aead_chacha20poly1305.h; sourceTree = "<group>"; };
-		60C6965A1DBDEB1500CE9435 /* crypto_auth_hmacsha256.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_auth_hmacsha256.h; path = Dependencies/libsodium/crypto_auth_hmacsha256.h; sourceTree = "<group>"; };
-		60C6965B1DBDEB1500CE9435 /* crypto_auth_hmacsha512.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_auth_hmacsha512.h; path = Dependencies/libsodium/crypto_auth_hmacsha512.h; sourceTree = "<group>"; };
-		60C6965C1DBDEB1500CE9435 /* crypto_auth_hmacsha512256.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_auth_hmacsha512256.h; path = Dependencies/libsodium/crypto_auth_hmacsha512256.h; sourceTree = "<group>"; };
-		60C6965D1DBDEB1500CE9435 /* crypto_auth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_auth.h; path = Dependencies/libsodium/crypto_auth.h; sourceTree = "<group>"; };
-		60C6965E1DBDEB1500CE9435 /* crypto_box_curve25519xsalsa20poly1305.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_box_curve25519xsalsa20poly1305.h; path = Dependencies/libsodium/crypto_box_curve25519xsalsa20poly1305.h; sourceTree = "<group>"; };
-		60C6965F1DBDEB1500CE9435 /* crypto_box.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_box.h; path = Dependencies/libsodium/crypto_box.h; sourceTree = "<group>"; };
-		60C696601DBDEB1500CE9435 /* crypto_core_hchacha20.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_core_hchacha20.h; path = Dependencies/libsodium/crypto_core_hchacha20.h; sourceTree = "<group>"; };
-		60C696611DBDEB1500CE9435 /* crypto_core_hsalsa20.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_core_hsalsa20.h; path = Dependencies/libsodium/crypto_core_hsalsa20.h; sourceTree = "<group>"; };
-		60C696621DBDEB1500CE9435 /* crypto_core_salsa20.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_core_salsa20.h; path = Dependencies/libsodium/crypto_core_salsa20.h; sourceTree = "<group>"; };
-		60C696631DBDEB1500CE9435 /* crypto_core_salsa208.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_core_salsa208.h; path = Dependencies/libsodium/crypto_core_salsa208.h; sourceTree = "<group>"; };
-		60C696641DBDEB1500CE9435 /* crypto_core_salsa2012.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_core_salsa2012.h; path = Dependencies/libsodium/crypto_core_salsa2012.h; sourceTree = "<group>"; };
-		60C696651DBDEB1500CE9435 /* crypto_generichash_blake2b.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_generichash_blake2b.h; path = Dependencies/libsodium/crypto_generichash_blake2b.h; sourceTree = "<group>"; };
-		60C696661DBDEB1500CE9435 /* crypto_generichash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_generichash.h; path = Dependencies/libsodium/crypto_generichash.h; sourceTree = "<group>"; };
-		60C696671DBDEB1500CE9435 /* crypto_hash_sha256.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_hash_sha256.h; path = Dependencies/libsodium/crypto_hash_sha256.h; sourceTree = "<group>"; };
-		60C696681DBDEB1500CE9435 /* crypto_hash_sha512.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_hash_sha512.h; path = Dependencies/libsodium/crypto_hash_sha512.h; sourceTree = "<group>"; };
-		60C696691DBDEB1500CE9435 /* crypto_hash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_hash.h; path = Dependencies/libsodium/crypto_hash.h; sourceTree = "<group>"; };
-		60C6966A1DBDEB1500CE9435 /* crypto_int32.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_int32.h; path = Dependencies/libsodium/crypto_int32.h; sourceTree = "<group>"; };
-		60C6966B1DBDEB1500CE9435 /* crypto_int64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_int64.h; path = Dependencies/libsodium/crypto_int64.h; sourceTree = "<group>"; };
-		60C6966C1DBDEB1500CE9435 /* crypto_onetimeauth_poly1305.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_onetimeauth_poly1305.h; path = Dependencies/libsodium/crypto_onetimeauth_poly1305.h; sourceTree = "<group>"; };
-		60C6966D1DBDEB1500CE9435 /* crypto_onetimeauth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_onetimeauth.h; path = Dependencies/libsodium/crypto_onetimeauth.h; sourceTree = "<group>"; };
-		60C6966E1DBDEB1500CE9435 /* crypto_pwhash_argon2i.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_pwhash_argon2i.h; path = Dependencies/libsodium/crypto_pwhash_argon2i.h; sourceTree = "<group>"; };
-		60C6966F1DBDEB1500CE9435 /* crypto_pwhash_scryptsalsa208sha256.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_pwhash_scryptsalsa208sha256.h; path = Dependencies/libsodium/crypto_pwhash_scryptsalsa208sha256.h; sourceTree = "<group>"; };
-		60C696701DBDEB1500CE9435 /* crypto_pwhash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_pwhash.h; path = Dependencies/libsodium/crypto_pwhash.h; sourceTree = "<group>"; };
-		60C696711DBDEB1500CE9435 /* crypto_scalarmult_curve25519.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_scalarmult_curve25519.h; path = Dependencies/libsodium/crypto_scalarmult_curve25519.h; sourceTree = "<group>"; };
-		60C696721DBDEB1500CE9435 /* crypto_scalarmult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_scalarmult.h; path = Dependencies/libsodium/crypto_scalarmult.h; sourceTree = "<group>"; };
-		60C696731DBDEB1500CE9435 /* crypto_secretbox_xsalsa20poly1305.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_secretbox_xsalsa20poly1305.h; path = Dependencies/libsodium/crypto_secretbox_xsalsa20poly1305.h; sourceTree = "<group>"; };
-		60C696741DBDEB1500CE9435 /* crypto_secretbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_secretbox.h; path = Dependencies/libsodium/crypto_secretbox.h; sourceTree = "<group>"; };
-		60C696751DBDEB1500CE9435 /* crypto_shorthash_siphash24.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_shorthash_siphash24.h; path = Dependencies/libsodium/crypto_shorthash_siphash24.h; sourceTree = "<group>"; };
-		60C696761DBDEB1500CE9435 /* crypto_shorthash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_shorthash.h; path = Dependencies/libsodium/crypto_shorthash.h; sourceTree = "<group>"; };
-		60C696771DBDEB1500CE9435 /* crypto_sign_ed25519.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_sign_ed25519.h; path = Dependencies/libsodium/crypto_sign_ed25519.h; sourceTree = "<group>"; };
-		60C696781DBDEB1500CE9435 /* crypto_sign_edwards25519sha512batch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_sign_edwards25519sha512batch.h; path = Dependencies/libsodium/crypto_sign_edwards25519sha512batch.h; sourceTree = "<group>"; };
-		60C696791DBDEB1500CE9435 /* crypto_sign.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_sign.h; path = Dependencies/libsodium/crypto_sign.h; sourceTree = "<group>"; };
-		60C6967A1DBDEB1500CE9435 /* crypto_stream_aes128ctr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_stream_aes128ctr.h; path = Dependencies/libsodium/crypto_stream_aes128ctr.h; sourceTree = "<group>"; };
-		60C6967B1DBDEB1500CE9435 /* crypto_stream_chacha20.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_stream_chacha20.h; path = Dependencies/libsodium/crypto_stream_chacha20.h; sourceTree = "<group>"; };
-		60C6967C1DBDEB1500CE9435 /* crypto_stream_salsa20.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_stream_salsa20.h; path = Dependencies/libsodium/crypto_stream_salsa20.h; sourceTree = "<group>"; };
-		60C6967D1DBDEB1500CE9435 /* crypto_stream_salsa208.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_stream_salsa208.h; path = Dependencies/libsodium/crypto_stream_salsa208.h; sourceTree = "<group>"; };
-		60C6967E1DBDEB1500CE9435 /* crypto_stream_salsa2012.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_stream_salsa2012.h; path = Dependencies/libsodium/crypto_stream_salsa2012.h; sourceTree = "<group>"; };
-		60C6967F1DBDEB1500CE9435 /* crypto_stream_xsalsa20.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_stream_xsalsa20.h; path = Dependencies/libsodium/crypto_stream_xsalsa20.h; sourceTree = "<group>"; };
-		60C696801DBDEB1500CE9435 /* crypto_stream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_stream.h; path = Dependencies/libsodium/crypto_stream.h; sourceTree = "<group>"; };
-		60C696811DBDEB1500CE9435 /* crypto_uint8.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_uint8.h; path = Dependencies/libsodium/crypto_uint8.h; sourceTree = "<group>"; };
-		60C696821DBDEB1500CE9435 /* crypto_uint16.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_uint16.h; path = Dependencies/libsodium/crypto_uint16.h; sourceTree = "<group>"; };
-		60C696831DBDEB1500CE9435 /* crypto_uint32.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_uint32.h; path = Dependencies/libsodium/crypto_uint32.h; sourceTree = "<group>"; };
-		60C696841DBDEB1500CE9435 /* crypto_uint64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_uint64.h; path = Dependencies/libsodium/crypto_uint64.h; sourceTree = "<group>"; };
-		60C696851DBDEB1500CE9435 /* crypto_verify_16.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_verify_16.h; path = Dependencies/libsodium/crypto_verify_16.h; sourceTree = "<group>"; };
-		60C696861DBDEB1500CE9435 /* crypto_verify_32.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_verify_32.h; path = Dependencies/libsodium/crypto_verify_32.h; sourceTree = "<group>"; };
-		60C696871DBDEB1500CE9435 /* crypto_verify_64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_verify_64.h; path = Dependencies/libsodium/crypto_verify_64.h; sourceTree = "<group>"; };
-		60C696881DBDEB1500CE9435 /* export.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = export.h; path = Dependencies/libsodium/export.h; sourceTree = "<group>"; };
 		60C696891DBDEB1500CE9435 /* libsodium-ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libsodium-ios.a"; path = "Dependencies/libsodium/libsodium-ios.a"; sourceTree = "<group>"; };
 		60C6968A1DBDEB1500CE9435 /* libsodium-osx.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libsodium-osx.a"; path = "Dependencies/libsodium/libsodium-osx.a"; sourceTree = "<group>"; };
-		60C6968B1DBDEB1500CE9435 /* randombytes_salsa20_random.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = randombytes_salsa20_random.h; path = Dependencies/libsodium/randombytes_salsa20_random.h; sourceTree = "<group>"; };
-		60C6968C1DBDEB1500CE9435 /* randombytes_sysrandom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = randombytes_sysrandom.h; path = Dependencies/libsodium/randombytes_sysrandom.h; sourceTree = "<group>"; };
-		60C6968D1DBDEB1500CE9435 /* randombytes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = randombytes.h; path = Dependencies/libsodium/randombytes.h; sourceTree = "<group>"; };
-		60C6968E1DBDEB1500CE9435 /* runtime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = runtime.h; path = Dependencies/libsodium/runtime.h; sourceTree = "<group>"; };
-		60C6968F1DBDEB1500CE9435 /* sodium_lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = sodium_lib.h; path = Dependencies/libsodium/sodium_lib.h; sourceTree = "<group>"; };
-		60C696901DBDEB1500CE9435 /* utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = utils.h; path = Dependencies/libsodium/utils.h; sourceTree = "<group>"; };
-		60C696911DBDEB1500CE9435 /* version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = version.h; path = Dependencies/libsodium/version.h; sourceTree = "<group>"; };
 		60C696921DBDEB9300CE9435 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = Dependencies/libsodium/module.modulemap; sourceTree = "<group>"; };
 		60C696961DBDFB3600CE9435 /* SecretBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecretBox.swift; sourceTree = "<group>"; };
 		60C696991DBE02A500CE9435 /* EncryptedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptedData.swift; sourceTree = "<group>"; };
@@ -313,65 +314,66 @@
 			isa = PBXGroup;
 			children = (
 				60C696921DBDEB9300CE9435 /* module.modulemap */,
-				60C696571DBDEB1500CE9435 /* core.h */,
-				60C696581DBDEB1500CE9435 /* crypto_aead_aes256gcm.h */,
-				60C696591DBDEB1500CE9435 /* crypto_aead_chacha20poly1305.h */,
-				60C6965A1DBDEB1500CE9435 /* crypto_auth_hmacsha256.h */,
-				60C6965B1DBDEB1500CE9435 /* crypto_auth_hmacsha512.h */,
-				60C6965C1DBDEB1500CE9435 /* crypto_auth_hmacsha512256.h */,
-				60C6965D1DBDEB1500CE9435 /* crypto_auth.h */,
-				60C6965E1DBDEB1500CE9435 /* crypto_box_curve25519xsalsa20poly1305.h */,
-				60C6965F1DBDEB1500CE9435 /* crypto_box.h */,
-				60C696601DBDEB1500CE9435 /* crypto_core_hchacha20.h */,
-				60C696611DBDEB1500CE9435 /* crypto_core_hsalsa20.h */,
-				60C696621DBDEB1500CE9435 /* crypto_core_salsa20.h */,
-				60C696631DBDEB1500CE9435 /* crypto_core_salsa208.h */,
-				60C696641DBDEB1500CE9435 /* crypto_core_salsa2012.h */,
-				60C696651DBDEB1500CE9435 /* crypto_generichash_blake2b.h */,
-				60C696661DBDEB1500CE9435 /* crypto_generichash.h */,
-				60C696671DBDEB1500CE9435 /* crypto_hash_sha256.h */,
-				60C696681DBDEB1500CE9435 /* crypto_hash_sha512.h */,
-				60C696691DBDEB1500CE9435 /* crypto_hash.h */,
-				60C6966A1DBDEB1500CE9435 /* crypto_int32.h */,
-				60C6966B1DBDEB1500CE9435 /* crypto_int64.h */,
-				60C6966C1DBDEB1500CE9435 /* crypto_onetimeauth_poly1305.h */,
-				60C6966D1DBDEB1500CE9435 /* crypto_onetimeauth.h */,
-				60C6966E1DBDEB1500CE9435 /* crypto_pwhash_argon2i.h */,
-				60C6966F1DBDEB1500CE9435 /* crypto_pwhash_scryptsalsa208sha256.h */,
-				60C696701DBDEB1500CE9435 /* crypto_pwhash.h */,
-				60C696711DBDEB1500CE9435 /* crypto_scalarmult_curve25519.h */,
-				60C696721DBDEB1500CE9435 /* crypto_scalarmult.h */,
-				60C696731DBDEB1500CE9435 /* crypto_secretbox_xsalsa20poly1305.h */,
-				60C696741DBDEB1500CE9435 /* crypto_secretbox.h */,
-				60C696751DBDEB1500CE9435 /* crypto_shorthash_siphash24.h */,
-				60C696761DBDEB1500CE9435 /* crypto_shorthash.h */,
-				60C696771DBDEB1500CE9435 /* crypto_sign_ed25519.h */,
-				60C696781DBDEB1500CE9435 /* crypto_sign_edwards25519sha512batch.h */,
-				60C696791DBDEB1500CE9435 /* crypto_sign.h */,
-				60C6967A1DBDEB1500CE9435 /* crypto_stream_aes128ctr.h */,
-				60C6967B1DBDEB1500CE9435 /* crypto_stream_chacha20.h */,
-				60C6967C1DBDEB1500CE9435 /* crypto_stream_salsa20.h */,
-				60C6967D1DBDEB1500CE9435 /* crypto_stream_salsa208.h */,
-				60C6967E1DBDEB1500CE9435 /* crypto_stream_salsa2012.h */,
-				60C6967F1DBDEB1500CE9435 /* crypto_stream_xsalsa20.h */,
-				60C696801DBDEB1500CE9435 /* crypto_stream.h */,
-				60C696811DBDEB1500CE9435 /* crypto_uint8.h */,
-				60C696821DBDEB1500CE9435 /* crypto_uint16.h */,
-				60C696831DBDEB1500CE9435 /* crypto_uint32.h */,
-				60C696841DBDEB1500CE9435 /* crypto_uint64.h */,
-				60C696851DBDEB1500CE9435 /* crypto_verify_16.h */,
-				60C696861DBDEB1500CE9435 /* crypto_verify_32.h */,
-				60C696871DBDEB1500CE9435 /* crypto_verify_64.h */,
-				60C696881DBDEB1500CE9435 /* export.h */,
 				60C696891DBDEB1500CE9435 /* libsodium-ios.a */,
 				60C6968A1DBDEB1500CE9435 /* libsodium-osx.a */,
-				60C6968B1DBDEB1500CE9435 /* randombytes_salsa20_random.h */,
-				60C6968C1DBDEB1500CE9435 /* randombytes_sysrandom.h */,
-				60C6968D1DBDEB1500CE9435 /* randombytes.h */,
-				60C6968E1DBDEB1500CE9435 /* runtime.h */,
-				60C6968F1DBDEB1500CE9435 /* sodium_lib.h */,
-				60C696901DBDEB1500CE9435 /* utils.h */,
-				60C696911DBDEB1500CE9435 /* version.h */,
+				6096E7D81F1A69CF00E6599F /* core.h */,
+				6096E7D91F1A69CF00E6599F /* crypto_aead_aes256gcm.h */,
+				6096E7DA1F1A69CF00E6599F /* crypto_aead_chacha20poly1305.h */,
+				6096E7DB1F1A69CF00E6599F /* crypto_aead_xchacha20poly1305.h */,
+				6096E7DC1F1A69CF00E6599F /* crypto_auth_hmacsha256.h */,
+				6096E7DD1F1A69CF00E6599F /* crypto_auth_hmacsha512.h */,
+				6096E7DE1F1A69CF00E6599F /* crypto_auth_hmacsha512256.h */,
+				6096E7DF1F1A69CF00E6599F /* crypto_auth.h */,
+				6096E7E01F1A69CF00E6599F /* crypto_box_curve25519xchacha20poly1305.h */,
+				6096E7E11F1A69CF00E6599F /* crypto_box_curve25519xsalsa20poly1305.h */,
+				6096E7E21F1A69CF00E6599F /* crypto_box.h */,
+				6096E7E31F1A69CF00E6599F /* crypto_core_hchacha20.h */,
+				6096E7E41F1A69CF00E6599F /* crypto_core_hsalsa20.h */,
+				6096E7E51F1A69CF00E6599F /* crypto_core_salsa20.h */,
+				6096E7E61F1A69CF00E6599F /* crypto_core_salsa208.h */,
+				6096E7E71F1A69CF00E6599F /* crypto_core_salsa2012.h */,
+				6096E7E81F1A69CF00E6599F /* crypto_generichash_blake2b.h */,
+				6096E7E91F1A69CF00E6599F /* crypto_generichash.h */,
+				6096E7EA1F1A69CF00E6599F /* crypto_hash_sha256.h */,
+				6096E7EB1F1A69CF00E6599F /* crypto_hash_sha512.h */,
+				6096E7EC1F1A69CF00E6599F /* crypto_hash.h */,
+				6096E7ED1F1A69CF00E6599F /* crypto_kdf_blake2b.h */,
+				6096E7EE1F1A69CF00E6599F /* crypto_kdf.h */,
+				6096E7EF1F1A69CF00E6599F /* crypto_kx.h */,
+				6096E7F01F1A69CF00E6599F /* crypto_onetimeauth_poly1305.h */,
+				6096E7F11F1A69CF00E6599F /* crypto_onetimeauth.h */,
+				6096E7F21F1A69CF00E6599F /* crypto_pwhash_argon2i.h */,
+				6096E7F31F1A69CF00E6599F /* crypto_pwhash_scryptsalsa208sha256.h */,
+				6096E7F41F1A69CF00E6599F /* crypto_pwhash.h */,
+				6096E7F51F1A69CF00E6599F /* crypto_scalarmult_curve25519.h */,
+				6096E7F61F1A69CF00E6599F /* crypto_scalarmult.h */,
+				6096E7F71F1A69CF00E6599F /* crypto_secretbox_xchacha20poly1305.h */,
+				6096E7F81F1A69CF00E6599F /* crypto_secretbox_xsalsa20poly1305.h */,
+				6096E7F91F1A69CF00E6599F /* crypto_secretbox.h */,
+				6096E7FA1F1A69CF00E6599F /* crypto_shorthash_siphash24.h */,
+				6096E7FB1F1A69CF00E6599F /* crypto_shorthash.h */,
+				6096E7FC1F1A69CF00E6599F /* crypto_sign_ed25519.h */,
+				6096E7FD1F1A69CF00E6599F /* crypto_sign_edwards25519sha512batch.h */,
+				6096E7FE1F1A69CF00E6599F /* crypto_sign.h */,
+				6096E7FF1F1A69CF00E6599F /* crypto_stream_aes128ctr.h */,
+				6096E8001F1A69CF00E6599F /* crypto_stream_chacha20.h */,
+				6096E8011F1A69CF00E6599F /* crypto_stream_salsa20.h */,
+				6096E8021F1A69CF00E6599F /* crypto_stream_salsa208.h */,
+				6096E8031F1A69CF00E6599F /* crypto_stream_salsa2012.h */,
+				6096E8041F1A69CF00E6599F /* crypto_stream_xchacha20.h */,
+				6096E8051F1A69CF00E6599F /* crypto_stream_xsalsa20.h */,
+				6096E8061F1A69CF00E6599F /* crypto_stream.h */,
+				6096E8071F1A69CF00E6599F /* crypto_verify_16.h */,
+				6096E8081F1A69CF00E6599F /* crypto_verify_32.h */,
+				6096E8091F1A69CF00E6599F /* crypto_verify_64.h */,
+				6096E80A1F1A69CF00E6599F /* export.h */,
+				6096E80B1F1A69CF00E6599F /* randombytes_salsa20_random.h */,
+				6096E80C1F1A69CF00E6599F /* randombytes_sysrandom.h */,
+				6096E80D1F1A69CF00E6599F /* randombytes.h */,
+				6096E80E1F1A69CF00E6599F /* runtime.h */,
+				6096E80F1F1A69CF00E6599F /* sodium_lib.h */,
+				6096E8101F1A69CF00E6599F /* utils.h */,
+				6096E8111F1A69CF00E6599F /* version.h */,
 			);
 			name = libsodium;
 			sourceTree = "<group>";
