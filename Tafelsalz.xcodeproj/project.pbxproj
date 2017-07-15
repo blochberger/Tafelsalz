@@ -1015,6 +1015,7 @@
 				6096E77F1F1A654100E6599F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6096E7801F1A654100E6599F /* Build configuration list for PBXNativeTarget "TafelsalzTests_iOS" */ = {
 			isa = XCConfigurationList;
@@ -1023,6 +1024,7 @@
 				6096E7821F1A654100E6599F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		60C695401DBDE36000CE9435 /* Build configuration list for PBXProject "Tafelsalz" */ = {
 			isa = XCConfigurationList;
