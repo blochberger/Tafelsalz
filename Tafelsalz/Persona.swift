@@ -1,8 +1,23 @@
 import Foundation
 import Keychain
 
+/**
+	A persona is an entity for which you are in posession of the secrets. The
+	secrets are persisted in the system's Keychain. A persona has a unique name.
+*/
 public class Persona {
 
+	/**
+		Forget a persona. This will remove all secrets of this persona from the
+		system's Keychain.
+
+		- warning: Removing a persona will delete all secrets of that persona
+			which also means, that encrypted messages or files encrypted for
+			this persona cannot be decrypted anymore.
+
+		- parameters:
+			- persona: The persona that should be deleted.
+	*/
 	public static func forget(_ persona: Persona) throws {
 		for item in persona.keychainItems {
 			do {
@@ -15,20 +30,32 @@ public class Persona {
 		}
 	}
 
+	/**
+		The unique name of the persona.
+	*/
 	public let uniqueName: String
 
+	/**
+		Create a new persona. If the persona was created before, the secrets
+		will be retrieved from the system's Keychain.
+
+		- parameters:
+			- uniqueName: A name that is unique for that persona.
+	*/
 	public init(uniqueName: String) {
 		self.uniqueName = uniqueName
 	}
 
 	/**
 		Secrets are persisted in the system's Keychain.
-	
+
 		The Keychain item is prefixed by the application's bundle identifier and
 		suffixed with a value determining the kind of secret stored.
-	
+
 		The actual value of the secret is Base64 encoded to allow users
 		accessing the value from the Keychain Access application (macOS).
+
+		- returns: The secret key.
 	*/
 	func secret() -> SecretBox.SecretKey? {
 		do {
@@ -66,10 +93,20 @@ public class Persona {
 		}
 	}
 
+	/**
+		This is used to identify the type of the key.
+	*/
 	private enum Kind: String {
+		/**
+			This identifies secret keys that can be used with the secret box.
+		*/
 		case secretKey = "SecretBox.SecretKey"
 	}
 
+	/**
+		This is the bundle identifier of the application. It is used to identify
+		the service of the password item in the system's Keychain.
+	*/
 	private var bundleIdentifier: String {
 		guard Bundle.main.bundleIdentifier == nil else {
 			return Bundle.main.bundleIdentifier!
@@ -84,16 +121,30 @@ public class Persona {
 		return ""
 	}
 
+	/**
+		This constructs an identifier for the service and type of key.
+
+		- parameters:
+			- kind: The type of the key.
+
+		- returns: The identifier.
+	*/
 	private func itemService(kind: Kind) -> String {
 		return bundleIdentifier + "/" + kind.rawValue
 	}
 
+	/**
+		This identifies the Keychain entry for the secret key of this persona.
+	*/
 	private var secretKeyItem: GenericPasswordItem {
 		get {
 			return GenericPasswordItem(for: itemService(kind: .secretKey), using: uniqueName)
 		}
 	}
 
+	/**
+		This is an array that holds all Keychain entries for this persona.
+	*/
 	private var keychainItems: [KeychainItem] {
 		get {
 			return [secretKeyItem]

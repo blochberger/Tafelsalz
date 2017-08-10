@@ -1,2 +1,8 @@
+# Intermediate Files
+*.pyc
+
+# Github Pages
+gh-pages/
+
 # XCode
 **/xcuserdata/

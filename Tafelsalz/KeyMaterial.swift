@@ -1,13 +1,37 @@
 import Foundation
 import libsodium
 
+/**
+	This class can be used to securely store key material in memory.
+*/
 public class KeyMaterial {
 
+	/**
+		The size of the key material in bytes.
+	*/
 	public let sizeInBytes: PInt
+
+	/**
+		The pointer to the secure memory location.
+	*/
 	private let bytesPtr: UnsafeMutableRawPointer
 
+	/**
+		This is the cached fingerprint.
+	*/
 	private var cachedHash: Data? = nil
 
+	/**
+		Initializes new key material of a given size.
+
+		- parameters:
+			- sizeInBytes: The size of the key material in bytes.
+			- initialze: If `true`, then the allocated memory will be filled
+				cryptographically secure random data, else it will be filled
+				with `0xdb`.
+
+		- see: [Guarded heap allocations](https://download.libsodium.org/doc/helpers/memory_management.html#guarded-heap-allocations)
+	*/
 	public init?(sizeInBytes: PInt, initialize: Bool = true) {
 		guard Tafelsalz.isInitialized() else {
 			return nil
@@ -30,6 +54,14 @@ public class KeyMaterial {
 		}
 	}
 
+	/**
+		Initializes key material by a given byte array. The byte array is copied
+		to a secure memory location and overwritten with zeros afterwards in
+		order to avoid the key material from being compromised.
+
+		- parameters:
+			- bytes: The key material.
+	*/
 	public init?(bytes: inout Data) {
 		guard Tafelsalz.isInitialized() else {
 			return nil
@@ -60,6 +92,11 @@ public class KeyMaterial {
 		}
 	}
 
+	/**
+		Deletes key material. The memory is overwritten with zeroes.
+
+		- see: [Guarded heap allocations](https://download.libsodium.org/doc/helpers/memory_management.html#guarded-heap-allocations)
+	*/
 	deinit {
 		guard makeReadWritable() else {
 			abort()
@@ -68,18 +105,43 @@ public class KeyMaterial {
 		libsodium.sodium_free(bytesPtr)
 	}
 
+	/**
+		Make the memory location where the key material is stored read only.
+
+		- returns: `true` on success.
+	*/
 	private func makeReadOnly() -> Bool {
 		return libsodium.sodium_mprotect_readonly(bytesPtr) == 0
 	}
 
+	/**
+		Make the memory location where the key material is stored writable.
+
+		- returns: `true` on success.
+	*/
 	private func makeReadWritable() -> Bool {
 		return libsodium.sodium_mprotect_readwrite(bytesPtr) == 0
 	}
 
+	/**
+		Make the memory location where the key material is stored inaccessible.
+
+		- returns: `true` on success.
+	*/
 	private func makeInaccessible() -> Bool {
 		return libsodium.sodium_mprotect_noaccess(bytesPtr) == 0
 	}
 
+	/**
+		Read raw bytes from the key material.
+
+		Usually you do not need to call this function.
+
+		- parameters:
+			- body: A code block where the key material is readable.
+
+		- returns: The result from the `body` code block.
+	*/
 	public func withUnsafeBytes<ResultType, ContentType>(body: (UnsafePointer<ContentType>) throws -> ResultType) rethrows -> ResultType {
 		guard makeReadOnly() else {
 			abort()
@@ -94,6 +156,17 @@ public class KeyMaterial {
 		return result
 	}
 
+	/**
+		Make changes to the raw bytes of the key material.
+
+		- warning: Use this with caution, as setting key material manually might
+			lead to insecure key material.
+
+		- parameters:
+			- body: A code block where the key material is writable.
+
+		- returns: The result from the `body` code block.
+	*/
 	func withUnsafeMutableBytes<ResultType, ContentType>(body: (UnsafeMutablePointer<ContentType>) throws -> ResultType) rethrows -> ResultType {
 		guard makeReadWritable() else {
 			abort()
@@ -108,11 +181,29 @@ public class KeyMaterial {
 		return result
 	}
 
+	/**
+		Copy the key material from the secure memory into an insecure byte
+		array.
+
+		- warning: Use this with caution, as the output is not located in secure
+			memory.
+
+		- returns: A copy of the key material.
+	*/
 	@inline(__always)
 	public func copyBytes() -> Data {
 		return withUnsafeBytes { Data(bytes: $0, count: Int(sizeInBytes)) }
 	}
 
+	/**
+		Returns a fingerprint of the key material. This can be used to compare
+		key materials of different sizes.
+
+		The fingerprint will only be calculated the first time this function is
+		called.
+
+		- returns: The fingerprint.
+	*/
 	func fingerprint() -> Data? {
 		if cachedHash == nil {
 			let hashSize = libsodium.crypto_generichash_bytes()
@@ -148,7 +239,7 @@ public class KeyMaterial {
 
 	/**
 		Constant time comparison of the key material.
-	
+
 		- warning: Do not use if `other` might have a different size.
 
 		- note:
@@ -163,11 +254,17 @@ public class KeyMaterial {
 			allow to compare instances of fixed length types. To compare
 			instances of possibly different sizes, use
 			`isFingerprintEqual(to:)`.
-	
+
 		- precondition:
+
 			```swift
 			self.sizeInBytes == other.sizeInBytes
 			```
+	
+		- parameters:
+			- other: Other key material to which this should be compared to.
+	
+		- returns: `true` if the key material is equal.
 	*/
 	func isEqual(to other: KeyMaterial) -> Bool {
 		// This should never be called if the sizes do not match, as this would
@@ -187,10 +284,15 @@ public class KeyMaterial {
 
 	/**
 		Constant time comparison of the hash representing the key material.
-	
+
 		This can be used to compare instances that potentially have different
 		sizes. If they are guaranteed to have the same size, use `isEqual(to:)`
 		instead, as it is faster.
+
+		- parameters:
+			other: The key material to which this should be compared.
+
+		- returns: `true` if both key materials have the same fingerprint.
 	*/
 	func isFingerprintEqual(to other: KeyMaterial) -> Bool {
 		guard let lhsHash = fingerprint() else {
