@@ -1,8 +1,6 @@
 import Foundation
 import libsodium
 
-// <#TODO#> Offer method for securely persisting key material in system Keychain.
-
 public class KeyMaterial {
 
 	public let sizeInBytes: PInt
