@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Ciphertext {
+public struct Ciphertext: EncryptedData {
 	public let bytes: Data
 
 	public var sizeInBytes: PInt {
