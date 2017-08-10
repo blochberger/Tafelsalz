@@ -28,7 +28,7 @@ import libsodium
 	public typealias PInt = UInt16
 #endif
 
-public class Tafelsalz {
+class Tafelsalz {
 	private static let instance = Tafelsalz()
 
 	private init?() {
@@ -37,7 +37,7 @@ public class Tafelsalz {
 		}
 	}
 
-	public static func isInitialized() -> Bool {
+	static func isInitialized() -> Bool {
 		return instance != nil
 	}
 }
