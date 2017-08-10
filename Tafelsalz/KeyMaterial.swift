@@ -96,7 +96,7 @@ public class KeyMaterial {
 		return result
 	}
 
-	internal func withUnsafeMutableBytes<ResultType, ContentType>(body: (UnsafeMutablePointer<ContentType>) throws -> ResultType) rethrows -> ResultType {
+	func withUnsafeMutableBytes<ResultType, ContentType>(body: (UnsafeMutablePointer<ContentType>) throws -> ResultType) rethrows -> ResultType {
 		guard makeReadWritable() else {
 			abort()
 		}

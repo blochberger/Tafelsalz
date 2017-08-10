@@ -3,7 +3,7 @@ import libsodium
 public struct HashedPassword {
 	public static let SizeInBytes = PInt(libsodium.crypto_pwhash_strbytes())
 
-	internal let bytes: Data
+	let bytes: Data
 
 	public init?(_ bytes: Data) {
 		guard Tafelsalz.isInitialized() else {
