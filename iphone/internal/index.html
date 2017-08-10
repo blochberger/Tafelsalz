@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Tafelsalz  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+
+    <a title="Tafelsalz  Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+          Tafelsalz Docs
+        </a>
+         (100% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/blochberger/Tafelsalz">
+            <img class="header-icon" src="img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html">Tafelsalz Reference</a>
+      <img class="carat" src="img/carat.png" />
+      Tafelsalz  Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/KeyMaterial.html">KeyMaterial</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Password.html">Password</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Password/ComplexityLimit.html">– ComplexityLimit</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Password/MemoryLimit.html">– MemoryLimit</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Persona.html">Persona</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Random.html">Random</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/SecretBox.html">SecretBox</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/SecretBox/SecretKey.html">– SecretKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/SecretBox/Nonce.html">– Nonce</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/SecretBox/AuthenticationCode.html">– AuthenticationCode</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/SecretBox/AuthenticatedCiphertext.html">– AuthenticatedCiphertext</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Tafelsalz.html">Tafelsalz</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/EncryptedData.html">EncryptedData</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Ciphertext.html">Ciphertext</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/HashedPassword.html">HashedPassword</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Typealiases.html">Typealiases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Typealiases.html#/s:9Tafelsalz4PInt">PInt</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            
+            <h1 id='tafelsalz' class='heading'>Tafelsalz</h1>
+
+<p><img src="https://blochberger.github.io/Tafelsalz/macos/coverage.svg" alt="Coverage"> <a href="https://blochberger.github.io/Tafelsalz"><img src="https://blochberger.github.io/Tafelsalz/macos/public/badge.svg" alt="Documentation"></a></p>
+
+<p>The main idea of this project is to provide usable but safe cyryptographic operations. Usability does not mean, that the minimum effort is required to integrate an operation. Minimum effort might result in single lines of code that you write… et voilà your system is secure. No. It means that it requires only the minimum of knowledge to do something wrong.</p>
+
+<p>The <a href="https://libsodium.org"><em>libsodium</em></a> project has a similar goal, but does not leverage the features available in modern programming languages such as Swift. The <em>libsodium</em> library is based on <a href="https://nacl.cr.yp.to">NaCl</a> whoose authors discussed the security issues related to cryptographic APIs that are too complicated and error-prone¹ – or as Matthew Green² put it:</p>
+
+<blockquote>
+<p>OpenSSL is the space shuttle of crypto libraries. It will get you to space, provided you have a team of people to push the ten thousand buttons required to do so. NaCl is more like an elevator — you just press a button and it takes you there. No frills or options.</p>
+
+<p>I like elevators.</p>
+</blockquote>
+
+<p>To stay with the analogy: <em>libsodium</em> and <em>NaCl</em> prevent any accidents to happen if you press a button for some floor which isn&rsquo;t there. This project tries to prevent the button being there in the first place.</p>
+
+<p>This is achieved by leveraging programming language features in a way that an operation cannot be called with invalid or insecure parameters. Every such call should be prevented at compile time already.</p>
+
+<p>Note that the goal is not to prevent malicious attackers to circumvent the established protection mechanisms by the programming language features but to prevent accidental misuse of cryptographic APIs.</p>
+
+<ul>
+<li>Repository: <a href="https://github.com/blochberger/Tafelsalz">https://github.com/blochberger/Tafelsalz</a></li>
+<li>Documentation: <a href="https://blochberger.github.io/Tafelsalz">https://blochberger.github.io/Tafelsalz</a>
+
+<ul>
+<li>macOS: <a href="https://blochberger.github.io/Tafelsalz/macos/public">public</a>, <a href="https://blochberger.github.io/Tafelsalz/macos/internal">internal</a>, <a href="https://blochberger.github.io/Tafelsalz/macos/private">private</a></li>
+<li>iOS: <a href="https://blochberger.github.io/Tafelsalz/iphone/public">public</a>, <a href="https://blochberger.github.io/Tafelsalz/iphone/internal">internal</a>, <a href="https://blochberger.github.io/Tafelsalz/iphone/private">private</a></li>
+</ul></li>
+<li>Issues: <a href="https://github.com/blochberger/Tafelsalz/issues">https://github.com/blochberger/Tafelsalz/issues</a></li>
+</ul>
+
+<p>Check out the project with:</p>
+<pre class="highlight shell"><code>git clone --recursive https://github.com/blochberger/Tafelsalz.git
+</code></pre>
+
+<p>⚠️ <strong>WARNING</strong>: This project is still work in progress and the API is highly unstable. It is recommended to use a more stable library for the time being, such as <a href="https://github.com/jedisct1/swift-sodium">jedisct1/swift-sodium</a>.</p>
+<h2 id='concept' class='heading'>Concept</h2>
+
+<p>There are several basic ideas:</p>
+
+<ul>
+<li>Let the compiler catch/enforce as much as possible.</li>
+<li>Avoid common mistakes.</li>
+<li>Combine convenience and security.</li>
+</ul>
+<h3 id='identity-management' class='heading'>Identity Management</h3>
+
+<p>There are basically two different kinds of identities or actors: personas and contacts. For personas you are in posession of the secret keys. For contacts you are only in possession of the public keys.</p>
+<h3 id='persistence-of-secrets' class='heading'>Persistence of Secrets</h3>
+
+<p>The secrets for personas are automatically persisted in the system&rsquo;s Keychain. This is the place, where you want to store your secrets, as storing them in the file system might lead to them being compromised easily.</p>
+<h2 id='examples' class='heading'>Examples</h2>
+<h3 id='symmetric-encryption' class='heading'>Symmetric Encryption</h3>
+<h4 id='ephemeral-keys' class='heading'>Ephemeral Keys</h4>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">secretBox</span> <span class="o">=</span> <span class="kt">SecretBox</span><span class="p">()</span><span class="o">!</span>
+<span class="k">let</span> <span class="nv">plaintext</span> <span class="o">=</span> <span class="s">"Hello, World!"</span><span class="o">.</span><span class="nf">data</span><span class="p">(</span><span class="nv">using</span><span class="p">:</span> <span class="o">.</span><span class="n">utf8</span><span class="p">)</span><span class="o">!</span>
+<span class="k">let</span> <span class="nv">ciphertext</span> <span class="o">=</span> <span class="n">secretBox</span><span class="o">.</span><span class="nf">encrypt</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="n">plaintext</span><span class="p">)</span><span class="o">!</span>
+<span class="k">let</span> <span class="nv">decrypted</span> <span class="o">=</span> <span class="n">secretBox</span><span class="o">.</span><span class="nf">decrypt</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="n">ciphertext</span><span class="p">)</span><span class="o">!</span>
+</code></pre>
+<h4 id='persisted-keys' class='heading'>Persisted Keys</h4>
+<pre class="highlight swift"><code><span class="c1">// Create a persona</span>
+<span class="k">let</span> <span class="nv">alice</span> <span class="o">=</span> <span class="kt">Persona</span><span class="p">(</span><span class="nv">uniqueName</span><span class="p">:</span> <span class="s">"Alice"</span><span class="p">)</span>
+
+<span class="c1">// Once a secret of that persona is used, it will be persisted in the</span>
+<span class="c1">// system's Keychain.</span>
+<span class="k">let</span> <span class="nv">secretBox</span> <span class="o">=</span> <span class="kt">SecretBox</span><span class="p">(</span><span class="nv">persona</span><span class="p">:</span> <span class="n">alice</span><span class="p">)</span><span class="o">!</span>
+
+<span class="c1">// Use your SecretBox as usual</span>
+<span class="k">let</span> <span class="nv">plaintext</span> <span class="o">=</span> <span class="s">"Hello, World!"</span><span class="o">.</span><span class="nf">data</span><span class="p">(</span><span class="nv">using</span><span class="p">:</span> <span class="o">.</span><span class="n">utf8</span><span class="p">)</span><span class="o">!</span>
+<span class="k">let</span> <span class="nv">ciphertext</span> <span class="o">=</span> <span class="n">secretBox</span><span class="o">.</span><span class="nf">encrypt</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="n">plaintext</span><span class="p">)</span><span class="o">!</span>
+<span class="k">let</span> <span class="nv">decrypted</span> <span class="o">=</span> <span class="n">secretBox</span><span class="o">.</span><span class="nf">decrypt</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="n">ciphertext</span><span class="p">)</span><span class="o">!</span>
+
+<span class="c1">// Forget the persona and remove all related Keychain entries</span>
+<span class="k">try!</span> <span class="kt">Persona</span><span class="o">.</span><span class="nf">forget</span><span class="p">(</span><span class="n">alice</span><span class="p">)</span>
+</code></pre>
+<h3 id='password-hashing' class='heading'>Password Hashing</h3>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">password</span> <span class="o">=</span> <span class="kt">Password</span><span class="p">(</span><span class="s">"Correct Horse Battery Staple"</span><span class="p">)</span><span class="o">!</span>
+<span class="k">let</span> <span class="nv">hashedPassword</span> <span class="o">=</span> <span class="n">password</span><span class="o">.</span><span class="nf">hash</span><span class="p">()</span><span class="o">!</span>
+
+<span class="c1">// Store `hashedPassword.string` to database.</span>
+
+<span class="c1">// If a user wants to authenticate, just read it from the database and</span>
+<span class="c1">// verify it against the password given by the user.</span>
+<span class="k">if</span> <span class="n">hashedPassword</span><span class="o">.</span><span class="nf">isVerified</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="n">password</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// The user is authenticated successfully.</span>
+<span class="p">}</span>
+</code></pre>
+
+<hr>
+
+<ol>
+<li>D. J. Bernstein, T. Lange, and P. Schwabe, <a href="http://dx.doi.org/10.1007/978-3-642-33481-8_9"><strong>The Security Impact of a New Cryptographic Library</strong></a> in <em>Progress in Cryptology – LATINCRYPT 2012 – 2nd International Conference on Cryptology and Information Security in Latin America, Santiago, Chile, October 7-10, 2012. Proceedings</em> (A. Hevia and G. Neven, eds.), pp. 159–176</li>
+<li>M. Green, <a href="http://blog.cryptographyengineering.com/2012/12/the-anatomy-of-bad-idea.html"><strong>The Anatomy of a Bad Idea</strong></a>, 2012</li>
+</ol>
+
+          </div>
+        </section>
+
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2017 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2017-08-10)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>
