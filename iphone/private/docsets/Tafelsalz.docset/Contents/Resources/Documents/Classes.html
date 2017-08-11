@@ -179,7 +179,7 @@ to store them for user authentication purposes.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/91b0101f196fe4c677f39622fc717291759cd0f0/Tafelsalz/Password.swift#L9-L215">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/dc001fee4d285aab8465b70f7f0855f9dccaf703/Tafelsalz/Password.swift#L9-L215">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -214,7 +214,7 @@ to store them for user authentication purposes.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/91b0101f196fe4c677f39622fc717291759cd0f0/Tafelsalz/Random.swift#L6-L53">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/dc001fee4d285aab8465b70f7f0855f9dccaf703/Tafelsalz/Random.swift#L6-L53">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -239,6 +239,21 @@ to store them for user authentication purposes.</p>
                         <p>A persona is an entity for which you are in posession of the secrets. The
 secrets are persisted in the system&rsquo;s Keychain. A persona has a unique name.</p>
 
+<p>The Keychain items are prefixed by the application&rsquo;s bundle identifier and
+suffixed with a value determining the kind of secret stored.</p>
+
+<p>The actual value of the secret is Base64 encoded to allow users accessing
+the value from the Keychain Access application (macOS)</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    The persona is unique per device and application bundle identifier. If
+you create two personas with equal names on two different applications
+or devices, they cannot be used to decrypt secrets of one another. If a
+persona is removed and re-created with the same name, it cannot be used
+to decrypt values encrypted for the previous one.
+
+</div>
+
                         <a href="Classes/Persona.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
@@ -250,7 +265,7 @@ secrets are persisted in the system&rsquo;s Keychain. A persona has a unique nam
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/91b0101f196fe4c677f39622fc717291759cd0f0/Tafelsalz/Persona.swift#L8-L153">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/dc001fee4d285aab8465b70f7f0855f9dccaf703/Tafelsalz/Persona.swift#L21-L192">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -292,7 +307,7 @@ fast brute-force attacks. Use <code><a href="Structs/HashedPassword.html">Hashed
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/91b0101f196fe4c677f39622fc717291759cd0f0/Tafelsalz/GenericHash.swift#L13-L188">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/dc001fee4d285aab8465b70f7f0855f9dccaf703/Tafelsalz/GenericHash.swift#L13-L213">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -327,7 +342,7 @@ fast brute-force attacks. Use <code><a href="Structs/HashedPassword.html">Hashed
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/91b0101f196fe4c677f39622fc717291759cd0f0/Tafelsalz/KeyMaterial.swift#L7-L318">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/dc001fee4d285aab8465b70f7f0855f9dccaf703/Tafelsalz/KeyMaterial.swift#L7-L318">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -395,7 +410,7 @@ want to store encrypted files in a public document storage, such as Dropbox.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/91b0101f196fe4c677f39622fc717291759cd0f0/Tafelsalz/SecretBox.swift#L46-L404">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/dc001fee4d285aab8465b70f7f0855f9dccaf703/Tafelsalz/SecretBox.swift#L46-L404">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -435,7 +450,7 @@ want to store encrypted files in a public document storage, such as Dropbox.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/91b0101f196fe4c677f39622fc717291759cd0f0/Tafelsalz/Tafelsalz.swift#L37-L62">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/dc001fee4d285aab8465b70f7f0855f9dccaf703/Tafelsalz/Tafelsalz.swift#L37-L62">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
