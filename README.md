@@ -28,7 +28,7 @@ Check out the project with:
 git clone --recursive https://github.com/blochberger/Tafelsalz.git
 ```
 
-⚠️ **WARNING**: This project is still work in progress and the API is highly unstable. It is recommended to use a more stable library for the time being, such as [jedisct1/swift-sodium](https://github.com/jedisct1/swift-sodium).
+⚠️ **WARNING**: This project will not provide backwards compatibility. The API might change with the purpose of improving it. Changes should stabilize over time. If you need a more backwards compatible framework, I suggest to use [jedisct1/swift-sodium](https://github.com/jedisct1/swift-sodium).
 
 ## Concept
 
