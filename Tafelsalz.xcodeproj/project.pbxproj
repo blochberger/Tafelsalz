@@ -293,17 +293,17 @@
 			isa = PBXGroup;
 			children = (
 				60C696941DBDF40600CE9435 /* Supporting Files */,
-				60C696541DBDE5CA00CE9435 /* Tafelsalz.swift */,
+				603F3C491EC313F600FEEBD9 /* Ciphertext.swift */,
 				60C696991DBE02A500CE9435 /* EncryptedData.swift */,
+				601833901F3DAFBF003AE3D8 /* Extensions.swift */,
+				601833881F3CCA5A003AE3D8 /* GenericHash.swift */,
 				6023DFC71DE42DA900E0B95E /* HashedPassword.swift */,
+				6012BC1D1EBDF28400E47DB8 /* KeyMaterial.swift */,
 				60C211E11EB503CC00882AD0 /* Password.swift */,
+				6096E7021F18FF9300E6599F /* Persona.swift */,
 				60C696A31DBF908F00CE9435 /* Random.swift */,
 				60C696961DBDFB3600CE9435 /* SecretBox.swift */,
-				6012BC1D1EBDF28400E47DB8 /* KeyMaterial.swift */,
-				603F3C491EC313F600FEEBD9 /* Ciphertext.swift */,
-				6096E7021F18FF9300E6599F /* Persona.swift */,
-				601833881F3CCA5A003AE3D8 /* GenericHash.swift */,
-				601833901F3DAFBF003AE3D8 /* Extensions.swift */,
+				60C696541DBDE5CA00CE9435 /* Tafelsalz.swift */,
 			);
 			path = Tafelsalz;
 			sourceTree = "<group>";
@@ -313,14 +313,14 @@
 			children = (
 				60C696951DBDF41700CE9435 /* Supporting Files */,
 				604E24CB1DC77F5A00942D54 /* Examples.swift */,
-				6012BC1F1EBE0B5F00E47DB8 /* KeyMaterialTest.swift */,
+				601833931F3DBFBD003AE3D8 /* ExtensionsTest.swift */,
+				6018338D1F3D0765003AE3D8 /* GenericHashTest.swift */,
 				60C211E51EB50AF500882AD0 /* HashedPasswordTest.swift */,
+				6012BC1F1EBE0B5F00E47DB8 /* KeyMaterialTest.swift */,
 				60C211E31EB504E500882AD0 /* PasswordTest.swift */,
+				6096E7651F1A540300E6599F /* PersonaTest.swift */,
 				60C696A81DBFAE4A00CE9435 /* RandomTests.swift */,
 				60D73F661DC0D91400AAAC59 /* SecretBoxTests.swift */,
-				6096E7651F1A540300E6599F /* PersonaTest.swift */,
-				6018338D1F3D0765003AE3D8 /* GenericHashTest.swift */,
-				601833931F3DBFBD003AE3D8 /* ExtensionsTest.swift */,
 			);
 			path = TafelsalzTests;
 			sourceTree = "<group>";
