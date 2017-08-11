@@ -22,33 +22,38 @@ class KeyMaterialTest: XCTestCase {
 	}
 
 	static func metaTestCapturingInitializer<T: KeyMaterial>(
-		of fixedSizeInBytes: PInt,
+		minimumSizeInBytes: PInt,
+		maximumSizeInBytes: PInt,
 		with initializer: (inout Data) -> T?
 	) {
 		let random = Random()!
-		let expectedBytes = random.bytes(count: fixedSizeInBytes)
-		var bytes = Data(expectedBytes)
-		let optionalInstance = initializer(&bytes)
 
-		// Test creating instance from byte sequence with correct size
-		XCTAssertNotNil(optionalInstance)
+		let sizesInBytes = (minimumSizeInBytes == maximumSizeInBytes) ? [minimumSizeInBytes] : [minimumSizeInBytes, maximumSizeInBytes]
+		for sizeInBytes in sizesInBytes {
+			let expectedBytes = random.bytes(count: sizeInBytes)
+			var bytes = Data(expectedBytes)
+			let optionalInstance = initializer(&bytes)
 
-		let instance = optionalInstance!
+			// Test creating instance from byte sequence with correct size
+			XCTAssertNotNil(optionalInstance)
 
-		// Test expected size limitation
-		XCTAssertEqual(instance.sizeInBytes, fixedSizeInBytes)
+			let instance = optionalInstance!
 
-		// Test equality of byte sequences
-		XCTAssertEqual(instance.copyBytes(), expectedBytes)
+			// Test expected size limitation
+			XCTAssertEqual(instance.sizeInBytes, sizeInBytes)
 
-		// Test that passed argument is zeroed
-		XCTAssertEqual(bytes, Data(count: Int(fixedSizeInBytes)))
+			// Test equality of byte sequences
+			XCTAssertEqual(instance.copyBytes(), expectedBytes)
 
-		XCTAssertEqual(instance.copyBytes(), instance.copyBytes())
+			// Test that passed argument is zeroed
+			XCTAssertEqual(bytes, Data(count: Int(sizeInBytes)))
+
+			XCTAssertEqual(instance.copyBytes(), instance.copyBytes())
+		}
 
 		// Test creating instance from byte sequence with incorrect size
-		var tooShort = random.bytes(count: fixedSizeInBytes - 1)
-		var tooLong = random.bytes(count: fixedSizeInBytes + 1)
+		var tooShort = random.bytes(count: minimumSizeInBytes - 1)
+		var tooLong = random.bytes(count: maximumSizeInBytes + 1)
 
 		XCTAssertNil(initializer(&tooShort))
 		XCTAssertNil(initializer(&tooLong))
@@ -56,6 +61,13 @@ class KeyMaterialTest: XCTestCase {
 		// Test if arguments passed have been wiped unexpectedly
 		XCTAssertNotEqual(tooShort, Data(count: tooShort.count))
 		XCTAssertNotEqual(tooLong, Data(count: tooLong.count))
+	}
+
+	static func metaTestCapturingInitializer<T: KeyMaterial>(
+		of fixedSizeInBytes: PInt,
+		with initializer: (inout Data) -> T?
+		) {
+		metaTestCapturingInitializer(minimumSizeInBytes: fixedSizeInBytes, maximumSizeInBytes: fixedSizeInBytes, with: initializer)
 	}
 
 	static func metaTestEquality<T: KeyMaterial>(
