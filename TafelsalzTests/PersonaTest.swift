@@ -15,13 +15,13 @@ class PersonaTest: XCTestCase {
 		let persona1 = Persona(uniqueName: "Fish")
 		let persona2 = Persona(uniqueName: "Chips")
 
-		XCTAssertNotNil(persona1.secret())
-		XCTAssertNotNil(persona2.secret())
+		XCTAssertNotNil(persona1.secretKey())
+		XCTAssertNotNil(persona2.secretKey())
 
-		XCTAssertEqual(persona1.secret()?.copyBytes(), persona1.secret()?.copyBytes())
-		XCTAssertEqual(persona1.secret()?.copyBytes(), Persona(uniqueName: persona1.uniqueName).secret()?.copyBytes())
+		XCTAssertEqual(persona1.secretKey()?.copyBytes(), persona1.secretKey()?.copyBytes())
+		XCTAssertEqual(persona1.secretKey()?.copyBytes(), Persona(uniqueName: persona1.uniqueName).secretKey()?.copyBytes())
 
-		XCTAssertNotEqual(persona1.secret()?.copyBytes(), persona2.secret()?.copyBytes())
+		XCTAssertNotEqual(persona1.secretKey()?.copyBytes(), persona2.secretKey()?.copyBytes())
 
 		XCTAssertNoThrow(try Persona.forget(persona1))
 		XCTAssertNoThrow(try Persona.forget(persona2))

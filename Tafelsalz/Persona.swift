@@ -60,34 +60,33 @@ public class Persona {
 	}
 
 	/**
-		Secrets are persisted in the system's Keychain.
-
-		- returns: The secret key.
+		Helper function to store key material in the system's Keychain for this
+		persona.
+	
+		- parameters:
+			- item: The item that identifies a Keychain entry.
+			- defaultInitializer: A default initializer used for new keys.
+			- capturingInitializer: An initializer that takes a byte array.
+	
+		- returns:
+			The key for the item. A new key, if the item did not exist, the
+			existing key else and `nil` if there was an error.
 	*/
-	func secret() -> SecretBox.SecretKey? {
+	private func secret<Key: KeyMaterial>(item: GenericPasswordItem, defaultInitializer: () -> Key?, capturingInitializer: (inout Data) -> Key?) -> Key? {
 		do {
-			// Try to read the secret key from the Keychain
-			let encodedSecretKey = try Keychain.retrievePassword(for: secretKeyItem)
-
-			guard var secretKeyBytes = Data(base64Encoded: encodedSecretKey) else {
-				return nil
-			}
-
-			guard let secretKey = SecretBox.SecretKey(bytes: &secretKeyBytes) else {
-				return nil
-			}
-
-			return secretKey
+			// Try to read the key from the Keychain
+			let encodedKey = try Keychain.retrievePassword(for: item)
+			guard var keyBytes = Data(base64Encoded: encodedKey) else { return nil }
+			guard let key = capturingInitializer(&keyBytes) else { return nil }
+			return key
 		} catch Keychain.Error.itemNotFound {
-			// If there is no secret key stored in the Keychain, create a new
-			// one and add it to the Keychain.
-			guard let secretKey = SecretBox.SecretKey() else {
-				return nil
-			}
+			// If there is no key stored in the Keychain, create a new one and
+			// add it to the Keychain.
+			guard let key = defaultInitializer() else { return nil }
 
 			do {
-				try Keychain.store(password: secretKey.copyBytes().base64EncodedData(), in: secretKeyItem)
-				return secretKey
+				try Keychain.store(password: key.copyBytes().base64EncodedData(), in: item)
+				return key
 			} catch {
 				// There was an error when trying to store the secret key to the
 				// Keychain.
@@ -98,6 +97,15 @@ public class Persona {
 			// Keychain.
 			return nil
 		}
+	}
+
+	/**
+		The secret key of the persona that can be used with `SecretBox`.
+
+		- returns: The secret key.
+	*/
+	func secretKey() -> SecretBox.SecretKey? {
+		return secret(item: secretKeyItem, defaultInitializer: { SecretBox.SecretKey() }, capturingInitializer: { SecretBox.SecretKey(bytes: &$0) })
 	}
 
 	/**
