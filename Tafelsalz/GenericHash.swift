@@ -134,7 +134,7 @@ public class GenericHash {
 			- outputSizeInBytes: The size of the hash in bytes.
 			- key: A key/salt used to prevent the hash from being guessed.
 	*/
-	init?(bytes: Data, outputSizeInBytes: PInt = GenericHash.DefaultSizeInBytes, with key: Key? = nil) {
+	public init?(bytes: Data, outputSizeInBytes: PInt = GenericHash.DefaultSizeInBytes, with key: Key? = nil) {
 
 		guard GenericHash.MinimumSizeInBytes <= outputSizeInBytes && outputSizeInBytes <= GenericHash.MaximumSizeInBytes else {
 			return nil
@@ -182,10 +182,10 @@ public class GenericHash {
 	/**
 		The size of the hash in bytes.
 	*/
-	var sizeInBytes: PInt { get { return PInt(bytes.count) } }
+	public var sizeInBytes: PInt { get { return PInt(bytes.count) } }
 
 	/**
 		A hex encoded string representing the hash.
 	*/
-	var hex: String? { get { return bytes.hex } }
+	public var hex: String? { get { return bytes.hex } }
 }
