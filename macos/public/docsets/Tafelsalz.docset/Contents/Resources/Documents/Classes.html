@@ -53,6 +53,12 @@
             <a class="nav-group-name-link" href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/GenericHash.html">GenericHash</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/GenericHash/Key.html">– Key</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/KeyMaterial.html">KeyMaterial</a>
               </li>
               <li class="nav-group-task">
@@ -84,6 +90,14 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/SecretBox/AuthenticatedCiphertext.html">– AuthenticatedCiphertext</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Data.html">Data</a>
               </li>
             </ul>
           </li>
@@ -159,7 +173,7 @@ to store them for user authentication purposes.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/66489f1d445b65574fd037d8be150a402fe2b657/Tafelsalz/Password.swift#L9-L215">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/91b0101f196fe4c677f39622fc717291759cd0f0/Tafelsalz/Password.swift#L9-L215">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -194,7 +208,7 @@ to store them for user authentication purposes.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/66489f1d445b65574fd037d8be150a402fe2b657/Tafelsalz/Random.swift#L6-L53">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/91b0101f196fe4c677f39622fc717291759cd0f0/Tafelsalz/Random.swift#L6-L53">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -230,7 +244,49 @@ secrets are persisted in the system&rsquo;s Keychain. A persona has a unique nam
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/66489f1d445b65574fd037d8be150a402fe2b657/Tafelsalz/Persona.swift#L8-L153">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/91b0101f196fe4c677f39622fc717291759cd0f0/Tafelsalz/Persona.swift#L8-L153">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:C9Tafelsalz11GenericHash"></a>
+                    <a name="//apple_ref/swift/Class/GenericHash" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C9Tafelsalz11GenericHash">GenericHash</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This class can be used to generate hash arbitrary data. Keyed hashing is
+supported.</p>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    Do not use this for hashing passwords, as there is no protection against
+fast brute-force attacks. Use <code><a href="Structs/HashedPassword.html">HashedPassword</a></code> for that purpose.
+
+</div>
+
+                        <a href="Classes/GenericHash.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">GenericHash</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/91b0101f196fe4c677f39622fc717291759cd0f0/Tafelsalz/GenericHash.swift#L13-L188">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -265,7 +321,7 @@ secrets are persisted in the system&rsquo;s Keychain. A persona has a unique nam
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/66489f1d445b65574fd037d8be150a402fe2b657/Tafelsalz/KeyMaterial.swift#L7-L318">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/91b0101f196fe4c677f39622fc717291759cd0f0/Tafelsalz/KeyMaterial.swift#L7-L318">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -333,7 +389,7 @@ want to store encrypted files in a public document storage, such as Dropbox.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/66489f1d445b65574fd037d8be150a402fe2b657/Tafelsalz/SecretBox.swift#L46-L404">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/91b0101f196fe4c677f39622fc717291759cd0f0/Tafelsalz/SecretBox.swift#L46-L404">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -346,7 +402,7 @@ want to store encrypted files in a public document storage, such as Dropbox.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2017-08-10)</p>
+      <p>&copy; 2017 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2017-08-11)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

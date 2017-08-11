@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Key Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../../js/jquery.min.js" defer></script>
+    <script src="../../js/jazzy.js" defer></script>
+    
+    <script src="../../js/lunr.min.js" defer></script>
+    <script src="../../js/typeahead.jquery.js" defer></script>
+    <script src="../../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Class/Key" class="dashAnchor"></a>
+
+    <a title="Key Class Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../../index.html">
+          Tafelsalz Docs
+        </a>
+         (100% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/blochberger/Tafelsalz">
+            <img class="header-icon" src="../../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../../index.html">Tafelsalz Reference</a>
+      <img class="carat" src="../../img/carat.png" />
+      Key Class Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/GenericHash.html">GenericHash</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/GenericHash/Key.html">– Key</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/KeyMaterial.html">KeyMaterial</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/Password.html">Password</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/Password/ComplexityLimit.html">– ComplexityLimit</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/Password/MemoryLimit.html">– MemoryLimit</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/Persona.html">Persona</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/Random.html">Random</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/SecretBox.html">SecretBox</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/SecretBox/SecretKey.html">– SecretKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/SecretBox/Nonce.html">– Nonce</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/SecretBox/AuthenticationCode.html">– AuthenticationCode</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/SecretBox/AuthenticatedCiphertext.html">– AuthenticatedCiphertext</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Extensions/Data.html">Data</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Protocols/EncryptedData.html">EncryptedData</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Structs/Ciphertext.html">Ciphertext</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Structs/HashedPassword.html">HashedPassword</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../../Typealiases.html">Typealiases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Typealiases.html#/s:9Tafelsalz4PInt">PInt</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>Key</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Key</span><span class="p">:</span> <span class="kt"><a href="../../Classes/KeyMaterial.html">KeyMaterial</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>This class represents a key that can be used for hashing.</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvCC9Tafelsalz11GenericHash3Key18MinimumSizeInBytesVs6UInt32"></a>
+                    <a name="//apple_ref/swift/Variable/MinimumSizeInBytes" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvCC9Tafelsalz11GenericHash3Key18MinimumSizeInBytesVs6UInt32">MinimumSizeInBytes</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The minimum size of the key in bytes.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">MinimumSizeInBytes</span> <span class="o">=</span> <span class="kt"><a href="../../Typealiases.html#/s:9Tafelsalz4PInt">PInt</a></span><span class="p">(</span><span class="n">libsodium</span><span class="o">.</span><span class="nf">crypto_generichash_keybytes_min</span><span class="p">())</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/91b0101f196fe4c677f39622fc717291759cd0f0/Tafelsalz/GenericHash.swift#L22">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvCC9Tafelsalz11GenericHash3Key18MaximumSizeInBytesVs6UInt32"></a>
+                    <a name="//apple_ref/swift/Variable/MaximumSizeInBytes" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvCC9Tafelsalz11GenericHash3Key18MaximumSizeInBytesVs6UInt32">MaximumSizeInBytes</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The maximum size of the key in bytes.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">MaximumSizeInBytes</span> <span class="o">=</span> <span class="kt"><a href="../../Typealiases.html#/s:9Tafelsalz4PInt">PInt</a></span><span class="p">(</span><span class="n">libsodium</span><span class="o">.</span><span class="nf">crypto_generichash_keybytes_max</span><span class="p">())</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/91b0101f196fe4c677f39622fc717291759cd0f0/Tafelsalz/GenericHash.swift#L27">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvCC9Tafelsalz11GenericHash3Key18DefaultSizeInBytesVs6UInt32"></a>
+                    <a name="//apple_ref/swift/Variable/DefaultSizeInBytes" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvCC9Tafelsalz11GenericHash3Key18DefaultSizeInBytesVs6UInt32">DefaultSizeInBytes</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The default key size in bytes.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">DefaultSizeInBytes</span> <span class="o">=</span> <span class="kt"><a href="../../Typealiases.html#/s:9Tafelsalz4PInt">PInt</a></span><span class="p">(</span><span class="n">libsodium</span><span class="o">.</span><span class="nf">crypto_generichash_keybytes</span><span class="p">())</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/91b0101f196fe4c677f39622fc717291759cd0f0/Tafelsalz/GenericHash.swift#L32">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FCC9Tafelsalz11GenericHash3KeycFT11sizeInBytesVs6UInt32_GSqS1__"></a>
+                    <a name="//apple_ref/swift/Method/init(sizeInBytes:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FCC9Tafelsalz11GenericHash3KeycFT11sizeInBytesVs6UInt32_GSqS1__">init(sizeInBytes:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initialize a new key with a given size.</p>
+
+<p>The size needs to be within the given bounds: <code><a href="../../Classes/GenericHash/Key.html#/s:ZvCC9Tafelsalz11GenericHash3Key18MinimumSizeInBytesVs6UInt32">MinimumSizeInBytes</a></code> ≤
+<code>sizeInBytes</code> ≤ <code><a href="../../Classes/GenericHash/Key.html#/s:ZvCC9Tafelsalz11GenericHash3Key18MaximumSizeInBytesVs6UInt32">MaximumSizeInBytes</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">sizeInBytes</span><span class="p">:</span> <span class="kt"><a href="../../Typealiases.html#/s:9Tafelsalz4PInt">PInt</a></span> <span class="o">=</span> <span class="kt">Key</span><span class="o">.</span><span class="kt"><a href="../../Classes/GenericHash/Key.html#/s:ZvCC9Tafelsalz11GenericHash3Key18DefaultSizeInBytesVs6UInt32">DefaultSizeInBytes</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sizeInBytes</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The size of the key in bytes.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/91b0101f196fe4c677f39622fc717291759cd0f0/Tafelsalz/GenericHash.swift#L43-L51">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FCC9Tafelsalz11GenericHash3KeycFT5bytesRV10Foundation4Data_GSqS1__"></a>
+                    <a name="//apple_ref/swift/Method/init(bytes:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FCC9Tafelsalz11GenericHash3KeycFT5bytesRV10Foundation4Data_GSqS1__">init(bytes:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Restores a key from a given byte array. The byte array is copied to
+a secure location and overwritten with zeroes to avoid the key being
+compromised in memory.</p>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    <p>Do not initialize new keys with this function. If you need a new
+key, use <code>init?(sizeInBytes:)</code> instead. This initializer is only
+to restore secret keys that were persisted.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">override</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">bytes</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">Data</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>bytes</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The key.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/91b0101f196fe4c677f39622fc717291759cd0f0/Tafelsalz/GenericHash.swift#L66-L71">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FCC9Tafelsalz11GenericHash3KeycFT3hexSS6ignoreGSqSS__GSqS1__"></a>
+                    <a name="//apple_ref/swift/Method/init(hex:ignore:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FCC9Tafelsalz11GenericHash3KeycFT3hexSS6ignoreGSqSS__GSqS1__">init(hex:ignore:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Restores a key from a given hex string.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>All characters until the first non-hex character will be taken
+into account, when restoring the key.</p>
+
+</div>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    <p>Do not initialize new keys with this function. If you need a new
+key, use <code>init?(sizeInBytes:)</code> instead. This initializer is only
+to restore secret keys that were persisted.</p>
+
+</div>
+<div class="aside aside-see">
+    <p class="aside-title">See</p>
+    <p><code>Data(hex:ignore:)</code></p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">hex</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">ignore</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>hex</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The key as a hex encoded string.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ignore</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A character set that should be ignored when decoding
+the key.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/91b0101f196fe4c677f39622fc717291759cd0f0/Tafelsalz/GenericHash.swift#L92-L95">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2017 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2017-08-11)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>
