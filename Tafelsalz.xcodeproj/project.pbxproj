@@ -293,7 +293,17 @@
 			isa = PBXGroup;
 			children = (
 				60C696941DBDF40600CE9435 /* Supporting Files */,
-				60C696981DBE027300CE9435 /* Public */,
+				60C696541DBDE5CA00CE9435 /* Tafelsalz.swift */,
+				60C696991DBE02A500CE9435 /* EncryptedData.swift */,
+				6023DFC71DE42DA900E0B95E /* HashedPassword.swift */,
+				60C211E11EB503CC00882AD0 /* Password.swift */,
+				60C696A31DBF908F00CE9435 /* Random.swift */,
+				60C696961DBDFB3600CE9435 /* SecretBox.swift */,
+				6012BC1D1EBDF28400E47DB8 /* KeyMaterial.swift */,
+				603F3C491EC313F600FEEBD9 /* Ciphertext.swift */,
+				6096E7021F18FF9300E6599F /* Persona.swift */,
+				601833881F3CCA5A003AE3D8 /* GenericHash.swift */,
+				601833901F3DAFBF003AE3D8 /* Extensions.swift */,
 			);
 			path = Tafelsalz;
 			sourceTree = "<group>";
@@ -407,24 +417,6 @@
 				60C695561DBDE36100CE9435 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		60C696981DBE027300CE9435 /* Public */ = {
-			isa = PBXGroup;
-			children = (
-				60C696541DBDE5CA00CE9435 /* Tafelsalz.swift */,
-				60C696991DBE02A500CE9435 /* EncryptedData.swift */,
-				6023DFC71DE42DA900E0B95E /* HashedPassword.swift */,
-				60C211E11EB503CC00882AD0 /* Password.swift */,
-				60C696A31DBF908F00CE9435 /* Random.swift */,
-				60C696961DBDFB3600CE9435 /* SecretBox.swift */,
-				6012BC1D1EBDF28400E47DB8 /* KeyMaterial.swift */,
-				603F3C491EC313F600FEEBD9 /* Ciphertext.swift */,
-				6096E7021F18FF9300E6599F /* Persona.swift */,
-				601833881F3CCA5A003AE3D8 /* GenericHash.swift */,
-				601833901F3DAFBF003AE3D8 /* Extensions.swift */,
-			);
-			name = Public;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
