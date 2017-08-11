@@ -3,7 +3,7 @@ import XCTest
 
 class Examples: XCTestCase {
 
-	func testSymmetricEncryption() {
+	func testSymmetricEncryptionWithEphemeralKeys() {
 		let secretBox = SecretBox()!
 		let plaintext = "Hello, World!".data(using: .utf8)!
 		let ciphertext = secretBox.encrypt(data: plaintext)!
