@@ -109,6 +109,15 @@ public class Persona {
 	}
 
 	/**
+		The key of the persona that can be used with `GenericHash`.
+
+		- returns: The key.
+	*/
+	func genericHashKey() -> GenericHash.Key? {
+		return secret(item: genericHashKeyItem, defaultInitializer: { GenericHash.Key() }, capturingInitializer: { GenericHash.Key(bytes: &$0) })
+	}
+
+	/**
 		This is used to identify the type of the key.
 	*/
 	private enum Kind: String {
@@ -116,6 +125,11 @@ public class Persona {
 			This identifies secret keys that can be used with the secret box.
 		*/
 		case secretKey = "SecretBox.SecretKey"
+
+		/**
+			This identifies keys that can be used for generic hashing
+		*/
+		case genericHashKey = "GenericHash.Key"
 	}
 
 	/**
@@ -158,11 +172,21 @@ public class Persona {
 	}
 
 	/**
+		This identifies the Keychain entry for the key that can be used for
+		generic hashing.
+	*/
+	private var genericHashKeyItem: GenericPasswordItem {
+		get {
+			return GenericPasswordItem(for: itemService(kind: .genericHashKey), using: uniqueName)
+		}
+	}
+
+	/**
 		This is an array that holds all Keychain entries for this persona.
 	*/
 	private var keychainItems: [KeychainItem] {
 		get {
-			return [secretKeyItem]
+			return [secretKeyItem, genericHashKeyItem]
 		}
 	}
 }

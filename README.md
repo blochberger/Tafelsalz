@@ -91,6 +91,29 @@ if hashedPassword.isVerified(by: password) {
 }
 ```
 
+### Generic Hashing
+
+#### Public Hashing
+
+```swift
+let data = "Hello, World!".data(using: .utf8)!
+let hash = GenericHash(bytes: data)
+```
+
+#### Private Hashing with Persistent Keys
+
+```swift
+// Create a persona
+let alice = Persona(uniqueName: "Alice")
+
+// Generate a personalized hash for that persona
+let data = "Hello, World!".data(using: .utf8)!
+let hash = GenericHash(bytes: data, for: alice)
+
+// Forget the persona and remove all related Keychain entries
+try! Persona.forget(alice)
+```
+
 ---
 
 1. D. J. Bernstein, T. Lange, and P. Schwabe, [**The Security Impact of a New Cryptographic Library**](http://dx.doi.org/10.1007/978-3-642-33481-8_9) in *Progress in Cryptology – LATINCRYPT 2012 – 2nd International Conference on Cryptology and Information Security in Latin America, Santiago, Chile, October 7-10, 2012. Proceedings* (A. Hevia and G. Neven, eds.), pp. 159–176

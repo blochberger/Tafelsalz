@@ -180,6 +180,28 @@ public class GenericHash {
 	}
 
 	/**
+		Hash an arbitrary value for a given persona.
+
+		The size needs to be within the given bounds: `MinimumSizeInBytes` ≤
+		`outputSizeInBytes` ≤ `MaximumSizeInBytes`.
+	
+		This is protected against rainbow attacks.
+
+		- warning:
+			Do not use this for hashing passwords, as there is no protection
+			against fast brute-force attacks. Use `HashedPassword` for that
+			purpose.
+
+		- parameters:
+			- bytes: The value that should be hashed.
+			- persona: The persona to which the hash is tied to.
+			- outputSizeInBytes: The size of the hash in bytes.
+	*/
+	public convenience init?(bytes: Data, for persona: Persona, outputSizeInBytes: PInt = GenericHash.DefaultSizeInBytes) {
+		self.init(bytes: bytes, outputSizeInBytes: outputSizeInBytes, with: persona.genericHashKey())
+	}
+
+	/**
 		The size of the hash in bytes.
 	*/
 	public var sizeInBytes: PInt { get { return PInt(bytes.count) } }

@@ -44,4 +44,24 @@ class Examples: XCTestCase {
 		}
 	}
 
+	func testPublicGenericHashing() {
+		let data = "Hello, World!".data(using: .utf8)!
+		let hash = GenericHash(bytes: data)
+
+		XCTAssertNotNil(hash)
+	}
+
+	func testPrivateGenericHashingWithPersistedKeys() {
+		// Create a persona
+		let alice = Persona(uniqueName: "Alice")
+
+		// Generate a personalized hash for that persona
+		let data = "Hello, World!".data(using: .utf8)!
+		let hash = GenericHash(bytes: data, for: alice)
+
+		// Forget the persona and remove all related Keychain entries
+		try! Persona.forget(alice)
+
+		XCTAssertNotNil(hash)
+	}
 }
