@@ -125,6 +125,9 @@ public class GenericHash {
 			Do not use this for hashing passwords, as there is no protection
 			against fast brute-force attacks. Use `HashedPassword` for that
 			purpose.
+	
+			This is not protected against rainbow attacks if you do not provide
+			a key.
 
 		- parameters:
 			- bytes: The value that should be hashed.

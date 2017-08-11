@@ -4,6 +4,19 @@ import Keychain
 /**
 	A persona is an entity for which you are in posession of the secrets. The
 	secrets are persisted in the system's Keychain. A persona has a unique name.
+
+	The Keychain items are prefixed by the application's bundle identifier and
+	suffixed with a value determining the kind of secret stored.
+
+	The actual value of the secret is Base64 encoded to allow users accessing
+	the value from the Keychain Access application (macOS)
+
+	- note:
+		The persona is unique per device and application bundle identifier. If
+		you create two personas with equal names on two different applications
+		or devices, they cannot be used to decrypt secrets of one another. If a
+		persona is removed and re-created with the same name, it cannot be used
+		to decrypt values encrypted for the previous one.
 */
 public class Persona {
 
@@ -48,12 +61,6 @@ public class Persona {
 
 	/**
 		Secrets are persisted in the system's Keychain.
-
-		The Keychain item is prefixed by the application's bundle identifier and
-		suffixed with a value determining the kind of secret stored.
-
-		The actual value of the secret is Base64 encoded to allow users
-		accessing the value from the Keychain Access application (macOS).
 
 		- returns: The secret key.
 	*/
