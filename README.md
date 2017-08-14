@@ -2,7 +2,7 @@
 
 ![Coverage](https://blochberger.github.io/Tafelsalz/macos/coverage.svg) [![Documentation](https://blochberger.github.io/Tafelsalz/macos/public/badge.svg)](https://blochberger.github.io/Tafelsalz)
 
-The main idea of this project is to provide usable but safe cyryptographic operations. Usability does not mean, that the minimum effort is required to integrate an operation. Minimum effort might result in single lines of code that you write… et voilà your system is secure. No. It means that it requires only the minimum of knowledge to do something wrong.
+The main idea of this project is to provide usable but safe cryptographic operations.
 
 The [*libsodium*](https://libsodium.org) project has a similar goal, but does not leverage the features available in modern programming languages such as Swift. The *libsodium* library is based on [NaCl](https://nacl.cr.yp.to) whoose authors discussed the security issues related to cryptographic APIs that are too complicated and error-prone¹ – or as Matthew Green² put it:
 
@@ -14,7 +14,7 @@ To stay with the analogy: *libsodium* and *NaCl* prevent any accidents to happen
 
 This is achieved by leveraging programming language features in a way that an operation cannot be called with invalid or insecure parameters. Every such call should be prevented at compile time already.
 
-Note that the goal is not to prevent malicious attackers to circumvent the established protection mechanisms by the programming language features but to prevent accidental misuse of cryptographic APIs.
+Note that the goal is not to prevent malicious attackers to circumvent the established protection mechanisms by the programming language features but to prevent accidental misuse of cryptographic APIs. If you want to learn more about cryptographic misuse, see our [literature collection on cryptographic misuse](https://github.com/blochberger/Tafelsalz/wiki/References#cryptographic-misuse).
 
 - Repository: https://github.com/blochberger/Tafelsalz
 - Documentation: https://blochberger.github.io/Tafelsalz
@@ -100,7 +100,7 @@ let data = "Hello, World!".data(using: .utf8)!
 let hash = GenericHash(bytes: data)
 ```
 
-#### Private Hashing with Persistent Keys
+#### Private Hashing with Persisted Keys
 
 ```swift
 // Create a persona
