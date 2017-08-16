@@ -132,7 +132,7 @@
 		6096E7531F1A490A00E6599F /* Keychain.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Keychain.xcodeproj; path = Dependencies/Keychain/Keychain.xcodeproj; sourceTree = "<group>"; };
 		6096E7651F1A540300E6599F /* PersonaTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonaTest.swift; sourceTree = "<group>"; };
 		6096E76C1F1A654000E6599F /* Tafelsalz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Tafelsalz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6096E7741F1A654100E6599F /* TafelsalzTests_iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TafelsalzTests_iOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6096E7741F1A654100E6599F /* TafelsalzTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TafelsalzTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6096E7D81F1A69CF00E6599F /* core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = core.h; path = Dependencies/libsodium/core.h; sourceTree = "<group>"; };
 		6096E7D91F1A69CF00E6599F /* crypto_aead_aes256gcm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_aead_aes256gcm.h; path = Dependencies/libsodium/crypto_aead_aes256gcm.h; sourceTree = "<group>"; };
 		6096E7DA1F1A69CF00E6599F /* crypto_aead_chacha20poly1305.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crypto_aead_chacha20poly1305.h; path = Dependencies/libsodium/crypto_aead_chacha20poly1305.h; sourceTree = "<group>"; };
@@ -284,7 +284,7 @@
 				60C695461DBDE36100CE9435 /* Tafelsalz.framework */,
 				60C6954F1DBDE36100CE9435 /* TafelsalzTests.xctest */,
 				6096E76C1F1A654000E6599F /* Tafelsalz.framework */,
-				6096E7741F1A654100E6599F /* TafelsalzTests_iOS.xctest */,
+				6096E7741F1A654100E6599F /* TafelsalzTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -475,7 +475,7 @@
 			);
 			name = TafelsalzTests_iOS;
 			productName = Tafelsalz_iOSTests;
-			productReference = 6096E7741F1A654100E6599F /* TafelsalzTests_iOS.xctest */;
+			productReference = 6096E7741F1A654100E6599F /* TafelsalzTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		60C695451DBDE36000CE9435 /* Tafelsalz_macOS */ = {
@@ -795,7 +795,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.uni-hamburg.informatik.blochberger.TafelsalzTests.iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = TafelsalzTests;
 				SDKROOT = iphoneos;
 				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/Dependencies/**";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "TafelsalzTests-Swift.h";
@@ -813,7 +813,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.uni-hamburg.informatik.blochberger.TafelsalzTests.iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = TafelsalzTests;
 				SDKROOT = iphoneos;
 				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/Dependencies/**";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "TafelsalzTests-Swift.h";
