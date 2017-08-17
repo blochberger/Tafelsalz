@@ -304,7 +304,7 @@ public class SecretBox {
 
 		- note:
 			This function should only be used if you are required to use a
-			specific nonce. Usually `encrypt(plaintext:)` should be preferred.
+			specific nonce. Usually `encrypt(data:)` should be preferred.
 
 		- parameters:
 			- plaintext: The message that should be encrypted.
