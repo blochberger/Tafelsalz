@@ -113,7 +113,7 @@ public class GenericHash {
 	/**
 		The hash.
 	*/
-	private let bytes: Data
+	fileprivate let bytes: Data
 
 	/**
 		Hash an arbitrary value.
@@ -210,4 +210,38 @@ public class GenericHash {
 		A hex encoded string representing the hash.
 	*/
 	public var hex: String? { get { return bytes.hex } }
+}
+
+extension GenericHash: Equatable {
+	/**
+		Compares two hashes in constant time.
+	
+		- note:
+			An attacker might be able to identify the length of the hash with a
+			timing attack. But as the size bounds for hashes are publicly known
+			and the minimum size is sufficiently long, this should not be a
+			cause for problems.
+
+		- parameters:
+			- lhs: A hash.
+			- rhs: Another hash.
+	
+		- returns:
+			`true` if both hashes are equal, `false` else.
+	*/
+	public static func ==(lhs: GenericHash, rhs: GenericHash) -> Bool {
+		guard lhs.sizeInBytes == rhs.sizeInBytes else {
+			return false
+		}
+
+		return lhs.bytes.withUnsafeBytes {
+			lhsPtr in
+
+			return rhs.bytes.withUnsafeBytes {
+				rhsPtr in
+
+				return libsodium.sodium_memcmp(lhsPtr, rhsPtr, Int(lhs.sizeInBytes)) == 0
+			}
+		}
+	}
 }

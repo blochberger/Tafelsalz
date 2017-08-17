@@ -46,5 +46,10 @@ class GenericHashTest: XCTestCase {
 		XCTAssertNotNil(actualHash)
 
 		XCTAssertEqual(actualHash!, expectedHash)
+
+		XCTAssertEqual(GenericHash(bytes: input, outputSizeInBytes: GenericHash.MaximumSizeInBytes, with: key)!, hash!)
+		XCTAssertNotEqual(GenericHash(bytes: input, outputSizeInBytes: GenericHash.MaximumSizeInBytes)!, hash!)
+		XCTAssertNotEqual(GenericHash(bytes: input, outputSizeInBytes: GenericHash.MinimumSizeInBytes, with: key)!, hash!)
+		XCTAssertNotEqual(GenericHash(bytes: Data(hex: "000102030405060708090b")!, outputSizeInBytes: GenericHash.MaximumSizeInBytes, with: key)!, hash!)
 	}
 }
