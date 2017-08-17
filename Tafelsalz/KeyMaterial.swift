@@ -309,7 +309,7 @@ public class KeyMaterial {
 			return rhsHash.withUnsafeBytes {
 				rhsHashPtr in
 
-				return libsodium.memcmp(lhsHashPtr, rhsHashPtr, lhsHash.count) == 0
+				return libsodium.sodium_memcmp(lhsHashPtr, rhsHashPtr, lhsHash.count) == 0
 			}
 		}
 
