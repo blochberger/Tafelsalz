@@ -44,7 +44,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6096E7731F1A654100E6599F"
-               BuildableName = "TafelsalzTests_iOS.xctest"
+               BuildableName = "TafelsalzTests.xctest"
                BlueprintName = "TafelsalzTests_iOS"
                ReferencedContainer = "container:Tafelsalz.xcodeproj">
             </BuildableReference>
