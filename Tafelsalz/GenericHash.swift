@@ -245,3 +245,19 @@ extension GenericHash: Equatable {
 		}
 	}
 }
+
+extension GenericHash: Hashable {
+	/**
+		The hash value according to the [`Hashable`](https://developer.apple.com/documentation/swift/hashable)
+		protocol.
+	
+		- warning:
+			This is **not** the value of the generic hash but a value used for
+			improving performance of data structures.
+	*/
+	public var hashValue: Int {
+		get {
+			return self.bytes.hashValue
+		}
+	}
+}

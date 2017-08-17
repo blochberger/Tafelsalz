@@ -37,19 +37,19 @@ class GenericHashTest: XCTestCase {
 		let input = Data(hex: "000102030405060708090a")!
 		let key = Key(hex:  "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f")
 		let expectedHash = "f228773ce3f3a42b5f144d63237a72d99693adb8837d0e112a8a0f8ffff2c362857ac49c11ec740d1500749dac9b1f4548108bf3155794dcc9e4082849e2b85b"
-		let hash = GenericHash(bytes: input, outputSizeInBytes: GenericHash.MaximumSizeInBytes, with: key)
+		let hash1 = GenericHash(bytes: input, outputSizeInBytes: GenericHash.MaximumSizeInBytes, with: key)!
+		let hash2 = GenericHash(bytes: input, outputSizeInBytes: GenericHash.MaximumSizeInBytes, with: key)!
+		let hash3 = GenericHash(bytes: Data(hex: "000102030405060708090b")!, outputSizeInBytes: GenericHash.MaximumSizeInBytes, with: key)
+		let actualHash = hash1.hex!
 
-		XCTAssertNotNil(hash)
+		XCTAssertEqual(actualHash, expectedHash)
 
-		let actualHash = hash!.hex
+		XCTAssertEqual(hash1, hash1)
+		XCTAssertEqual(hash1, hash2)
+		XCTAssertEqual(hash1.hashValue, hash2.hashValue)
 
-		XCTAssertNotNil(actualHash)
-
-		XCTAssertEqual(actualHash!, expectedHash)
-
-		XCTAssertEqual(GenericHash(bytes: input, outputSizeInBytes: GenericHash.MaximumSizeInBytes, with: key)!, hash!)
-		XCTAssertNotEqual(GenericHash(bytes: input, outputSizeInBytes: GenericHash.MaximumSizeInBytes)!, hash!)
-		XCTAssertNotEqual(GenericHash(bytes: input, outputSizeInBytes: GenericHash.MinimumSizeInBytes, with: key)!, hash!)
-		XCTAssertNotEqual(GenericHash(bytes: Data(hex: "000102030405060708090b")!, outputSizeInBytes: GenericHash.MaximumSizeInBytes, with: key)!, hash!)
+		XCTAssertNotEqual(hash1, hash3)
+		XCTAssertNotEqual(GenericHash(bytes: input, outputSizeInBytes: GenericHash.MaximumSizeInBytes)!, hash1)
+		XCTAssertNotEqual(GenericHash(bytes: input, outputSizeInBytes: GenericHash.MinimumSizeInBytes, with: key)!, hash1)
 	}
 }
