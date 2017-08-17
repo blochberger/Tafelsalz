@@ -298,20 +298,21 @@ public class SecretBox {
 	}
 
 	/**
-		Encrypts a message indeterministically.
+		Encrypts a message with a given nonce.
 
 		The message can be decrypted by using `decrypt(authenticatedCiphertext:)`
 
+		- note:
+			This function should only be used if you are required to use a
+			specific nonce. Usually `encrypt(plaintext:)` should be preferred.
+
 		- parameters:
 			- plaintext: The message that should be encrypted.
+			- nonce: A nonce (number used once).
 
 		- returns: An authenticated ciphertext containing the encrypted message.
 	*/
-	public func encrypt(data plaintext: Data) -> AuthenticatedCiphertext? {
-		guard let nonce = Nonce() else {
-			return nil
-		}
-
+	public func encrypt(data plaintext: Data, with nonce: Nonce) -> AuthenticatedCiphertext? {
 		var ciphertext = Data(count: plaintext.count)
 		var mac = Data(count: Int(AuthenticationCode.SizeInBytes))
 
@@ -353,6 +354,24 @@ public class SecretBox {
 		}
 
 		return AuthenticatedCiphertext(nonce: nonce, authenticationCode: authenticationCode, ciphertext: Ciphertext(ciphertext))
+	}
+
+	/**
+		Encrypts a message indeterministically.
+
+		The message can be decrypted by using `decrypt(authenticatedCiphertext:)`
+
+		- parameters:
+			- plaintext: The message that should be encrypted.
+
+		- returns: An authenticated ciphertext containing the encrypted message.
+	*/
+	public func encrypt(data plaintext: Data) -> AuthenticatedCiphertext? {
+		guard let nonce = Nonce() else {
+			return nil
+		}
+
+		return encrypt(data: plaintext, with: nonce)
 	}
 
 	/**

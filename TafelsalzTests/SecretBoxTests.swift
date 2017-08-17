@@ -105,6 +105,7 @@ class SecretBoxTests: XCTestCase {
 
 		// Test for nonce reuse
 		XCTAssertNotEqual(otherCiphertext.nonce, ciphertext.nonce)
+		XCTAssertEqual(secretBox.encrypt(data: originalPlaintext, with: ciphertext.nonce)?.bytes, ciphertext.bytes)
 
 		// Test that a different nonce results in a different authentication code
 		XCTAssertNotEqual(otherCiphertext.authenticationCode, ciphertext.authenticationCode)
