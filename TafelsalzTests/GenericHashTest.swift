@@ -43,6 +43,7 @@ class GenericHashTest: XCTestCase {
 		let actualHash = hash1.hex!
 
 		XCTAssertEqual(actualHash, expectedHash)
+		XCTAssertEqual(GenericHash(hex: expectedHash)!, hash1)
 
 		XCTAssertEqual(hash1, hash1)
 		XCTAssertEqual(hash1, hash2)

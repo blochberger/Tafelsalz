@@ -202,6 +202,20 @@ public class GenericHash {
 	}
 
 	/**
+		Restore a hash from a hex string.
+
+		- parameters:
+			- hex: The hash as a hex encoded string.
+	*/
+	public init?(hex: String) {
+		guard let bytes = Data(hex: hex) else { return nil }
+		guard GenericHash.MinimumSizeInBytes <= PInt(bytes.count) else { return nil }
+		guard PInt(bytes.count) <= GenericHash.MaximumSizeInBytes else { return nil }
+
+		self.bytes = bytes
+	}
+
+	/**
 		The size of the hash in bytes.
 	*/
 	public var sizeInBytes: PInt { get { return PInt(bytes.count) } }
