@@ -15,7 +15,7 @@ import libsodium
 
 	```swift
 	let secretBox = SecretBox()!
-	let plaintext = "Hello, World!".data(using: .utf8)!
+	let plaintext = Data("Hello, World!".utf8)
 	let ciphertext = secretBox.encrypt(data: plaintext)!
 	let decrypted = secretBox.decrypt(data: ciphertext)!
 	```
@@ -35,7 +35,7 @@ import libsodium
 	let secretBox = SecretBox(persona: alice)!
 
 	// Use your SecretBox as usual
-	let plaintext = "Hello, World!".data(using: .utf8)!
+	let plaintext = Data("Hello, World!".utf8)
 	let ciphertext = secretBox.encrypt(data: plaintext)!
 	let decrypted = secretBox.decrypt(data: ciphertext)!
 

@@ -52,7 +52,7 @@ The secrets for personas are automatically persisted in the system's Keychain. T
 
 ```swift
 let secretBox = SecretBox()!
-let plaintext = "Hello, World!".data(using: .utf8)!
+let plaintext = Data("Hello, World!".utf8)
 let ciphertext = secretBox.encrypt(data: plaintext)!
 let decrypted = secretBox.decrypt(data: ciphertext)!
 ```
@@ -68,7 +68,7 @@ let alice = Persona(uniqueName: "Alice")
 let secretBox = SecretBox(persona: alice)!
 
 // Use your SecretBox as usual
-let plaintext = "Hello, World!".data(using: .utf8)!
+let plaintext = Data("Hello, World!".utf8)
 let ciphertext = secretBox.encrypt(data: plaintext)!
 let decrypted = secretBox.decrypt(data: ciphertext)!
 
@@ -96,7 +96,7 @@ if hashedPassword.isVerified(by: password) {
 #### Public Hashing
 
 ```swift
-let data = "Hello, World!".data(using: .utf8)!
+let data = Data("Hello, World!".utf8)
 let hash = GenericHash(bytes: data)
 ```
 
@@ -107,7 +107,7 @@ let hash = GenericHash(bytes: data)
 let alice = Persona(uniqueName: "Alice")
 
 // Generate a personalized hash for that persona
-let data = "Hello, World!".data(using: .utf8)!
+let data = Data("Hello, World!".utf8)
 let hash = GenericHash(bytes: data, for: alice)
 
 // Forget the persona and remove all related Keychain entries

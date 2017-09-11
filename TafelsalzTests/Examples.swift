@@ -5,7 +5,7 @@ class Examples: XCTestCase {
 
 	func testSymmetricEncryptionWithEphemeralKeys() {
 		let secretBox = SecretBox()!
-		let plaintext = "Hello, World!".data(using: .utf8)!
+		let plaintext = Data("Hello, World!".utf8)
 		let ciphertext = secretBox.encrypt(data: plaintext)!
 		let decrypted = secretBox.decrypt(data: ciphertext)!
 
@@ -21,7 +21,7 @@ class Examples: XCTestCase {
 		let secretBox = SecretBox(persona: alice)!
 
 		// Use your SecretBox as usual
-		let plaintext = "Hello, World!".data(using: .utf8)!
+		let plaintext = Data("Hello, World!".utf8)
 		let ciphertext = secretBox.encrypt(data: plaintext)!
 		let decrypted = secretBox.decrypt(data: ciphertext)!
 
@@ -45,7 +45,7 @@ class Examples: XCTestCase {
 	}
 
 	func testPublicGenericHashing() {
-		let data = "Hello, World!".data(using: .utf8)!
+		let data = Data("Hello, World!".utf8)
 		let hash = GenericHash(bytes: data)
 
 		XCTAssertNotNil(hash)
@@ -56,7 +56,7 @@ class Examples: XCTestCase {
 		let alice = Persona(uniqueName: "Alice")
 
 		// Generate a personalized hash for that persona
-		let data = "Hello, World!".data(using: .utf8)!
+		let data = Data("Hello, World!".utf8)
 		let hash = GenericHash(bytes: data, for: alice)
 
 		// Forget the persona and remove all related Keychain entries

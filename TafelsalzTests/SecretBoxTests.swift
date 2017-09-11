@@ -91,7 +91,7 @@ class SecretBoxTests: XCTestCase {
 	func testEncryptionAndDecryption() {
 		let random = Random()!
 		let secretBox = SecretBox()!
-		let originalPlaintext = "Hello, World!".data(using: .utf8)!
+		let originalPlaintext = Data("Hello, World!".utf8)
 		let optionalCiphertext = secretBox.encrypt(data: originalPlaintext)
 
 		// Test if decryption did succeed
