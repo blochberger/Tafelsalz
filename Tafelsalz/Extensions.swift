@@ -35,12 +35,12 @@ extension Data {
 			return hexData.withUnsafeBytes { hexPtr in
 				return sodium_hex2bin(
 					binPtr,
-				    binDataCapacity,
-				    hexPtr,
-				    hexDataLen,
-				    ignore_cstr,
-				    &binDataLen,
-				    nil
+					binDataCapacity,
+					hexPtr,
+					hexDataLen,
+					ignore_cstr,
+					&binDataLen,
+					nil
 				) == 0
 			}
 		}
