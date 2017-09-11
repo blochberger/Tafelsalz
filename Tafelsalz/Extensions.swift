@@ -24,10 +24,7 @@ extension Data {
 	public init?(hex: String, ignore: String? = nil) {
 		// More or less taken from https://github.com/jedisct1/swift-sodium/blob/6845200f10954a1514c162a70e480273886e8318/Sodium/Utils.swift#L84-L122
 
-		guard var hexData = hex.data(using: .utf8, allowLossyConversion: false) else {
-			return nil
-		}
-
+		let hexData = Data(hex.utf8)
 		let hexDataLen = hexData.count
 		let binDataCapacity = hexDataLen / 2
 		self.init(count: binDataCapacity)
@@ -35,7 +32,7 @@ extension Data {
 		let ignore_cstr = ignore != nil ? (ignore! as NSString).utf8String : nil
 
 		let success = withUnsafeMutableBytes { binPtr in
-			return hexData.withUnsafeMutableBytes { hexPtr in
+			return hexData.withUnsafeBytes { hexPtr in
 				return sodium_hex2bin(
 					binPtr,
 				    binDataCapacity,
