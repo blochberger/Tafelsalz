@@ -90,7 +90,7 @@ public class GenericHash {
 			- see: `Data(hex:ignore:)`
 		*/
 		public convenience init?(hex: String, ignore: String? = nil) {
-			guard var bytes = Data(hex: hex, ignore: ignore) else { return nil }
+			var bytes = Data(hex: hex, ignore: ignore)
 			self.init(bytes: &bytes)
 		}
 	}
@@ -208,7 +208,7 @@ public class GenericHash {
 			- hex: The hash as a hex encoded string.
 	*/
 	public init?(hex: String) {
-		guard let bytes = Data(hex: hex) else { return nil }
+		let bytes = Data(hex: hex)
 		guard GenericHash.MinimumSizeInBytes <= PInt(bytes.count) else { return nil }
 		guard PInt(bytes.count) <= GenericHash.MaximumSizeInBytes else { return nil }
 
