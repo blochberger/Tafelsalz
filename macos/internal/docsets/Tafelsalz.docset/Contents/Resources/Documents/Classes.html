@@ -176,7 +176,7 @@ to store them for user authentication purposes.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/fc0d60dc07b64864b7020dc9635585135fe75acb/Tafelsalz/Password.swift#L9-L215">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fb066ad77f55b5daad2fe175d818cec88202c64e/Tafelsalz/Password.swift#L9-L215">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -211,7 +211,7 @@ to store them for user authentication purposes.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/fc0d60dc07b64864b7020dc9635585135fe75acb/Tafelsalz/Random.swift#L6-L53">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fb066ad77f55b5daad2fe175d818cec88202c64e/Tafelsalz/Random.swift#L6-L53">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -262,7 +262,7 @@ to decrypt values encrypted for the previous one.
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/fc0d60dc07b64864b7020dc9635585135fe75acb/Tafelsalz/Persona.swift#L21-L192">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fb066ad77f55b5daad2fe175d818cec88202c64e/Tafelsalz/Persona.swift#L21-L192">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -304,7 +304,7 @@ fast brute-force attacks. Use <code><a href="Structs/HashedPassword.html">Hashed
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/fc0d60dc07b64864b7020dc9635585135fe75acb/Tafelsalz/GenericHash.swift#L13-L213">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fb066ad77f55b5daad2fe175d818cec88202c64e/Tafelsalz/GenericHash.swift#L13-L227">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -339,7 +339,7 @@ fast brute-force attacks. Use <code><a href="Structs/HashedPassword.html">Hashed
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/fc0d60dc07b64864b7020dc9635585135fe75acb/Tafelsalz/KeyMaterial.swift#L7-L318">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fb066ad77f55b5daad2fe175d818cec88202c64e/Tafelsalz/KeyMaterial.swift#L7-L318">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -371,7 +371,7 @@ way to recover it unless otherwise persisted. This can be used for keys that
 should only reside in memory, e.g., if they were shared between multiple
 parties.</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">secretBox</span> <span class="o">=</span> <span class="kt">SecretBox</span><span class="p">()</span><span class="o">!</span>
-<span class="k">let</span> <span class="nv">plaintext</span> <span class="o">=</span> <span class="s">"Hello, World!"</span><span class="o">.</span><span class="nf">data</span><span class="p">(</span><span class="nv">using</span><span class="p">:</span> <span class="o">.</span><span class="n">utf8</span><span class="p">)</span><span class="o">!</span>
+<span class="k">let</span> <span class="nv">plaintext</span> <span class="o">=</span> <span class="kt">Data</span><span class="p">(</span><span class="s">"Hello, World!"</span><span class="o">.</span><span class="n">utf8</span><span class="p">)</span>
 <span class="k">let</span> <span class="nv">ciphertext</span> <span class="o">=</span> <span class="n">secretBox</span><span class="o">.</span><span class="nf">encrypt</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="n">plaintext</span><span class="p">)</span><span class="o">!</span>
 <span class="k">let</span> <span class="nv">decrypted</span> <span class="o">=</span> <span class="n">secretBox</span><span class="o">.</span><span class="nf">decrypt</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="n">ciphertext</span><span class="p">)</span><span class="o">!</span>
 </code></pre>
@@ -388,7 +388,7 @@ want to store encrypted files in a public document storage, such as Dropbox.</p>
 <span class="k">let</span> <span class="nv">secretBox</span> <span class="o">=</span> <span class="kt">SecretBox</span><span class="p">(</span><span class="nv">persona</span><span class="p">:</span> <span class="n">alice</span><span class="p">)</span><span class="o">!</span>
 
 <span class="c1">// Use your SecretBox as usual</span>
-<span class="k">let</span> <span class="nv">plaintext</span> <span class="o">=</span> <span class="s">"Hello, World!"</span><span class="o">.</span><span class="nf">data</span><span class="p">(</span><span class="nv">using</span><span class="p">:</span> <span class="o">.</span><span class="n">utf8</span><span class="p">)</span><span class="o">!</span>
+<span class="k">let</span> <span class="nv">plaintext</span> <span class="o">=</span> <span class="kt">Data</span><span class="p">(</span><span class="s">"Hello, World!"</span><span class="o">.</span><span class="n">utf8</span><span class="p">)</span>
 <span class="k">let</span> <span class="nv">ciphertext</span> <span class="o">=</span> <span class="n">secretBox</span><span class="o">.</span><span class="nf">encrypt</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="n">plaintext</span><span class="p">)</span><span class="o">!</span>
 <span class="k">let</span> <span class="nv">decrypted</span> <span class="o">=</span> <span class="n">secretBox</span><span class="o">.</span><span class="nf">decrypt</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="n">ciphertext</span><span class="p">)</span><span class="o">!</span>
 
@@ -407,7 +407,7 @@ want to store encrypted files in a public document storage, such as Dropbox.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/fc0d60dc07b64864b7020dc9635585135fe75acb/Tafelsalz/SecretBox.swift#L46-L423">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fb066ad77f55b5daad2fe175d818cec88202c64e/Tafelsalz/SecretBox.swift#L46-L423">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -447,7 +447,7 @@ want to store encrypted files in a public document storage, such as Dropbox.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/fc0d60dc07b64864b7020dc9635585135fe75acb/Tafelsalz/Tafelsalz.swift#L37-L62">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fb066ad77f55b5daad2fe175d818cec88202c64e/Tafelsalz/Tafelsalz.swift#L37-L62">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -460,7 +460,7 @@ want to store encrypted files in a public document storage, such as Dropbox.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2017-08-17)</p>
+      <p>&copy; 2017 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2017-09-11)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

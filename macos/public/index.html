@@ -190,7 +190,7 @@
 <h3 id='symmetric-encryption' class='heading'>Symmetric Encryption</h3>
 <h4 id='ephemeral-keys' class='heading'>Ephemeral Keys</h4>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">secretBox</span> <span class="o">=</span> <span class="kt">SecretBox</span><span class="p">()</span><span class="o">!</span>
-<span class="k">let</span> <span class="nv">plaintext</span> <span class="o">=</span> <span class="s">"Hello, World!"</span><span class="o">.</span><span class="nf">data</span><span class="p">(</span><span class="nv">using</span><span class="p">:</span> <span class="o">.</span><span class="n">utf8</span><span class="p">)</span><span class="o">!</span>
+<span class="k">let</span> <span class="nv">plaintext</span> <span class="o">=</span> <span class="kt">Data</span><span class="p">(</span><span class="s">"Hello, World!"</span><span class="o">.</span><span class="n">utf8</span><span class="p">)</span>
 <span class="k">let</span> <span class="nv">ciphertext</span> <span class="o">=</span> <span class="n">secretBox</span><span class="o">.</span><span class="nf">encrypt</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="n">plaintext</span><span class="p">)</span><span class="o">!</span>
 <span class="k">let</span> <span class="nv">decrypted</span> <span class="o">=</span> <span class="n">secretBox</span><span class="o">.</span><span class="nf">decrypt</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="n">ciphertext</span><span class="p">)</span><span class="o">!</span>
 </code></pre>
@@ -203,7 +203,7 @@
 <span class="k">let</span> <span class="nv">secretBox</span> <span class="o">=</span> <span class="kt">SecretBox</span><span class="p">(</span><span class="nv">persona</span><span class="p">:</span> <span class="n">alice</span><span class="p">)</span><span class="o">!</span>
 
 <span class="c1">// Use your SecretBox as usual</span>
-<span class="k">let</span> <span class="nv">plaintext</span> <span class="o">=</span> <span class="s">"Hello, World!"</span><span class="o">.</span><span class="nf">data</span><span class="p">(</span><span class="nv">using</span><span class="p">:</span> <span class="o">.</span><span class="n">utf8</span><span class="p">)</span><span class="o">!</span>
+<span class="k">let</span> <span class="nv">plaintext</span> <span class="o">=</span> <span class="kt">Data</span><span class="p">(</span><span class="s">"Hello, World!"</span><span class="o">.</span><span class="n">utf8</span><span class="p">)</span>
 <span class="k">let</span> <span class="nv">ciphertext</span> <span class="o">=</span> <span class="n">secretBox</span><span class="o">.</span><span class="nf">encrypt</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="n">plaintext</span><span class="p">)</span><span class="o">!</span>
 <span class="k">let</span> <span class="nv">decrypted</span> <span class="o">=</span> <span class="n">secretBox</span><span class="o">.</span><span class="nf">decrypt</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="n">ciphertext</span><span class="p">)</span><span class="o">!</span>
 
@@ -224,7 +224,7 @@
 </code></pre>
 <h3 id='generic-hashing' class='heading'>Generic Hashing</h3>
 <h4 id='public-hashing' class='heading'>Public Hashing</h4>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="s">"Hello, World!"</span><span class="o">.</span><span class="nf">data</span><span class="p">(</span><span class="nv">using</span><span class="p">:</span> <span class="o">.</span><span class="n">utf8</span><span class="p">)</span><span class="o">!</span>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="kt">Data</span><span class="p">(</span><span class="s">"Hello, World!"</span><span class="o">.</span><span class="n">utf8</span><span class="p">)</span>
 <span class="k">let</span> <span class="nv">hash</span> <span class="o">=</span> <span class="kt">GenericHash</span><span class="p">(</span><span class="nv">bytes</span><span class="p">:</span> <span class="n">data</span><span class="p">)</span>
 </code></pre>
 <h4 id='private-hashing-with-persisted-keys' class='heading'>Private Hashing with Persisted Keys</h4>
@@ -232,7 +232,7 @@
 <span class="k">let</span> <span class="nv">alice</span> <span class="o">=</span> <span class="kt">Persona</span><span class="p">(</span><span class="nv">uniqueName</span><span class="p">:</span> <span class="s">"Alice"</span><span class="p">)</span>
 
 <span class="c1">// Generate a personalized hash for that persona</span>
-<span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="s">"Hello, World!"</span><span class="o">.</span><span class="nf">data</span><span class="p">(</span><span class="nv">using</span><span class="p">:</span> <span class="o">.</span><span class="n">utf8</span><span class="p">)</span><span class="o">!</span>
+<span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="kt">Data</span><span class="p">(</span><span class="s">"Hello, World!"</span><span class="o">.</span><span class="n">utf8</span><span class="p">)</span>
 <span class="k">let</span> <span class="nv">hash</span> <span class="o">=</span> <span class="kt">GenericHash</span><span class="p">(</span><span class="nv">bytes</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="n">alice</span><span class="p">)</span>
 
 <span class="c1">// Forget the persona and remove all related Keychain entries</span>
@@ -253,7 +253,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2017-08-17)</p>
+      <p>&copy; 2017 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2017-09-11)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
