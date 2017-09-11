@@ -6,16 +6,16 @@ extension Data {
 
 	/**
 		Initialize a byte array from a given hex string.
-	
+
 		- note:
 			The byte array will contain the bytes up until the first non-hex
 			character, e.g.:
-	
+
 			```swift
 			Data(hex: "00XX11").hex == 00
 			Data(hex: "XX").hex == ""
 			```
-	
+
 		- parameters:
 			- hex: The hex string, e.g., "DEADBEEF", "cafebabe", "00112233"
 			- ignore: A set of characters that should be ignored in the hex

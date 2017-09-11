@@ -33,10 +33,10 @@ public class GenericHash {
 
 		/**
 			Initialize a new key with a given size.
-		
+
 			The size needs to be within the given bounds: `MinimumSizeInBytes` ≤
 			`sizeInBytes` ≤ `MaximumSizeInBytes`.
-		
+
 			- parameters:
 				- sizeInBytes: The size of the key in bytes.
 		*/
@@ -72,7 +72,7 @@ public class GenericHash {
 
 		/**
 			Restores a key from a given hex string.
-		
+
 			- note:
 				All characters until the first non-hex character will be taken
 				into account, when restoring the key.
@@ -86,7 +86,7 @@ public class GenericHash {
 				- hex: The key as a hex encoded string.
 				- ignore: A character set that should be ignored when decoding
 					the key.
-		
+
 			- see: `Data(hex:ignore:)`
 		*/
 		public convenience init?(hex: String, ignore: String? = nil) {
@@ -117,7 +117,7 @@ public class GenericHash {
 
 	/**
 		Hash an arbitrary value.
-	
+
 		The size needs to be within the given bounds: `MinimumSizeInBytes` ≤
 		`outputSizeInBytes` ≤ `MaximumSizeInBytes`.
 
@@ -125,7 +125,7 @@ public class GenericHash {
 			Do not use this for hashing passwords, as there is no protection
 			against fast brute-force attacks. Use `HashedPassword` for that
 			purpose.
-	
+
 			This is not protected against rainbow attacks if you do not provide
 			a key.
 
@@ -184,7 +184,7 @@ public class GenericHash {
 
 		The size needs to be within the given bounds: `MinimumSizeInBytes` ≤
 		`outputSizeInBytes` ≤ `MaximumSizeInBytes`.
-	
+
 		This is protected against rainbow attacks.
 
 		- warning:
@@ -229,7 +229,7 @@ public class GenericHash {
 extension GenericHash: Equatable {
 	/**
 		Compares two hashes in constant time.
-	
+
 		- note:
 			An attacker might be able to identify the length of the hash with a
 			timing attack. But as the size bounds for hashes are publicly known
@@ -239,7 +239,7 @@ extension GenericHash: Equatable {
 		- parameters:
 			- lhs: A hash.
 			- rhs: Another hash.
-	
+
 		- returns:
 			`true` if both hashes are equal, `false` else.
 	*/
@@ -264,7 +264,7 @@ extension GenericHash: Hashable {
 	/**
 		The hash value according to the [`Hashable`](https://developer.apple.com/documentation/swift/hashable)
 		protocol.
-	
+
 		- warning:
 			This is **not** the value of the generic hash but a value used for
 			improving performance of data structures.

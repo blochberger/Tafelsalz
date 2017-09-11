@@ -260,10 +260,10 @@ public class KeyMaterial {
 			```swift
 			self.sizeInBytes == other.sizeInBytes
 			```
-	
+
 		- parameters:
 			- other: Other key material to which this should be compared to.
-	
+
 		- returns: `true` if the key material is equal.
 	*/
 	func isEqual(to other: KeyMaterial) -> Bool {

@@ -53,7 +53,7 @@ class Tafelsalz {
 	/**
 		This function can be used to determine if `libsodium` could be
 		initialized correctly.
-	
+
 		- returns: `true` if `libsodium` was initialized correctly.
 	*/
 	static func isInitialized() -> Bool {

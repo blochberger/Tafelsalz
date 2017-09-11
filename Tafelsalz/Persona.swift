@@ -62,12 +62,12 @@ public class Persona {
 	/**
 		Helper function to store key material in the system's Keychain for this
 		persona.
-	
+
 		- parameters:
 			- item: The item that identifies a Keychain entry.
 			- defaultInitializer: A default initializer used for new keys.
 			- capturingInitializer: An initializer that takes a byte array.
-	
+
 		- returns:
 			The key for the item. A new key, if the item did not exist, the
 			existing key else and `nil` if there was an error.
