@@ -1,7 +1,3 @@
-import Foundation
-
-import libsodium
-
 extension Data {
 
 	/**
@@ -12,7 +8,7 @@ extension Data {
 			character, e.g.:
 
 			```swift
-			Data(hex: "00XX11").hex == 00
+			Data(hex: "00XX11").hex == "00"
 			Data(hex: "XX").hex == ""
 			```
 
@@ -22,33 +18,7 @@ extension Data {
 				string.
 	*/
 	public init(hex: String, ignore: String? = nil) {
-		// More or less taken from https://github.com/jedisct1/swift-sodium/blob/6845200f10954a1514c162a70e480273886e8318/Sodium/Utils.swift#L84-L122
-
-		let hexData = Data(hex.utf8)
-		let hexDataLen = hexData.count
-		let binDataCapacity = hexDataLen / 2
-		self.init(count: binDataCapacity)
-		var binDataLen: size_t = 0
-		let ignore_cstr = ignore != nil ? (ignore! as NSString).utf8String : nil
-
-		let status = withUnsafeMutableBytes { binPtr in
-			return hexData.withUnsafeBytes { hexPtr in
-				return sodium_hex2bin(
-					binPtr,
-					binDataCapacity,
-					hexPtr,
-					hexDataLen,
-					ignore_cstr,
-					&binDataLen,
-					nil
-				)
-			}
-		}
-
-		assert(status != -1, "Not enough capacity reserved!")
-		assert(status == 0, "Unhandled status!")
-
-		count = Int(binDataLen)
+		self = sodium.hex2bin(hex, ignore: ignore)
 	}
 
 	/**
@@ -62,23 +32,8 @@ extension Data {
 			data == Data(hex: data.hex)
 			```
 	*/
-	public var hex: String? {
-		// More or less taken from https://github.com/jedisct1/swift-sodium/blob/6845200f10954a1514c162a70e480273886e8318/Sodium/Utils.swift#L64-L82
-
-		let sizeOfResultInBytes = (count * 2) + 1
-		var result = Data(count: sizeOfResultInBytes)
-		return result.withUnsafeMutableBytes {
-			(resultPtr: UnsafeMutablePointer<Int8>) -> String? in
-
-			return withUnsafeBytes {
-				(bytesPtr: UnsafePointer<UInt8>) -> String? in
-
-				guard let output = libsodium.sodium_bin2hex(resultPtr, sizeOfResultInBytes, bytesPtr, count) else {
-					return nil
-				}
-
-				return String(validatingUTF8: output)
-			}
-		}
+	public var hex: String {
+		return sodium.bin2hex(self)
 	}
+
 }

@@ -4,9 +4,9 @@ import XCTest
 class Examples: XCTestCase {
 
 	func testSymmetricEncryptionWithEphemeralKeys() {
-		let secretBox = SecretBox()!
+		let secretBox = SecretBox()
 		let plaintext = Data("Hello, World!".utf8)
-		let ciphertext = secretBox.encrypt(data: plaintext)!
+		let ciphertext = secretBox.encrypt(data: plaintext)
 		let decrypted = secretBox.decrypt(data: ciphertext)!
 
 		XCTAssertEqual(decrypted, plaintext)
@@ -22,7 +22,7 @@ class Examples: XCTestCase {
 
 		// Use your SecretBox as usual
 		let plaintext = Data("Hello, World!".utf8)
-		let ciphertext = secretBox.encrypt(data: plaintext)!
+		let ciphertext = secretBox.encrypt(data: plaintext)
 		let decrypted = secretBox.decrypt(data: ciphertext)!
 
 		// Forget the persona and remove all related Keychain entries

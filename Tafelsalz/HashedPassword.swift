@@ -1,5 +1,3 @@
-import libsodium
-
 /**
 	This class represents hashed passwords. They can be used to store passwords
 	for the purpose of authenticating users. Passwords should not be stored as
@@ -33,7 +31,7 @@ public struct HashedPassword {
 		The size of the hashed password string in bytes. As the string is ASCII
 		encoded it will match the number of characters.
 	*/
-	public static let SizeInBytes = PInt(libsodium.crypto_pwhash_strbytes())
+	public static let SizeInBytes = PInt(sodium.pwhash.sizeOfStorableStringInBytes)
 
 	/**
 		The hashed password.
@@ -47,10 +45,6 @@ public struct HashedPassword {
 			- bytes: The hashed password as ASCII decoded string.
 	*/
 	public init?(_ bytes: Data) {
-		guard Tafelsalz.isInitialized() else {
-			return nil
-		}
-
 		guard bytes.count == Int(HashedPassword.SizeInBytes) else {
 			return nil
 		}

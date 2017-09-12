@@ -1,6 +1,3 @@
-import Foundation
-import libsodium
-
 /**
 	This class can be used to securely store key material in memory.
 */
@@ -32,26 +29,17 @@ public class KeyMaterial {
 
 		- see: [Guarded heap allocations](https://download.libsodium.org/doc/helpers/memory_management.html#guarded-heap-allocations)
 	*/
-	public init?(sizeInBytes: PInt, initialize: Bool = true) {
-		guard Tafelsalz.isInitialized() else {
-			return nil
-		}
-
-		guard let bytesPtr = libsodium.sodium_malloc(Int(sizeInBytes)) else {
-			return nil
-		}
+	public init(sizeInBytes: PInt, initialize: Bool = true) {
+		let bytesPtr = sodium.memory.allocate(sizeInBytes: Int(sizeInBytes))
 
 		if initialize {
-			libsodium.randombytes_buf(bytesPtr, Int(sizeInBytes))
+			sodium.random.bytes(bytesPtr, sizeInBytes: Int(sizeInBytes))
 		}
 
 		self.bytesPtr = bytesPtr
 		self.sizeInBytes = sizeInBytes
 
-		guard makeInaccessible() else {
-			libsodium.sodium_free(bytesPtr)
-			return nil
-		}
+		makeInaccessible()
 	}
 
 	/**
@@ -63,15 +51,9 @@ public class KeyMaterial {
 			- bytes: The key material.
 	*/
 	public init?(bytes: inout Data) {
-		guard Tafelsalz.isInitialized() else {
-			return nil
-		}
+		// <#TODO#> Make non-failable
 
-		guard let bytesPtr = libsodium.sodium_malloc(bytes.count) else {
-			return nil
-		}
-
-		self.bytesPtr = bytesPtr
+		self.bytesPtr = sodium.memory.allocate(sizeInBytes: bytes.count)
 		self.sizeInBytes = PInt(bytes.count)
 
 		bytes.withUnsafeBytes {
@@ -80,16 +62,9 @@ public class KeyMaterial {
 			self.bytesPtr.copyBytes(from: bytesPtr, count: bytes.count)
 		}
 
-		guard makeInaccessible() else {
-			libsodium.sodium_free(bytesPtr)
-			return nil
-		}
+		makeInaccessible()
 
-		bytes.withUnsafeMutableBytes {
-			bytesPtr in
-
-			libsodium.sodium_memzero(bytesPtr, bytes.count)
-		}
+		sodium.memory.wipe(&bytes)
 	}
 
 	/**
@@ -98,38 +73,29 @@ public class KeyMaterial {
 		- see: [Guarded heap allocations](https://download.libsodium.org/doc/helpers/memory_management.html#guarded-heap-allocations)
 	*/
 	deinit {
-		guard makeReadWritable() else {
-			abort()
-		}
-
-		libsodium.sodium_free(bytesPtr)
+		makeReadWritable()
+		sodium.memory.free(bytesPtr)
 	}
 
 	/**
 		Make the memory location where the key material is stored read only.
-
-		- returns: `true` on success.
 	*/
-	private func makeReadOnly() -> Bool {
-		return libsodium.sodium_mprotect_readonly(bytesPtr) == 0
+	private func makeReadOnly() {
+		sodium.memory.make_readonly(bytesPtr)
 	}
 
 	/**
 		Make the memory location where the key material is stored writable.
-
-		- returns: `true` on success.
 	*/
-	private func makeReadWritable() -> Bool {
-		return libsodium.sodium_mprotect_readwrite(bytesPtr) == 0
+	private func makeReadWritable() {
+		sodium.memory.make_readwritable(bytesPtr)
 	}
 
 	/**
 		Make the memory location where the key material is stored inaccessible.
-
-		- returns: `true` on success.
 	*/
-	private func makeInaccessible() -> Bool {
-		return libsodium.sodium_mprotect_noaccess(bytesPtr) == 0
+	private func makeInaccessible() {
+		sodium.memory.make_inaccessible(bytesPtr)
 	}
 
 	/**
@@ -143,15 +109,11 @@ public class KeyMaterial {
 		- returns: The result from the `body` code block.
 	*/
 	public func withUnsafeBytes<ResultType, ContentType>(body: (UnsafePointer<ContentType>) throws -> ResultType) rethrows -> ResultType {
-		guard makeReadOnly() else {
-			abort()
-		}
+		makeReadOnly()
 
 		let result = try body(UnsafeRawPointer(bytesPtr).bindMemory(to: ContentType.self, capacity: Int(sizeInBytes)))
 
-		guard makeInaccessible() else {
-			abort()
-		}
+		makeInaccessible()
 
 		return result
 	}
@@ -168,15 +130,11 @@ public class KeyMaterial {
 		- returns: The result from the `body` code block.
 	*/
 	func withUnsafeMutableBytes<ResultType, ContentType>(body: (UnsafeMutablePointer<ContentType>) throws -> ResultType) rethrows -> ResultType {
-		guard makeReadWritable() else {
-			abort()
-		}
+		makeReadWritable()
 
 		let result = try body(UnsafeMutableRawPointer(bytesPtr).bindMemory(to: ContentType.self, capacity: Int(sizeInBytes)))
 
-		guard makeInaccessible() else {
-			abort()
-		}
+		makeInaccessible()
 
 		return result
 	}
@@ -204,37 +162,12 @@ public class KeyMaterial {
 
 		- returns: The fingerprint.
 	*/
-	func fingerprint() -> Data? {
+	func fingerprint() -> Data {
 		if cachedHash == nil {
-			let hashSize = libsodium.crypto_generichash_bytes()
-
-			var uncachedHash = Data(count: hashSize)
-
-			let success = uncachedHash.withUnsafeMutableBytes {
-				uncachedHashPtr in
-
-				return withUnsafeBytes {
-					bytesPtr in
-
-					return libsodium.crypto_generichash(
-						uncachedHashPtr,
-						hashSize,
-						bytesPtr,
-						UInt64(sizeInBytes),
-						nil,
-						0
-					) == 0
-				}
-			}
-
-			guard success else {
-				return nil
-			}
-
-			cachedHash = uncachedHash
+			cachedHash = withUnsafeBytes { sodium.generichash.hash(input: $0, inputSizeInBytes: UInt64(sizeInBytes)) }
 		}
 
-		return cachedHash
+		return cachedHash!
 	}
 
 	/**
@@ -277,7 +210,7 @@ public class KeyMaterial {
 			return other.withUnsafeBytes {
 				rhsPtr in
 
-				return libsodium.sodium_memcmp(lhsPtr, rhsPtr, Int(sizeInBytes)) == 0
+				return sodium.memory.areEqual(lhsPtr, rhsPtr, amountInBytes: Int(sizeInBytes))
 			}
 		}
 	}
@@ -295,24 +228,16 @@ public class KeyMaterial {
 		- returns: `true` if both key materials have the same fingerprint.
 	*/
 	func isFingerprintEqual(to other: KeyMaterial) -> Bool {
-		guard let lhsHash = fingerprint() else {
-			return false
-		}
+		let hash = fingerprint()
+		return hash.withUnsafeBytes {
+			lhs in
 
-		guard let rhsHash = other.fingerprint() else {
-			return false
-		}
+			return other.fingerprint().withUnsafeBytes {
+				rhs in
 
-		return lhsHash.withUnsafeBytes {
-			lhsHashPtr in
-
-			return rhsHash.withUnsafeBytes {
-				rhsHashPtr in
-
-				return libsodium.sodium_memcmp(lhsHashPtr, rhsHashPtr, lhsHash.count) == 0
+				return sodium.memory.areEqual(lhs, rhs, amountInBytes: hash.count)
 			}
 		}
-
 	}
 
 }

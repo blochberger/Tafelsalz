@@ -7,18 +7,13 @@ import XCTest
 **/
 class RandomTests: XCTestCase {
 
-    func testInitializer() {
-		XCTAssertNotNil(Random())
-    }
-
 	func testBytes() {
-		let random = Random()!
-		let randomCount = 100 + random.number(withUpperBound: 100)
-		let bytes = random.bytes(count: randomCount)
+		let randomCount = 100 + Random.number(withUpperBound: 100)
+		let bytes = Random.bytes(count: randomCount)
 
 		XCTAssertEqual(bytes.count, Int(randomCount))
 
-		let otherBytes = random.bytes(count: randomCount)
+		let otherBytes = Random.bytes(count: randomCount)
 
 		// Two random byte sequences should not be equal, the probability of
 		// that to happen is very low: 1/(2^(randomCount*8)).
@@ -27,17 +22,16 @@ class RandomTests: XCTestCase {
 		// Two random byte sequences from newly instantiated random generators
 		// should not be equal.
 		XCTAssertNotEqual(
-			Random()!.bytes(count: randomCount),
-			Random()!.bytes(count: randomCount)
+			Random.bytes(count: randomCount),
+			Random.bytes(count: randomCount)
 		)
 	}
 
 	func testNumberDistribution() {
-		let random = Random()!
 		var occurrences: UInt = 0
-		let referenceNumber = random.number()
+		let referenceNumber = Random.number()
 		for _ in 0..<100 {
-			if random.number() == referenceNumber {
+			if Random.number() == referenceNumber {
 				occurrences += 1
 			}
 		}
@@ -48,11 +42,10 @@ class RandomTests: XCTestCase {
 
 	func testNumberWithUpperBoundDistribution() {
 		let upperBound: UInt32 = 100_000
-		let random = Random()!
 		var occurrences: UInt = 0
-		let referenceNumber = random.number(withUpperBound: upperBound)
+		let referenceNumber = Random.number(withUpperBound: upperBound)
 		for _ in 0..<100 {
-			if random.number(withUpperBound: upperBound) == referenceNumber {
+			if Random.number(withUpperBound: upperBound) == referenceNumber {
 				occurrences += 1
 			}
 		}
@@ -60,4 +53,5 @@ class RandomTests: XCTestCase {
 		// Test if the reference number occurred more frequently than expected.
 		XCTAssert(occurrences < 10)
 	}
+
 }

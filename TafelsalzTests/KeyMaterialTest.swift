@@ -7,9 +7,9 @@ class KeyMaterialTest: XCTestCase {
 
 	static func metaTestDefaultInitializer<T: KeyMaterial>(
 		of fixedSizeInBytes: PInt,
-		with initializer: () -> T?
+		with initializer: () -> T
 	) {
-		let instance1 = initializer()!
+		let instance1 = initializer()
 
 		// Test expected size limitation
 		XCTAssertEqual(instance1.sizeInBytes, fixedSizeInBytes)
@@ -18,7 +18,7 @@ class KeyMaterialTest: XCTestCase {
 		XCTAssertEqual(instance1.copyBytes(), instance1.copyBytes())
 
 		// Test uniqueness after initialization
-		XCTAssertNotEqual(instance1.copyBytes(), initializer()!.copyBytes())
+		XCTAssertNotEqual(instance1.copyBytes(), initializer().copyBytes())
 	}
 
 	static func metaTestCapturingInitializer<T: KeyMaterial>(
@@ -26,11 +26,9 @@ class KeyMaterialTest: XCTestCase {
 		maximumSizeInBytes: PInt,
 		with initializer: (inout Data) -> T?
 	) {
-		let random = Random()!
-
 		let sizesInBytes = (minimumSizeInBytes == maximumSizeInBytes) ? [minimumSizeInBytes] : [minimumSizeInBytes, maximumSizeInBytes]
 		for sizeInBytes in sizesInBytes {
-			let expectedBytes = random.bytes(count: sizeInBytes)
+			let expectedBytes = Random.bytes(count: sizeInBytes)
 			var bytes = Data(expectedBytes)
 			let optionalInstance = initializer(&bytes)
 
@@ -52,8 +50,8 @@ class KeyMaterialTest: XCTestCase {
 		}
 
 		// Test creating instance from byte sequence with incorrect size
-		var tooShort = random.bytes(count: minimumSizeInBytes - 1)
-		var tooLong = random.bytes(count: maximumSizeInBytes + 1)
+		var tooShort = Random.bytes(count: minimumSizeInBytes - 1)
+		var tooLong = Random.bytes(count: maximumSizeInBytes + 1)
 
 		XCTAssertNil(initializer(&tooShort))
 		XCTAssertNil(initializer(&tooLong))
@@ -74,9 +72,8 @@ class KeyMaterialTest: XCTestCase {
 		of fixedSizeInBytes: PInt,
 		withCapturingInitializer initializer: (inout Data) -> T?
 	) {
-		let random = Random()!
-		let bytes = random.bytes(count: fixedSizeInBytes)
-		let otherBytes = random.bytes(count: fixedSizeInBytes)
+		let bytes = Random.bytes(count: fixedSizeInBytes)
+		let otherBytes = Random.bytes(count: fixedSizeInBytes)
 		var tmpBytes1 = Data(bytes)
 		var tmpBytes2 = Data(bytes)
 		var tmpBytes3 = Data(otherBytes)
@@ -123,7 +120,7 @@ class KeyMaterialTest: XCTestCase {
 		KeyMaterialTest.metaTestEquality(of: sizeInBytes) { KeyMaterial(bytes: &$0) }
 
 		// Inequality due to different lengths
-		var moreBytes = Random()!.bytes(count: sizeInBytes + 1)
+		var moreBytes = Random.bytes(count: sizeInBytes + 1)
 		var lessBytes = moreBytes.subdata(in: 0..<Int(sizeInBytes))
 		let more = KeyMaterial(bytes: &lessBytes)!
 		let less = KeyMaterial(bytes: &moreBytes)!

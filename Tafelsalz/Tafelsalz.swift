@@ -1,5 +1,3 @@
-import libsodium
-
 #if arch(x86_64) || arch(arm64)
 	/**
 		If a function can only be called with valid data, there is no need to
@@ -28,35 +26,3 @@ import libsodium
 #else
 	public typealias PInt = UInt16
 #endif
-
-/**
-	Internal class that initializes `libsodium`. This class is a singleton.
-
-	- see: [`libsodium` Usage](https://download.libsodium.org/doc/usage/)
-*/
-class Tafelsalz {
-
-	/**
-		Singleton instance of the `Tafelsalz` class.
-	*/
-	private static let instance = Tafelsalz()
-
-	/**
-		This initializes `libsodium`.
-	*/
-	private init?() {
-		guard libsodium.sodium_init() == 0 else {
-			return nil
-		}
-	}
-
-	/**
-		This function can be used to determine if `libsodium` could be
-		initialized correctly.
-
-		- returns: `true` if `libsodium` was initialized correctly.
-	*/
-	static func isInitialized() -> Bool {
-		return instance != nil
-	}
-}

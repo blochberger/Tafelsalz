@@ -1,5 +1,3 @@
-import libsodium
-
 /**
 	This class can be used to encrypt/decrypt data based on a shared secret
 	(symmetric key).
@@ -36,7 +34,7 @@ import libsodium
 
 	// Use your SecretBox as usual
 	let plaintext = Data("Hello, World!".utf8)
-	let ciphertext = secretBox.encrypt(data: plaintext)!
+	let ciphertext = secretBox.encrypt(data: plaintext)
 	let decrypted = secretBox.decrypt(data: ciphertext)!
 
 	// Forget the persona and remove all related Keychain entries
@@ -52,18 +50,18 @@ public class SecretBox {
 		/**
 			The size of the secret key in bytes.
 		*/
-		public static let SizeInBytes = PInt(libsodium.crypto_secretbox_keybytes())
+		public static let SizeInBytes = PInt(sodium.secretbox.sizeOfKeyInBytes)
 
 		/**
 			Generates a new secret key.
 		*/
-		public init?() {
+		public init() {
 			super.init(sizeInBytes: SecretKey.SizeInBytes, initialize: false)
 
 			self.withUnsafeMutableBytes {
 				bytesPtr in
 
-				libsodium.crypto_secretbox_keygen(bytesPtr)
+				sodium.secretbox.keygen(bytesPtr)
 			}
 		}
 
@@ -96,12 +94,12 @@ public class SecretBox {
 		/**
 			The size of the nonce in bytes.
 		*/
-		public static let SizeInBytes = PInt(libsodium.crypto_secretbox_noncebytes())
+		public static let SizeInBytes = PInt(sodium.secretbox.sizeOfNonceInBytes)
 
 		/**
 			Creates a new random nonce.
 		*/
-		public init?() {
+		public init() {
 			super.init(sizeInBytes: Nonce.SizeInBytes)
 		}
 
@@ -135,7 +133,7 @@ public class SecretBox {
 		/**
 			The size of the authentication code in bytes.
 		*/
-		public static let SizeInBytes = PInt(libsodium.crypto_secretbox_macbytes())
+		public static let SizeInBytes = PInt(sodium.secretbox.sizeOfMacInBytes)
 
 		/**
 			Restore a authentication code from a byte array. Authentication
@@ -236,16 +234,10 @@ public class SecretBox {
 			}
 
 			var nonceBytes = bytes.subdata(in: 0..<Int(Nonce.SizeInBytes))
-
-			guard let nonce = Nonce(bytes: &nonceBytes) else {
-				return nil
-			}
+			let nonce = Nonce(bytes: &nonceBytes)!
 
 			var mac = bytes.subdata(in: Int(Nonce.SizeInBytes)..<Int(AuthenticatedCiphertext.PrefixSizeInBytes))
-
-			guard let authenticationCode = AuthenticationCode(bytes: &mac) else {
-				return nil
-			}
+			let authenticationCode = AuthenticationCode(bytes: &mac)!
 
 			self.nonce = nonce
 			self.authenticationCode = authenticationCode
@@ -264,10 +256,7 @@ public class SecretBox {
 		- parameters:
 			- secretKey: The secret key.
 	*/
-	public init?(secretKey: SecretKey) {
-		guard Tafelsalz.isInitialized() else {
-			return nil
-		}
+	public init(secretKey: SecretKey) {
 		self.secretKey = secretKey
 	}
 
@@ -290,10 +279,8 @@ public class SecretBox {
 		accessed and will be irrevocably destroyed once the secret box object is
 		deleted. Encrypted messages can than no longer be decrypted.
 	*/
-	public convenience init?() {
-		guard let secretKey = SecretKey() else {
-			return nil
-		}
+	public convenience init() {
+		let secretKey = SecretKey()
 		self.init(secretKey: secretKey)
 	}
 
@@ -312,66 +299,23 @@ public class SecretBox {
 
 		- returns: An authenticated ciphertext containing the encrypted message.
 	*/
-	public func encrypt(data plaintext: Data, with nonce: Nonce) -> AuthenticatedCiphertext? {
-		var ciphertext = Data(count: plaintext.count)
-		var mac = Data(count: Int(AuthenticationCode.SizeInBytes))
+	public func encrypt(data plaintext: Data, with nonce: Nonce = Nonce()) -> AuthenticatedCiphertext {
 
-		let successfullyEncrypted = ciphertext.withUnsafeMutableBytes {
-			ciphertextPtr in
+		var macBytes: Data
+		let ciphertextBytes: Data
+		(macBytes, ciphertextBytes) = nonce.withUnsafeBytes {
+			noncePtr in
 
-			return mac.withUnsafeMutableBytes {
-				macPtr in
+			return secretKey.withUnsafeBytes {
+				secretKeyPtr in
 
-				return plaintext.withUnsafeBytes {
-					plaintextPtr in
-
-					return nonce.withUnsafeBytes {
-						noncePtr in
-
-						return secretKey.withUnsafeBytes {
-							secretKeyPtr in
-
-							return libsodium.crypto_secretbox_detached(
-								ciphertextPtr,
-								macPtr,
-								plaintextPtr,
-								UInt64(plaintext.count),
-								noncePtr,
-								secretKeyPtr
-							) == 0
-						}
-					}
-				}
+				return sodium.secretbox.encrypt(plaintext: plaintext, nonce: noncePtr, key: secretKeyPtr)
 			}
 		}
 
-		guard successfullyEncrypted else {
-			return nil
-		}
+		let authenticationCode = AuthenticationCode(bytes: &macBytes)!
 
-		guard let authenticationCode = AuthenticationCode(bytes: &mac) else {
-			return nil
-		}
-
-		return AuthenticatedCiphertext(nonce: nonce, authenticationCode: authenticationCode, ciphertext: Ciphertext(ciphertext))
-	}
-
-	/**
-		Encrypts a message indeterministically.
-
-		The message can be decrypted by using `decrypt(authenticatedCiphertext:)`
-
-		- parameters:
-			- plaintext: The message that should be encrypted.
-
-		- returns: An authenticated ciphertext containing the encrypted message.
-	*/
-	public func encrypt(data plaintext: Data) -> AuthenticatedCiphertext? {
-		guard let nonce = Nonce() else {
-			return nil
-		}
-
-		return encrypt(data: plaintext, with: nonce)
+		return AuthenticatedCiphertext(nonce: nonce, authenticationCode: authenticationCode, ciphertext: Ciphertext(ciphertextBytes))
 	}
 
 	/**
@@ -386,39 +330,24 @@ public class SecretBox {
 		- returns: The decrypted message.
 	*/
 	public func decrypt(data authenticatedCiphertext: AuthenticatedCiphertext) -> Data? {
+		return authenticatedCiphertext.authenticationCode.withUnsafeBytes {
+			macPtr in
 
-		var plaintext = Data(count: Int(authenticatedCiphertext.ciphertext.sizeInBytes))
+			return authenticatedCiphertext.nonce.withUnsafeBytes {
+				noncePtr in
 
-		let successfullyDecrypted = plaintext.withUnsafeMutableBytes {
-			plaintextPtr in
+				return secretKey.withUnsafeBytes {
+					secretKeyPtr in
 
-			return authenticatedCiphertext.ciphertext.bytes.withUnsafeBytes {
-				ciphertextPtr in
-
-				return authenticatedCiphertext.authenticationCode.withUnsafeBytes {
-					macPtr in
-
-					return authenticatedCiphertext.nonce.withUnsafeBytes {
-						noncePtr in
-
-						return self.secretKey.withUnsafeBytes {
-							secretKeyPtr in
-
-							return libsodium.crypto_secretbox_open_detached(
-								plaintextPtr,
-								ciphertextPtr,
-								macPtr,
-								UInt64(authenticatedCiphertext.ciphertext.sizeInBytes),
-								noncePtr,
-								secretKeyPtr
-							) == 0
-						}
-					}
+					return sodium.secretbox.decrypt(
+						ciphertext: authenticatedCiphertext.ciphertext.bytes,
+						mac: macPtr,
+						nonce: noncePtr,
+						key: secretKeyPtr
+					)
 				}
 			}
 		}
-
-		return successfullyDecrypted ? plaintext : nil
 	}
 }
 

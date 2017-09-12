@@ -1,4 +1,3 @@
-import Foundation
 import Keychain
 
 /**
@@ -72,7 +71,7 @@ public class Persona {
 			The key for the item. A new key, if the item did not exist, the
 			existing key else and `nil` if there was an error.
 	*/
-	private func secret<Key: KeyMaterial>(item: GenericPasswordItem, defaultInitializer: () -> Key?, capturingInitializer: (inout Data) -> Key?) -> Key? {
+	private func secret<Key: KeyMaterial>(item: GenericPasswordItem, defaultInitializer: () -> Key, capturingInitializer: (inout Data) -> Key?) -> Key? {
 		do {
 			// Try to read the key from the Keychain
 			let encodedKey = try Keychain.retrievePassword(for: item)
@@ -82,7 +81,7 @@ public class Persona {
 		} catch Keychain.Error.itemNotFound {
 			// If there is no key stored in the Keychain, create a new one and
 			// add it to the Keychain.
-			guard let key = defaultInitializer() else { return nil }
+			let key = defaultInitializer()
 
 			do {
 				try Keychain.store(password: key.copyBytes().base64EncodedData(), in: item)

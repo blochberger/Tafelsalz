@@ -1,7 +1,3 @@
-import Foundation
-
-import libsodium
-
 /**
 	This class can be used to generate hash arbitrary data. Keyed hashing is
 	supported.
@@ -19,17 +15,17 @@ public class GenericHash {
 		/**
 			The minimum size of the key in bytes.
 		*/
-		public static let MinimumSizeInBytes = PInt(libsodium.crypto_generichash_keybytes_min())
+		public static let MinimumSizeInBytes = PInt(sodium.generichash.minimumKeySizeInBytes)
 
 		/**
 			The maximum size of the key in bytes.
 		*/
-		public static let MaximumSizeInBytes = PInt(libsodium.crypto_generichash_keybytes_max())
+		public static let MaximumSizeInBytes = PInt(sodium.generichash.maximumKeySizeInBytes)
 
 		/**
 			The default key size in bytes.
 		*/
-		public static let DefaultSizeInBytes = PInt(libsodium.crypto_generichash_keybytes())
+		public static let DefaultSizeInBytes = PInt(sodium.generichash.defaultKeySizeInBytes)
 
 		/**
 			Initialize a new key with a given size.
@@ -40,7 +36,7 @@ public class GenericHash {
 			- parameters:
 				- sizeInBytes: The size of the key in bytes.
 		*/
-		public init?(sizeInBytes: PInt = Key.DefaultSizeInBytes) {
+		public init?(sizeInBytes: PInt) {
 			guard Key.MinimumSizeInBytes <= sizeInBytes && sizeInBytes <= Key.MaximumSizeInBytes else {
 				return nil
 			}
@@ -48,6 +44,13 @@ public class GenericHash {
 			// for `DefaultSizeInBytes`, see
 			// https://github.com/jedisct1/libsodium/commit/7f7e7235c52f13800df15ef705dbd199252a784c#commitcomment-23597389
 			super.init(sizeInBytes: sizeInBytes)
+		}
+
+		/**
+			Initialize a new key with the default size.
+		*/
+		public convenience init() {
+			self.init(sizeInBytes: Key.DefaultSizeInBytes)!
 		}
 
 		/**
@@ -98,17 +101,17 @@ public class GenericHash {
 	/**
 		The minimum size of the hash in bytes.
 	*/
-	public static let MinimumSizeInBytes = PInt(libsodium.crypto_generichash_bytes_min())
+	public static let MinimumSizeInBytes = PInt(sodium.generichash.minimumOutputSizeInBytes)
 
 	/**
 		The maximum size of the hash in bytes.
 	*/
-	public static let MaximumSizeInBytes = PInt(libsodium.crypto_generichash_bytes_max())
+	public static let MaximumSizeInBytes = PInt(sodium.generichash.maximumOutputSizeInBytes)
 
 	/**
 		The default size of the hash in bytes.
 	*/
-	public static let DefaultSizeInBytes = PInt(libsodium.crypto_generichash_bytes())
+	public static let DefaultSizeInBytes = PInt(sodium.generichash.defaultOutputSizeInBytes)
 
 	/**
 		The hash.
@@ -140,41 +143,29 @@ public class GenericHash {
 			return nil
 		}
 
-		var result = Data(count: Int(outputSizeInBytes))
+		let result = bytes.withUnsafeBytes {
+			(bytesPtr: UnsafePointer<UInt8>) -> Data in
 
-		let success = result.withUnsafeMutableBytes {
-			(resultPtr: UnsafeMutablePointer<UInt8>) -> Bool in
+			if let key = key {
+				return key.withUnsafeBytes {
+					(keyPtr: UnsafePointer<UInt8>) -> Data in
 
-			return bytes.withUnsafeBytes {
-				(bytesPtr: UnsafePointer<UInt8>) -> Bool in
-
-				if let key = key {
-					return key.withUnsafeBytes {
-						(keyPtr: UnsafePointer<UInt8>) -> Bool in
-
-						return libsodium.crypto_generichash(
-							resultPtr,
-							Int(outputSizeInBytes),
-							bytesPtr,
-							UInt64(bytes.count),
-							keyPtr,
-							Int(key.sizeInBytes)
-						) == 0
-					}
-				} else {
-					return libsodium.crypto_generichash(
-						resultPtr,
-						Int(outputSizeInBytes),
-						bytesPtr,
-						UInt64(bytes.count),
-						nil,
-						0
-					) == 0
+					return sodium.generichash.hash(
+						outputSizeInBytes: Int(outputSizeInBytes),
+						input: bytesPtr,
+						inputSizeInBytes: UInt64(bytes.count),
+						key: keyPtr,
+						keySizeInBytes: Int(key.sizeInBytes)
+					)
 				}
+			} else {
+				return sodium.generichash.hash(
+					outputSizeInBytes: Int(outputSizeInBytes),
+					input: bytesPtr,
+					inputSizeInBytes: UInt64(bytes.count)
+				)
 			}
 		}
-
-		guard success else { return nil }
 
 		self.bytes = result
 	}
@@ -254,7 +245,7 @@ extension GenericHash: Equatable {
 			return rhs.bytes.withUnsafeBytes {
 				rhsPtr in
 
-				return libsodium.sodium_memcmp(lhsPtr, rhsPtr, Int(lhs.sizeInBytes)) == 0
+				return sodium.memory.areEqual(lhsPtr, rhsPtr, amountInBytes: Int(lhs.sizeInBytes))
 			}
 		}
 	}

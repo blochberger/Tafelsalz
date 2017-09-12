@@ -1,5 +1,3 @@
-import libsodium
-
 /**
 	This class can be used to securely handle passwords. Passwords will be
 	copied to a secure memory location, comparison will be performed in constant
@@ -83,11 +81,11 @@ public class Password {
 	private static func sodiumValue(_ value: ComplexityLimit) -> Int {
 		switch value {
 			case .medium:
-				return libsodium.crypto_pwhash_opslimit_interactive()
+				return sodium.pwhash.opslimit_interactive
 			case .high:
-				return libsodium.crypto_pwhash_opslimit_moderate()
+				return sodium.pwhash.opslimit_moderate
 			case .veryHigh:
-				return libsodium.crypto_pwhash_opslimit_sensitive()
+				return sodium.pwhash.opslimit_sensitive
 		}
 	}
 
@@ -103,11 +101,11 @@ public class Password {
 	private static func sodiumValue(_ value: MemoryLimit) -> Int {
 		switch value {
 		case .medium:
-			return libsodium.crypto_pwhash_memlimit_interactive()
+			return sodium.pwhash.memlimit_interactive
 		case .high:
-			return libsodium.crypto_pwhash_memlimit_moderate()
+			return sodium.pwhash.memlimit_moderate
 		case .veryHigh:
-			return libsodium.crypto_pwhash_memlimit_sensitive()
+			return sodium.pwhash.memlimit_sensitive
 		}
 	}
 
@@ -162,29 +160,21 @@ public class Password {
 		- see: `HashedPassword`
 	*/
 	public func hash(complexity: ComplexityLimit = .high, memory: MemoryLimit = .high) -> HashedPassword? {
-		var hashedPasswordBytes = Data(count: Int(HashedPassword.SizeInBytes))
 
-		let successfullyHashed = hashedPasswordBytes.withUnsafeMutableBytes {
-			hashedPasswordBytesPtr in
+		let optionalHashedPassword = bytes.withUnsafeBytes {
+			passwordBytesPtr in
 
-			return bytes.withUnsafeBytes {
-				passwordBytesPtr in
-
-				return libsodium.crypto_pwhash_str(
-					hashedPasswordBytesPtr,
-					passwordBytesPtr,
-					UInt64(sizeInBytes),
-					UInt64(Password.sodiumValue(complexity)),
-					Password.sodiumValue(memory)
-				) == 0
-			}
+			return sodium.pwhash.storableString(
+				password: passwordBytesPtr,
+				passwordSizeInBytes: UInt64(sizeInBytes),
+				opslimit: Password.sodiumValue(complexity),
+				memlimit: Password.sodiumValue(memory)
+			)
 		}
 
-		guard successfullyHashed else {
-			return nil
-		}
+		guard let hashedPassword = optionalHashedPassword else { return nil }
 
-		return HashedPassword(hashedPasswordBytes)
+		return HashedPassword(hashedPassword)
 	}
 
 	/**
@@ -201,15 +191,11 @@ public class Password {
 		return bytes.withUnsafeBytes {
 			bytesPtr in
 
-			return hashedPassword.bytes.withUnsafeBytes {
-				hashedPasswordBytesPtr in
-
-				return libsodium.crypto_pwhash_str_verify(
-					hashedPasswordBytesPtr,
-					bytesPtr,
-					UInt64(sizeInBytes)
-				) == 0
-			}
+			return sodium.pwhash.isVerifying(
+				storableString: hashedPassword.string,
+				password: bytesPtr,
+				passwordSizeInBytes: UInt64(sizeInBytes)
+			)
 		}
 	}
 }

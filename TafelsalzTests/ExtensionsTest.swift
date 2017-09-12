@@ -4,23 +4,22 @@ import Tafelsalz
 class ExtensionsTest: XCTestCase {
 
 	func testDataExtensions() {
-		XCTAssertNotNil(Data(hex: "DEADBEEF"))
-		XCTAssertNotNil(Data(hex: "cafebabe"))
-		XCTAssertNotNil(Data(hex: "00112233"))
-		XCTAssertNotNil(Data(hex: "X0112233"))
-		XCTAssertNotNil(Data(hex: "DE:AD:BE:EF", ignore: ":"))
-		XCTAssertNotNil(Data(hex: "DE:AD:BE:EF", ignore: "-"))
-		XCTAssertNotNil(Data(hex: "DE:AD:BE:EF", ignore: ":X"))
-		XCTAssertNotNil(Data(hex: "DE:AD:XX:BE:EF", ignore: ":X"))
-
-		XCTAssertEqual("deadbeef", Data(hex: "DEADBEEF").hex)
+		XCTAssertEqual(Data(hex: "DEADBEEF"), Data([0xDE, 0xAD, 0xBE, 0xEF]))
+		XCTAssertEqual(Data(hex: "cafebabe"), Data([0xCA, 0xFE, 0xBA, 0xBE]))
+		XCTAssertEqual(Data(hex: "00112233"), Data([0x00, 0x11, 0x22, 0x33]))
 		XCTAssertEqual(Data(hex: "X0112233"), Data())
-		XCTAssertEqual("de", Data(hex: "DE:AD:BE:EF", ignore: "-").hex)
-		XCTAssertEqual("deadbeef", Data(hex: "DE:AD:BE:EF", ignore: ":").hex)
-		XCTAssertEqual("deadbeef", Data(hex: "DE:AD:BE:EF", ignore: ":X").hex)
-		XCTAssertEqual("deadbeef", Data(hex: "DE:AD:XX:BE:EF", ignore: ":X").hex)
-		XCTAssertEqual("", Data().hex)
 		XCTAssertEqual(Data(hex: ""), Data())
+		XCTAssertEqual(Data(hex: "DE:AD:BE:EF", ignore: ":"), Data([0xDE, 0xAD, 0xBE, 0xEF]))
+		XCTAssertEqual(Data(hex: "DE:AD:BE:EF", ignore: "-"), Data([0xDE]))
+		XCTAssertEqual(Data(hex: "DE:AD:BE:EF", ignore: ":X"), Data([0xDE, 0xAD, 0xBE, 0xEF]))
+		XCTAssertEqual(Data(hex: "DE:AD:XX:BE:EF", ignore: ":X"), Data([0xDE, 0xAD, 0xBE, 0xEF]))
+
+		XCTAssertEqual(Data().hex, "")
+		XCTAssertEqual(Data(hex: "DEADBEEF").hex, "deadbeef")
+		XCTAssertEqual(Data(hex: "DE:AD:BE:EF", ignore: "-").hex, "de")
+		XCTAssertEqual(Data(hex: "DE:AD:BE:EF", ignore: ":").hex, "deadbeef")
+		XCTAssertEqual(Data(hex: "DE:AD:BE:EF", ignore: ":X").hex, "deadbeef")
+		XCTAssertEqual(Data(hex: "DE:AD:XX:BE:EF", ignore: ":X").hex, "deadbeef")
 	}
 
 }

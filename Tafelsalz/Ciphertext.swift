@@ -1,5 +1,3 @@
-import Foundation
-
 /**
 	A ciphertext is an ecrypted message. In contrast to `EncryptedData` it only
 	contains the encrypted message, while `EncryptedData` might contain other

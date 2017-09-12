@@ -51,9 +51,9 @@ The secrets for personas are automatically persisted in the system's Keychain. T
 #### Ephemeral Keys
 
 ```swift
-let secretBox = SecretBox()!
+let secretBox = SecretBox()
 let plaintext = Data("Hello, World!".utf8)
-let ciphertext = secretBox.encrypt(data: plaintext)!
+let ciphertext = secretBox.encrypt(data: plaintext)
 let decrypted = secretBox.decrypt(data: ciphertext)!
 ```
 
@@ -69,7 +69,7 @@ let secretBox = SecretBox(persona: alice)!
 
 // Use your SecretBox as usual
 let plaintext = Data("Hello, World!".utf8)
-let ciphertext = secretBox.encrypt(data: plaintext)!
+let ciphertext = secretBox.encrypt(data: plaintext)
 let decrypted = secretBox.decrypt(data: ciphertext)!
 
 // Forget the persona and remove all related Keychain entries

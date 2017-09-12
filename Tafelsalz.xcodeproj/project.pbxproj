@@ -44,6 +44,8 @@
 		6096E7951F1A67F700E6599F /* RandomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C696A81DBFAE4A00CE9435 /* RandomTests.swift */; };
 		6096E7961F1A67FA00E6599F /* SecretBoxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D73F661DC0D91400AAAC59 /* SecretBoxTests.swift */; };
 		6096E7971F1A680800E6599F /* PersonaTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6096E7651F1A540300E6599F /* PersonaTest.swift */; };
+		60C076591F67C67000258AB7 /* Sodium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C076581F67C67000258AB7 /* Sodium.swift */; };
+		60C0765A1F67C67000258AB7 /* Sodium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C076581F67C67000258AB7 /* Sodium.swift */; };
 		60C211E21EB503CC00882AD0 /* Password.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C211E11EB503CC00882AD0 /* Password.swift */; };
 		60C211E41EB504E500882AD0 /* PasswordTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C211E31EB504E500882AD0 /* PasswordTest.swift */; };
 		60C211E61EB50AF500882AD0 /* HashedPasswordTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C211E51EB50AF500882AD0 /* HashedPasswordTest.swift */; };
@@ -191,6 +193,7 @@
 		6096E80F1F1A69CF00E6599F /* sodium_lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = sodium_lib.h; path = Dependencies/libsodium/sodium_lib.h; sourceTree = "<group>"; };
 		6096E8101F1A69CF00E6599F /* utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = utils.h; path = Dependencies/libsodium/utils.h; sourceTree = "<group>"; };
 		6096E8111F1A69CF00E6599F /* version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = version.h; path = Dependencies/libsodium/version.h; sourceTree = "<group>"; };
+		60C076581F67C67000258AB7 /* Sodium.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sodium.swift; sourceTree = "<group>"; };
 		60C211E11EB503CC00882AD0 /* Password.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Password.swift; sourceTree = "<group>"; };
 		60C211E31EB504E500882AD0 /* PasswordTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordTest.swift; sourceTree = "<group>"; };
 		60C211E51EB50AF500882AD0 /* HashedPasswordTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HashedPasswordTest.swift; sourceTree = "<group>"; };
@@ -267,6 +270,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		60C0765D1F68150300258AB7 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				60C076581F67C67000258AB7 /* Sodium.swift */,
+			);
+			name = Internal;
+			sourceTree = "<group>";
+		};
 		60C6953C1DBDE36000CE9435 = {
 			isa = PBXGroup;
 			children = (
@@ -293,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				60C696941DBDF40600CE9435 /* Supporting Files */,
+				60C0765D1F68150300258AB7 /* Internal */,
 				603F3C491EC313F600FEEBD9 /* Ciphertext.swift */,
 				60C696991DBE02A500CE9435 /* EncryptedData.swift */,
 				601833901F3DAFBF003AE3D8 /* Extensions.swift */,
@@ -642,6 +654,7 @@
 				6096E78A1F1A67D400E6599F /* HashedPassword.swift in Sources */,
 				6096E78C1F1A67DA00E6599F /* Random.swift in Sources */,
 				6096E7901F1A67E700E6599F /* Persona.swift in Sources */,
+				60C0765A1F67C67000258AB7 /* Sodium.swift in Sources */,
 				6096E78F1F1A67E400E6599F /* Ciphertext.swift in Sources */,
 				6018338A1F3CCA5A003AE3D8 /* GenericHash.swift in Sources */,
 				6096E78E1F1A67E100E6599F /* KeyMaterial.swift in Sources */,
@@ -676,6 +689,7 @@
 				6023DFC81DE42DA900E0B95E /* HashedPassword.swift in Sources */,
 				60C696A41DBF908F00CE9435 /* Random.swift in Sources */,
 				6096E7031F18FF9300E6599F /* Persona.swift in Sources */,
+				60C076591F67C67000258AB7 /* Sodium.swift in Sources */,
 				603F3C4A1EC313F600FEEBD9 /* Ciphertext.swift in Sources */,
 				601833891F3CCA5A003AE3D8 /* GenericHash.swift in Sources */,
 				6012BC1E1EBDF28400E47DB8 /* KeyMaterial.swift in Sources */,
