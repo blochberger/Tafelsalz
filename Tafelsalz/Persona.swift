@@ -74,7 +74,7 @@ public class Persona {
 	private func secret<Key: KeyMaterial>(item: GenericPasswordItem, defaultInitializer: () -> Key, capturingInitializer: (inout Data) -> Key?) -> Key? {
 		do {
 			// Try to read the key from the Keychain
-			let encodedKey = try Keychain.retrievePassword(for: item)
+			let encodedKey: Data = try Keychain.retrievePassword(for: item)
 			guard var keyBytes = Data(base64Encoded: encodedKey) else { return nil }
 			guard let key = capturingInitializer(&keyBytes) else { return nil }
 			return key
