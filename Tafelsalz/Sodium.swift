@@ -154,6 +154,86 @@ struct Sodium {
 
 	}
 
+	// MARK: KeyDerivation
+
+	/**
+		Access to the key derivation wrapper.
+	*/
+	let kdf = KeyDerivation()
+
+	/**
+		A wrapper for key derivation.
+	*/
+	struct KeyDerivation {
+
+		/**
+			The size of the master key in bytes.
+		*/
+		let masterKeySizeInBytes = libsodium.crypto_kdf_keybytes()
+
+		/**
+			The size of a sub key context in bytes.
+		*/
+		let contextSizeInBytes = libsodium.crypto_kdf_contextbytes()
+
+		/**
+			The minimum size of a derived key in bytes.
+		*/
+		let minimumSubKeySizeInBytes = libsodium.crypto_kdf_bytes_min()
+
+		/**
+			The maximum size of a derived key in bytes.
+		*/
+		let maximumSubKeySizeInBytes = libsodium.crypto_kdf_bytes_max()
+
+		/**
+			Generate a master key.
+		
+			- parameter pointer: The memory region where the key will be stored.
+		*/
+		func keygen(_ pointer: UnsafeMutablePointer<UInt8>) {
+			libsodium.crypto_kdf_keygen(pointer)
+		}
+
+		/**
+			Derive a sub key from a given master key.
+		
+			- precondition:
+				- `minimumSubKeySizeInBytes` ≤ `subKeySizeInBytes` ≤ `maximumSubKeySizeInBytes`
+				- `context.count` = `contextSizeInBytes`
+				- size of `masterKey` = `masterKeySizeInBytes`
+		
+			- parameter subKey: The memory region where the sub key should be
+				stored.
+			- parameter subKeySizeInBytes: The size of `subKey` in bytes.
+			- parameter subKeyId: The ID of the sub key.
+			- parameter context: A context.
+			- parameter masterKey: The master key.
+		*/
+		func derive(subKey: UnsafeMutablePointer<UInt8>, subKeySizeInBytes: Int, subKeyId: UInt64, context: Data, masterKey: UnsafePointer<UInt8>) {
+			precondition(minimumSubKeySizeInBytes <= subKeySizeInBytes)
+			precondition(subKeySizeInBytes <= maximumSubKeySizeInBytes)
+			precondition(context.count == contextSizeInBytes)
+
+			let status = context.withUnsafeBytes {
+				contextPtr in
+
+				return libsodium.crypto_kdf_derive_from_key(
+					subKey,
+					subKeySizeInBytes,
+					subKeyId,
+					contextPtr,
+					masterKey
+				)
+			}
+
+			guard status == sSuccess else {
+				fatalError("Unhandled status code: \(status)")
+			}
+		}
+
+	}
+
 	// MARK: Memory
 
 	/**

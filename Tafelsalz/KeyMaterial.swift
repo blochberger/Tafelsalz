@@ -6,12 +6,12 @@ public class KeyMaterial {
 	/**
 		The size of the key material in bytes.
 	*/
-	public let sizeInBytes: PInt
+	public var sizeInBytes: PInt { get { return memory.sizeInBytes } }
 
 	/**
 		The pointer to the secure memory location.
 	*/
-	private let bytesPtr: UnsafeMutableRawPointer
+	private let memory: Memory
 
 	/**
 		This is the cached fingerprint.
@@ -26,20 +26,17 @@ public class KeyMaterial {
 			- initialze: If `true`, then the allocated memory will be filled
 				cryptographically secure random data, else it will be filled
 				with `0xdb`.
-
-		- see: [Guarded heap allocations](https://download.libsodium.org/doc/helpers/memory_management.html#guarded-heap-allocations)
 	*/
 	public init(sizeInBytes: PInt, initialize: Bool = true) {
-		let bytesPtr = sodium.memory.allocate(sizeInBytes: Int(sizeInBytes))
+		let memory = Memory(sizeInBytes: sizeInBytes)
 
 		if initialize {
-			sodium.random.bytes(bytesPtr, sizeInBytes: Int(sizeInBytes))
+			memory.withUnsafeMutableBytes {
+				sodium.random.bytes($0, sizeInBytes: Int(sizeInBytes))
+			}
 		}
 
-		self.bytesPtr = bytesPtr
-		self.sizeInBytes = sizeInBytes
-
-		makeInaccessible()
+		self.memory = memory
 	}
 
 	/**
@@ -51,51 +48,17 @@ public class KeyMaterial {
 			- bytes: The key material.
 	*/
 	public init?(bytes: inout Data) {
-		// <#TODO#> Make non-failable
-
-		self.bytesPtr = sodium.memory.allocate(sizeInBytes: bytes.count)
-		self.sizeInBytes = PInt(bytes.count)
-
-		bytes.withUnsafeBytes {
-			bytesPtr in
-
-			self.bytesPtr.copyBytes(from: bytesPtr, count: bytes.count)
-		}
-
-		makeInaccessible()
-
-		sodium.memory.wipe(&bytes)
+		self.memory = Memory(&bytes)
 	}
 
 	/**
-		Deletes key material. The memory is overwritten with zeroes.
-
-		- see: [Guarded heap allocations](https://download.libsodium.org/doc/helpers/memory_management.html#guarded-heap-allocations)
+		Creates another instance pointing to the same secure memory location.
+	
+		- parameter other: Other key material.
 	*/
-	deinit {
-		makeReadWritable()
-		sodium.memory.free(bytesPtr)
-	}
-
-	/**
-		Make the memory location where the key material is stored read only.
-	*/
-	private func makeReadOnly() {
-		sodium.memory.make_readonly(bytesPtr)
-	}
-
-	/**
-		Make the memory location where the key material is stored writable.
-	*/
-	private func makeReadWritable() {
-		sodium.memory.make_readwritable(bytesPtr)
-	}
-
-	/**
-		Make the memory location where the key material is stored inaccessible.
-	*/
-	private func makeInaccessible() {
-		sodium.memory.make_inaccessible(bytesPtr)
+	public init(_ other: KeyMaterial) {
+		self.memory = other.memory
+		self.cachedHash = other.cachedHash
 	}
 
 	/**
@@ -109,13 +72,7 @@ public class KeyMaterial {
 		- returns: The result from the `body` code block.
 	*/
 	public func withUnsafeBytes<ResultType, ContentType>(body: (UnsafePointer<ContentType>) throws -> ResultType) rethrows -> ResultType {
-		makeReadOnly()
-
-		let result = try body(UnsafeRawPointer(bytesPtr).bindMemory(to: ContentType.self, capacity: Int(sizeInBytes)))
-
-		makeInaccessible()
-
-		return result
+		return try memory.withUnsafeBytes(body: body)
 	}
 
 	/**
@@ -130,13 +87,7 @@ public class KeyMaterial {
 		- returns: The result from the `body` code block.
 	*/
 	func withUnsafeMutableBytes<ResultType, ContentType>(body: (UnsafeMutablePointer<ContentType>) throws -> ResultType) rethrows -> ResultType {
-		makeReadWritable()
-
-		let result = try body(UnsafeMutableRawPointer(bytesPtr).bindMemory(to: ContentType.self, capacity: Int(sizeInBytes)))
-
-		makeInaccessible()
-
-		return result
+		return try memory.withUnsafeMutableBytes(body: body)
 	}
 
 	/**

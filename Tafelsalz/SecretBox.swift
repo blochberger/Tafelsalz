@@ -66,6 +66,19 @@ public class SecretBox {
 		}
 
 		/**
+			Creates a secret key from other key material.
+
+			- precondition: `other.sizeInBytes` = `SizeInBytes`
+		
+			- parameter other: The other key material.
+		*/
+		override init(_ other: KeyMaterial) {
+			precondition(other.sizeInBytes == SecretKey.SizeInBytes)
+
+			super.init(other)
+		}
+
+		/**
 			Restores a secret key from a given byte array. The byte array is
 			copied to a secure location and overwritten with zeroes to avoid the
 			key being compromised in memory.

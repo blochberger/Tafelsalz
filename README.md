@@ -114,6 +114,18 @@ let hash = GenericHash(bytes: data, for: alice)
 try! Persona.forget(alice)
 ```
 
+### Key Derivation
+
+```swift
+let context = MasterKey.Context("Examples")!
+let masterKey = MasterKey()
+let subKey1 = masterKey.derive(sizeInBytes: MasterKey.DerivedKey.MinimumSizeInBytes, with: 0, and: context)!
+let subKey2 = masterKey.derive(sizeInBytes: MasterKey.DerivedKey.MinimumSizeInBytes, with: 1, and: context)!
+
+// You can also derive a key in order to use it with secret boxes
+let secretBox = SecretBox(secretKey: masterKey.derive(with: 0, and: context))
+```
+
 ---
 
 1. D. J. Bernstein, T. Lange, and P. Schwabe, [**The Security Impact of a New Cryptographic Library**](http://dx.doi.org/10.1007/978-3-642-33481-8_9) in *Progress in Cryptology – LATINCRYPT 2012 – 2nd International Conference on Cryptology and Information Security in Latin America, Santiago, Chile, October 7-10, 2012. Proceedings* (A. Hevia and G. Neven, eds.), pp. 159–176
