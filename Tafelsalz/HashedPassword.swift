@@ -49,6 +49,10 @@ public struct HashedPassword {
 			return nil
 		}
 
+		guard String(bytes: bytes, encoding: .nonLossyASCII) != nil else {
+			return nil
+		}
+
 		self.bytes = bytes
 	}
 

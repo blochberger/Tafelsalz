@@ -4,23 +4,21 @@ import XCTest
 class HashedPasswordTest: XCTestCase {
 
     func testInitializer() {
-		XCTAssertNotNil(
-			HashedPassword(Random.bytes(count: HashedPassword.SizeInBytes))
-		)
+		let validAsciiCharacter = UInt8(Random.number(withUpperBound: 0x7F))
+		let sizeInBytes = Int(HashedPassword.SizeInBytes)
 
-        XCTAssertNil(
-			HashedPassword(Random.bytes(count: HashedPassword.SizeInBytes - 1))
-		)
+		XCTAssertNotNil(HashedPassword(Data(repeating: validAsciiCharacter, count: sizeInBytes)))
+        XCTAssertNil(HashedPassword(Data(repeating: validAsciiCharacter, count: sizeInBytes - 1)))
+		XCTAssertNil(HashedPassword(Data(repeating: validAsciiCharacter, count: sizeInBytes + 1)))
 
-		XCTAssertNil(
-			HashedPassword(Random.bytes(count: HashedPassword.SizeInBytes + 1))
-		)
+		XCTAssertNil(HashedPassword(Data(repeating: 0xFF, count: sizeInBytes)))
     }
 
 	func testString() {
-		let bytes = Random.bytes(count: HashedPassword.SizeInBytes)
-		let hashedPassword = HashedPassword(bytes)
+		let validAsciiCharacter = UInt8(Random.number(withUpperBound: 0x7F))
+		let bytes = Data(repeating: validAsciiCharacter, count: Int(HashedPassword.SizeInBytes))
+		let hashedPassword = HashedPassword(bytes)!
 
-		XCTAssertEqual(String(data: bytes, encoding: .ascii)!, hashedPassword?.string)
+		XCTAssertEqual(String(data: bytes, encoding: .nonLossyASCII)!, hashedPassword.string)
 	}
 }
