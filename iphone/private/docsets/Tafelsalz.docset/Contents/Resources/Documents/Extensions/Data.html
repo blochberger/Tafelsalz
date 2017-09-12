@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           Tafelsalz Docs
         </a>
-         (100% documented)
+         (97% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -63,6 +63,18 @@
                 <a class="nav-group-task-link" href="../Classes/KeyMaterial.html">KeyMaterial</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/MasterKey.html">MasterKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/MasterKey/Context.html">– Context</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/MasterKey/DerivedKey.html">– DerivedKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Memory.html">Memory</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/Password.html">Password</a>
               </li>
               <li class="nav-group-task">
@@ -76,9 +88,6 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/Persona/Kind.html">– Kind</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/Random.html">Random</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/SecretBox.html">SecretBox</a>
@@ -95,8 +104,16 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/SecretBox/AuthenticatedCiphertext.html">– AuthenticatedCiphertext</a>
               </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Global Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/Tafelsalz.html">Tafelsalz</a>
+                <a class="nav-group-task-link" href="../Global Variables.html#/s:v9TafelsalzP33_A15325CBA4DE7A561417801BA05F20FA8sSuccessVs5Int32">sSuccess</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global Variables.html#/s:v9Tafelsalz6sodiumVS_6Sodium">sodium</a>
               </li>
             </ul>
           </li>
@@ -124,6 +141,30 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/HashedPassword.html">HashedPassword</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Random.html">Random</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Sodium.html">Sodium</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Sodium/GenericHash.html">– GenericHash</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Sodium/KeyDerivation.html">– KeyDerivation</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Sodium/Memory.html">– Memory</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Sodium/PasswordHash.html">– PasswordHash</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Sodium/RandomBytes.html">– RandomBytes</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Sodium/SecretBox.html">– SecretBox</a>
               </li>
             </ul>
           </li>
@@ -153,9 +194,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FE9TafelsalzV10Foundation4DatacFT3hexSS6ignoreGSqSS__GSqS1__"></a>
+                    <a name="/s:FE9TafelsalzV10Foundation4DatacFT3hexSS6ignoreGSqSS__S1_"></a>
                     <a name="//apple_ref/swift/Method/init(hex:ignore:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FE9TafelsalzV10Foundation4DatacFT3hexSS6ignoreGSqSS__GSqS1__">init(hex:ignore:)</a>
+                    <a class="token" href="#/s:FE9TafelsalzV10Foundation4DatacFT3hexSS6ignoreGSqSS__S1_">init(hex:ignore:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -168,7 +209,7 @@
     <p class="aside-title">Note</p>
     <p>The byte array will contain the bytes up until the first non-hex
 character, e.g.:</p>
-<pre class="highlight swift"><code><span class="kt">Data</span><span class="p">(</span><span class="nv">hex</span><span class="p">:</span> <span class="s">"00XX11"</span><span class="p">)</span><span class="o">.</span><span class="n">hex</span> <span class="o">==</span> <span class="mo">00</span>
+<pre class="highlight swift"><code><span class="kt">Data</span><span class="p">(</span><span class="nv">hex</span><span class="p">:</span> <span class="s">"00XX11"</span><span class="p">)</span><span class="o">.</span><span class="n">hex</span> <span class="o">==</span> <span class="s">"00"</span>
 <span class="kt">Data</span><span class="p">(</span><span class="nv">hex</span><span class="p">:</span> <span class="s">"XX"</span><span class="p">)</span><span class="o">.</span><span class="n">hex</span> <span class="o">==</span> <span class="s">""</span>
 </code></pre>
 
@@ -179,7 +220,7 @@ character, e.g.:</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">hex</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">ignore</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">hex</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">ignore</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -216,7 +257,7 @@ string.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/fb066ad77f55b5daad2fe175d818cec88202c64e/Tafelsalz/Extensions.swift#L24-L51">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/75c75f4e9fc6b6d5b2aa493c248c3f10d783ceb6/Tafelsalz/Extensions.swift#L20-L22">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -224,9 +265,9 @@ string.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vE9TafelsalzV10Foundation4Data3hexGSqSS_"></a>
+                    <a name="/s:vE9TafelsalzV10Foundation4Data3hexSS"></a>
                     <a name="//apple_ref/swift/Property/hex" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vE9TafelsalzV10Foundation4Data3hexGSqSS_">hex</a>
+                    <a class="token" href="#/s:vE9TafelsalzV10Foundation4Data3hexSS">hex</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -249,12 +290,12 @@ string.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">hex</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">hex</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/fb066ad77f55b5daad2fe175d818cec88202c64e/Tafelsalz/Extensions.swift#L64-L82">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/75c75f4e9fc6b6d5b2aa493c248c3f10d783ceb6/Tafelsalz/Extensions.swift#L35-L37">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -267,7 +308,7 @@ string.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2017-09-11)</p>
+      <p>&copy; 2017 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2017-09-12)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

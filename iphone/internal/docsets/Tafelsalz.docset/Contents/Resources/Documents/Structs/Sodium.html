@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Sodium Struct Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Struct/Sodium" class="dashAnchor"></a>
+
+    <a title="Sodium Struct Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          Tafelsalz Docs
+        </a>
+         (96% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/blochberger/Tafelsalz">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">Tafelsalz Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      Sodium Struct Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/GenericHash.html">GenericHash</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/GenericHash/Key.html">– Key</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KeyMaterial.html">KeyMaterial</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/MasterKey.html">MasterKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/MasterKey/Context.html">– Context</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/MasterKey/DerivedKey.html">– DerivedKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Memory.html">Memory</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Password.html">Password</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Password/ComplexityLimit.html">– ComplexityLimit</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Password/MemoryLimit.html">– MemoryLimit</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Persona.html">Persona</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/SecretBox.html">SecretBox</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/SecretBox/SecretKey.html">– SecretKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/SecretBox/Nonce.html">– Nonce</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/SecretBox/AuthenticationCode.html">– AuthenticationCode</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/SecretBox/AuthenticatedCiphertext.html">– AuthenticatedCiphertext</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Global Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Global Variables.html#/s:v9Tafelsalz6sodiumVS_6Sodium">sodium</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Data.html">Data</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/EncryptedData.html">EncryptedData</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Ciphertext.html">Ciphertext</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/HashedPassword.html">HashedPassword</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Random.html">Random</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Sodium.html">Sodium</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Sodium/GenericHash.html">– GenericHash</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Sodium/KeyDerivation.html">– KeyDerivation</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Sodium/Memory.html">– Memory</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Sodium/PasswordHash.html">– PasswordHash</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Sodium/RandomBytes.html">– RandomBytes</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Sodium/SecretBox.html">– SecretBox</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Typealiases.html">Typealiases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:9Tafelsalz4PInt">PInt</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>Sodium</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Sodium</span></code></pre>
+
+                </div>
+              </div>
+            <p>A wrapper for <code>libsodium</code> that on one hand offers convenient access to the
+<code>libsodium</code> bindings and on the other hand assures that <code>libsodium</code> was
+initialized before actually invoking methods.</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/GenericHash"></a>
+                <a name="//apple_ref/swift/Section/GenericHash" class="dashAnchor"></a>
+                <a href="#/GenericHash">
+                  <h3 class="section-name">GenericHash</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV9Tafelsalz6Sodium11generichashVS0_11GenericHash"></a>
+                    <a name="//apple_ref/swift/Property/generichash" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV9Tafelsalz6Sodium11generichashVS0_11GenericHash">generichash</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Access to the wrapper for generic hashing.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">let</span> <span class="nv">generichash</span> <span class="o">=</span> <span class="kt"><a href="../Structs/Sodium/GenericHash.html">GenericHash</a></span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/75c75f4e9fc6b6d5b2aa493c248c3f10d783ceb6/Tafelsalz/Sodium.swift#L47">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:VV9Tafelsalz6Sodium11GenericHash"></a>
+                    <a name="//apple_ref/swift/Struct/GenericHash" class="dashAnchor"></a>
+                    <a class="token" href="#/s:VV9Tafelsalz6Sodium11GenericHash">GenericHash</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A wrapper for generic hashing.</p>
+
+                        <a href="../Structs/Sodium/GenericHash.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">GenericHash</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/75c75f4e9fc6b6d5b2aa493c248c3f10d783ceb6/Tafelsalz/Sodium.swift#L52-L155">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/KeyDerivation"></a>
+                <a name="//apple_ref/swift/Section/KeyDerivation" class="dashAnchor"></a>
+                <a href="#/KeyDerivation">
+                  <h3 class="section-name">KeyDerivation</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV9Tafelsalz6Sodium3kdfVS0_13KeyDerivation"></a>
+                    <a name="//apple_ref/swift/Property/kdf" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV9Tafelsalz6Sodium3kdfVS0_13KeyDerivation">kdf</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Access to the key derivation wrapper.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">let</span> <span class="nv">kdf</span> <span class="o">=</span> <span class="kt"><a href="../Structs/Sodium/KeyDerivation.html">KeyDerivation</a></span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/75c75f4e9fc6b6d5b2aa493c248c3f10d783ceb6/Tafelsalz/Sodium.swift#L162">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:VV9Tafelsalz6Sodium13KeyDerivation"></a>
+                    <a name="//apple_ref/swift/Struct/KeyDerivation" class="dashAnchor"></a>
+                    <a class="token" href="#/s:VV9Tafelsalz6Sodium13KeyDerivation">KeyDerivation</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A wrapper for key derivation.</p>
+
+                        <a href="../Structs/Sodium/KeyDerivation.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">KeyDerivation</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/75c75f4e9fc6b6d5b2aa493c248c3f10d783ceb6/Tafelsalz/Sodium.swift#L167-L235">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Memory"></a>
+                <a name="//apple_ref/swift/Section/Memory" class="dashAnchor"></a>
+                <a href="#/Memory">
+                  <h3 class="section-name">Memory</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV9Tafelsalz6Sodium6memoryVS0_6Memory"></a>
+                    <a name="//apple_ref/swift/Property/memory" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV9Tafelsalz6Sodium6memoryVS0_6Memory">memory</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Access to the secure memory wrapper.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">let</span> <span class="nv">memory</span> <span class="o">=</span> <span class="kt"><a href="../Structs/Sodium/Memory.html">Memory</a></span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/75c75f4e9fc6b6d5b2aa493c248c3f10d783ceb6/Tafelsalz/Sodium.swift#L242">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:VV9Tafelsalz6Sodium6Memory"></a>
+                    <a name="//apple_ref/swift/Struct/Memory" class="dashAnchor"></a>
+                    <a class="token" href="#/s:VV9Tafelsalz6Sodium6Memory">Memory</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A wrapper for handling secure memory allocations.</p>
+<div class="aside aside-see">
+    <p class="aside-title">See</p>
+    <a href="https://download.libsodium.org/doc/helpers/memory_management.html"><code>libsodium</code>: Securing memory allocations</a>
+
+</div>
+
+                        <a href="../Structs/Sodium/Memory.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Memory</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/75c75f4e9fc6b6d5b2aa493c248c3f10d783ceb6/Tafelsalz/Sodium.swift#L249-L371">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/PwHash"></a>
+                <a name="//apple_ref/swift/Section/PwHash" class="dashAnchor"></a>
+                <a href="#/PwHash">
+                  <h3 class="section-name">PwHash</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV9Tafelsalz6Sodium6pwhashVS0_12PasswordHash"></a>
+                    <a name="//apple_ref/swift/Property/pwhash" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV9Tafelsalz6Sodium6pwhashVS0_12PasswordHash">pwhash</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Access to the password hashing wrapper</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">let</span> <span class="nv">pwhash</span> <span class="o">=</span> <span class="kt"><a href="../Structs/Sodium/PasswordHash.html">PasswordHash</a></span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/75c75f4e9fc6b6d5b2aa493c248c3f10d783ceb6/Tafelsalz/Sodium.swift#L378">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:VV9Tafelsalz6Sodium12PasswordHash"></a>
+                    <a name="//apple_ref/swift/Struct/PasswordHash" class="dashAnchor"></a>
+                    <a class="token" href="#/s:VV9Tafelsalz6Sodium12PasswordHash">PasswordHash</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A wrapper for password hashing.</p>
+
+                        <a href="../Structs/Sodium/PasswordHash.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">PasswordHash</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/75c75f4e9fc6b6d5b2aa493c248c3f10d783ceb6/Tafelsalz/Sodium.swift#L383-L483">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/RandomBytes"></a>
+                <a name="//apple_ref/swift/Section/RandomBytes" class="dashAnchor"></a>
+                <a href="#/RandomBytes">
+                  <h3 class="section-name">RandomBytes</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV9Tafelsalz6Sodium6randomVS0_11RandomBytes"></a>
+                    <a name="//apple_ref/swift/Property/random" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV9Tafelsalz6Sodium6randomVS0_11RandomBytes">random</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Access to the wrapper for secure random byte generation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">let</span> <span class="nv">random</span> <span class="o">=</span> <span class="kt"><a href="../Structs/Sodium/RandomBytes.html">RandomBytes</a></span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/75c75f4e9fc6b6d5b2aa493c248c3f10d783ceb6/Tafelsalz/Sodium.swift#L490">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:VV9Tafelsalz6Sodium11RandomBytes"></a>
+                    <a name="//apple_ref/swift/Struct/RandomBytes" class="dashAnchor"></a>
+                    <a class="token" href="#/s:VV9Tafelsalz6Sodium11RandomBytes">RandomBytes</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A wrapper for generating random bytes securely.</p>
+
+                        <a href="../Structs/Sodium/RandomBytes.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">RandomBytes</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/75c75f4e9fc6b6d5b2aa493c248c3f10d783ceb6/Tafelsalz/Sodium.swift#L495-L549">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/SecretBox"></a>
+                <a name="//apple_ref/swift/Section/SecretBox" class="dashAnchor"></a>
+                <a href="#/SecretBox">
+                  <h3 class="section-name">SecretBox</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV9Tafelsalz6Sodium9secretboxVS0_9SecretBox"></a>
+                    <a name="//apple_ref/swift/Property/secretbox" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV9Tafelsalz6Sodium9secretboxVS0_9SecretBox">secretbox</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Access to the secret box wrapper.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">let</span> <span class="nv">secretbox</span> <span class="o">=</span> <span class="kt"><a href="../Structs/Sodium/SecretBox.html">SecretBox</a></span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/75c75f4e9fc6b6d5b2aa493c248c3f10d783ceb6/Tafelsalz/Sodium.swift#L556">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:VV9Tafelsalz6Sodium9SecretBox"></a>
+                    <a name="//apple_ref/swift/Struct/SecretBox" class="dashAnchor"></a>
+                    <a class="token" href="#/s:VV9Tafelsalz6Sodium9SecretBox">SecretBox</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A wrapper for symmetric encryption.</p>
+
+                        <a href="../Structs/Sodium/SecretBox.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">SecretBox</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/75c75f4e9fc6b6d5b2aa493c248c3f10d783ceb6/Tafelsalz/Sodium.swift#L561-L690">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Utilities"></a>
+                <a name="//apple_ref/swift/Section/Utilities" class="dashAnchor"></a>
+                <a href="#/Utilities">
+                  <h3 class="section-name">Utilities</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV9Tafelsalz6Sodium7hex2binFTSS6ignoreGSqSS__V10Foundation4Data"></a>
+                    <a name="//apple_ref/swift/Method/hex2bin(_:ignore:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV9Tafelsalz6Sodium7hex2binFTSS6ignoreGSqSS__V10Foundation4Data">hex2bin(_:ignore:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Converts the hex-characters until the first non-hex charater in a string
+to a byte array.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">hex2bin</span><span class="p">(</span><span class="n">_</span> <span class="nv">hex</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">ignore</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>hex</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The string.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ignore</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A string containing characters that should be
+ignored. E.g., this is useful to ignore the colon if <code>hex</code> is
+<q>00:11</q>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The byte array.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/75c75f4e9fc6b6d5b2aa493c248c3f10d783ceb6/Tafelsalz/Sodium.swift#L705-L742">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV9Tafelsalz6Sodium7bin2hexFV10Foundation4DataSS"></a>
+                    <a name="//apple_ref/swift/Method/bin2hex(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV9Tafelsalz6Sodium7bin2hexFV10Foundation4DataSS">bin2hex(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Converts a byte array to a hex-encoded string.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">bin2hex</span><span class="p">(</span><span class="n">_</span> <span class="nv">bin</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>bin</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The byte array.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The hex-encoded string.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/75c75f4e9fc6b6d5b2aa493c248c3f10d783ceb6/Tafelsalz/Sodium.swift#L751-L775">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2017 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2017-09-12)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

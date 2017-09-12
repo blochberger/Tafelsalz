@@ -62,6 +62,18 @@
                 <a class="nav-group-task-link" href="Classes/KeyMaterial.html">KeyMaterial</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/MasterKey.html">MasterKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/MasterKey/Context.html">– Context</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/MasterKey/DerivedKey.html">– DerivedKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Memory.html">Memory</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/Password.html">Password</a>
               </li>
               <li class="nav-group-task">
@@ -72,9 +84,6 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/Persona.html">Persona</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/Random.html">Random</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/SecretBox.html">SecretBox</a>
@@ -117,6 +126,9 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/HashedPassword.html">HashedPassword</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Random.html">Random</a>
               </li>
             </ul>
           </li>
@@ -189,9 +201,9 @@
 <h2 id='examples' class='heading'>Examples</h2>
 <h3 id='symmetric-encryption' class='heading'>Symmetric Encryption</h3>
 <h4 id='ephemeral-keys' class='heading'>Ephemeral Keys</h4>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">secretBox</span> <span class="o">=</span> <span class="kt">SecretBox</span><span class="p">()</span><span class="o">!</span>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">secretBox</span> <span class="o">=</span> <span class="kt">SecretBox</span><span class="p">()</span>
 <span class="k">let</span> <span class="nv">plaintext</span> <span class="o">=</span> <span class="kt">Data</span><span class="p">(</span><span class="s">"Hello, World!"</span><span class="o">.</span><span class="n">utf8</span><span class="p">)</span>
-<span class="k">let</span> <span class="nv">ciphertext</span> <span class="o">=</span> <span class="n">secretBox</span><span class="o">.</span><span class="nf">encrypt</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="n">plaintext</span><span class="p">)</span><span class="o">!</span>
+<span class="k">let</span> <span class="nv">ciphertext</span> <span class="o">=</span> <span class="n">secretBox</span><span class="o">.</span><span class="nf">encrypt</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="n">plaintext</span><span class="p">)</span>
 <span class="k">let</span> <span class="nv">decrypted</span> <span class="o">=</span> <span class="n">secretBox</span><span class="o">.</span><span class="nf">decrypt</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="n">ciphertext</span><span class="p">)</span><span class="o">!</span>
 </code></pre>
 <h4 id='persisted-keys' class='heading'>Persisted Keys</h4>
@@ -204,7 +216,7 @@
 
 <span class="c1">// Use your SecretBox as usual</span>
 <span class="k">let</span> <span class="nv">plaintext</span> <span class="o">=</span> <span class="kt">Data</span><span class="p">(</span><span class="s">"Hello, World!"</span><span class="o">.</span><span class="n">utf8</span><span class="p">)</span>
-<span class="k">let</span> <span class="nv">ciphertext</span> <span class="o">=</span> <span class="n">secretBox</span><span class="o">.</span><span class="nf">encrypt</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="n">plaintext</span><span class="p">)</span><span class="o">!</span>
+<span class="k">let</span> <span class="nv">ciphertext</span> <span class="o">=</span> <span class="n">secretBox</span><span class="o">.</span><span class="nf">encrypt</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="n">plaintext</span><span class="p">)</span>
 <span class="k">let</span> <span class="nv">decrypted</span> <span class="o">=</span> <span class="n">secretBox</span><span class="o">.</span><span class="nf">decrypt</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="n">ciphertext</span><span class="p">)</span><span class="o">!</span>
 
 <span class="c1">// Forget the persona and remove all related Keychain entries</span>
@@ -238,6 +250,15 @@
 <span class="c1">// Forget the persona and remove all related Keychain entries</span>
 <span class="k">try!</span> <span class="kt">Persona</span><span class="o">.</span><span class="nf">forget</span><span class="p">(</span><span class="n">alice</span><span class="p">)</span>
 </code></pre>
+<h3 id='key-derivation' class='heading'>Key Derivation</h3>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">context</span> <span class="o">=</span> <span class="kt">MasterKey</span><span class="o">.</span><span class="kt">Context</span><span class="p">(</span><span class="s">"Examples"</span><span class="p">)</span><span class="o">!</span>
+<span class="k">let</span> <span class="nv">masterKey</span> <span class="o">=</span> <span class="kt">MasterKey</span><span class="p">()</span>
+<span class="k">let</span> <span class="nv">subKey1</span> <span class="o">=</span> <span class="n">masterKey</span><span class="o">.</span><span class="nf">derive</span><span class="p">(</span><span class="nv">sizeInBytes</span><span class="p">:</span> <span class="kt">MasterKey</span><span class="o">.</span><span class="kt">DerivedKey</span><span class="o">.</span><span class="kt">MinimumSizeInBytes</span><span class="p">,</span> <span class="nv">with</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">and</span><span class="p">:</span> <span class="n">context</span><span class="p">)</span><span class="o">!</span>
+<span class="k">let</span> <span class="nv">subKey2</span> <span class="o">=</span> <span class="n">masterKey</span><span class="o">.</span><span class="nf">derive</span><span class="p">(</span><span class="nv">sizeInBytes</span><span class="p">:</span> <span class="kt">MasterKey</span><span class="o">.</span><span class="kt">DerivedKey</span><span class="o">.</span><span class="kt">MinimumSizeInBytes</span><span class="p">,</span> <span class="nv">with</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">and</span><span class="p">:</span> <span class="n">context</span><span class="p">)</span><span class="o">!</span>
+
+<span class="c1">// You can also derive a key in order to use it with secret boxes</span>
+<span class="k">let</span> <span class="nv">secretBox</span> <span class="o">=</span> <span class="kt">SecretBox</span><span class="p">(</span><span class="nv">secretKey</span><span class="p">:</span> <span class="n">masterKey</span><span class="o">.</span><span class="nf">derive</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">and</span><span class="p">:</span> <span class="n">context</span><span class="p">))</span>
+</code></pre>
 
 <hr>
 
@@ -253,7 +274,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2017-09-11)</p>
+      <p>&copy; 2017 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2017-09-12)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
