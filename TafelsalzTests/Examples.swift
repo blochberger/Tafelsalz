@@ -1,5 +1,6 @@
 import XCTest
-@testable import Tafelsalz
+
+import Tafelsalz
 
 class Examples: XCTestCase {
 
