@@ -1,6 +1,12 @@
 import XCTest
 @testable import Tafelsalz
 
+extension KeyMaterial: Equatable {
+	public static func ==(lhs: KeyMaterial, rhs: KeyMaterial) -> Bool {
+		return lhs.copyBytes() == rhs.copyBytes()
+	}
+}
+
 class KeyMaterialTest: XCTestCase {
 
 	// MARK: - Meta tests
@@ -15,10 +21,10 @@ class KeyMaterialTest: XCTestCase {
 		XCTAssertEqual(instance1.sizeInBytes, fixedSizeInBytes)
 
 		// Test reflexivity
-		XCTAssertEqual(instance1.copyBytes(), instance1.copyBytes())
+		XCTAssertEqual(instance1, instance1)
 
 		// Test uniqueness after initialization
-		XCTAssertNotEqual(instance1.copyBytes(), initializer().copyBytes())
+		XCTAssertNotEqual(instance1, initializer())
 	}
 
 	static func metaTestCapturingInitializer<T: KeyMaterial>(
@@ -46,7 +52,7 @@ class KeyMaterialTest: XCTestCase {
 			// Test that passed argument is zeroed
 			XCTAssertEqual(bytes, Data(count: Int(sizeInBytes)))
 
-			XCTAssertEqual(instance.copyBytes(), instance.copyBytes())
+			XCTAssertEqual(instance, instance)
 		}
 
 		// Test creating instance from byte sequence with incorrect size

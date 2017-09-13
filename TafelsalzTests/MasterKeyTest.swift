@@ -2,12 +2,6 @@ import XCTest
 
 import Tafelsalz
 
-extension MasterKey.DerivedKey: Equatable {
-	public static func ==(lhs: MasterKey.DerivedKey, rhs: MasterKey.DerivedKey) -> Bool {
-		return lhs.copyBytes() == rhs.copyBytes()
-	}
-}
-
 class MasterKeyTest: XCTestCase {
 
 	// MARK: Context
