@@ -145,10 +145,29 @@ public class MasterKey: KeyMaterial {
 		- parameters:
 			- id: The ID of the derived key.]
 			- context: A context in which the derived key is used.
+	
+		- returns: The secret key.
 	*/
 	public func derive(with id: UInt64, and context: Context) -> SecretBox.SecretKey {
 		let derivedKey = derive(sizeInBytes: SecretBox.SecretKey.SizeInBytes, with: id, and: context)!
 		return SecretBox.SecretKey(derivedKey)
+	}
+
+	/**
+		Derive a key that can be used for personalized hashing.
+
+		- parameters:
+			- id: The ID of the derived key.]
+			- context: A context in which the derived key is used.
+			- outputSizeInBytes: The size of the key in bytes.
+	
+		- returns: `nil` if the size is not valid.
+	*/
+	public func derive(with id: UInt64, and context: Context, outputSizeInBytes: PInt = GenericHash.DefaultSizeInBytes) -> GenericHash.Key? {
+		guard GenericHash.Key.MinimumSizeInBytes <= outputSizeInBytes else { return nil }
+		guard outputSizeInBytes <= GenericHash.Key.MaximumSizeInBytes else { return nil }
+		let derivedKey = derive(sizeInBytes: sizeInBytes, with: id, and: context)!
+		return GenericHash.Key(derivedKey)
 	}
 
 }

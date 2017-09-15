@@ -96,6 +96,22 @@ public class GenericHash {
 			var bytes = Data(hex: hex, ignore: ignore)
 			self.init(bytes: &bytes)
 		}
+
+		/**
+			Creates a hashing key from other key material.
+
+			- precondition:
+				`MinimumSizeInBytes` ≤ `other.sizeInBytes` ≤ `MaximumSizeInBytes`
+
+			- parameters:
+				- other: The other key material.
+		*/
+		override init(_ other: KeyMaterial) {
+			precondition(Key.MinimumSizeInBytes <= other.sizeInBytes)
+			precondition(other.sizeInBytes <= Key.MaximumSizeInBytes)
+
+			super.init(other)
+		}
 	}
 
 	/**

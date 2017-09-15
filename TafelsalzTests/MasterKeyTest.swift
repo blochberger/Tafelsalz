@@ -4,6 +4,22 @@ import Tafelsalz
 
 class MasterKeyTest: XCTestCase {
 
+	func metaTestDerivation<T: KeyMaterial>(mk: MasterKey, derive: (MasterKey, UInt64, MasterKey.Context) -> T) {
+		typealias Context = MasterKey.Context
+
+		let ctx = Context("testtest")!
+
+		let sk1 = derive(mk, 0, ctx)
+		let sk2 = derive(mk, 0, ctx)
+		let sk3 = derive(mk, 1, ctx)
+		let sk4 = derive(mk, 0, Context("Testtest")!)
+
+		KMAssertEqual(sk1, sk2)
+		KMAssertNotEqual(sk1, sk3)
+		KMAssertNotEqual(sk1, sk4)
+		KMAssertNotEqual(sk3, sk4)
+	}
+
 	// MARK: Context
 
 	func testContext() {
@@ -31,23 +47,37 @@ class MasterKeyTest: XCTestCase {
 		typealias Context = MasterKey.Context
 		typealias DerivedKey = MasterKey.DerivedKey
 
-		let size = DerivedKey.MinimumSizeInBytes
-
 		let mk = MasterKey()
+
+		metaTestDerivation(mk: mk) {
+			$0.derive(sizeInBytes: DerivedKey.MinimumSizeInBytes, with: $1, and: $2)!
+		}
+
 		let ctx = Context("testtest")!
-
-		let sk1 = mk.derive(sizeInBytes: size, with: 0, and: ctx)!
-		let sk2 = mk.derive(sizeInBytes: size, with: 0, and: ctx)!
-		let sk3 = mk.derive(sizeInBytes: size, with: 1, and: ctx)!
-		let sk4 = mk.derive(sizeInBytes: size, with: 0, and: Context("Testtest")!)!
-
-		KMAssertEqual(sk1, sk2)
-		KMAssertNotEqual(sk1, sk3)
-		KMAssertNotEqual(sk1, sk4)
-		KMAssertNotEqual(sk3, sk4)
-
 		XCTAssertNil(mk.derive(sizeInBytes: DerivedKey.MinimumSizeInBytes - 1, with: 0, and: ctx))
 		XCTAssertNil(mk.derive(sizeInBytes: DerivedKey.MaximumSizeInBytes + 1, with: 0, and: ctx))
+	}
+
+	func testSecretKeyDerivation() {
+		metaTestDerivation(mk: MasterKey()) {
+			$0.derive(with: $1, and: $2)!
+		}
+	}
+
+	func testGenericHashKeyDerivation() {
+		typealias Context = MasterKey.Context
+		typealias DerivedKey = MasterKey.DerivedKey
+		typealias Key = GenericHash.Key
+
+		let mk = MasterKey()
+
+		metaTestDerivation(mk: MasterKey()) {
+			$0.derive(with: $1, and: $2)!
+		}
+
+		let ctx = Context("testtest")!
+		XCTAssertNil(mk.derive(sizeInBytes: Key.MinimumSizeInBytes - 1, with: 0, and: ctx))
+		XCTAssertNil(mk.derive(sizeInBytes: Key.MaximumSizeInBytes + 1, with: 0, and: ctx))
 	}
 
 }
