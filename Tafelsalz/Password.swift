@@ -16,22 +16,16 @@ public class Password {
 	public enum ComplexityLimit {
 		/**
 			This is the fastest option and should be avoided if possible.
-
-			- see: [`libsodium` documentation](https://download.libsodium.org/doc/password_hashing/the_argon2i_function.html#key-derivation)
 		*/
 		case medium
 
 		/**
 			This takes about 0.7 seconds on a 2.8 Ghz Core i7 CPU.
-
-			- see: [`libsodium` documentation](https://download.libsodium.org/doc/password_hashing/the_argon2i_function.html#key-derivation)
 		*/
 		case high
 
 		/**
 			This takes about 3.5 seconds on a 2.8 Ghz Core i7 CPU.
-
-			- see: [`libsodium` documentation](https://download.libsodium.org/doc/password_hashing/the_argon2i_function.html#key-derivation)
 		*/
 		case veryHigh
 	}
@@ -49,22 +43,16 @@ public class Password {
 	public enum MemoryLimit {
 		/**
 			This requires about 32 MiB memory.
-
-			- see: [`libsodium` documentation](https://download.libsodium.org/doc/password_hashing/the_argon2i_function.html#key-derivation)
 		*/
 		case medium
 
 		/**
 			This requires about 128 MiB memory.
-
-			- see: [`libsodium` documentation](https://download.libsodium.org/doc/password_hashing/the_argon2i_function.html#key-derivation)
 		*/
 		case high
 
 		/**
 			This requires about 512 MiB memory.
-
-			- see: [`libsodium` documentation](https://download.libsodium.org/doc/password_hashing/the_argon2i_function.html#key-derivation)
 		*/
 		case veryHigh
 	}
@@ -143,9 +131,10 @@ public class Password {
 		Hashes a password for securely storing it on disk or in a database for
 		the purpose of authenticating a user.
 
-		- warning: Do not change the complexity limits unless it is required,
-			due to device limits or negative performance impact. Please refer to
-			the [Guidelines for choosing the parameters](https://download.libsodium.org/doc/password_hashing/the_argon2i_function.html#guidelines-for-choosing-the-parameters).
+		- warning:
+			Do not change the complexity limits unless it is required, due to
+			device limits or negative performance impact. Please refer to the
+			[Guidelines for choosing the parameters](https://download.libsodium.org/doc/password_hashing/the_argon2i_function.html#guidelines-for-choosing-the-parameters).
 
 		- parameters:
 			- complexity: The CPU load required.

@@ -22,9 +22,9 @@ public struct Ciphertext: EncryptedData {
 	/**
 		Constructs a `Ciphertext` instance from bytes.
 
-		- note: The bytes passed to this functions must be encrypted already.
-			This does not encrypt the bytes, use `SecretBox` or similar for
-			that.
+		- note:
+			The bytes passed to this functions must be encrypted already. This
+			does not encrypt the bytes, use `SecretBox` or similar for that.
 	*/
 	public init(_ bytes: Data) {
 		self.bytes = bytes

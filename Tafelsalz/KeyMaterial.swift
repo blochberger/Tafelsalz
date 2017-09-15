@@ -54,7 +54,8 @@ public class KeyMaterial {
 	/**
 		Creates another instance pointing to the same secure memory location.
 	
-		- parameter other: Other key material.
+		- parameters:
+			- other: Other key material.
 	*/
 	public init(_ other: KeyMaterial) {
 		self.memory = other.memory
@@ -78,8 +79,9 @@ public class KeyMaterial {
 	/**
 		Make changes to the raw bytes of the key material.
 
-		- warning: Use this with caution, as setting key material manually might
-			lead to insecure key material.
+		- warning:
+			Use this with caution, as setting key material manually might lead
+			to insecure key material.
 
 		- parameters:
 			- body: A code block where the key material is writable.
@@ -94,7 +96,8 @@ public class KeyMaterial {
 		Copy the key material from the secure memory into an insecure byte
 		array.
 
-		- warning: Use this with caution, as the output is not located in secure
+		- warning:
+			Use this with caution, as the output is not located in secure
 			memory.
 
 		- returns: A copy of the key material.
@@ -139,11 +142,7 @@ public class KeyMaterial {
 			instances of possibly different sizes, use
 			`isFingerprintEqual(to:)`.
 
-		- precondition:
-
-			```swift
-			self.sizeInBytes == other.sizeInBytes
-			```
+		- precondition: `sizeInBytes` = `other.sizeInBytes`
 
 		- parameters:
 			- other: Other key material to which this should be compared to.

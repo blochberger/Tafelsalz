@@ -24,13 +24,7 @@ extension Data {
 	/**
 		Outputs a hex encoded string for the byte array.
 
-		- postcondition:
-			This value can be used to duplicate the array, by using the
-			`init(hex:)` initializer:
-
-			```swift
-			data == Data(hex: data.hex)
-			```
+		- postcondition: `data` = `Data(hex: data.hex)`
 	*/
 	public var hex: String {
 		return sodium.bin2hex(self)

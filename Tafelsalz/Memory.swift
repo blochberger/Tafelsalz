@@ -18,7 +18,8 @@ public class Memory {
 	/**
 		Allocates a secure memory region. The region is filled with `0xdb`.
 	
-		- parameter sizeInBytes: The size of the memory region in bytes.
+		- parameters:
+			- sizeInBytes: The size of the memory region in bytes.
 	*/
 	public init(sizeInBytes: PInt) {
 		self.sizeInBytes = sizeInBytes
@@ -31,7 +32,8 @@ public class Memory {
 		Copies bytes from a byte array to a secure memory location and wipes the
 		input.
 	
-		- parameter bytes: The byte array.
+		- parameters:
+			- bytes: The byte array.
 	*/
 	public convenience init(_ bytes: inout Data) {
 		self.init(sizeInBytes: PInt(bytes.count))
@@ -98,7 +100,7 @@ public class Memory {
 		- parameters:
 			- body: A code block where the memory region is writable.
 
-			- returns: The result from the `body` code block.
+		- returns: The result from the `body` code block.
 	*/
 	func withUnsafeMutableBytes<ResultType, ContentType>(body: (UnsafeMutablePointer<ContentType>) throws -> ResultType) rethrows -> ResultType {
 		makeReadWritable()

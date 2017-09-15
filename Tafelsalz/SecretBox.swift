@@ -12,9 +12,9 @@
 	parties.
 
 	```swift
-	let secretBox = SecretBox()!
+	let secretBox = SecretBox()
 	let plaintext = Data("Hello, World!".utf8)
-	let ciphertext = secretBox.encrypt(data: plaintext)!
+	let ciphertext = secretBox.encrypt(data: plaintext)
 	let decrypted = secretBox.decrypt(data: ciphertext)!
 	```
 
@@ -70,7 +70,8 @@ public class SecretBox {
 
 			- precondition: `other.sizeInBytes` = `SizeInBytes`
 		
-			- parameter other: The other key material.
+			- parameters:
+				- other: The other key material.
 		*/
 		override init(_ other: KeyMaterial) {
 			precondition(other.sizeInBytes == SecretKey.SizeInBytes)
@@ -83,9 +84,10 @@ public class SecretBox {
 			copied to a secure location and overwritten with zeroes to avoid the
 			key being compromised in memory.
 
-			- warning: Do not initialize new keys with this function. If you
-				need a new key, use `init?()` instead. This initializer is only
-				to restore secret keys that were persisted.
+			- warning:
+				Do not initialize new keys with this function. If you need a new
+				key, use `init?()` instead. This initializer is only to restore
+				secret keys that were persisted.
 
 			- parameters:
 				- bytes: A secret key.
@@ -122,9 +124,9 @@ public class SecretBox {
 			compromised in memory. The nonce itself is not a secret value, but
 			access in other contexts is not necessary.
 
-			- warning: Do not use this function to create nonces. This
-				initializer is only intended to restore a nonce that was
-				persisted.
+			- warning:
+				Do not use this function to create nonces. This initializer is
+				only intended to restore a nonce that was persisted.
 
 			- parameters:
 				- bytes: The nonce.

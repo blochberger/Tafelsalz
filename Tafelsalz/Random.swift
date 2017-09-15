@@ -24,7 +24,7 @@ public struct Random {
 		Securely generate a random number with a given upper bound. The result
 		has a uniform distribution in the Range of `0..upperBound`.
 
-		- parameter:
+		- parameters:
 			-upperBound: The upper bound.
 	**/
 	public static func number(withUpperBound upperBound: UInt32) -> UInt32 {

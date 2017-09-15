@@ -21,8 +21,7 @@ struct Sodium {
 	/**
 		This initializes `libsodium`.
 
-		- see:
-			[`libsodium` Usage](https://download.libsodium.org/doc/usage/)
+		- see: [`libsodium` Usage](https://download.libsodium.org/doc/usage/)
 	*/
 	fileprivate init() {
 		let sAlreadyInitialized: Int32 = 1
@@ -95,12 +94,12 @@ struct Sodium {
 				- 0 ≤ `keySizeInBytes`
 				- `key` ≠ `nil` ⇒ `minimumKeySizeInBytes` ≤ `keySizeInBytes` ≤ `maximumKeySizeInBytes`
 
-			- parameter outputSizeInBytes: The size of the output in bytes.
-			- parameter input: A pointer to the memory region that should be
-				hashed.
-			- parameter inputSizeInBytes: The size of `input`.
-			- parameter key: The key that should be used for keyed hashing.
-			- parameter keySizeInBytes: The size of `key`.
+			- parameters:
+				- outputSizeInBytes: The size of the output in bytes.
+				- input: A pointer to the memory region that should be hashed.
+				- inputSizeInBytes: The size of `input`.
+				- key: The key that should be used for keyed hashing.
+				- keySizeInBytes: The size of `key`.
 
 			- returns: The hash.
 		*/
@@ -139,12 +138,11 @@ struct Sodium {
 		/**
 			Calculates a generic hash for a given memory region.
 
-			- precondition:
-				- 0 ≤ `inputSizeInBytes`
+			- precondition: 0 ≤ `inputSizeInBytes`
 
-			- parameter input: A pointer to the memory region that should be
-				hashed.
-			- parameter inputSizeInBytes: The size of `input`.
+			- parameters:
+				- input: A pointer to the memory region that should be hashed.
+				- inputSizeInBytes: The size of `input`.
 
 			- returns: The hash.
 		*/
@@ -189,7 +187,8 @@ struct Sodium {
 		/**
 			Generate a master key.
 		
-			- parameter pointer: The memory region where the key will be stored.
+			- parameters:
+				- pointer: The memory region where the key will be stored.
 		*/
 		func keygen(_ pointer: UnsafeMutablePointer<UInt8>) {
 			libsodium.crypto_kdf_keygen(pointer)
@@ -203,12 +202,12 @@ struct Sodium {
 				- `context.count` = `contextSizeInBytes`
 				- size of `masterKey` = `masterKeySizeInBytes`
 		
-			- parameter subKey: The memory region where the sub key should be
-				stored.
-			- parameter subKeySizeInBytes: The size of `subKey` in bytes.
-			- parameter subKeyId: The ID of the sub key.
-			- parameter context: A context.
-			- parameter masterKey: The master key.
+			- parameters:
+				- subKey: The memory region where the sub key should be stored.
+				- subKeySizeInBytes: The size of `subKey` in bytes.
+				- subKeyId: The ID of the sub key.
+				- context: A context.
+				- masterKey: The master key.
 		*/
 		func derive(subKey: UnsafeMutablePointer<UInt8>, subKeySizeInBytes: Int, subKeyId: UInt64, context: Data, masterKey: UnsafePointer<UInt8>) {
 			precondition(minimumSubKeySizeInBytes <= subKeySizeInBytes)
@@ -258,7 +257,8 @@ struct Sodium {
 
 			- precondition: 0 ≤ `sizeInBytes`
 
-			- parameter sizeInBytes: The size of the allocated memory.
+			- parameters:
+				- sizeInBytes: The size of the allocated memory.
 
 			- returns: A pointer to the guarded memory region.
 		*/
@@ -271,7 +271,8 @@ struct Sodium {
 		/**
 			Frees a guarded memory region.
 
-			- parameter pointer: A pointer to the guarded memory region.
+			- parameters: 
+				- pointer: A pointer to the guarded memory region.
 		*/
 		func free(_ pointer: UnsafeMutableRawPointer) {
 			libsodium.sodium_free(pointer)
@@ -282,9 +283,10 @@ struct Sodium {
 
 			- precondition: 0 ≤ `amountInBytes`
 
-			- parameter pointer: A pointer to the guarded memory region.
-			- parameter amountInBytes: The amount of bytes that should be
-				zeroed, starting at the beginning of the memory region.
+			- parameters:
+				- pointer: A pointer to the guarded memory region.
+				- amountInBytes: The amount of bytes that should be zeroed,
+					starting at the beginning of the memory region.
 		*/
 		func wipe(_ pointer: UnsafeMutableRawPointer, amountInBytes: Int) {
 			precondition(0 <= amountInBytes)
@@ -295,7 +297,8 @@ struct Sodium {
 		/**
 			Wipes a byte array by overwriting it with zeroes.
 
-			- parameter bytes: A byte array.
+			- parameters:
+				- bytes: A byte array.
 		*/
 		func wipe(_ bytes: inout Data) {
 			bytes.withUnsafeMutableBytes { wipe($0, amountInBytes: bytes.count) }
@@ -306,10 +309,11 @@ struct Sodium {
 
 			- precondition: 0 ≤ `amountInBytes`
 
-			- parameter lhs: A pointer to the guarded memory region.
-			- parameter rhs: A pointer to the guarded memory region.
-			- parameter amountInBytes: The amount of bytes that should be
-				compared, starting at the beginning of the memory region.
+			- parameters:
+				- lhs: A pointer to the guarded memory region.
+				- rhs: A pointer to the guarded memory region.
+				- amountInBytes: The amount of bytes that should be compared,
+					starting at the beginning of the memory region.
 
 			- returns: `true` if both regions are equal up to `amountInBytes`.
 		*/
@@ -332,7 +336,8 @@ struct Sodium {
 		/**
 			Makes a guarded memory region read-only.
 
-			- parameter pointer: A pointer to the guarded memory region.
+			- parameters:
+				- pointer: A pointer to the guarded memory region.
 		*/
 		func make_readonly(_ pointer: UnsafeMutableRawPointer) {
 			let status = libsodium.sodium_mprotect_readonly(pointer)
@@ -345,7 +350,8 @@ struct Sodium {
 		/**
 			Makes a guarded memory region read-writable.
 
-			- parameter pointer: A pointer to the guarded memory region.
+			- parameters:
+				- pointer: A pointer to the guarded memory region.
 		*/
 		func make_readwritable(_ pointer: UnsafeMutableRawPointer) {
 			let status = libsodium.sodium_mprotect_readwrite(pointer)
@@ -358,7 +364,8 @@ struct Sodium {
 		/**
 			Makes a guarded memory region inaccessible.
 
-			- parameter pointer: A pointer to the guarded memory region.
+			- parameters:
+				- pointer: A pointer to the guarded memory region.
 		*/
 		func make_inaccessible(_ pointer: UnsafeMutableRawPointer) {
 			let status = libsodium.sodium_mprotect_noaccess(pointer)
@@ -410,12 +417,14 @@ struct Sodium {
 				- `opslimit` ∈ {`opslimit_interactive`, `opslimit_moderate`, `opslimit_sensitive`}
 				- `memlimit` ∈ {`memlimit_interactive`, `memlimit_moderate`, `memlimit_sensitive`}
 
-			- parameter password: A pointer to the password.
-			- parameter passwordSizeInBytes: The size of the password.
-			- parameter opslimit: Complexity limit for hashing.
-			- parameter memlimit: Memory limit for hashing.
+			- parameters:
+				- password: A pointer to the password.
+				- passwordSizeInBytes: The size of the password.
+				- opslimit: Complexity limit for hashing.
+				- memlimit: Memory limit for hashing.
 
-			- returns: An ASCII-encoded string that can be stored, `nil` on failure.
+			- returns:
+				An ASCII-encoded string that can be stored, `nil` on failure.
 		*/
 		func storableString(password: UnsafePointer<Int8>, passwordSizeInBytes: UInt64, opslimit: Int, memlimit: Int)  -> String? {
 			let sFailure: Int32 = -1
@@ -454,9 +463,10 @@ struct Sodium {
 				- `storableString` is ASCII-encoded
 				- 0 ≤ `passwordSizeInBytes`
 
-			- parameter storableString: The storable string.
-			- parameter password: A pointer to the password.
-			- parameter passwordSizeInBytes: The size of the password in bytes.
+			- parameters:
+				- storableString: The storable string.
+				- password: A pointer to the password.
+				- passwordSizeInBytes: The size of the password in bytes.
 
 			- returns: `true` if `password` verifies `storableString`.
 		*/
@@ -504,8 +514,9 @@ struct Sodium {
 
 			- precondition: 0 ≤ `sizeInBytes`
 
-			- parameter pointer: A pointer to the memory region.
-			- parameter sizeInBytes: The amount of bytes that should be written.
+			- parameters:
+				- pointer: A pointer to the memory region.
+				- sizeInBytes: The amount of bytes that should be written.
 		*/
 		func bytes(_ pointer: UnsafeMutableRawPointer, sizeInBytes: Int) {
 			precondition(0 <= sizeInBytes)
@@ -516,7 +527,8 @@ struct Sodium {
 		/**
 			Generate a randomly filled byte array.
 
-			- parameter count: The size of the byte array in bytes.
+			- parameters:
+				- count: The size of the byte array in bytes.
 
 			- returns: The byte array.
 		*/
@@ -538,7 +550,8 @@ struct Sodium {
 		/**
 			Generates a random number with uniform distribution.
 
-			- parameter upperBound: The upper bound.
+			- parameters:
+				- upperBound: The upper bound.
 
 			- returns: A random number between 0 and `upperBound`.
 		*/
@@ -583,7 +596,8 @@ struct Sodium {
 		/**
 			Generates a new symmetric key.
 
-			- parameter pointer: The memory region where the key will be stored.
+			- parameters: 
+				- pointer: The memory region where the key will be stored.
 		*/
 		func keygen(_ pointer: UnsafeMutablePointer<UInt8>) {
 			libsodium.crypto_secretbox_keygen(pointer)
@@ -600,9 +614,10 @@ struct Sodium {
 				- `result.0.count` = `sizeOfMacInBytes`
 				- `result.1.count` = `plaintext.count`
 
-			- parameter plaintext: The text that should be encrypted.
-			- parameter nonce: A pointer to the nonce.
-			- parameter key: A pointer to the key.
+			- parameters:
+				- plaintext: The text that should be encrypted.
+				- nonce: A pointer to the nonce.
+				- key: A pointer to the key.
 
 			- returns: A tuple (MAC, ciphertext).
 		*/
@@ -648,13 +663,15 @@ struct Sodium {
 
 			- postcondition: `result.count` = `ciphertext.count`
 
-			- parameter ciphertext:
-			- parameter mac: A pointer to the message authentication code (MAC).
-			- parameter nonce: A pointer to the nonce.
-			- parameter key: A pointer to the key.
+			- parameters:
+				- ciphertext: The ciphertext.
+				- mac: A pointer to the message authentication code (MAC).
+				- nonce: A pointer to the nonce.
+				- key: A pointer to the key.
 
-			- returns: The plaintext, `nil` if the integrity of the
-				authenticated ciphertext could not be verified.
+			- returns:
+				The plaintext, `nil` if the integrity of the authenticated
+				ciphertext could not be verified.
 		*/
 		func decrypt(ciphertext: Data, mac: UnsafePointer<UInt8>, nonce: UnsafePointer<UInt8>, key: UnsafePointer<UInt8>) -> Data? {
 			let sVerificationFailed: Int32 = -1
@@ -695,10 +712,10 @@ struct Sodium {
 		Converts the hex-characters until the first non-hex charater in a string
 		to a byte array.
 
-		- parameter hex: The string.
-		- parameter ignore: A string containing characters that should be
-			ignored. E.g., this is useful to ignore the colon if `hex` is
-			"00:11".
+		- parameters:
+			- hex: The string.
+			- ignore: A string containing characters that should be ignored,
+				e.g., this is useful to ignore the colon if `hex` is "00:11".
 
 		- returns: The byte array.
 	*/
@@ -744,7 +761,8 @@ struct Sodium {
 	/**
 		Converts a byte array to a hex-encoded string.
 
-		- parameter bin: The byte array.
+		- parameters:
+			- bin: The byte array.
 
 		- returns: The hex-encoded string.
 	*/

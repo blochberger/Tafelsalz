@@ -38,9 +38,10 @@ public class Persona {
 		Forget a persona. This will remove all secrets of this persona from the
 		system's Keychain.
 
-		- warning: Removing a persona will delete all secrets of that persona
-			which also means, that encrypted messages or files encrypted for
-			this persona cannot be decrypted anymore.
+		- warning:
+			Removing a persona will delete all secrets of that persona which
+			also means, that encrypted messages or files encrypted for this
+			persona cannot be decrypted anymore.
 
 		- parameters:
 			- persona: The persona that should be deleted.
@@ -79,12 +80,13 @@ public class Persona {
 			- item: The item that identifies a Keychain entry.
 			- defaultInitializer: A default initializer used for new keys.
 			- capturingInitializer: An initializer that takes a byte array.
+			- bytes: The raw bytes of the key.
 
 		- returns:
 			The key for the item. A new key, if the item did not exist, the
 			existing key else and `nil` if there was an error.
 	*/
-	private func secret<Key: KeyMaterial>(for type: KeyType, defaultInitializer: () -> Key, capturingInitializer: (inout Data) -> Key?) throws -> Key {
+	private func secret<Key: KeyMaterial>(for type: KeyType, defaultInitializer: () -> Key, capturingInitializer: (_ bytes: inout Data) -> Key?) throws -> Key {
 		let item = keychainItem(for: type)
 		do {
 			// Try to read the key from the Keychain
@@ -112,8 +114,7 @@ public class Persona {
 	/**
 		The master key of the persona, which can be used to derive other keys.
 	
-		- returns:
-			The master key.
+		- returns: The master key.
 	*/
 	public func masterKey() throws -> MasterKey {
 		return try secret(for: .masterKey, defaultInitializer: { MasterKey() }, capturingInitializer: { MasterKey(bytes: &$0) })

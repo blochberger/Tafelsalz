@@ -26,7 +26,8 @@ public class MasterKey: KeyMaterial {
 		/**
 			Initialize a context from a given byte array.
 		
-			- parameter bytes: The byte array.
+			- parameters:
+				- bytes: The byte array.
 		*/
 		public init?(_ bytes: Data) {
 			guard PInt(bytes.count) == Context.SizeInBytes else { return nil }
@@ -37,7 +38,8 @@ public class MasterKey: KeyMaterial {
 		/**
 			Initialize a context from a given string.
 		
-			- parameter string: The string.
+			- parameters:
+				- string: The string.
 		*/
 		public init?(_ string: String) {
 			self.init(Data(string.utf8))
@@ -64,7 +66,8 @@ public class MasterKey: KeyMaterial {
 			Generate an uninitialized key, as the initialization will happen
 			during derivation.
 		
-			- parameter sizeInBytes: The size of the derived key in bytes.
+			- parameters:
+				- sizeInBytes: The size of the derived key in bytes.
 		*/
 		fileprivate init?(sizeInBytes: PInt) {
 			guard DerivedKey.MinimumSizeInBytes <= sizeInBytes else { return nil }
@@ -89,11 +92,13 @@ public class MasterKey: KeyMaterial {
 		to a secure location and overwritten with zeroes to avoid the key being
 		compromised in memory.
 	
-		- warning: Do not initialize new keys with this function. If you need a
-			new key, use `init?()` instead. This initializer is only to restore
+		- warning:
+			Do not initialize new keys with this function. If you need a new
+			key, use `init?()` instead. This initializer is only to restore
 			secret keys that were persisted.
 
-		- parameters bytes: A master key.
+		- parameters:
+			- bytes: A master key.
 	*/
 	public override init?(bytes: inout Data) {
 		guard PInt(bytes.count) == MasterKey.SizeInBytes else { return nil }
@@ -106,9 +111,10 @@ public class MasterKey: KeyMaterial {
 	
 		A derived key will differ if the `id` or the `context` differs.
 	
-		- parameter sizeInBytes: The size of the derived key in bytes.
-		- parameter id: The ID of the derived key.
-		- parameter context: A context in which the derived key is used.
+		- parameters:
+			- sizeInBytes: The size of the derived key in bytes.
+			- id: The ID of the derived key.
+			- context: A context in which the derived key is used.
 	*/
 	public func derive(sizeInBytes: PInt, with id: UInt64, and context: Context) -> DerivedKey? {
 
@@ -136,8 +142,9 @@ public class MasterKey: KeyMaterial {
 	/**
 		Derive a secret key that can be used with `SecretBox`.
 	
-		- parameter id: The ID of the derived key.]
-		- parameter context: A context in which the derived key is used.
+		- parameters:
+			- id: The ID of the derived key.]
+			- context: A context in which the derived key is used.
 	*/
 	public func derive(with id: UInt64, and context: Context) -> SecretBox.SecretKey {
 		let derivedKey = derive(sizeInBytes: SecretBox.SecretKey.SizeInBytes, with: id, and: context)!
