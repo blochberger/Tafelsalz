@@ -5,7 +5,7 @@ import Keychain
 	secrets are persisted in the system's Keychain. A persona has a unique name.
 
 	The Keychain items are prefixed by the application's bundle identifier and
-	suffixed with a value determining the kind of secret stored.
+	suffixed with a value determining the type of secret stored.
 
 	The actual value of the secret is Base64 encoded to allow users accessing
 	the value from the Keychain Access application (macOS)
@@ -19,8 +19,18 @@ import Keychain
 */
 public class Persona {
 
+	/**
+		These errors indicate that erroneous keys where stored in the Keychain.
+	*/
 	enum Error: Swift.Error {
+		/**
+			This indicates that the key is not Base64-encoded.
+		*/
 		case failedToDecodeKey
+
+		/**
+			This indicates that a key has an invalid size.
+		*/
 		case invalidKey
 	}
 
@@ -74,10 +84,11 @@ public class Persona {
 			The key for the item. A new key, if the item did not exist, the
 			existing key else and `nil` if there was an error.
 	*/
-	private func secret<Key: KeyMaterial>(for kind: Kind, defaultInitializer: () -> Key, capturingInitializer: (inout Data) -> Key?) throws -> Key {
+	private func secret<Key: KeyMaterial>(for type: KeyType, defaultInitializer: () -> Key, capturingInitializer: (inout Data) -> Key?) throws -> Key {
+		let item = keychainItem(for: type)
 		do {
 			// Try to read the key from the Keychain
-			let encodedKey: Data = try Keychain.retrievePassword(for: item(for: kind))
+			let encodedKey: Data = try Keychain.retrievePassword(for: item)
 
 			guard var keyBytes = Data(base64Encoded: encodedKey) else {
 				throw Error.failedToDecodeKey
@@ -93,7 +104,7 @@ public class Persona {
 			// add it to the Keychain.
 			let key = defaultInitializer()
 
-			try Keychain.store(password: key.copyBytes().base64EncodedData(), in: item(for: kind))
+			try Keychain.store(password: key.copyBytes().base64EncodedData(), in: item)
 			return key
 		}
 	}
@@ -104,7 +115,7 @@ public class Persona {
 		- returns:
 			The master key.
 	*/
-	func masterKey() throws -> MasterKey {
+	public func masterKey() throws -> MasterKey {
 		return try secret(for: .masterKey, defaultInitializer: { MasterKey() }, capturingInitializer: { MasterKey(bytes: &$0) })
 	}
 
@@ -113,7 +124,7 @@ public class Persona {
 
 		- returns: The secret key.
 	*/
-	func secretKey() throws -> SecretBox.SecretKey {
+	public func secretKey() throws -> SecretBox.SecretKey {
 		return try secret(for: .secretKey, defaultInitializer: { SecretBox.SecretKey() }, capturingInitializer: { SecretBox.SecretKey(bytes: &$0) })
 	}
 
@@ -122,14 +133,14 @@ public class Persona {
 
 		- returns: The key.
 	*/
-	func genericHashKey() throws -> GenericHash.Key {
+	public func genericHashKey() throws -> GenericHash.Key {
 		return try secret(for: .genericHashKey, defaultInitializer: { GenericHash.Key() }, capturingInitializer: { GenericHash.Key(bytes: &$0) })
 	}
 
 	/**
 		This is used to identify the type of the key.
 	*/
-	private enum Kind: String {
+	public enum KeyType: String {
 		/**
 			This identifies keys that cen be used for deriving other keys.
 		*/
@@ -168,19 +179,19 @@ public class Persona {
 		This constructs an identifier for the service and type of key.
 
 		- parameters:
-			- kind: The type of the key.
+			- type: The type of the key.
 
 		- returns: The identifier.
 	*/
-	private func itemService(kind: Kind) -> String {
-		return bundleIdentifier + "/" + kind.rawValue
+	private func itemService(type: KeyType) -> String {
+		return bundleIdentifier + "/" + type.rawValue
 	}
 
 	/**
 		This identifies the Keychain entry for the given key type.
 	*/
-	private func item(for kind: Kind) -> GenericPasswordItem {
-		return GenericPasswordItem(for: itemService(kind: kind), using: uniqueName)
+	public func keychainItem(for type: KeyType) -> GenericPasswordItem {
+		return GenericPasswordItem(for: itemService(type: type), using: uniqueName)
 	}
 
 	/**
@@ -188,7 +199,7 @@ public class Persona {
 	*/
 	private var keychainItems: [KeychainItem] {
 		get {
-			return [item(for: .masterKey), item(for: .secretKey), item(for: .genericHashKey)]
+			return [keychainItem(for: .masterKey), keychainItem(for: .secretKey), keychainItem(for: .genericHashKey)]
 		}
 	}
 }
