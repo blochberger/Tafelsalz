@@ -23,6 +23,4 @@
 		for the current architecture.
 	**/
 	public typealias PInt = UInt32
-#else
-	public typealias PInt = UInt16
 #endif
