@@ -44,6 +44,18 @@ class PersonaTest: XCTestCase {
 		KMAssertEqual(key1, key2)
 	}
 
+	func metaTestInitializer<T>(persona: Persona, type: Persona.KeyType, initializer: (Persona) -> T?) {
+		// By default it should work
+		XCTAssertNotNil(initializer(persona))
+
+		// Set an invalid key
+		let item = persona.keychainItem(for: type)
+		XCTAssertNoThrow(try Keychain.update(password: Data("😱".utf8), for: item))
+
+		// Now the initializer should fail as well
+		XCTAssertNil(initializer(persona))
+	}
+
 	func testPersona() {
 		let alice = Persona(uniqueName: "Alice")
 		let bob = Persona(uniqueName: "Bob")
@@ -95,6 +107,15 @@ class PersonaTest: XCTestCase {
 		XCTAssertNoThrow(masterKey3 = try alice.masterKey())
 
 		KMAssertNotEqual(masterKey1, masterKey3)
+
+		XCTAssertNoThrow(try Persona.forget(alice))
+	}
+
+	func testInitializers() {
+		let alice = Persona(uniqueName: "Alice")
+
+		metaTestInitializer(persona: alice, type: .secretKey) { SecretBox(persona: $0) }
+		metaTestInitializer(persona: alice, type: .genericHashKey) { GenericHash(bytes: Data("foo".utf8), for: $0) }
 
 		XCTAssertNoThrow(try Persona.forget(alice))
 	}
