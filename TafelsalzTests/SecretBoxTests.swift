@@ -68,11 +68,7 @@ class SecretBoxTests: XCTestCase {
 		XCTAssertEqual(authenticatedCiphertext1.ciphertext.bytes, ciphertext.bytes)
 		XCTAssertEqual(authenticatedCiphertext1.bytes, bytes)
 
-		let optionalAuthenticatedCiphertext2 = AuthenticatedCiphertext(bytes: bytes)
-
-		XCTAssertNotNil(optionalAuthenticatedCiphertext2)
-
-		let authenticatedCiphertext2 = optionalAuthenticatedCiphertext2!
+		let authenticatedCiphertext2 = AuthenticatedCiphertext(bytes: bytes)!
 
 		XCTAssertEqual(authenticatedCiphertext2.sizeInBytes, sizeInBytes)
 		XCTAssertEqual(authenticatedCiphertext2.nonce, nonce)
