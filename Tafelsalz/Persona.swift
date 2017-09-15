@@ -36,8 +36,6 @@ public class Persona {
 				try Keychain.delete(item: item)
 			} catch Keychain.Error.itemNotFound {
 				// Ignore non-existing items
-			} catch {
-				throw error
 			}
 		}
 	}
