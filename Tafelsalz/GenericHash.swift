@@ -189,7 +189,8 @@ public class GenericHash {
 			- outputSizeInBytes: The size of the hash in bytes.
 	*/
 	public convenience init?(bytes: Data, for persona: Persona, outputSizeInBytes: PInt = GenericHash.DefaultSizeInBytes) {
-		self.init(bytes: bytes, outputSizeInBytes: outputSizeInBytes, with: persona.genericHashKey())
+		guard let key = try? persona.genericHashKey() else { return nil }
+		self.init(bytes: bytes, outputSizeInBytes: outputSizeInBytes, with: key)
 	}
 
 	/**

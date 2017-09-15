@@ -15,13 +15,24 @@ class PersonaTest: XCTestCase {
 		let persona1 = Persona(uniqueName: "Fish")
 		let persona2 = Persona(uniqueName: "Chips")
 
-		XCTAssertNotNil(persona1.secretKey())
-		XCTAssertNotNil(persona2.secretKey())
+		var masterKey1: MasterKey! = nil
+		var masterKey2: MasterKey! = nil
+		var secretKey: SecretBox.SecretKey! = nil
+		var genericHashKey: GenericHash.Key! = nil
 
-		XCTAssertEqual(persona1.secretKey()!, persona1.secretKey()!)
-		XCTAssertEqual(persona1.secretKey()!, Persona(uniqueName: persona1.uniqueName).secretKey()!)
+		XCTAssertNoThrow(masterKey1 = try persona1.masterKey())
+		XCTAssertNoThrow(secretKey = try persona1.secretKey())
+		XCTAssertNoThrow(genericHashKey = try persona1.genericHashKey())
+		XCTAssertNoThrow(masterKey2 = try persona2.masterKey())
 
-		XCTAssertNotEqual(persona1.secretKey()!, persona2.secretKey()!)
+		XCTAssertEqual(try! persona1.masterKey(), masterKey1)
+		XCTAssertEqual(try! Persona(uniqueName: persona1.uniqueName).masterKey(), masterKey1)
+
+		XCTAssertNotEqual(masterKey1, masterKey2)
+
+		XCTAssertNotEqual(masterKey1, secretKey)
+		XCTAssertNotEqual(masterKey1, genericHashKey)
+		XCTAssertNotEqual(secretKey, genericHashKey)
 
 		XCTAssertNoThrow(try Persona.forget(persona1))
 		XCTAssertNoThrow(try Persona.forget(persona2))

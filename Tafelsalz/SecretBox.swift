@@ -281,7 +281,7 @@ public class SecretBox {
 			- persona: The persona to which the secret key belongs.
 	*/
 	public convenience init?(persona: Persona) {
-		guard let secretKey = persona.secretKey() else {
+		guard let secretKey = try? persona.secretKey() else {
 			return nil
 		}
 		self.init(secretKey: secretKey)

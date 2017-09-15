@@ -19,6 +19,11 @@ import Keychain
 */
 public class Persona {
 
+	enum Error: Swift.Error {
+		case failedToDecodeKey
+		case invalidKey
+	}
+
 	/**
 		Forget a persona. This will remove all secrets of this persona from the
 		system's Keychain.
@@ -69,31 +74,38 @@ public class Persona {
 			The key for the item. A new key, if the item did not exist, the
 			existing key else and `nil` if there was an error.
 	*/
-	private func secret<Key: KeyMaterial>(item: GenericPasswordItem, defaultInitializer: () -> Key, capturingInitializer: (inout Data) -> Key?) -> Key? {
+	private func secret<Key: KeyMaterial>(for kind: Kind, defaultInitializer: () -> Key, capturingInitializer: (inout Data) -> Key?) throws -> Key {
 		do {
 			// Try to read the key from the Keychain
-			let encodedKey: Data = try Keychain.retrievePassword(for: item)
-			guard var keyBytes = Data(base64Encoded: encodedKey) else { return nil }
-			guard let key = capturingInitializer(&keyBytes) else { return nil }
+			let encodedKey: Data = try Keychain.retrievePassword(for: item(for: kind))
+
+			guard var keyBytes = Data(base64Encoded: encodedKey) else {
+				throw Error.failedToDecodeKey
+			}
+
+			guard let key = capturingInitializer(&keyBytes) else {
+				throw Error.invalidKey
+			}
+
 			return key
 		} catch Keychain.Error.itemNotFound {
 			// If there is no key stored in the Keychain, create a new one and
 			// add it to the Keychain.
 			let key = defaultInitializer()
 
-			do {
-				try Keychain.store(password: key.copyBytes().base64EncodedData(), in: item)
-				return key
-			} catch {
-				// There was an error when trying to store the secret key to the
-				// Keychain.
-				return nil
-			}
-		} catch {
-			// There was an error when trying to read the secret key from the
-			// Keychain.
-			return nil
+			try Keychain.store(password: key.copyBytes().base64EncodedData(), in: item(for: kind))
+			return key
 		}
+	}
+
+	/**
+		The master key of the persona, which can be used to derive other keys.
+	
+		- returns:
+			The master key.
+	*/
+	func masterKey() throws -> MasterKey {
+		return try secret(for: .masterKey, defaultInitializer: { MasterKey() }, capturingInitializer: { MasterKey(bytes: &$0) })
 	}
 
 	/**
@@ -101,8 +113,8 @@ public class Persona {
 
 		- returns: The secret key.
 	*/
-	func secretKey() -> SecretBox.SecretKey? {
-		return secret(item: secretKeyItem, defaultInitializer: { SecretBox.SecretKey() }, capturingInitializer: { SecretBox.SecretKey(bytes: &$0) })
+	func secretKey() throws -> SecretBox.SecretKey {
+		return try secret(for: .secretKey, defaultInitializer: { SecretBox.SecretKey() }, capturingInitializer: { SecretBox.SecretKey(bytes: &$0) })
 	}
 
 	/**
@@ -110,8 +122,8 @@ public class Persona {
 
 		- returns: The key.
 	*/
-	func genericHashKey() -> GenericHash.Key? {
-		return secret(item: genericHashKeyItem, defaultInitializer: { GenericHash.Key() }, capturingInitializer: { GenericHash.Key(bytes: &$0) })
+	func genericHashKey() throws -> GenericHash.Key {
+		return try secret(for: .genericHashKey, defaultInitializer: { GenericHash.Key() }, capturingInitializer: { GenericHash.Key(bytes: &$0) })
 	}
 
 	/**
@@ -119,12 +131,17 @@ public class Persona {
 	*/
 	private enum Kind: String {
 		/**
+			This identifies keys that cen be used for deriving other keys.
+		*/
+		case masterKey = "MasterKey"
+
+		/**
 			This identifies secret keys that can be used with the secret box.
 		*/
 		case secretKey = "SecretBox.SecretKey"
 
 		/**
-			This identifies keys that can be used for generic hashing
+			This identifies keys that can be used for generic hashing.
 		*/
 		case genericHashKey = "GenericHash.Key"
 	}
@@ -160,22 +177,10 @@ public class Persona {
 	}
 
 	/**
-		This identifies the Keychain entry for the secret key of this persona.
+		This identifies the Keychain entry for the given key type.
 	*/
-	private var secretKeyItem: GenericPasswordItem {
-		get {
-			return GenericPasswordItem(for: itemService(kind: .secretKey), using: uniqueName)
-		}
-	}
-
-	/**
-		This identifies the Keychain entry for the key that can be used for
-		generic hashing.
-	*/
-	private var genericHashKeyItem: GenericPasswordItem {
-		get {
-			return GenericPasswordItem(for: itemService(kind: .genericHashKey), using: uniqueName)
-		}
+	private func item(for kind: Kind) -> GenericPasswordItem {
+		return GenericPasswordItem(for: itemService(kind: kind), using: uniqueName)
 	}
 
 	/**
@@ -183,7 +188,7 @@ public class Persona {
 	*/
 	private var keychainItems: [KeychainItem] {
 		get {
-			return [secretKeyItem, genericHashKeyItem]
+			return [item(for: .masterKey), item(for: .secretKey), item(for: .genericHashKey)]
 		}
 	}
 }
