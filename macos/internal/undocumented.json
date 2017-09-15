@@ -2,42 +2,42 @@
   "warnings": [
     {
       "file": "/Users/blochberger/Development/Tafelsalz/Tafelsalz/Sodium.swift",
-      "line": 391,
+      "line": 398,
       "symbol": "Sodium.PasswordHash.opslimit_interactive",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/blochberger/Development/Tafelsalz/Tafelsalz/Sodium.swift",
-      "line": 392,
+      "line": 399,
       "symbol": "Sodium.PasswordHash.opslimit_moderate",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/blochberger/Development/Tafelsalz/Tafelsalz/Sodium.swift",
-      "line": 393,
+      "line": 400,
       "symbol": "Sodium.PasswordHash.opslimit_sensitive",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/blochberger/Development/Tafelsalz/Tafelsalz/Sodium.swift",
-      "line": 395,
+      "line": 402,
       "symbol": "Sodium.PasswordHash.memlimit_interactive",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/blochberger/Development/Tafelsalz/Tafelsalz/Sodium.swift",
-      "line": 396,
+      "line": 403,
       "symbol": "Sodium.PasswordHash.memlimit_moderate",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/blochberger/Development/Tafelsalz/Tafelsalz/Sodium.swift",
-      "line": 397,
+      "line": 404,
       "symbol": "Sodium.PasswordHash.memlimit_sensitive",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"

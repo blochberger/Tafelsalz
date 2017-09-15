@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Kind Enum Reference</title>
+    <title>Error Enum Reference</title>
     <link rel="stylesheet" type="text/css" href="../../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Enum/Kind" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Enum/Error" class="dashAnchor"></a>
 
-    <a title="Kind Enum Reference"></a>
+    <a title="Error Enum Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../../index.html">Tafelsalz Reference</a>
       <img class="carat" src="../../img/carat.png" />
-      Kind Enum Reference
+      Error Enum Reference
     </p>
 
     <div class="content-wrapper">
@@ -87,7 +87,10 @@
                 <a class="nav-group-task-link" href="../../Classes/Persona.html">Persona</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../../Classes/Persona/Kind.html">– Kind</a>
+                <a class="nav-group-task-link" href="../../Classes/Persona/Error.html">– Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/Persona/KeyType.html">– KeyType</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../../Classes/SecretBox.html">SecretBox</a>
@@ -182,14 +185,14 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>Kind</h1>
+            <h1>Error</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">private</span> <span class="kd">enum</span> <span class="kt">Kind</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">enum</span> <span class="kt">Error</span><span class="p">:</span> <span class="kt">Swift</span><span class="o">.</span><span class="kt">Error</span></code></pre>
 
                 </div>
               </div>
-            <p>This is used to identify the type of the key.</p>
+            <p>These errors indicate that erroneous keys where stored in the Keychain.</p>
 
           </div>
         </section>
@@ -201,9 +204,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FOC9Tafelsalz7PersonaP33_461D0B0DBE61B69A779F7EAB13B118D34Kind9secretKeyFMS1_S1_"></a>
-                    <a name="//apple_ref/swift/Element/secretKey" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FOC9Tafelsalz7PersonaP33_461D0B0DBE61B69A779F7EAB13B118D34Kind9secretKeyFMS1_S1_">secretKey</a>
+                    <a name="/s:FOC9Tafelsalz7Persona5Error17failedToDecodeKeyFMS1_S1_"></a>
+                    <a name="//apple_ref/swift/Element/failedToDecodeKey" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FOC9Tafelsalz7Persona5Error17failedToDecodeKeyFMS1_S1_">failedToDecodeKey</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -211,19 +214,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This identifies secret keys that can be used with the secret box.</p>
+                        <p>This indicates that the key is not Base64-encoded.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">secretKey</span> <span class="o">=</span> <span class="s">"SecretBox.SecretKey"</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">failedToDecodeKey</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/75c75f4e9fc6b6d5b2aa493c248c3f10d783ceb6/Tafelsalz/Persona.swift#L126">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/87c36e10f9c9619439d05235b130a66bbbf0b3c9/Tafelsalz/Persona.swift#L29">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -235,9 +238,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FOC9Tafelsalz7PersonaP33_461D0B0DBE61B69A779F7EAB13B118D34Kind14genericHashKeyFMS1_S1_"></a>
-                    <a name="//apple_ref/swift/Element/genericHashKey" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FOC9Tafelsalz7PersonaP33_461D0B0DBE61B69A779F7EAB13B118D34Kind14genericHashKeyFMS1_S1_">genericHashKey</a>
+                    <a name="/s:FOC9Tafelsalz7Persona5Error10invalidKeyFMS1_S1_"></a>
+                    <a name="//apple_ref/swift/Element/invalidKey" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FOC9Tafelsalz7Persona5Error10invalidKeyFMS1_S1_">invalidKey</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -245,19 +248,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This identifies keys that can be used for generic hashing</p>
+                        <p>This indicates that a key has an invalid size.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">genericHashKey</span> <span class="o">=</span> <span class="s">"GenericHash.Key"</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">invalidKey</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/75c75f4e9fc6b6d5b2aa493c248c3f10d783ceb6/Tafelsalz/Persona.swift#L131">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/87c36e10f9c9619439d05235b130a66bbbf0b3c9/Tafelsalz/Persona.swift#L34">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -270,7 +273,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2017-09-12)</p>
+      <p>&copy; 2017 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2017-09-15)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
