@@ -75,7 +75,7 @@ class Examples: XCTestCase {
 		// You can also derive a key in order to use it with secret boxes
 		let secretBox = SecretBox(secretKey: masterKey.derive(with: 0, and: context))
 
-		XCTAssertNotEqual(subKey1, subKey2)
+		KMAssertNotEqual(subKey1, subKey2)
 		XCTAssertNotNil(secretBox)
 	}
 }

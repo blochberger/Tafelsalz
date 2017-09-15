@@ -1,18 +1,21 @@
 import XCTest
 @testable import Tafelsalz
 
-extension KeyMaterial: Equatable {
-	public static func ==(lhs: KeyMaterial, rhs: KeyMaterial) -> Bool {
-		return lhs.copyBytes() == rhs.copyBytes()
-	}
+func KMAssertEqual(_ lhs: KeyMaterial, _ rhs: KeyMaterial) {
+	XCTAssertEqual(lhs.copyBytes(), rhs.copyBytes())
+}
+
+func KMAssertNotEqual(_ lhs: KeyMaterial, _ rhs: KeyMaterial) {
+	XCTAssertNotEqual(lhs.copyBytes(), rhs.copyBytes())
 }
 
 class KeyMaterialTest: XCTestCase {
 
 	// MARK: - Meta tests
 
-	static func metaTestDefaultInitializer<T: KeyMaterial>(
+	static func metaTestDefaultInitializer<T: KeyMaterial, E: Equatable>(
 		of fixedSizeInBytes: PInt,
+		eq: (T) -> E,
 		with initializer: () -> T
 	) {
 		let instance1 = initializer()
@@ -21,15 +24,16 @@ class KeyMaterialTest: XCTestCase {
 		XCTAssertEqual(instance1.sizeInBytes, fixedSizeInBytes)
 
 		// Test reflexivity
-		XCTAssertEqual(instance1, instance1)
+		XCTAssertEqual(eq(instance1), eq(instance1))
 
 		// Test uniqueness after initialization
-		XCTAssertNotEqual(instance1, initializer())
+		XCTAssertNotEqual(eq(instance1), eq(initializer()))
 	}
 
-	static func metaTestCapturingInitializer<T: KeyMaterial>(
+	static func metaTestCapturingInitializer<T: KeyMaterial, E: Equatable>(
 		minimumSizeInBytes: PInt,
 		maximumSizeInBytes: PInt,
+		eq: (T) -> E,
 		with initializer: (inout Data) -> T?
 	) {
 		let sizesInBytes = (minimumSizeInBytes == maximumSizeInBytes) ? [minimumSizeInBytes] : [minimumSizeInBytes, maximumSizeInBytes]
@@ -52,7 +56,7 @@ class KeyMaterialTest: XCTestCase {
 			// Test that passed argument is zeroed
 			XCTAssertEqual(bytes, Data(count: Int(sizeInBytes)))
 
-			XCTAssertEqual(instance, instance)
+			XCTAssertEqual(eq(instance), eq(instance))
 		}
 
 		// Test creating instance from byte sequence with incorrect size
@@ -67,11 +71,12 @@ class KeyMaterialTest: XCTestCase {
 		XCTAssertNotEqual(tooLong, Data(count: tooLong.count))
 	}
 
-	static func metaTestCapturingInitializer<T: KeyMaterial>(
+	static func metaTestCapturingInitializer<T: KeyMaterial, E: Equatable>(
 		of fixedSizeInBytes: PInt,
+		eq: (T) -> E,
 		with initializer: (inout Data) -> T?
-		) {
-		metaTestCapturingInitializer(minimumSizeInBytes: fixedSizeInBytes, maximumSizeInBytes: fixedSizeInBytes, with: initializer)
+	) {
+		metaTestCapturingInitializer(minimumSizeInBytes: fixedSizeInBytes, maximumSizeInBytes: fixedSizeInBytes, eq: eq, with: initializer)
 	}
 
 	static func metaTestEquality<T: KeyMaterial>(
@@ -109,13 +114,13 @@ class KeyMaterialTest: XCTestCase {
 	func testDefaultInitializer() {
 		let sizeInBytes: PInt = 32
 
-		KeyMaterialTest.metaTestDefaultInitializer(of: sizeInBytes) { KeyMaterial(sizeInBytes: sizeInBytes) }
+		KeyMaterialTest.metaTestDefaultInitializer(of: sizeInBytes, eq: { $0.copyBytes() }) { KeyMaterial(sizeInBytes: sizeInBytes) }
 	}
 
     func testCapturingInitializer() {
 		let sizeInBytes: PInt = 32
 
-		KeyMaterialTest.metaTestCapturingInitializer(of: sizeInBytes) {
+		KeyMaterialTest.metaTestCapturingInitializer(of: sizeInBytes, eq: { $0.copyBytes() }) {
 			PInt($0.count) == sizeInBytes ? KeyMaterial(bytes: &$0) : nil
 		}
     }

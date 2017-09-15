@@ -11,8 +11,8 @@ class SecretBoxTests: XCTestCase {
 		let defaultInitializer = { SecretKey() }
 		let capturingInitializer: (inout Data) -> SecretKey? = { SecretKey(bytes: &$0) }
 
-		KeyMaterialTest.metaTestDefaultInitializer(of: SecretKey.SizeInBytes, with: defaultInitializer)
-		KeyMaterialTest.metaTestCapturingInitializer(of: SecretKey.SizeInBytes, with: capturingInitializer)
+		KeyMaterialTest.metaTestDefaultInitializer(of: SecretKey.SizeInBytes, eq: { $0.copyBytes() }, with: defaultInitializer)
+		KeyMaterialTest.metaTestCapturingInitializer(of: SecretKey.SizeInBytes, eq: { $0.copyBytes() }, with: capturingInitializer)
 		KeyMaterialTest.metaTestEquality(of: SecretKey.SizeInBytes, withCapturingInitializer: capturingInitializer)
     }
 
@@ -24,9 +24,13 @@ class SecretBoxTests: XCTestCase {
 		let defaultInitializer = { Nonce() }
 		let capturingInitializer: (inout Data) -> Nonce? = { Nonce(bytes: &$0) }
 
-		KeyMaterialTest.metaTestDefaultInitializer(of: Nonce.SizeInBytes, with: defaultInitializer)
-		KeyMaterialTest.metaTestCapturingInitializer(of: Nonce.SizeInBytes, with: capturingInitializer)
+		KeyMaterialTest.metaTestDefaultInitializer(of: Nonce.SizeInBytes, eq: { $0 }, with: defaultInitializer)
+		KeyMaterialTest.metaTestCapturingInitializer(of: Nonce.SizeInBytes, eq: { $0 }, with: capturingInitializer)
 		KeyMaterialTest.metaTestEquality(of: Nonce.SizeInBytes, withCapturingInitializer: capturingInitializer)
+
+		let nonce = Nonce()
+		XCTAssertEqual(nonce, nonce)
+		XCTAssertNotEqual(Nonce(), nonce)
 	}
 
 	// MARK: - AuthenticationCode
@@ -36,7 +40,7 @@ class SecretBoxTests: XCTestCase {
 
 		let capturingInitializer: (inout Data) -> AuthenticationCode? = { AuthenticationCode(bytes: &$0) }
 
-		KeyMaterialTest.metaTestCapturingInitializer(of: AuthenticationCode.SizeInBytes, with: capturingInitializer)
+		KeyMaterialTest.metaTestCapturingInitializer(of: AuthenticationCode.SizeInBytes, eq: { $0 }, with: capturingInitializer)
 		KeyMaterialTest.metaTestEquality(of: AuthenticationCode.SizeInBytes, withCapturingInitializer: capturingInitializer)
 	}
 

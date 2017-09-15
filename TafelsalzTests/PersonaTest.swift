@@ -41,7 +41,7 @@ class PersonaTest: XCTestCase {
 		var key2: T! = nil
 		XCTAssertNoThrow(key2 = try retrieveKey(persona))
 
-		XCTAssertEqual(key1, key2)
+		KMAssertEqual(key1, key2)
 	}
 
 	func testPersona() {
@@ -58,14 +58,14 @@ class PersonaTest: XCTestCase {
 		XCTAssertNoThrow(bobsSecretKey = try bob.secretKey())
 		XCTAssertNoThrow(bobsGenericHashKey = try bob.genericHashKey())
 
-		XCTAssertNotEqual(alicesMasterKey, bobsMasterKey)
+		KMAssertNotEqual(alicesMasterKey, bobsMasterKey)
 
-		XCTAssertEqual(try! bob.masterKey(), bobsMasterKey)
-		XCTAssertEqual(try! Persona(uniqueName: bob.uniqueName).masterKey(), bobsMasterKey)
+		KMAssertEqual(try! bob.masterKey(), bobsMasterKey)
+		KMAssertEqual(try! Persona(uniqueName: bob.uniqueName).masterKey(), bobsMasterKey)
 
-		XCTAssertNotEqual(bobsMasterKey, bobsSecretKey)
-		XCTAssertNotEqual(bobsMasterKey, bobsGenericHashKey)
-		XCTAssertNotEqual(bobsSecretKey, bobsGenericHashKey)
+		KMAssertNotEqual(bobsMasterKey, bobsSecretKey)
+		KMAssertNotEqual(bobsMasterKey, bobsGenericHashKey)
+		KMAssertNotEqual(bobsSecretKey, bobsGenericHashKey)
 
 		XCTAssertNoThrow(try Persona.forget(bob))
 		XCTAssertNoThrow(try Persona.forget(alice))
@@ -94,7 +94,7 @@ class PersonaTest: XCTestCase {
 		var masterKey3: MasterKey! = nil
 		XCTAssertNoThrow(masterKey3 = try alice.masterKey())
 
-		XCTAssertNotEqual(masterKey1, masterKey3)
+		KMAssertNotEqual(masterKey1, masterKey3)
 
 		XCTAssertNoThrow(try Persona.forget(alice))
 	}

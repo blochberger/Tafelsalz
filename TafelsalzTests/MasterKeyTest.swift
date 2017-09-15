@@ -22,8 +22,8 @@ class MasterKeyTest: XCTestCase {
 		let defaultInitializer = { MasterKey() }
 		let capturingInitializer: (inout Data) -> MasterKey? = { MasterKey(bytes: &$0) }
 
-		KeyMaterialTest.metaTestDefaultInitializer(of: MasterKey.SizeInBytes, with: defaultInitializer)
-		KeyMaterialTest.metaTestCapturingInitializer(of: MasterKey.SizeInBytes, with: capturingInitializer)
+		KeyMaterialTest.metaTestDefaultInitializer(of: MasterKey.SizeInBytes, eq: { $0.copyBytes() }, with: defaultInitializer)
+		KeyMaterialTest.metaTestCapturingInitializer(of: MasterKey.SizeInBytes, eq: { $0.copyBytes() }, with: capturingInitializer)
 		KeyMaterialTest.metaTestEquality(of: MasterKey.SizeInBytes, withCapturingInitializer: capturingInitializer)
 	}
 
@@ -41,10 +41,10 @@ class MasterKeyTest: XCTestCase {
 		let sk3 = mk.derive(sizeInBytes: size, with: 1, and: ctx)!
 		let sk4 = mk.derive(sizeInBytes: size, with: 0, and: Context("Testtest")!)!
 
-		XCTAssertEqual(sk1, sk2)
-		XCTAssertNotEqual(sk1, sk3)
-		XCTAssertNotEqual(sk1, sk4)
-		XCTAssertNotEqual(sk3, sk4)
+		KMAssertEqual(sk1, sk2)
+		KMAssertNotEqual(sk1, sk3)
+		KMAssertNotEqual(sk1, sk4)
+		KMAssertNotEqual(sk3, sk4)
 
 		XCTAssertNil(mk.derive(sizeInBytes: DerivedKey.MinimumSizeInBytes - 1, with: 0, and: ctx))
 		XCTAssertNil(mk.derive(sizeInBytes: DerivedKey.MaximumSizeInBytes + 1, with: 0, and: ctx))

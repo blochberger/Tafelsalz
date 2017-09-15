@@ -11,8 +11,8 @@ class GenericHashTest: XCTestCase {
 		let defaultInitializer = { Key() }
 		let capturingInitializer: (inout Data) -> Key? = { Key(bytes: &$0) }
 
-		KeyMaterialTest.metaTestDefaultInitializer(of: Key.DefaultSizeInBytes, with: defaultInitializer)
-		KeyMaterialTest.metaTestCapturingInitializer(minimumSizeInBytes: Key.MinimumSizeInBytes, maximumSizeInBytes: Key.MaximumSizeInBytes, with: capturingInitializer)
+		KeyMaterialTest.metaTestDefaultInitializer(of: Key.DefaultSizeInBytes, eq: { $0.copyBytes() }, with: defaultInitializer)
+		KeyMaterialTest.metaTestCapturingInitializer(minimumSizeInBytes: Key.MinimumSizeInBytes, maximumSizeInBytes: Key.MaximumSizeInBytes, eq: { $0.copyBytes() }, with: capturingInitializer)
 		KeyMaterialTest.metaTestEquality(of: Key.DefaultSizeInBytes, withCapturingInitializer: capturingInitializer)
 
 		XCTAssertNotNil(Key(sizeInBytes: Key.MinimumSizeInBytes))
