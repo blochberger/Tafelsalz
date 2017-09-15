@@ -136,11 +136,7 @@ public class Password {
 			return nil
 		}
 
-		guard let bytes = KeyMaterial(bytes: &passwordBytes) else {
-			return nil
-		}
-
-		self.bytes = bytes
+		self.bytes = KeyMaterial(bytes: &passwordBytes)!
 	}
 
 	/**
