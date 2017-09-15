@@ -12,30 +12,30 @@ class PersonaTest: XCTestCase {
 			"TafelsalzTests" should suffice.
 	*/
 	func testPersona() {
-		let persona1 = Persona(uniqueName: "Fish")
-		let persona2 = Persona(uniqueName: "Chips")
+		let alice = Persona(uniqueName: "Alice")
+		let bob = Persona(uniqueName: "Bob")
 
-		var masterKey1: MasterKey! = nil
-		var masterKey2: MasterKey! = nil
-		var secretKey: SecretBox.SecretKey! = nil
-		var genericHashKey: GenericHash.Key! = nil
+		var alicesMasterKey: MasterKey! = nil
+		var bobsMasterKey: MasterKey! = nil
+		var bobsSecretKey: SecretBox.SecretKey! = nil
+		var bobsGenericHashKey: GenericHash.Key! = nil
 
-		XCTAssertNoThrow(masterKey1 = try persona1.masterKey())
-		XCTAssertNoThrow(secretKey = try persona1.secretKey())
-		XCTAssertNoThrow(genericHashKey = try persona1.genericHashKey())
-		XCTAssertNoThrow(masterKey2 = try persona2.masterKey())
+		XCTAssertNoThrow(alicesMasterKey = try alice.masterKey())
+		XCTAssertNoThrow(bobsMasterKey = try bob.masterKey())
+		XCTAssertNoThrow(bobsSecretKey = try bob.secretKey())
+		XCTAssertNoThrow(bobsGenericHashKey = try bob.genericHashKey())
 
-		XCTAssertEqual(try! persona1.masterKey(), masterKey1)
-		XCTAssertEqual(try! Persona(uniqueName: persona1.uniqueName).masterKey(), masterKey1)
+		XCTAssertNotEqual(alicesMasterKey, bobsMasterKey)
 
-		XCTAssertNotEqual(masterKey1, masterKey2)
+		XCTAssertEqual(try! bob.masterKey(), bobsMasterKey)
+		XCTAssertEqual(try! Persona(uniqueName: bob.uniqueName).masterKey(), bobsMasterKey)
 
-		XCTAssertNotEqual(masterKey1, secretKey)
-		XCTAssertNotEqual(masterKey1, genericHashKey)
-		XCTAssertNotEqual(secretKey, genericHashKey)
+		XCTAssertNotEqual(bobsMasterKey, bobsSecretKey)
+		XCTAssertNotEqual(bobsMasterKey, bobsGenericHashKey)
+		XCTAssertNotEqual(bobsSecretKey, bobsGenericHashKey)
 
-		XCTAssertNoThrow(try Persona.forget(persona1))
-		XCTAssertNoThrow(try Persona.forget(persona2))
+		XCTAssertNoThrow(try Persona.forget(bob))
+		XCTAssertNoThrow(try Persona.forget(alice))
 	}
 
 }
