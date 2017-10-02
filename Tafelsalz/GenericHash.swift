@@ -132,7 +132,7 @@ public class GenericHash {
 	/**
 		The hash.
 	*/
-	fileprivate let bytes: Data
+	private let bytes: Data
 
 	/**
 		Hash an arbitrary value.
