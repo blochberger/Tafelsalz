@@ -165,6 +165,11 @@ struct Sodium {
 	struct KeyDerivation {
 
 		/**
+			The initializer is disabled.
+		*/
+		fileprivate init() {}
+
+		/**
 			The size of the master key in bytes.
 		*/
 		let masterKeySizeInBytes = libsodium.crypto_kdf_keybytes()
