@@ -546,7 +546,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Universität Hamburg";
 				TargetAttributes = {
 					6096E76B1F1A654000E6599F = {
@@ -783,7 +783,7 @@
 				PRODUCT_NAME = Tafelsalz;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -811,7 +811,7 @@
 				PRODUCT_NAME = Tafelsalz;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -831,7 +831,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/Dependencies/**";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "TafelsalzTests-Swift.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -849,7 +849,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/Dependencies/**";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "TafelsalzTests-Swift.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -993,7 +993,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/Dependencies/**";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1021,7 +1021,7 @@
 				PRODUCT_NAME = Tafelsalz;
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/Dependencies/**";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -1041,7 +1041,7 @@
 				PRODUCT_NAME = TafelsalzTests;
 				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/Dependencies/**";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "TafelsalzTests-Swift.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1061,7 +1061,7 @@
 				PRODUCT_NAME = TafelsalzTests;
 				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/Dependencies/**";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "TafelsalzTests-Swift.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
