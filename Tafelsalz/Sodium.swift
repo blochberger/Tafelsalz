@@ -394,7 +394,6 @@ struct Sodium {
 		*/
 		fileprivate init() {}
 
-
 		let opslimit_interactive = libsodium.crypto_pwhash_opslimit_interactive()
 		let opslimit_moderate = libsodium.crypto_pwhash_opslimit_moderate()
 		let opslimit_sensitive = libsodium.crypto_pwhash_opslimit_sensitive()
