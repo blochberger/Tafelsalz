@@ -103,10 +103,10 @@ class PersonaTest: XCTestCase {
 
 		XCTAssertNoThrow(try Keychain.delete(item: item))
 
-		var masterKey3: MasterKey! = nil
-		XCTAssertNoThrow(masterKey3 = try alice.masterKey())
+		var masterKey2: MasterKey! = nil
+		XCTAssertNoThrow(masterKey2 = try alice.masterKey())
 
-		KMAssertNotEqual(masterKey1, masterKey3)
+		KMAssertNotEqual(masterKey1, masterKey2)
 
 		XCTAssertNoThrow(try Persona.forget(alice))
 	}
