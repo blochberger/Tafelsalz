@@ -112,6 +112,26 @@ public class Persona {
 	}
 
 	/**
+		This updates or creates a Keychain entry containing the key material.
+
+		- warning:
+			This will overwrite an existing entry and might destroy a secret
+			forever.
+
+		- parameters:
+			- key: The new key that should be stored in the Keychain.
+			- type: The type of the key.
+
+		- throws:
+			A `Keychain.Error` if they entry cannot be created or updated in the
+			Keychain.
+	*/
+	private func setSecret<Key: KeyMaterial>(key: Key, for type: KeyType) throws {
+		let item = keychainItem(for: type)
+		try Keychain.updateOrCreate(password: key.copyBytes().base64EncodedData(), for: item)
+	}
+
+	/**
 		The master key of the persona, which can be used to derive other keys.
 	
 		- returns: The master key.
@@ -136,6 +156,65 @@ public class Persona {
 	*/
 	public func genericHashKey() throws -> GenericHash.Key {
 		return try secret(for: .genericHashKey, defaultInitializer: { GenericHash.Key() }, capturingInitializer: { GenericHash.Key(bytes: &$0) })
+	}
+
+	/**
+		Explicitly set the master key for the persona.
+
+		- warning:
+			This will overwrite the master key that was previously assigned to
+			this persona. This is irreversible and previously derived keys
+			cannot be derived again. Data encrypted with derived keys cannot be
+			decrypted unless the keys where persisted otherwise.
+
+		- parameters:
+			- masterKey: The new master key.
+
+		- throws:
+			A `Keychain.Error` if they entry cannot be created or updated in the
+			Keychain.
+	*/
+	public func setMasterKey(_ masterKey: MasterKey) throws {
+		try setSecret(key: masterKey, for: .masterKey)
+	}
+
+	/**
+		Explicitly set the secret key for the persona.
+
+		- warning:
+			This will overwrite the secret key that was previously assigned to
+			this persona. This is irreversible. Data encrypted with the secret
+			key cannot be decrypted unless it was persisted otherwise.
+
+		- parameters:
+			- secretKey: The new secret key.
+
+		- throws:
+			A `Keychain.Error` if they entry cannot be created or updated in the
+			Keychain.
+	*/
+	public func setSecretKey(_ secretKey: SecretBox.SecretKey) throws {
+		try setSecret(key: secretKey, for: .secretKey)
+	}
+
+	/**
+		Explicitly set the generic hash key for the persona.
+
+		- warning:
+			This will overwrite the generic hash key that was previously
+			assigned to this persona. This is irreversible and previously hashed
+			values cannot be derived again unless the key was persisted
+			otherwise.
+
+		- parameters:
+			- genericHashKey: The new generic hash key.
+
+		- throws:
+			A `Keychain.Error` if they entry cannot be created or updated in the
+			Keychain.
+	*/
+	public func setGenericHashKey(_ genericHashKey: GenericHash.Key) throws {
+		try setSecret(key: genericHashKey, for: .genericHashKey)
 	}
 
 	/**

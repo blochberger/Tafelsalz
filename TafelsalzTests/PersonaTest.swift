@@ -120,6 +120,76 @@ class PersonaTest: XCTestCase {
 		metaTestInitializer(persona: alice, type: .secretKey) { SecretBox(persona: $0) }
 		metaTestInitializer(persona: alice, type: .genericHashKey) { GenericHash(bytes: Data("foo".utf8), for: $0) }
 
+		// Cleanup
+		XCTAssertNoThrow(try Persona.forget(alice))
+	}
+
+	func testSettingMasterKey() {
+		let alice = Persona(uniqueName: "Alice")
+		let key1 = MasterKey()
+		let key2 = MasterKey()
+
+		var actualKey: MasterKey! = nil
+
+		// Set a new master key
+		XCTAssertNoThrow(try alice.setMasterKey(key1))
+		XCTAssertNoThrow(actualKey = try alice.masterKey())
+		KMAssertEqual(actualKey, key1)
+
+		actualKey = nil
+
+		// Update an existing master key
+		XCTAssertNoThrow(try alice.setMasterKey(key2))
+		XCTAssertNoThrow(actualKey = try alice.masterKey())
+		KMAssertEqual(actualKey, key2)
+
+		// Cleanup
+		XCTAssertNoThrow(try Persona.forget(alice))
+	}
+
+	func testSettingSecretKey() {
+		let alice = Persona(uniqueName: "Alice")
+		let key1 = SecretBox.SecretKey()
+		let key2 = SecretBox.SecretKey()
+
+		var actualKey: SecretBox.SecretKey! = nil
+
+		// Set a new master key
+		XCTAssertNoThrow(try alice.setSecretKey(key1))
+		XCTAssertNoThrow(actualKey = try alice.secretKey())
+		KMAssertEqual(actualKey, key1)
+
+		actualKey = nil
+
+		// Update an existing master key
+		XCTAssertNoThrow(try alice.setSecretKey(key2))
+		XCTAssertNoThrow(actualKey = try alice.secretKey())
+		KMAssertEqual(actualKey, key2)
+
+		// Cleanup
+		XCTAssertNoThrow(try Persona.forget(alice))
+	}
+
+	func testSettingHashKey() {
+		let alice = Persona(uniqueName: "Alice")
+		let key1 = GenericHash.Key()
+		let key2 = GenericHash.Key()
+
+		var actualKey: GenericHash.Key! = nil
+
+		// Set a new master key
+		XCTAssertNoThrow(try alice.setGenericHashKey(key1))
+		XCTAssertNoThrow(actualKey = try alice.genericHashKey())
+		KMAssertEqual(actualKey, key1)
+
+		actualKey = nil
+
+		// Update an existing master key
+		XCTAssertNoThrow(try alice.setGenericHashKey(key2))
+		XCTAssertNoThrow(actualKey = try alice.genericHashKey())
+		KMAssertEqual(actualKey, key2)
+
+		// Cleanup
 		XCTAssertNoThrow(try Persona.forget(alice))
 	}
 
