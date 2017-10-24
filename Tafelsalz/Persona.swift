@@ -77,7 +77,7 @@ public class Persona {
 		persona.
 
 		- parameters:
-			- item: The item that identifies a Keychain entry.
+			- type: The type of the key.
 			- defaultInitializer: A default initializer used for new keys.
 			- capturingInitializer: An initializer that takes a byte array.
 			- bytes: The raw bytes of the key.
