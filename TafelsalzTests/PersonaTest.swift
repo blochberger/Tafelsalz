@@ -79,6 +79,7 @@ class PersonaTest: XCTestCase {
 		KMAssertNotEqual(bobsMasterKey, bobsGenericHashKey)
 		KMAssertNotEqual(bobsSecretKey, bobsGenericHashKey)
 
+		// Cleanup
 		XCTAssertNoThrow(try Persona.forget(bob))
 		XCTAssertNoThrow(try Persona.forget(alice))
 	}
@@ -90,6 +91,7 @@ class PersonaTest: XCTestCase {
 		metaTestInvalidKey(persona: alice, type: .secretKey) { try $0.secretKey() }
 		metaTestInvalidKey(persona: alice, type: .genericHashKey, invalidSize: GenericHash.Key.MinimumSizeInBytes - 1) { try $0.genericHashKey() }
 
+		// Cleanup
 		XCTAssertNoThrow(try Persona.forget(alice))
 	}
 
@@ -108,6 +110,7 @@ class PersonaTest: XCTestCase {
 
 		KMAssertNotEqual(masterKey1, masterKey2)
 
+		// Cleanup
 		XCTAssertNoThrow(try Persona.forget(alice))
 	}
 
