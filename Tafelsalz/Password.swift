@@ -42,17 +42,17 @@ public class Password {
 	*/
 	public enum MemoryLimit {
 		/**
-			This requires about 32 MiB memory.
+			This requires about 64 MiB memory.
 		*/
 		case medium
 
 		/**
-			This requires about 128 MiB memory.
+			This requires about 256 MiB memory.
 		*/
 		case high
 
 		/**
-			This requires about 512 MiB memory.
+			This requires about 1 GiB memory.
 		*/
 		case veryHigh
 	}
