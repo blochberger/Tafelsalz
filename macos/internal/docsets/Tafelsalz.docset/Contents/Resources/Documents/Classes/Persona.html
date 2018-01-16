@@ -60,6 +60,21 @@
                 <a class="nav-group-task-link" href="../Classes/GenericHash/Key.html">– Key</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KeyExchange.html">KeyExchange</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KeyExchange/Side.html">– Side</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KeyExchange/PublicKey.html">– PublicKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KeyExchange/SessionKey.html">– SessionKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KeyExchange/SessionKeyPair.html">– SessionKeyPair</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/KeyMaterial.html">KeyMaterial</a>
               </li>
               <li class="nav-group-task">
@@ -155,6 +170,9 @@
                 <a class="nav-group-task-link" href="../Structs/Sodium/KeyDerivation.html">– KeyDerivation</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Sodium/KeyExchange.html">– KeyExchange</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/Sodium/Memory.html">– Memory</a>
               </li>
               <li class="nav-group-task">
@@ -168,14 +186,6 @@
               </li>
             </ul>
           </li>
-          <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Typealiases.html">Type Aliases</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Typealiases.html#/s:9Tafelsalz4PInta">PInt</a>
-              </li>
-            </ul>
-          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -185,7 +195,7 @@
             <h1>Persona</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Persona</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Persona</span></code></pre>
 
                 </div>
               </div>
@@ -235,12 +245,12 @@ to decrypt values encrypted for the previous one.
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">enum</span> <span class="kt">Error</span><span class="p">:</span> <span class="kt">Swift</span><span class="o">.</span><span class="kt">Error</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">enum</span> <span class="kt">Error</span><span class="p">:</span> <span class="kt">Swift</span><span class="o">.</span><span class="kt">Error</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/Persona.swift#L25-L35">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/Persona.swift#L25-L35">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -273,7 +283,7 @@ persona cannot be decrypted anymore.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">forget</span><span class="p">(</span><span class="n">_</span> <span class="nv">persona</span><span class="p">:</span> <span class="kt">Persona</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">forget</span><span class="p">(</span><span class="n">_</span> <span class="nv">persona</span><span class="p">:</span> <span class="kt">Persona</span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
@@ -297,7 +307,7 @@ persona cannot be decrypted anymore.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/Persona.swift#L49-L57">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/Persona.swift#L49-L57">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -322,12 +332,12 @@ persona cannot be decrypted anymore.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">uniqueName</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">uniqueName</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/Persona.swift#L62">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/Persona.swift#L62">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -353,7 +363,7 @@ will be retrieved from the system&rsquo;s Keychain.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">uniqueName</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">uniqueName</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -377,7 +387,7 @@ will be retrieved from the system&rsquo;s Keychain.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/Persona.swift#L71-L73">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/Persona.swift#L71-L73">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -402,7 +412,7 @@ will be retrieved from the system&rsquo;s Keychain.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">masterKey</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/MasterKey.html">MasterKey</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">masterKey</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/MasterKey.html">MasterKey</a></span></code></pre>
 
                         </div>
                       </div>
@@ -411,7 +421,7 @@ will be retrieved from the system&rsquo;s Keychain.</p>
                         <p>The master key.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/Persona.swift#L139-L141">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/Persona.swift#L139-L141">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -436,7 +446,7 @@ will be retrieved from the system&rsquo;s Keychain.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">secretKey</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/SecretBox.html">SecretBox</a></span><span class="o">.</span><span class="kt">SecretKey</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">secretKey</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/SecretBox.html">SecretBox</a></span><span class="o">.</span><span class="kt">SecretKey</span></code></pre>
 
                         </div>
                       </div>
@@ -445,7 +455,7 @@ will be retrieved from the system&rsquo;s Keychain.</p>
                         <p>The secret key.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/Persona.swift#L148-L150">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/Persona.swift#L148-L150">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -470,7 +480,7 @@ will be retrieved from the system&rsquo;s Keychain.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">genericHashKey</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/GenericHash.html">GenericHash</a></span><span class="o">.</span><span class="kt">Key</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">genericHashKey</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/GenericHash.html">GenericHash</a></span><span class="o">.</span><span class="kt">Key</span></code></pre>
 
                         </div>
                       </div>
@@ -479,7 +489,7 @@ will be retrieved from the system&rsquo;s Keychain.</p>
                         <p>The key.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/Persona.swift#L157-L159">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/Persona.swift#L157-L159">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -518,7 +528,7 @@ Keychain.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setMasterKey</span><span class="p">(</span><span class="n">_</span> <span class="nv">masterKey</span><span class="p">:</span> <span class="kt"><a href="../Classes/MasterKey.html">MasterKey</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setMasterKey</span><span class="p">(</span><span class="n">_</span> <span class="nv">masterKey</span><span class="p">:</span> <span class="kt"><a href="../Classes/MasterKey.html">MasterKey</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
@@ -542,7 +552,7 @@ Keychain.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/Persona.swift#L177-L179">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/Persona.swift#L177-L179">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -580,7 +590,7 @@ Keychain.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setSecretKey</span><span class="p">(</span><span class="n">_</span> <span class="nv">secretKey</span><span class="p">:</span> <span class="kt"><a href="../Classes/SecretBox.html">SecretBox</a></span><span class="o">.</span><span class="kt">SecretKey</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setSecretKey</span><span class="p">(</span><span class="n">_</span> <span class="nv">secretKey</span><span class="p">:</span> <span class="kt"><a href="../Classes/SecretBox.html">SecretBox</a></span><span class="o">.</span><span class="kt">SecretKey</span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
@@ -604,7 +614,7 @@ Keychain.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/Persona.swift#L196-L198">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/Persona.swift#L196-L198">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -643,7 +653,7 @@ Keychain.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setGenericHashKey</span><span class="p">(</span><span class="n">_</span> <span class="nv">genericHashKey</span><span class="p">:</span> <span class="kt"><a href="../Classes/GenericHash.html">GenericHash</a></span><span class="o">.</span><span class="kt">Key</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setGenericHashKey</span><span class="p">(</span><span class="n">_</span> <span class="nv">genericHashKey</span><span class="p">:</span> <span class="kt"><a href="../Classes/GenericHash.html">GenericHash</a></span><span class="o">.</span><span class="kt">Key</span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
@@ -667,7 +677,7 @@ Keychain.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/Persona.swift#L216-L218">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/Persona.swift#L216-L218">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -693,12 +703,12 @@ Keychain.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">KeyType</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">KeyType</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/Persona.swift#L223-L238">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/Persona.swift#L223-L238">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -723,12 +733,12 @@ Keychain.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">keychainItem</span><span class="p">(</span><span class="k">for</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Classes/Persona/KeyType.html">KeyType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">GenericPasswordItem</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">keychainItem</span><span class="p">(</span><span class="k">for</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Classes/Persona/KeyType.html">KeyType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">GenericPasswordItem</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/Persona.swift#L273-L275">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/Persona.swift#L273-L275">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -741,8 +751,8 @@ Keychain.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2017-11-09)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2018 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2018-01-16)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

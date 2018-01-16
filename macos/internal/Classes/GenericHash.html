@@ -60,6 +60,21 @@
                 <a class="nav-group-task-link" href="../Classes/GenericHash/Key.html">– Key</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KeyExchange.html">KeyExchange</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KeyExchange/Side.html">– Side</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KeyExchange/PublicKey.html">– PublicKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KeyExchange/SessionKey.html">– SessionKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KeyExchange/SessionKeyPair.html">– SessionKeyPair</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/KeyMaterial.html">KeyMaterial</a>
               </li>
               <li class="nav-group-task">
@@ -155,6 +170,9 @@
                 <a class="nav-group-task-link" href="../Structs/Sodium/KeyDerivation.html">– KeyDerivation</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Sodium/KeyExchange.html">– KeyExchange</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/Sodium/Memory.html">– Memory</a>
               </li>
               <li class="nav-group-task">
@@ -168,14 +186,6 @@
               </li>
             </ul>
           </li>
-          <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Typealiases.html">Type Aliases</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Typealiases.html#/s:9Tafelsalz4PInta">PInt</a>
-              </li>
-            </ul>
-          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -185,7 +195,7 @@
             <h1>GenericHash</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">GenericHash</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">GenericHash</span></code></pre>
 
                 </div>
               </div>
@@ -226,12 +236,12 @@ fast brute-force attacks. Use <code><a href="../Structs/HashedPassword.html">Has
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Key</span><span class="p">:</span> <span class="kt"><a href="../Classes/KeyMaterial.html">KeyMaterial</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Key</span><span class="p">:</span> <span class="kt"><a href="../Classes/KeyMaterial.html">KeyMaterial</a></span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/GenericHash.swift#L14-L115">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/GenericHash.swift#L14-L115">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -256,12 +266,12 @@ fast brute-force attacks. Use <code><a href="../Structs/HashedPassword.html">Has
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">MinimumSizeInBytes</span> <span class="o">=</span> <span class="kt"><a href="../Typealiases.html#/s:9Tafelsalz4PInta">PInt</a></span><span class="p">(</span><span class="n"><a href="../Global Variables.html#/s:9Tafelsalz6sodiumAA6SodiumVv">sodium</a></span><span class="o">.</span><span class="n">generichash</span><span class="o">.</span><span class="n">minimumOutputSizeInBytes</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">MinimumSizeInBytes</span> <span class="o">=</span> <span class="nf">UInt32</span><span class="p">(</span><span class="n"><a href="../Global Variables.html#/s:9Tafelsalz6sodiumAA6SodiumVv">sodium</a></span><span class="o">.</span><span class="n">generichash</span><span class="o">.</span><span class="n">minimumOutputSizeInBytes</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/GenericHash.swift#L120">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/GenericHash.swift#L120">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -286,12 +296,12 @@ fast brute-force attacks. Use <code><a href="../Structs/HashedPassword.html">Has
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">MaximumSizeInBytes</span> <span class="o">=</span> <span class="kt"><a href="../Typealiases.html#/s:9Tafelsalz4PInta">PInt</a></span><span class="p">(</span><span class="n"><a href="../Global Variables.html#/s:9Tafelsalz6sodiumAA6SodiumVv">sodium</a></span><span class="o">.</span><span class="n">generichash</span><span class="o">.</span><span class="n">maximumOutputSizeInBytes</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">MaximumSizeInBytes</span> <span class="o">=</span> <span class="nf">UInt32</span><span class="p">(</span><span class="n"><a href="../Global Variables.html#/s:9Tafelsalz6sodiumAA6SodiumVv">sodium</a></span><span class="o">.</span><span class="n">generichash</span><span class="o">.</span><span class="n">maximumOutputSizeInBytes</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/GenericHash.swift#L125">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/GenericHash.swift#L125">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -316,12 +326,12 @@ fast brute-force attacks. Use <code><a href="../Structs/HashedPassword.html">Has
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">DefaultSizeInBytes</span> <span class="o">=</span> <span class="kt"><a href="../Typealiases.html#/s:9Tafelsalz4PInta">PInt</a></span><span class="p">(</span><span class="n"><a href="../Global Variables.html#/s:9Tafelsalz6sodiumAA6SodiumVv">sodium</a></span><span class="o">.</span><span class="n">generichash</span><span class="o">.</span><span class="n">defaultOutputSizeInBytes</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">DefaultSizeInBytes</span> <span class="o">=</span> <span class="nf">UInt32</span><span class="p">(</span><span class="n"><a href="../Global Variables.html#/s:9Tafelsalz6sodiumAA6SodiumVv">sodium</a></span><span class="o">.</span><span class="n">generichash</span><span class="o">.</span><span class="n">defaultOutputSizeInBytes</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/GenericHash.swift#L130">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/GenericHash.swift#L130">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -359,7 +369,7 @@ a key.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">bytes</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="nv">outputSizeInBytes</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9Tafelsalz4PInta">PInt</a></span> <span class="o">=</span> <span class="kt">GenericHash</span><span class="o">.</span><span class="kt"><a href="../Classes/GenericHash.html#/s:9Tafelsalz11GenericHashC18DefaultSizeInBytess6UInt32VvZ">DefaultSizeInBytes</a></span><span class="p">,</span> <span class="n">with</span> <span class="nv">key</span><span class="p">:</span> <span class="kt"><a href="../Classes/GenericHash/Key.html">Key</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">bytes</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="nv">outputSizeInBytes</span><span class="p">:</span> <span class="kt">UInt32</span> <span class="o">=</span> <span class="kt">GenericHash</span><span class="o">.</span><span class="kt"><a href="../Classes/GenericHash.html#/s:9Tafelsalz11GenericHashC18DefaultSizeInBytess6UInt32VvZ">DefaultSizeInBytes</a></span><span class="p">,</span> <span class="n">with</span> <span class="nv">key</span><span class="p">:</span> <span class="kt"><a href="../Classes/GenericHash/Key.html">Key</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -407,7 +417,7 @@ a key.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/GenericHash.swift#L156-L187">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/GenericHash.swift#L156-L187">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -444,7 +454,7 @@ purpose.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">bytes</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="k">for</span> <span class="nv">persona</span><span class="p">:</span> <span class="kt"><a href="../Classes/Persona.html">Persona</a></span><span class="p">,</span> <span class="nv">outputSizeInBytes</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9Tafelsalz4PInta">PInt</a></span> <span class="o">=</span> <span class="kt">GenericHash</span><span class="o">.</span><span class="kt"><a href="../Classes/GenericHash.html#/s:9Tafelsalz11GenericHashC18DefaultSizeInBytess6UInt32VvZ">DefaultSizeInBytes</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">bytes</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="k">for</span> <span class="nv">persona</span><span class="p">:</span> <span class="kt"><a href="../Classes/Persona.html">Persona</a></span><span class="p">,</span> <span class="nv">outputSizeInBytes</span><span class="p">:</span> <span class="kt">UInt32</span> <span class="o">=</span> <span class="kt">GenericHash</span><span class="o">.</span><span class="kt"><a href="../Classes/GenericHash.html#/s:9Tafelsalz11GenericHashC18DefaultSizeInBytess6UInt32VvZ">DefaultSizeInBytes</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -492,7 +502,7 @@ purpose.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/GenericHash.swift#L207-L210">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/GenericHash.swift#L207-L210">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -517,7 +527,7 @@ purpose.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">hex</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">hex</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -541,7 +551,7 @@ purpose.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/GenericHash.swift#L218-L224">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/GenericHash.swift#L218-L224">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -566,12 +576,12 @@ purpose.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">sizeInBytes</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9Tafelsalz4PInta">PInt</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">sizeInBytes</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/GenericHash.swift#L229">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/GenericHash.swift#L229">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -596,12 +606,12 @@ purpose.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">hex</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">hex</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/GenericHash.swift#L234">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/GenericHash.swift#L234">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -638,7 +648,7 @@ cause for problems.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">GenericHash</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">GenericHash</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">GenericHash</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">GenericHash</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -678,7 +688,7 @@ cause for problems.</p>
                         <p><code>true</code> if both hashes are equal, <code>false</code> else.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/GenericHash.swift#L254-L268">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/GenericHash.swift#L254-L268">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -714,12 +724,12 @@ improving performance of data structures.
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">hashValue</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">hashValue</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/GenericHash.swift#L280-L284">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/GenericHash.swift#L280-L284">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -732,8 +742,8 @@ improving performance of data structures.
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2017-11-09)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2018 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2018-01-16)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

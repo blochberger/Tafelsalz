@@ -1,43 +1,57 @@
 {
   "warnings": [
     {
+      "file": "/Users/blochberger/Development/Tafelsalz/Tafelsalz/KeyExchange.swift",
+      "line": 62,
+      "symbol": "KeyExchange.PublicKey",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/blochberger/Development/Tafelsalz/Tafelsalz/KeyExchange.swift",
+      "line": 86,
+      "symbol": "KeyExchange.SessionKey",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/blochberger/Development/Tafelsalz/Tafelsalz/Sodium.swift",
-      "line": 402,
+      "line": 499,
       "symbol": "Sodium.PasswordHash.opslimit_interactive",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/blochberger/Development/Tafelsalz/Tafelsalz/Sodium.swift",
-      "line": 403,
+      "line": 500,
       "symbol": "Sodium.PasswordHash.opslimit_moderate",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/blochberger/Development/Tafelsalz/Tafelsalz/Sodium.swift",
-      "line": 404,
+      "line": 501,
       "symbol": "Sodium.PasswordHash.opslimit_sensitive",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/blochberger/Development/Tafelsalz/Tafelsalz/Sodium.swift",
-      "line": 406,
+      "line": 503,
       "symbol": "Sodium.PasswordHash.memlimit_interactive",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/blochberger/Development/Tafelsalz/Tafelsalz/Sodium.swift",
-      "line": 407,
+      "line": 504,
       "symbol": "Sodium.PasswordHash.memlimit_moderate",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/blochberger/Development/Tafelsalz/Tafelsalz/Sodium.swift",
-      "line": 408,
+      "line": 505,
       "symbol": "Sodium.PasswordHash.memlimit_sensitive",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"

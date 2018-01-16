@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           Tafelsalz Docs
         </a>
-         (97% documented)
+         (96% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -58,6 +58,24 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/GenericHash/Key.html">– Key</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KeyExchange.html">KeyExchange</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KeyExchange/Side.html">– Side</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KeyExchange/SecretKey.html">– SecretKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KeyExchange/PublicKey.html">– PublicKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KeyExchange/SessionKey.html">– SessionKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/KeyExchange/SessionKeyPair.html">– SessionKeyPair</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/KeyMaterial.html">KeyMaterial</a>
@@ -158,6 +176,9 @@
                 <a class="nav-group-task-link" href="../Structs/Sodium/KeyDerivation.html">– KeyDerivation</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Sodium/KeyExchange.html">– KeyExchange</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/Sodium/Memory.html">– Memory</a>
               </li>
               <li class="nav-group-task">
@@ -171,14 +192,6 @@
               </li>
             </ul>
           </li>
-          <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Typealiases.html">Type Aliases</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Typealiases.html#/s:9Tafelsalz4PInta">PInt</a>
-              </li>
-            </ul>
-          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -188,7 +201,7 @@
             <h1>KeyMaterial</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">KeyMaterial</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">KeyMaterial</span></code></pre>
 
                 </div>
               </div>
@@ -221,12 +234,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">sizeInBytes</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9Tafelsalz4PInta">PInt</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">sizeInBytes</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/KeyMaterial.swift#L9">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/KeyMaterial.swift#L9">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -251,12 +264,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">private</span> <span class="k">let</span> <span class="nv">memory</span><span class="p">:</span> <span class="kt"><a href="../Classes/Memory.html">Memory</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">let</span> <span class="nv">memory</span><span class="p">:</span> <span class="kt"><a href="../Classes/Memory.html">Memory</a></span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/KeyMaterial.swift#L14">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/KeyMaterial.swift#L14">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -281,12 +294,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">cachedHash</span><span class="p">:</span> <span class="kt">Data</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">cachedHash</span><span class="p">:</span> <span class="kt">Data</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/KeyMaterial.swift#L19">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/KeyMaterial.swift#L19">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -311,7 +324,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">sizeInBytes</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9Tafelsalz4PInta">PInt</a></span><span class="p">,</span> <span class="nv">initialize</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">sizeInBytes</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">,</span> <span class="nv">initialize</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -349,7 +362,7 @@ with <code>0xdb</code>.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/KeyMaterial.swift#L30-L40">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/KeyMaterial.swift#L30-L40">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -376,7 +389,7 @@ order to avoid the key material from being compromised.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">bytes</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">Data</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">bytes</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">Data</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -400,7 +413,7 @@ order to avoid the key material from being compromised.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/KeyMaterial.swift#L50-L52">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/KeyMaterial.swift#L50-L52">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -425,7 +438,7 @@ order to avoid the key material from being compromised.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">other</span><span class="p">:</span> <span class="kt">KeyMaterial</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">other</span><span class="p">:</span> <span class="kt">KeyMaterial</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -449,7 +462,7 @@ order to avoid the key material from being compromised.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/KeyMaterial.swift#L60-L63">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/KeyMaterial.swift#L60-L63">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -476,7 +489,7 @@ order to avoid the key material from being compromised.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">withUnsafeBytes</span><span class="o">&lt;</span><span class="kt">ResultType</span><span class="p">,</span> <span class="kt">ContentType</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">body</span><span class="p">:</span> <span class="p">(</span><span class="kt">UnsafePointer</span><span class="o">&lt;</span><span class="kt">ContentType</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">ResultType</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt">ResultType</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">withUnsafeBytes</span><span class="o">&lt;</span><span class="kt">ResultType</span><span class="p">,</span> <span class="kt">ContentType</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">body</span><span class="p">:</span> <span class="p">(</span><span class="kt">UnsafePointer</span><span class="o">&lt;</span><span class="kt">ContentType</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">ResultType</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt">ResultType</span></code></pre>
 
                         </div>
                       </div>
@@ -504,7 +517,7 @@ order to avoid the key material from being compromised.</p>
                         <p>The result from the <code>body</code> code block.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/KeyMaterial.swift#L75-L77">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/KeyMaterial.swift#L75-L77">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -535,7 +548,7 @@ to insecure key material.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="n">withUnsafeMutableBytes</span><span class="o">&lt;</span><span class="kt">ResultType</span><span class="p">,</span> <span class="kt">ContentType</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">body</span><span class="p">:</span> <span class="p">(</span><span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">ContentType</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">ResultType</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt">ResultType</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="n">withUnsafeMutableBytes</span><span class="o">&lt;</span><span class="kt">ResultType</span><span class="p">,</span> <span class="kt">ContentType</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">body</span><span class="p">:</span> <span class="p">(</span><span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">ContentType</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">ResultType</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt">ResultType</span></code></pre>
 
                         </div>
                       </div>
@@ -563,7 +576,7 @@ to insecure key material.</p>
                         <p>The result from the <code>body</code> code block.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/KeyMaterial.swift#L91-L93">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/KeyMaterial.swift#L91-L93">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -595,7 +608,7 @@ memory.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">copyBytes</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">copyBytes</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
 
                         </div>
                       </div>
@@ -604,7 +617,7 @@ memory.</p>
                         <p>A copy of the key material.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/KeyMaterial.swift#L106-L108">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/KeyMaterial.swift#L106-L108">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -633,7 +646,7 @@ called.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">fingerprint</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">fingerprint</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
 
                         </div>
                       </div>
@@ -642,7 +655,7 @@ called.</p>
                         <p>The fingerprint.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/KeyMaterial.swift#L119-L125">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/KeyMaterial.swift#L119-L125">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -692,7 +705,7 @@ instances of possibly different sizes, use
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">isEqual</span><span class="p">(</span><span class="n">to</span> <span class="nv">other</span><span class="p">:</span> <span class="kt">KeyMaterial</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">isEqual</span><span class="p">(</span><span class="n">to</span> <span class="nv">other</span><span class="p">:</span> <span class="kt">KeyMaterial</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -720,7 +733,7 @@ instances of possibly different sizes, use
                         <p><code>true</code> if the key material is equal.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/KeyMaterial.swift#L152-L166">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/KeyMaterial.swift#L152-L166">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -749,7 +762,7 @@ instead, as it is faster.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">isFingerprintEqual</span><span class="p">(</span><span class="n">to</span> <span class="nv">other</span><span class="p">:</span> <span class="kt">KeyMaterial</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">isFingerprintEqual</span><span class="p">(</span><span class="n">to</span> <span class="nv">other</span><span class="p">:</span> <span class="kt">KeyMaterial</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -758,7 +771,7 @@ instead, as it is faster.</p>
                         <p><code>true</code> if both key materials have the same fingerprint.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/cc404652fc8efedb9291c65a26f0f551f3c724a3/Tafelsalz/KeyMaterial.swift#L180-L191">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/2bb35e69d1f45e3d645bb0e9320c5fdf69f255d4/Tafelsalz/KeyMaterial.swift#L180-L191">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -771,8 +784,8 @@ instead, as it is faster.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2017-11-09)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2018 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2018-01-16)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>
