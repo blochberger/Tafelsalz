@@ -76,10 +76,6 @@ public class GenericHash {
 		/**
 			Restores a key from a given hex string.
 
-			- note:
-				All characters until the first non-hex character will be taken
-				into account, when restoring the key.
-
 			- warning:
 				Do not initialize new keys with this function. If you need a new
 				key, use `init?(sizeInBytes:)` instead. This initializer is only
@@ -93,7 +89,10 @@ public class GenericHash {
 			- see: `Data(hex:ignore:)`
 		*/
 		public convenience init?(hex: String, ignore: String? = nil) {
-			var bytes = Data(hex: hex, ignore: ignore)
+			guard var bytes = Data(hex: hex, ignore: ignore) else {
+				return nil
+			}
+
 			self.init(bytes: &bytes)
 		}
 
@@ -216,7 +215,7 @@ public class GenericHash {
 			- hex: The hash as a hex encoded string.
 	*/
 	public init?(hex: String) {
-		let bytes = Data(hex: hex)
+		guard let bytes = Data(hex: hex) else { return nil }
 		guard GenericHash.MinimumSizeInBytes <= UInt32(bytes.count) else { return nil }
 		guard UInt32(bytes.count) <= GenericHash.MaximumSizeInBytes else { return nil }
 

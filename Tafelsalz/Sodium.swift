@@ -810,8 +810,7 @@ struct Sodium {
 	// MARK: Utilities
 
 	/**
-		Converts the hex-characters until the first non-hex charater in a string
-		to a byte array.
+		Converts hex-characters to a byte array.
 
 		- parameters:
 			- hex: The string.
@@ -820,9 +819,7 @@ struct Sodium {
 
 		- returns: The byte array.
 	*/
-	func hex2bin(_ hex: String, ignore: String? = nil) -> Data {
-		let sNotEnoughCapacityReserved: Int32 = -1
-
+	func hex2bin(_ hex: String, ignore: String? = nil) -> Data? {
 		let hexData = Data(hex.utf8)
 		let reservedCapacity = hexData.count / 2
 		var result = Data(count: reservedCapacity)
@@ -847,12 +844,8 @@ struct Sodium {
 			}
 		}
 
-		guard status != sNotEnoughCapacityReserved else {
-			fatalError("Not enough capacity reserved!")
-		}
-
 		guard status == sSuccess else {
-			fatalError("Unhandled status: \(status)")
+			return nil
 		}
 
 		result.count = Int(bytesWritten)
