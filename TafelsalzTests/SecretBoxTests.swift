@@ -51,7 +51,7 @@ class SecretBoxTests: XCTestCase {
 		typealias AuthenticationCode = SecretBox.AuthenticationCode
 		typealias AuthenticatedCiphertext = SecretBox.AuthenticatedCiphertext
 
-		let ciphertextSizeInBytes: PInt = 32
+		let ciphertextSizeInBytes: UInt32 = 32
 		let sizeInBytes = AuthenticatedCiphertext.PrefixSizeInBytes + ciphertextSizeInBytes
 
 		let nonce = Nonce()
@@ -136,7 +136,7 @@ class SecretBoxTests: XCTestCase {
 		// Decryption should not be possible with invalid ciphertext
 
 		let prefixSize = SecretBox.Nonce.SizeInBytes + SecretBox.AuthenticationCode.SizeInBytes
-		let bytePosInCiphertext = Int(prefixSize + Random.number(withUpperBound: PInt(ciphertext.bytes.count) - prefixSize))
+		let bytePosInCiphertext = Int(prefixSize + Random.number(withUpperBound: UInt32(ciphertext.bytes.count) - prefixSize))
 		var dataWithInvalidCiphertext = ciphertext.bytes
 		dataWithInvalidCiphertext[bytePosInCiphertext] = ~dataWithInvalidCiphertext[bytePosInCiphertext]
 		let ciphertextWithInvalidBytes = SecretBox.AuthenticatedCiphertext(bytes: dataWithInvalidCiphertext)!

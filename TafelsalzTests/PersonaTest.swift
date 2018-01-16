@@ -14,7 +14,7 @@ import Keychain
 */
 class PersonaTest: XCTestCase {
 
-	func metaTestInvalidKey<T: KeyMaterial>(persona: Persona, type: Persona.KeyType, invalidSize: PInt? = nil, retrieveKey: (Persona) throws -> T) {
+	func metaTestInvalidKey<T: KeyMaterial>(persona: Persona, type: Persona.KeyType, invalidSize: UInt32? = nil, retrieveKey: (Persona) throws -> T) {
 		var key1: T! = nil
 		XCTAssertNoThrow(key1 = try retrieveKey(persona))
 

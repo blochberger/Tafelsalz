@@ -6,7 +6,7 @@ public class MasterKey: KeyMaterial {
 	/**
 		The size of the master key in bytes.
 	*/
-	public static let SizeInBytes = PInt(sodium.kdf.masterKeySizeInBytes)
+	public static let SizeInBytes = UInt32(sodium.kdf.masterKeySizeInBytes)
 
 	/**
 		A context for which the derived keys should be used.
@@ -16,7 +16,7 @@ public class MasterKey: KeyMaterial {
 		/**
 			The size of the context in bytes.
 		*/
-		public static let SizeInBytes = PInt(sodium.kdf.contextSizeInBytes)
+		public static let SizeInBytes = UInt32(sodium.kdf.contextSizeInBytes)
 
 		/**
 			The description of the context in bytes.
@@ -30,7 +30,7 @@ public class MasterKey: KeyMaterial {
 				- bytes: The byte array.
 		*/
 		public init?(_ bytes: Data) {
-			guard PInt(bytes.count) == Context.SizeInBytes else { return nil }
+			guard UInt32(bytes.count) == Context.SizeInBytes else { return nil }
 
 			self.bytes = bytes
 		}
@@ -55,12 +55,12 @@ public class MasterKey: KeyMaterial {
 		/**
 			The minimum size of the derived key in bytes.
 		*/
-		public static let MinimumSizeInBytes = PInt(sodium.kdf.minimumSubKeySizeInBytes)
+		public static let MinimumSizeInBytes = UInt32(sodium.kdf.minimumSubKeySizeInBytes)
 
 		/**
 			The maximum size of the derived key in bytes.
 		*/
-		public static let MaximumSizeInBytes = PInt(sodium.kdf.maximumSubKeySizeInBytes)
+		public static let MaximumSizeInBytes = UInt32(sodium.kdf.maximumSubKeySizeInBytes)
 
 		/**
 			Generate an uninitialized key, as the initialization will happen
@@ -69,7 +69,7 @@ public class MasterKey: KeyMaterial {
 			- parameters:
 				- sizeInBytes: The size of the derived key in bytes.
 		*/
-		fileprivate init?(sizeInBytes: PInt) {
+		fileprivate init?(sizeInBytes: UInt32) {
 			guard DerivedKey.MinimumSizeInBytes <= sizeInBytes else { return nil }
 			guard sizeInBytes <= DerivedKey.MaximumSizeInBytes else { return nil }
 
@@ -101,7 +101,7 @@ public class MasterKey: KeyMaterial {
 			- bytes: A master key.
 	*/
 	public override init?(bytes: inout Data) {
-		guard PInt(bytes.count) == MasterKey.SizeInBytes else { return nil }
+		guard UInt32(bytes.count) == MasterKey.SizeInBytes else { return nil }
 
 		super.init(bytes: &bytes)
 	}
@@ -116,7 +116,7 @@ public class MasterKey: KeyMaterial {
 			- id: The ID of the derived key.
 			- context: A context in which the derived key is used.
 	*/
-	public func derive(sizeInBytes: PInt, with id: UInt64, and context: Context) -> DerivedKey? {
+	public func derive(sizeInBytes: UInt32, with id: UInt64, and context: Context) -> DerivedKey? {
 
 		guard let derivedKey = DerivedKey(sizeInBytes: sizeInBytes) else { return nil }
 
@@ -163,7 +163,7 @@ public class MasterKey: KeyMaterial {
 	
 		- returns: `nil` if the size is not valid.
 	*/
-	public func derive(with id: UInt64, and context: Context, outputSizeInBytes: PInt = GenericHash.DefaultSizeInBytes) -> GenericHash.Key? {
+	public func derive(with id: UInt64, and context: Context, outputSizeInBytes: UInt32 = GenericHash.DefaultSizeInBytes) -> GenericHash.Key? {
 		guard GenericHash.Key.MinimumSizeInBytes <= outputSizeInBytes else { return nil }
 		guard outputSizeInBytes <= GenericHash.Key.MaximumSizeInBytes else { return nil }
 		let derivedKey = derive(sizeInBytes: sizeInBytes, with: id, and: context)!

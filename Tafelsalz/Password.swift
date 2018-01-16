@@ -105,7 +105,7 @@ public class Password {
 	/**
 		The password size in bytes.
 	*/
-	var sizeInBytes: PInt {
+	var sizeInBytes: UInt32 {
 		get {
 			return bytes.sizeInBytes
 		}

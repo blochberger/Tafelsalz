@@ -14,7 +14,7 @@ class KeyMaterialTest: XCTestCase {
 	// MARK: - Meta tests
 
 	static func metaTestDefaultInitializer<T: KeyMaterial, E: Equatable>(
-		of fixedSizeInBytes: PInt,
+		of fixedSizeInBytes: UInt32,
 		eq: (T) -> E,
 		with initializer: () -> T
 	) {
@@ -31,8 +31,8 @@ class KeyMaterialTest: XCTestCase {
 	}
 
 	static func metaTestCapturingInitializer<T: KeyMaterial, E: Equatable>(
-		minimumSizeInBytes: PInt,
-		maximumSizeInBytes: PInt,
+		minimumSizeInBytes: UInt32,
+		maximumSizeInBytes: UInt32,
 		eq: (T) -> E,
 		with initializer: (inout Data) -> T?
 	) {
@@ -72,7 +72,7 @@ class KeyMaterialTest: XCTestCase {
 	}
 
 	static func metaTestCapturingInitializer<T: KeyMaterial, E: Equatable>(
-		of fixedSizeInBytes: PInt,
+		of fixedSizeInBytes: UInt32,
 		eq: (T) -> E,
 		with initializer: (inout Data) -> T?
 	) {
@@ -80,7 +80,7 @@ class KeyMaterialTest: XCTestCase {
 	}
 
 	static func metaTestEquality<T: KeyMaterial>(
-		of fixedSizeInBytes: PInt,
+		of fixedSizeInBytes: UInt32,
 		withCapturingInitializer initializer: (inout Data) -> T?
 	) {
 		let bytes = Random.bytes(count: fixedSizeInBytes)
@@ -112,21 +112,21 @@ class KeyMaterialTest: XCTestCase {
 	// MARK: - Tests
 
 	func testDefaultInitializer() {
-		let sizeInBytes: PInt = 32
+		let sizeInBytes: UInt32 = 32
 
 		KeyMaterialTest.metaTestDefaultInitializer(of: sizeInBytes, eq: { $0.copyBytes() }) { KeyMaterial(sizeInBytes: sizeInBytes) }
 	}
 
     func testCapturingInitializer() {
-		let sizeInBytes: PInt = 32
+		let sizeInBytes: UInt32 = 32
 
 		KeyMaterialTest.metaTestCapturingInitializer(of: sizeInBytes, eq: { $0.copyBytes() }) {
-			PInt($0.count) == sizeInBytes ? KeyMaterial(bytes: &$0) : nil
+			UInt32($0.count) == sizeInBytes ? KeyMaterial(bytes: &$0) : nil
 		}
     }
 
 	func testEquality() {
-		let sizeInBytes: PInt = 32
+		let sizeInBytes: UInt32 = 32
 
 		KeyMaterialTest.metaTestEquality(of: sizeInBytes) { KeyMaterial(bytes: &$0) }
 

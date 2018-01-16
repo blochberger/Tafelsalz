@@ -6,7 +6,7 @@ public class KeyMaterial {
 	/**
 		The size of the key material in bytes.
 	*/
-	public var sizeInBytes: PInt { get { return memory.sizeInBytes } }
+	public var sizeInBytes: UInt32 { get { return memory.sizeInBytes } }
 
 	/**
 		The pointer to the secure memory location.
@@ -27,7 +27,7 @@ public class KeyMaterial {
 				cryptographically secure random data, else it will be filled
 				with `0xdb`.
 	*/
-	public init(sizeInBytes: PInt, initialize: Bool = true) {
+	public init(sizeInBytes: UInt32, initialize: Bool = true) {
 		let memory = Memory(sizeInBytes: sizeInBytes)
 
 		if initialize {

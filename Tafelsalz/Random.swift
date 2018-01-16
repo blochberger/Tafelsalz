@@ -9,7 +9,7 @@ public struct Random {
 		- parameters:
 			- count: The amount of bytes.
 	*/
-	public static func bytes(count: PInt) -> Data {
+	public static func bytes(count: UInt32) -> Data {
 		return sodium.random.bytes(count: Int(count))
 	}
 

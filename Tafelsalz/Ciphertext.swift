@@ -13,9 +13,9 @@ public struct Ciphertext: EncryptedData {
 	/**
 		The size of the encrypted message in bytes.
 	*/
-	public var sizeInBytes: PInt {
+	public var sizeInBytes: UInt32 {
 		get {
-			return PInt(bytes.count)
+			return UInt32(bytes.count)
 		}
 	}
 

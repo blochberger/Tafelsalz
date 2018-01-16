@@ -31,7 +31,7 @@ public struct HashedPassword {
 		The size of the hashed password string in bytes. As the string is ASCII
 		encoded it will match the number of characters.
 	*/
-	public static let SizeInBytes = PInt(sodium.pwhash.sizeOfStorableStringInBytes)
+	public static let SizeInBytes = UInt32(sodium.pwhash.sizeOfStorableStringInBytes)
 
 	/**
 		The hashed password.

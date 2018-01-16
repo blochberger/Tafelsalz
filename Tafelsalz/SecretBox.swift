@@ -50,7 +50,7 @@ public class SecretBox {
 		/**
 			The size of the secret key in bytes.
 		*/
-		public static let SizeInBytes = PInt(sodium.secretbox.sizeOfKeyInBytes)
+		public static let SizeInBytes = UInt32(sodium.secretbox.sizeOfKeyInBytes)
 
 		/**
 			Generates a new secret key.
@@ -93,7 +93,7 @@ public class SecretBox {
 				- bytes: A secret key.
 		*/
 		public override init?(bytes: inout Data) {
-			guard PInt(bytes.count) == SecretKey.SizeInBytes else {
+			guard UInt32(bytes.count) == SecretKey.SizeInBytes else {
 				return nil
 			}
 
@@ -109,7 +109,7 @@ public class SecretBox {
 		/**
 			The size of the nonce in bytes.
 		*/
-		public static let SizeInBytes = PInt(sodium.secretbox.sizeOfNonceInBytes)
+		public static let SizeInBytes = UInt32(sodium.secretbox.sizeOfNonceInBytes)
 
 		/**
 			Creates a new random nonce.
@@ -132,7 +132,7 @@ public class SecretBox {
 				- bytes: The nonce.
 		*/
 		public override init?(bytes: inout Data) {
-			guard PInt(bytes.count) == Nonce.SizeInBytes else {
+			guard UInt32(bytes.count) == Nonce.SizeInBytes else {
 				return nil
 			}
 
@@ -148,7 +148,7 @@ public class SecretBox {
 		/**
 			The size of the authentication code in bytes.
 		*/
-		public static let SizeInBytes = PInt(sodium.secretbox.sizeOfMacInBytes)
+		public static let SizeInBytes = UInt32(sodium.secretbox.sizeOfMacInBytes)
 
 		/**
 			Restore a authentication code from a byte array. Authentication
@@ -163,7 +163,7 @@ public class SecretBox {
 				- bytes: The message authentication code.
 		*/
 		public override init?(bytes: inout Data) {
-			guard PInt(bytes.count) == AuthenticationCode.SizeInBytes else {
+			guard UInt32(bytes.count) == AuthenticationCode.SizeInBytes else {
 				return nil
 			}
 
@@ -203,7 +203,7 @@ public class SecretBox {
 			The size of the authenticated ciphertext in bytes. This includes the
 			nonce, authentication code, and the encryped message.
 		*/
-		public var sizeInBytes: PInt {
+		public var sizeInBytes: UInt32 {
 			get {
 				return AuthenticatedCiphertext.PrefixSizeInBytes + ciphertext.sizeInBytes
 			}

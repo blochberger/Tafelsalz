@@ -15,17 +15,17 @@ public class GenericHash {
 		/**
 			The minimum size of the key in bytes.
 		*/
-		public static let MinimumSizeInBytes = PInt(sodium.generichash.minimumKeySizeInBytes)
+		public static let MinimumSizeInBytes = UInt32(sodium.generichash.minimumKeySizeInBytes)
 
 		/**
 			The maximum size of the key in bytes.
 		*/
-		public static let MaximumSizeInBytes = PInt(sodium.generichash.maximumKeySizeInBytes)
+		public static let MaximumSizeInBytes = UInt32(sodium.generichash.maximumKeySizeInBytes)
 
 		/**
 			The default key size in bytes.
 		*/
-		public static let DefaultSizeInBytes = PInt(sodium.generichash.defaultKeySizeInBytes)
+		public static let DefaultSizeInBytes = UInt32(sodium.generichash.defaultKeySizeInBytes)
 
 		/**
 			Initialize a new key with a given size.
@@ -36,7 +36,7 @@ public class GenericHash {
 			- parameters:
 				- sizeInBytes: The size of the key in bytes.
 		*/
-		public init?(sizeInBytes: PInt) {
+		public init?(sizeInBytes: UInt32) {
 			guard Key.MinimumSizeInBytes <= sizeInBytes && sizeInBytes <= Key.MaximumSizeInBytes else {
 				return nil
 			}
@@ -67,7 +67,7 @@ public class GenericHash {
 				- bytes: The key.
 		*/
 		public override init?(bytes: inout Data) {
-			guard Key.MinimumSizeInBytes <= PInt(bytes.count) && PInt(bytes.count) <= Key.MaximumSizeInBytes else {
+			guard Key.MinimumSizeInBytes <= UInt32(bytes.count) && UInt32(bytes.count) <= Key.MaximumSizeInBytes else {
 				return nil
 			}
 			super.init(bytes: &bytes)
@@ -117,17 +117,17 @@ public class GenericHash {
 	/**
 		The minimum size of the hash in bytes.
 	*/
-	public static let MinimumSizeInBytes = PInt(sodium.generichash.minimumOutputSizeInBytes)
+	public static let MinimumSizeInBytes = UInt32(sodium.generichash.minimumOutputSizeInBytes)
 
 	/**
 		The maximum size of the hash in bytes.
 	*/
-	public static let MaximumSizeInBytes = PInt(sodium.generichash.maximumOutputSizeInBytes)
+	public static let MaximumSizeInBytes = UInt32(sodium.generichash.maximumOutputSizeInBytes)
 
 	/**
 		The default size of the hash in bytes.
 	*/
-	public static let DefaultSizeInBytes = PInt(sodium.generichash.defaultOutputSizeInBytes)
+	public static let DefaultSizeInBytes = UInt32(sodium.generichash.defaultOutputSizeInBytes)
 
 	/**
 		The hash.
@@ -153,7 +153,7 @@ public class GenericHash {
 			- outputSizeInBytes: The size of the hash in bytes.
 			- key: A key/salt used to prevent the hash from being guessed.
 	*/
-	public init?(bytes: Data, outputSizeInBytes: PInt = GenericHash.DefaultSizeInBytes, with key: Key? = nil) {
+	public init?(bytes: Data, outputSizeInBytes: UInt32 = GenericHash.DefaultSizeInBytes, with key: Key? = nil) {
 
 		guard GenericHash.MinimumSizeInBytes <= outputSizeInBytes && outputSizeInBytes <= GenericHash.MaximumSizeInBytes else {
 			return nil
@@ -204,7 +204,7 @@ public class GenericHash {
 			- persona: The persona to which the hash is tied to.
 			- outputSizeInBytes: The size of the hash in bytes.
 	*/
-	public convenience init?(bytes: Data, for persona: Persona, outputSizeInBytes: PInt = GenericHash.DefaultSizeInBytes) {
+	public convenience init?(bytes: Data, for persona: Persona, outputSizeInBytes: UInt32 = GenericHash.DefaultSizeInBytes) {
 		guard let key = try? persona.genericHashKey() else { return nil }
 		self.init(bytes: bytes, outputSizeInBytes: outputSizeInBytes, with: key)
 	}
@@ -217,8 +217,8 @@ public class GenericHash {
 	*/
 	public init?(hex: String) {
 		let bytes = Data(hex: hex)
-		guard GenericHash.MinimumSizeInBytes <= PInt(bytes.count) else { return nil }
-		guard PInt(bytes.count) <= GenericHash.MaximumSizeInBytes else { return nil }
+		guard GenericHash.MinimumSizeInBytes <= UInt32(bytes.count) else { return nil }
+		guard UInt32(bytes.count) <= GenericHash.MaximumSizeInBytes else { return nil }
 
 		self.bytes = bytes
 	}
@@ -226,7 +226,7 @@ public class GenericHash {
 	/**
 		The size of the hash in bytes.
 	*/
-	public var sizeInBytes: PInt { get { return PInt(bytes.count) } }
+	public var sizeInBytes: UInt32 { get { return UInt32(bytes.count) } }
 
 	/**
 		A hex encoded string representing the hash.

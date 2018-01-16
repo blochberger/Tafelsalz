@@ -8,7 +8,7 @@ public class Memory {
 	/**
 		The size of the memory region in bytes.
 	*/
-	public let sizeInBytes: PInt
+	public let sizeInBytes: UInt32
 
 	/**
 		The pointer to the secure memory region.
@@ -21,7 +21,7 @@ public class Memory {
 		- parameters:
 			- sizeInBytes: The size of the memory region in bytes.
 	*/
-	public init(sizeInBytes: PInt) {
+	public init(sizeInBytes: UInt32) {
 		self.sizeInBytes = sizeInBytes
 		self.pointer = sodium.memory.allocate(sizeInBytes: Int(sizeInBytes))
 
@@ -36,7 +36,7 @@ public class Memory {
 			- bytes: The byte array.
 	*/
 	public convenience init(_ bytes: inout Data) {
-		self.init(sizeInBytes: PInt(bytes.count))
+		self.init(sizeInBytes: UInt32(bytes.count))
 
 		makeReadWritable()
 		bytes.withUnsafeBytes { pointer.copyBytes(from: $0, count: bytes.count) }

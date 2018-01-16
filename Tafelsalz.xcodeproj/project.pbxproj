@@ -33,7 +33,6 @@
 		6096E7831F1A655C00E6599F /* Keychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6096E75D1F1A490A00E6599F /* Keychain.framework */; };
 		6096E7841F1A656900E6599F /* libsodium-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C696891DBDEB1500CE9435 /* libsodium-ios.a */; };
 		6096E7871F1A658200E6599F /* Tafelsalz.h in Headers */ = {isa = PBXBuildFile; fileRef = 60C695491DBDE36100CE9435 /* Tafelsalz.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6096E7881F1A67CE00E6599F /* Tafelsalz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C696541DBDE5CA00CE9435 /* Tafelsalz.swift */; };
 		6096E7891F1A67D100E6599F /* EncryptedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C696991DBE02A500CE9435 /* EncryptedData.swift */; };
 		6096E78A1F1A67D400E6599F /* HashedPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6023DFC71DE42DA900E0B95E /* HashedPassword.swift */; };
 		6096E78B1F1A67D700E6599F /* Password.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C211E11EB503CC00882AD0 /* Password.swift */; };
@@ -62,7 +61,6 @@
 		60C211E61EB50AF500882AD0 /* HashedPasswordTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C211E51EB50AF500882AD0 /* HashedPasswordTest.swift */; };
 		60C695501DBDE36100CE9435 /* Tafelsalz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C695461DBDE36100CE9435 /* Tafelsalz.framework */; };
 		60C695571DBDE36100CE9435 /* Tafelsalz.h in Headers */ = {isa = PBXBuildFile; fileRef = 60C695491DBDE36100CE9435 /* Tafelsalz.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		60C696551DBDE5CA00CE9435 /* Tafelsalz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C696541DBDE5CA00CE9435 /* Tafelsalz.swift */; };
 		60C696931DBDF26400CE9435 /* libsodium-osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C6968A1DBDEB1500CE9435 /* libsodium-osx.a */; };
 		60C696971DBDFB3600CE9435 /* SecretBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C696961DBDFB3600CE9435 /* SecretBox.swift */; };
 		60C6969A1DBE02A500CE9435 /* EncryptedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C696991DBE02A500CE9435 /* EncryptedData.swift */; };
@@ -237,7 +235,6 @@
 		60C6954A1DBDE36100CE9435 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		60C6954F1DBDE36100CE9435 /* TafelsalzTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TafelsalzTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		60C695561DBDE36100CE9435 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		60C696541DBDE5CA00CE9435 /* Tafelsalz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tafelsalz.swift; sourceTree = "<group>"; };
 		60C696891DBDEB1500CE9435 /* libsodium-ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libsodium-ios.a"; path = "Dependencies/libsodium/libsodium-ios.a"; sourceTree = "<group>"; };
 		60C6968A1DBDEB1500CE9435 /* libsodium-osx.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libsodium-osx.a"; path = "Dependencies/libsodium/libsodium-osx.a"; sourceTree = "<group>"; };
 		60C696921DBDEB9300CE9435 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = Dependencies/libsodium/module.modulemap; sourceTree = "<group>"; };
@@ -375,7 +372,6 @@
 				6096E7021F18FF9300E6599F /* Persona.swift */,
 				60C696A31DBF908F00CE9435 /* Random.swift */,
 				60C696961DBDFB3600CE9435 /* SecretBox.swift */,
-				60C696541DBDE5CA00CE9435 /* Tafelsalz.swift */,
 			);
 			path = Tafelsalz;
 			sourceTree = "<group>";
@@ -775,7 +771,6 @@
 				60C076661F68776600258AB7 /* Memory.swift in Sources */,
 				601833921F3DAFBF003AE3D8 /* Extensions.swift in Sources */,
 				60C076601F684D2300258AB7 /* MasterKey.swift in Sources */,
-				6096E7881F1A67CE00E6599F /* Tafelsalz.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -813,7 +808,6 @@
 				60C076651F68776600258AB7 /* Memory.swift in Sources */,
 				601833911F3DAFBF003AE3D8 /* Extensions.swift in Sources */,
 				60C0765F1F684D2300258AB7 /* MasterKey.swift in Sources */,
-				60C696551DBDE5CA00CE9435 /* Tafelsalz.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
