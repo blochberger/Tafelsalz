@@ -126,6 +126,18 @@ let subKey2 = masterKey.derive(sizeInBytes: MasterKey.DerivedKey.MinimumSizeInBy
 let secretBox = SecretBox(secretKey: masterKey.derive(with: 0, and: context))
 ```
 
+### Key Exchange
+
+```swift
+let alice = KeyExchange(side: .client)
+let bob = KeyExchange(side: .server)
+
+let alicesSessionKey = alice.sessionKey(for: bob.publicKey)
+let bobsSessionKey = bob.sessionKey(for: alice.publicKey)
+
+// alicesSessionKey == bobsSessionKey
+```
+
 ---
 
 1. D. J. Bernstein, T. Lange, and P. Schwabe, [**The Security Impact of a New Cryptographic Library**](http://dx.doi.org/10.1007/978-3-642-33481-8_9) in *Progress in Cryptology – LATINCRYPT 2012 – 2nd International Conference on Cryptology and Information Security in Latin America, Santiago, Chile, October 7-10, 2012. Proceedings* (A. Hevia and G. Neven, eds.), pp. 159–176

@@ -238,6 +238,103 @@ struct Sodium {
 
 	}
 
+	// MARK: Key Exchange
+
+	/**
+		Access to the wrapper for key exchange.
+	*/
+	let kx = KeyExchange()
+
+	/**
+		A wrapper for key exchange.
+	*/
+	struct KeyExchange {
+
+		/**
+			The initializer is disabled.
+		*/
+		fileprivate init() {}
+
+		/**
+			The size of the secret key in bytes.
+		*/
+		let secretKeySizeInBytes = libsodium.crypto_kx_secretkeybytes()
+
+		/**
+			The size of the session key in bytes.
+		*/
+		let sessionKeySizeInBytes = libsodium.crypto_kx_sessionkeybytes()
+
+		/**
+			The size of the public key in bytes.
+		*/
+		let publicKeySizeInBytes = libsodium.crypto_kx_publickeybytes()
+
+		/**
+			Generate a keypair that can be used for exchanging keys.
+
+			- parameters:
+				- publicKeyPtr: The pointer to where the public key will be
+					stored.
+				- secretKeyPtr: The pointer to where the secret key will be
+					stored.
+		*/
+		func keypair(publicKeyPtr: UnsafeMutablePointer<UInt8>, secretKeyPtr: UnsafeMutablePointer<UInt8>) {
+			libsodium.crypto_kx_keypair(publicKeyPtr, secretKeyPtr)
+		}
+
+		/**
+			Calculate session keys for the client side.
+
+			- parameters:
+				- rxPtr: A pointer to where the session key, that is used to
+					receive data from the server, should be stored.
+				- txPtr: A pointer to where the session key, that is used to
+					send data to the server, should be stored.
+				- clientPk: A pointer to the client's public key.
+				- clientSk: A pointer to the client's secret key.
+				- serverPk: A pointer to the server's public key.
+
+			- returns:
+				`0` on success and `-1` if `serverPk` is not acceptible.
+		*/
+		func client_session_keys(
+			rxPtr: UnsafeMutablePointer<UInt8>,
+			txPtr: UnsafeMutablePointer<UInt8>,
+			clientPk: UnsafePointer<UInt8>,
+			clientSk: UnsafePointer<UInt8>,
+			serverPk: UnsafePointer<UInt8>
+		) -> Int32 {
+			return libsodium.crypto_kx_client_session_keys(rxPtr, txPtr, clientPk, clientSk, serverPk)
+		}
+
+		/**
+			Calculate session keys for the server side.
+
+			- parameters:
+				- rxPtr: A pointer to where the session key, that is used to
+					receive data from the client, should be stored.
+				- txPtr: A pointer to where the session key, that is used to
+					sen data to the client, should be stored.
+				- serverPk: A pointer to the server's public key.
+				- serverSk: A pointer to the server's secret key.
+				- clientPk: A pointer to the client's public key.
+
+			- returns:
+				`0` on success and `-1` if `clientPk` is not acceptible.
+		*/
+		func server_session_keys(
+			rxPtr: UnsafeMutablePointer<UInt8>,
+			txPtr: UnsafeMutablePointer<UInt8>,
+			serverPk: UnsafePointer<UInt8>,
+			serverSk: UnsafePointer<UInt8>,
+			clientPk: UnsafePointer<UInt8>
+		) -> Int32 {
+			return libsodium.crypto_kx_server_session_keys(rxPtr, txPtr, serverPk, serverSk, clientPk)
+		}
+
+	}
+
 	// MARK: Memory
 
 	/**

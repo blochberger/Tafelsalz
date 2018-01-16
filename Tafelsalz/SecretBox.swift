@@ -68,7 +68,8 @@ public class SecretBox {
 		/**
 			Creates a secret key from other key material.
 
-			- precondition: `other.sizeInBytes` = `SizeInBytes`
+			- precondition:
+				`other.sizeInBytes` = `SizeInBytes`
 		
 			- parameters:
 				- other: The other key material.

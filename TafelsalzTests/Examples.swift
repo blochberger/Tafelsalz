@@ -78,4 +78,16 @@ class Examples: XCTestCase {
 		KMAssertNotEqual(subKey1, subKey2)
 		XCTAssertNotNil(secretBox)
 	}
+
+	func testKeyExchange() {
+		let alice = KeyExchange(side: .client)
+		let bob = KeyExchange(side: .server)
+
+		let alicesSessionKey = alice.sessionKey(for: bob.publicKey)
+		let bobsSessionKey = bob.sessionKey(for: alice.publicKey)
+
+		// alicesSessionKey == bobsSessionKey
+
+		KMAssertEqual(alicesSessionKey!, bobsSessionKey!)
+	}
 }
