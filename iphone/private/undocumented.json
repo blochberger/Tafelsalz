@@ -9,7 +9,7 @@
     },
     {
       "file": "/Users/blochberger/Development/Tafelsalz/Tafelsalz/KeyExchange.swift",
-      "line": 86,
+      "line": 107,
       "symbol": "KeyExchange.SessionKey",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
