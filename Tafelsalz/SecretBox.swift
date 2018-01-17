@@ -74,7 +74,7 @@ public class SecretBox {
 			- parameters:
 				- other: The other key material.
 		*/
-		override init(_ other: KeyMaterial) {
+		public override init(_ other: KeyMaterial) {
 			precondition(other.sizeInBytes == SecretKey.SizeInBytes)
 
 			super.init(other)

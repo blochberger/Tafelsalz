@@ -64,7 +64,7 @@ public class KeyExchange {
 		/**
 			The size of the public key in bytes.
 		*/
-		static let SizeInBytes = UInt32(sodium.kx.publicKeySizeInBytes)
+		public static let SizeInBytes = UInt32(sodium.kx.publicKeySizeInBytes)
 
 		/**
 			Creates a public key from other key material.
@@ -79,6 +79,27 @@ public class KeyExchange {
 			precondition(other.sizeInBytes == SecretKey.SizeInBytes)
 
 			super.init(other)
+		}
+
+		/**
+			Restores a public key from a given byte array. The byte array is
+			copied to a secure location and overwritten with zeroes to avoid the
+			key being compromised in memory.
+
+			- warning:
+				Do not initialize new keys with this function. If you need a new
+				key, use `KeyExchange.init()` instead. This initializer is only
+				to restore public keys that were persisted or transmitted.
+
+			- parameters:
+				- bytes: A public key.
+		*/
+		public override init?(bytes: inout Data) {
+			guard UInt32(bytes.count) == SecretKey.SizeInBytes else {
+				return nil
+			}
+
+			super.init(bytes: &bytes)
 		}
 
 	}
