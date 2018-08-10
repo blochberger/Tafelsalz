@@ -132,7 +132,7 @@ class KeyMaterialTest: XCTestCase {
 
 		// Inequality due to different lengths
 		var moreBytes = Random.bytes(count: sizeInBytes + 1)
-		var lessBytes = moreBytes.subdata(in: 0..<Int(sizeInBytes))
+		var lessBytes = moreBytes[..<Int(sizeInBytes)]
 		let more = KeyMaterial(bytes: &lessBytes)!
 		let less = KeyMaterial(bytes: &moreBytes)!
 

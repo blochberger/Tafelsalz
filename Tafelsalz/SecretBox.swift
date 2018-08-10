@@ -249,15 +249,15 @@ public class SecretBox {
 				return nil
 			}
 
-			var nonceBytes = bytes.subdata(in: 0..<Int(Nonce.SizeInBytes))
+			var nonceBytes = bytes[..<Int(Nonce.SizeInBytes)]
 			let nonce = Nonce(bytes: &nonceBytes)!
 
-			var mac = bytes.subdata(in: Int(Nonce.SizeInBytes)..<Int(AuthenticatedCiphertext.PrefixSizeInBytes))
+			var mac = bytes[Int(Nonce.SizeInBytes)..<Int(AuthenticatedCiphertext.PrefixSizeInBytes)]
 			let authenticationCode = AuthenticationCode(bytes: &mac)!
 
 			self.nonce = nonce
 			self.authenticationCode = authenticationCode
-			self.ciphertext = Ciphertext(bytes.subdata(in: Int(AuthenticatedCiphertext.PrefixSizeInBytes)..<bytes.count))
+			self.ciphertext = Ciphertext(bytes[Int(AuthenticatedCiphertext.PrefixSizeInBytes)...])
 		}
 	}
 
