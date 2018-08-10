@@ -88,7 +88,7 @@ public class KeyExchange {
 
 			- warning:
 				Do not initialize new keys with this function. If you need a new
-				key, use `KeyExchange.init()` instead. This initializer is only
+				key, use `KeyExchange()` instead. This initializer is only
 				to restore public keys that were persisted or transmitted.
 
 			- parameters:
