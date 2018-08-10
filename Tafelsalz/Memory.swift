@@ -39,7 +39,7 @@ public class Memory {
 		self.init(sizeInBytes: UInt32(bytes.count))
 
 		makeReadWritable()
-		bytes.withUnsafeBytes { pointer.copyBytes(from: $0, count: bytes.count) }
+		bytes.withUnsafeBytes { pointer.copyMemory(from: $0, byteCount: bytes.count) }
 		makeInaccessible()
 
 		sodium.memory.wipe(&bytes)
