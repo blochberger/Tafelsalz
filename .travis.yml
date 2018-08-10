@@ -1,0 +1,11 @@
+language: swift
+os: osx
+
+matrix:
+  include:
+    - name: "macOS"
+      script:
+        - xcodebuild test -sdk macosx -project Tafelsalz.xcodeproj -scheme Tafelsalz_macOS
+    - name: "iOS"
+      script:
+       - xcodebuild -sdk iphonesimulator -project Tafelsalz.xcodeproj -scheme Tafelsalz_iOS CODE_SIGNING_REQUIRED=NO

@@ -1,6 +1,6 @@
 # Tafelsalz
 
-![Coverage](https://blochberger.github.io/Tafelsalz/macos/coverage.svg) [![Documentation](https://blochberger.github.io/Tafelsalz/macos/public/badge.svg)](https://blochberger.github.io/Tafelsalz)
+[![Build Status](https://travis-ci.org/blochberger/Tafelsalz.svg?branch=master)](https://travis-ci.org/blochberger/Tafelsalz) ![Coverage](https://blochberger.github.io/Tafelsalz/macos/coverage.svg) [![Documentation](https://blochberger.github.io/Tafelsalz/macos/public/badge.svg)](https://blochberger.github.io/Tafelsalz)
 
 The main idea of this project is to provide usable but safe cryptographic operations.
 
