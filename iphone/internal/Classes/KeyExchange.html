@@ -128,7 +128,7 @@
             <a class="nav-group-name-link" href="../Global Variables.html">Global Variables</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Global Variables.html#/s:9Tafelsalz6sodiumAA6SodiumVv">sodium</a>
+                <a class="nav-group-task-link" href="../Global Variables.html#/s:9Tafelsalz6sodiumAA6SodiumVvp">sodium</a>
               </li>
             </ul>
           </li>
@@ -136,7 +136,13 @@
             <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Extensions/Data.html">Data</a>
+                <a class="nav-group-task-link" href="../Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/ArraySlice.html">ArraySlice</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/String.html">String</a>
               </li>
             </ul>
           </li>
@@ -186,6 +192,14 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:9Tafelsalz5Bytesa">Bytes</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -202,8 +216,8 @@
             <p>A class that can be used for exchanging keys between two parties on an
 adverserial channel.</p>
 <h3 id='example' class='heading'>Example</h3>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">alice</span> <span class="o">=</span> <span class="nf">KeyExchange</span><span class="p">(</span><span class="nv">side</span><span class="p">:</span> <span class="o">.</span><span class="n">client</span><span class="p">)</span>
-<span class="k">let</span> <span class="nv">bob</span> <span class="o">=</span> <span class="nf">KeyExchange</span><span class="p">(</span><span class="nv">side</span><span class="p">:</span> <span class="o">.</span><span class="n">server</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">alice</span> <span class="o">=</span> <span class="kt">KeyExchange</span><span class="p">(</span><span class="nv">side</span><span class="p">:</span> <span class="o">.</span><span class="n">client</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">bob</span> <span class="o">=</span> <span class="kt">KeyExchange</span><span class="p">(</span><span class="nv">side</span><span class="p">:</span> <span class="o">.</span><span class="n">server</span><span class="p">)</span>
 
 <span class="k">let</span> <span class="nv">alicesSessionKey</span> <span class="o">=</span> <span class="n">alice</span><span class="o">.</span><span class="nf">sessionKey</span><span class="p">(</span><span class="nv">for</span><span class="p">:</span> <span class="n">bob</span><span class="o">.</span><span class="n">publicKey</span><span class="p">)</span>
 <span class="k">let</span> <span class="nv">bobsSessionKey</span> <span class="o">=</span> <span class="n">bob</span><span class="o">.</span><span class="nf">sessionKey</span><span class="p">(</span><span class="nv">for</span><span class="p">:</span> <span class="n">alice</span><span class="o">.</span><span class="n">publicKey</span><span class="p">)</span>
@@ -244,7 +258,7 @@ adverserial channel.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/5ff90afe9f08eb24ff3648ab3b656d1570e7f276/Tafelsalz/KeyExchange.swift#L22-L33">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/bbcb438134de18d361a008336d69284be07d0595/Tafelsalz/KeyExchange.swift#L22-L33">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -270,12 +284,12 @@ adverserial channel.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PublicKey</span><span class="p">:</span> <span class="kt"><a href="../Classes/KeyMaterial.html">KeyMaterial</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PublicKey</span> <span class="p">:</span> <span class="kt"><a href="../Classes/KeyMaterial.html">KeyMaterial</a></span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/5ff90afe9f08eb24ff3648ab3b656d1570e7f276/Tafelsalz/KeyExchange.swift#L62-L105">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/bbcb438134de18d361a008336d69284be07d0595/Tafelsalz/KeyExchange.swift#L62-L105">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -301,12 +315,12 @@ adverserial channel.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">SessionKey</span><span class="p">:</span> <span class="kt"><a href="../Classes/KeyMaterial.html">KeyMaterial</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">SessionKey</span> <span class="p">:</span> <span class="kt"><a href="../Classes/KeyMaterial.html">KeyMaterial</a></span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/5ff90afe9f08eb24ff3648ab3b656d1570e7f276/Tafelsalz/KeyExchange.swift#L107-L129">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/bbcb438134de18d361a008336d69284be07d0595/Tafelsalz/KeyExchange.swift#L107-L129">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -337,7 +351,7 @@ adverserial channel.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/5ff90afe9f08eb24ff3648ab3b656d1570e7f276/Tafelsalz/KeyExchange.swift#L134-L148">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/bbcb438134de18d361a008336d69284be07d0595/Tafelsalz/KeyExchange.swift#L134-L148">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -345,9 +359,9 @@ adverserial channel.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Tafelsalz11KeyExchangeC4sideAC4SideOv"></a>
+                    <a name="/s:9Tafelsalz11KeyExchangeC4sideAC4SideOvp"></a>
                     <a name="//apple_ref/swift/Property/side" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Tafelsalz11KeyExchangeC4sideAC4SideOv">side</a>
+                    <a class="token" href="#/s:9Tafelsalz11KeyExchangeC4sideAC4SideOvp">side</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -367,7 +381,7 @@ adverserial channel.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/5ff90afe9f08eb24ff3648ab3b656d1570e7f276/Tafelsalz/KeyExchange.swift#L153">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/bbcb438134de18d361a008336d69284be07d0595/Tafelsalz/KeyExchange.swift#L153">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -375,9 +389,9 @@ adverserial channel.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Tafelsalz11KeyExchangeC06publicB0AC06PublicB0Cv"></a>
+                    <a name="/s:9Tafelsalz11KeyExchangeC06publicB0AC06PublicB0Cvp"></a>
                     <a name="//apple_ref/swift/Property/publicKey" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Tafelsalz11KeyExchangeC06publicB0AC06PublicB0Cv">publicKey</a>
+                    <a class="token" href="#/s:9Tafelsalz11KeyExchangeC06publicB0AC06PublicB0Cvp">publicKey</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -397,7 +411,7 @@ adverserial channel.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/5ff90afe9f08eb24ff3648ab3b656d1570e7f276/Tafelsalz/KeyExchange.swift#L158">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/bbcb438134de18d361a008336d69284be07d0595/Tafelsalz/KeyExchange.swift#L158">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -446,7 +460,7 @@ adverserial channel.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/5ff90afe9f08eb24ff3648ab3b656d1570e7f276/Tafelsalz/KeyExchange.swift#L171-L184">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/bbcb438134de18d361a008336d69284be07d0595/Tafelsalz/KeyExchange.swift#L171-L184">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -506,7 +520,7 @@ server side vice versa.</p>
 other party is not acceptable.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/5ff90afe9f08eb24ff3648ab3b656d1570e7f276/Tafelsalz/KeyExchange.swift#L200-L248">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/bbcb438134de18d361a008336d69284be07d0595/Tafelsalz/KeyExchange.swift#L200-L248">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -566,7 +580,7 @@ server side vice versa.</p>
 party is not acceptable.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/5ff90afe9f08eb24ff3648ab3b656d1570e7f276/Tafelsalz/KeyExchange.swift#L264-L275">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/bbcb438134de18d361a008336d69284be07d0595/Tafelsalz/KeyExchange.swift#L264-L275">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -579,8 +593,8 @@ party is not acceptable.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2018-01-17)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2018 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2018-08-13)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

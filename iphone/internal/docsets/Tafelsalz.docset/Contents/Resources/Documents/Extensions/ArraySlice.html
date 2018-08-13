@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Data Extension Reference</title>
+    <title>ArraySlice Extension Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Extension/Data" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Extension/ArraySlice" class="dashAnchor"></a>
 
-    <a title="Data Extension Reference"></a>
+    <a title="ArraySlice Extension Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">Tafelsalz Reference</a>
       <img class="carat" src="../img/carat.png" />
-      Data Extension Reference
+      ArraySlice Extension Reference
     </p>
 
     <div class="content-wrapper">
@@ -64,9 +64,6 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/KeyExchange/Side.html">– Side</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/KeyExchange/SecretKey.html">– SecretKey</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/KeyExchange/PublicKey.html">– PublicKey</a>
@@ -131,10 +128,7 @@
             <a class="nav-group-name-link" href="../Global Variables.html">Global Variables</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Global Variables.html#/s:9Tafelsalz8sSuccess33_A15325CBA4DE7A561417801BA05F20FALLs5Int32Vv">sSuccess</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Global Variables.html#/s:9Tafelsalz6sodiumAA6SodiumVv">sodium</a>
+                <a class="nav-group-task-link" href="../Global Variables.html#/s:9Tafelsalz6sodiumAA6SodiumVvp">sodium</a>
               </li>
             </ul>
           </li>
@@ -142,7 +136,13 @@
             <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Extensions/Data.html">Data</a>
+                <a class="nav-group-task-link" href="../Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/ArraySlice.html">ArraySlice</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/String.html">String</a>
               </li>
             </ul>
           </li>
@@ -192,13 +192,27 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:9Tafelsalz5Bytesa">Bytes</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
 
         <section class="section">
           <div class="section-content">
-            <h1>Data</h1>
+            <h1>ArraySlice</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">ArraySlice</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span> <span class="p">:</span> <span class="n">_DestructorSafeContainer</span></code></pre>
+
+                </div>
+              </div>
             
           </div>
         </section>
@@ -210,9 +224,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:10Foundation4DataV9TafelsalzEACSgSS3hex_SSSg6ignoretcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(hex:ignore:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10Foundation4DataV9TafelsalzEACSgSS3hex_SSSg6ignoretcfc">init(hex:ignore:)</a>
+                    <a name="/s:s10ArraySliceV9Tafelsalzs5UInt8VRszlE5bytesSayAEGvp"></a>
+                    <a name="//apple_ref/swift/Property/bytes" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s10ArraySliceV9Tafelsalzs5UInt8VRszlE5bytesSayAEGvp">bytes</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -220,86 +234,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initialize a byte array from a given hex string.</p>
+                        <p>Turn the array slice into a byte array.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">hex</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">ignore</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>hex</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The hex string, e.g., <q>DEADBEEF</q>, <q>cafebabe</q>, <q>00112233</q></p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>ignore</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>A set of characters that should be ignored in the hex
-string.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/5ff90afe9f08eb24ff3648ab3b656d1570e7f276/Tafelsalz/Extensions.swift#L11-L17">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:10Foundation4DataV9TafelsalzE3hexSSv"></a>
-                    <a name="//apple_ref/swift/Property/hex" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10Foundation4DataV9TafelsalzE3hexSSv">hex</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Outputs a hex encoded string for the byte array.</p>
-<div class="aside aside-postcondition">
-    <p class="aside-title">Postcondition</p>
-    <code>data</code> = <code>Data(hex: data.hex)</code>
-
-</div>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">hex</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">bytes</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:9Tafelsalz5Bytesa">Bytes</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/5ff90afe9f08eb24ff3648ab3b656d1570e7f276/Tafelsalz/Extensions.swift#L24-L26">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/bbcb438134de18d361a008336d69284be07d0595/Tafelsalz/Bytes.swift#L47-L49">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -312,8 +259,8 @@ string.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2018-01-17)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2018 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2018-08-13)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

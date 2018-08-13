@@ -125,7 +125,13 @@
             <a class="nav-group-name-link" href="../../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../../Extensions/Data.html">Data</a>
+                <a class="nav-group-task-link" href="../../Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Extensions/ArraySlice.html">ArraySlice</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Extensions/String.html">String</a>
               </li>
             </ul>
           </li>
@@ -151,6 +157,14 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Typealiases.html#/s:9Tafelsalz5Bytesa">Bytes</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -160,7 +174,7 @@
             <h1>AuthenticatedCiphertext</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">AuthenticatedCiphertext</span><span class="p">:</span> <span class="kt"><a href="../../Protocols/EncryptedData.html">EncryptedData</a></span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">AuthenticatedCiphertext</span> <span class="p">:</span> <span class="kt"><a href="../../Protocols/EncryptedData.html">EncryptedData</a></span></code></pre>
 
                 </div>
               </div>
@@ -179,9 +193,9 @@ message.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextV17PrefixSizeInBytess6UInt32VvZ"></a>
+                    <a name="/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextV17PrefixSizeInBytess6UInt32VvpZ"></a>
                     <a name="//apple_ref/swift/Variable/PrefixSizeInBytes" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextV17PrefixSizeInBytess6UInt32VvZ">PrefixSizeInBytes</a>
+                    <a class="token" href="#/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextV17PrefixSizeInBytess6UInt32VvpZ">PrefixSizeInBytes</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -190,19 +204,19 @@ message.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The size of the authentication code and the nonce in bytes. For the
-full size in bytes of an authenticated ciphertext see <code><a href="../../Classes/SecretBox/AuthenticatedCiphertext.html#/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextV11sizeInBytess6UInt32Vv">sizeInBytes</a></code>.</p>
+full size in bytes of an authenticated ciphertext see <code><a href="../../Classes/SecretBox/AuthenticatedCiphertext.html#/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextV11sizeInBytess6UInt32Vvp">sizeInBytes</a></code>.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">PrefixSizeInBytes</span> <span class="o">=</span> <span class="kt"><a href="../../Classes/SecretBox/Nonce.html">Nonce</a></span><span class="o">.</span><span class="kt">SizeInBytes</span> <span class="o">+</span> <span class="kt"><a href="../../Classes/SecretBox/AuthenticationCode.html">AuthenticationCode</a></span><span class="o">.</span><span class="kt">SizeInBytes</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">PrefixSizeInBytes</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/5ff90afe9f08eb24ff3648ab3b656d1570e7f276/Tafelsalz/SecretBox.swift#L186">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/bbcb438134de18d361a008336d69284be07d0595/Tafelsalz/SecretBox.swift#L186">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -210,9 +224,9 @@ full size in bytes of an authenticated ciphertext see <code><a href="../../Class
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextV5nonceAC5NonceCv"></a>
+                    <a name="/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextV5nonceAC5NonceCvp"></a>
                     <a name="//apple_ref/swift/Property/nonce" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextV5nonceAC5NonceCv">nonce</a>
+                    <a class="token" href="#/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextV5nonceAC5NonceCvp">nonce</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -232,7 +246,7 @@ full size in bytes of an authenticated ciphertext see <code><a href="../../Class
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/5ff90afe9f08eb24ff3648ab3b656d1570e7f276/Tafelsalz/SecretBox.swift#L191">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/bbcb438134de18d361a008336d69284be07d0595/Tafelsalz/SecretBox.swift#L191">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -240,9 +254,9 @@ full size in bytes of an authenticated ciphertext see <code><a href="../../Class
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextV18authenticationCodeAC014AuthenticationG0Cv"></a>
+                    <a name="/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextV18authenticationCodeAC014AuthenticationG0Cvp"></a>
                     <a name="//apple_ref/swift/Property/authenticationCode" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextV18authenticationCodeAC014AuthenticationG0Cv">authenticationCode</a>
+                    <a class="token" href="#/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextV18authenticationCodeAC014AuthenticationG0Cvp">authenticationCode</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -262,7 +276,7 @@ full size in bytes of an authenticated ciphertext see <code><a href="../../Class
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/5ff90afe9f08eb24ff3648ab3b656d1570e7f276/Tafelsalz/SecretBox.swift#L196">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/bbcb438134de18d361a008336d69284be07d0595/Tafelsalz/SecretBox.swift#L196">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -270,9 +284,9 @@ full size in bytes of an authenticated ciphertext see <code><a href="../../Class
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextV10ciphertextAA0E0Vv"></a>
+                    <a name="/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextV10ciphertextAA0E0Vvp"></a>
                     <a name="//apple_ref/swift/Property/ciphertext" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextV10ciphertextAA0E0Vv">ciphertext</a>
+                    <a class="token" href="#/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextV10ciphertextAA0E0Vvp">ciphertext</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -292,7 +306,7 @@ full size in bytes of an authenticated ciphertext see <code><a href="../../Class
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/5ff90afe9f08eb24ff3648ab3b656d1570e7f276/Tafelsalz/SecretBox.swift#L201">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/bbcb438134de18d361a008336d69284be07d0595/Tafelsalz/SecretBox.swift#L201">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -300,9 +314,9 @@ full size in bytes of an authenticated ciphertext see <code><a href="../../Class
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextV11sizeInBytess6UInt32Vv"></a>
+                    <a name="/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextV11sizeInBytess6UInt32Vvp"></a>
                     <a name="//apple_ref/swift/Property/sizeInBytes" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextV11sizeInBytess6UInt32Vv">sizeInBytes</a>
+                    <a class="token" href="#/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextV11sizeInBytess6UInt32Vvp">sizeInBytes</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -318,12 +332,12 @@ nonce, authentication code, and the encryped message.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">sizeInBytes</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">sizeInBytes</span><span class="p">:</span> <span class="kt">UInt32</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/5ff90afe9f08eb24ff3648ab3b656d1570e7f276/Tafelsalz/SecretBox.swift#L207-L211">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/bbcb438134de18d361a008336d69284be07d0595/Tafelsalz/SecretBox.swift#L207-L211">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -331,9 +345,9 @@ nonce, authentication code, and the encryped message.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextV5bytes10Foundation4DataVv"></a>
+                    <a name="/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextV5bytesSays5UInt8VGvp"></a>
                     <a name="//apple_ref/swift/Property/bytes" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextV5bytes10Foundation4DataVv">bytes</a>
+                    <a class="token" href="#/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextV5bytesSays5UInt8VGvp">bytes</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -349,12 +363,12 @@ authentication code, and the encryped message.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">bytes</span><span class="p">:</span> <span class="kt">Data</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">bytes</span><span class="p">:</span> <span class="kt"><a href="../../Typealiases.html#/s:9Tafelsalz5Bytesa">Bytes</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/5ff90afe9f08eb24ff3648ab3b656d1570e7f276/Tafelsalz/SecretBox.swift#L217-L225">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/bbcb438134de18d361a008336d69284be07d0595/Tafelsalz/SecretBox.swift#L217-L219">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -427,7 +441,7 @@ authentication code, and the encryped message.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/5ff90afe9f08eb24ff3648ab3b656d1570e7f276/Tafelsalz/SecretBox.swift#L235-L239">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/bbcb438134de18d361a008336d69284be07d0595/Tafelsalz/SecretBox.swift#L229-L233">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -435,9 +449,9 @@ authentication code, and the encryped message.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextVAESg10Foundation4DataV5bytes_tcfc"></a>
+                    <a name="/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextVAESgSays5UInt8VG5bytes_tcfc"></a>
                     <a name="//apple_ref/swift/Method/init(bytes:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextVAESg10Foundation4DataV5bytes_tcfc">init(bytes:)</a>
+                    <a class="token" href="#/s:9Tafelsalz9SecretBoxC23AuthenticatedCiphertextVAESgSays5UInt8VG5bytes_tcfc">init(bytes:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -452,7 +466,7 @@ authentication code, and the encryped message.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">bytes</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">bytes</span><span class="p">:</span> <span class="kt"><a href="../../Typealiases.html#/s:9Tafelsalz5Bytesa">Bytes</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -476,7 +490,7 @@ authentication code, and the encryped message.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/5ff90afe9f08eb24ff3648ab3b656d1570e7f276/Tafelsalz/SecretBox.swift#L247-L261">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/bbcb438134de18d361a008336d69284be07d0595/Tafelsalz/SecretBox.swift#L241-L255">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -489,8 +503,8 @@ authentication code, and the encryped message.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2018-01-17)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2018 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2018-08-13)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

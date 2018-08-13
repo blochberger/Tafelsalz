@@ -14,6 +14,7 @@
   </head>
   <body>
 
+    <a name="//apple_ref/swift/Section/Structures" class="dashAnchor"></a>
 
     <a title="Structures  Reference"></a>
 
@@ -124,7 +125,13 @@
             <a class="nav-group-name-link" href="Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Extensions/Data.html">Data</a>
+                <a class="nav-group-task-link" href="Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/ArraySlice.html">ArraySlice</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/String.html">String</a>
               </li>
             </ul>
           </li>
@@ -150,6 +157,14 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Typealiases.html#/s:9Tafelsalz5Bytesa">Bytes</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -164,6 +179,43 @@
 
         <section class="section">
           <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Tafelsalz10CiphertextV"></a>
+                    <a name="//apple_ref/swift/Struct/Ciphertext" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Tafelsalz10CiphertextV">Ciphertext</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A ciphertext is an ecrypted message. In contrast to <code><a href="Protocols/EncryptedData.html">EncryptedData</a></code> it only
+contains the encrypted message, while <code><a href="Protocols/EncryptedData.html">EncryptedData</a></code> might contain other
+information as well, such as a message authentication code et cetera.</p>
+
+                        <a href="Structs/Ciphertext.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Ciphertext</span> <span class="p">:</span> <span class="kt"><a href="Protocols/EncryptedData.html">EncryptedData</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/bbcb438134de18d361a008336d69284be07d0595/Tafelsalz/Ciphertext.swift#L6-L30">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
             <div class="task-group">
               <ul class="item-container">
                 <li class="item">
@@ -187,7 +239,7 @@ plaintext values to avoid compromise if they get in the wrong hands.</p>
 <span class="k">let</span> <span class="nv">userInput</span> <span class="o">=</span> <span class="s">"Correct Horse Battery Staple"</span>
 <span class="c1">// 2. You can now indicate that the user input is actually a password.</span>
 <span class="c1">// This will copy the password to a secure memory location.</span>
-<span class="k">let</span> <span class="nv">password</span> <span class="o">=</span> <span class="nf">Password</span><span class="p">(</span><span class="n">userInput</span><span class="p">)</span><span class="o">!</span>
+<span class="k">let</span> <span class="nv">password</span> <span class="o">=</span> <span class="kt">Password</span><span class="p">(</span><span class="n">userInput</span><span class="p">)</span><span class="o">!</span>
 <span class="c1">// 3. Once you have a password, you can hash it for storing it securely</span>
 <span class="c1">// on disk or in a database.</span>
 <span class="k">let</span> <span class="nv">hashedPassword</span> <span class="o">=</span> <span class="n">password</span><span class="o">.</span><span class="nf">hash</span><span class="p">()</span>
@@ -198,7 +250,7 @@ plaintext values to avoid compromise if they get in the wrong hands.</p>
 <span class="c1">// previously stored on disk or in a database.</span>
 <span class="k">if</span> <span class="n">hashedPassword</span><span class="o">.</span><span class="nf">isVerified</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="n">password</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// The user is authenticated successfully.</span>
-<span class="p">}</span> <span class="nf">else</span> <span class="p">{</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="c1">// The user failed to authenticate.</span>
 <span class="p">}</span>
 </code></pre>
@@ -214,7 +266,7 @@ plaintext values to avoid compromise if they get in the wrong hands.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/5ff90afe9f08eb24ff3648ab3b656d1570e7f276/Tafelsalz/HashedPassword.swift#L29-L95">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/bbcb438134de18d361a008336d69284be07d0595/Tafelsalz/HashedPassword.swift#L29-L94">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -249,44 +301,7 @@ plaintext values to avoid compromise if they get in the wrong hands.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/5ff90afe9f08eb24ff3648ab3b656d1570e7f276/Tafelsalz/Random.swift#L4-L34">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9Tafelsalz10CiphertextV"></a>
-                    <a name="//apple_ref/swift/Struct/Ciphertext" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Tafelsalz10CiphertextV">Ciphertext</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>A ciphertext is an ecrypted message. In contrast to <code><a href="Protocols/EncryptedData.html">EncryptedData</a></code> it only
-contains the encrypted message, while <code><a href="Protocols/EncryptedData.html">EncryptedData</a></code> might contain other
-information as well, such as a message authentication code et cetera.</p>
-
-                        <a href="Structs/Ciphertext.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Ciphertext</span><span class="p">:</span> <span class="kt"><a href="Protocols/EncryptedData.html">EncryptedData</a></span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/5ff90afe9f08eb24ff3648ab3b656d1570e7f276/Tafelsalz/Ciphertext.swift#L6-L32">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/bbcb438134de18d361a008336d69284be07d0595/Tafelsalz/Random.swift#L4-L34">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -299,8 +314,8 @@ information as well, such as a message authentication code et cetera.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2018-01-17)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2018 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2018-08-13)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>
