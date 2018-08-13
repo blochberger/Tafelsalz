@@ -104,6 +104,7 @@ if [ ${RUN_TESTS} = true ]; then
 	xcov\
 		--html_report\
 		--scheme "${MODULE}_macOS"\
+		--include_targets "${MODULE}.framework"\
 		--output_directory "${OUTPUT_DIR}/macos/coverage"
 fi
 
