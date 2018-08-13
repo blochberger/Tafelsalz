@@ -76,6 +76,16 @@ let decrypted = secretBox.decrypt(ciphertext: ciphertext)!
 try! Persona.forget(alice)
 ```
 
+#### Padding
+
+```swift
+let secretBox = SecretBox()
+let plaintext = "Hello, World!".utf8Bytes
+let padding: Padding = .padded(blockSize: 16)
+let ciphertext = secretBox.encrypt(plaintext: plaintext, padding: padding)
+let decrypted = secretBox.decrypt(ciphertext: ciphertext, padding: padding)!
+```
+
 ### Password Hashing
 
 ```swift

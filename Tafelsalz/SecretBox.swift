@@ -295,7 +295,7 @@ public class SecretBox {
 	}
 
 	/**
-		Encrypts a message with a given nonce.
+		Encrypts a message.
 
 		The message can be decrypted by using `decrypt(authenticatedCiphertext:)`
 
@@ -303,28 +303,65 @@ public class SecretBox {
 			This function should only be used if you are required to use a
 			specific nonce. Usually `encrypt(plaintext:)` should be preferred.
 
+		- warning:
+			If you specify a padding, you need to specify the same padding when
+			decrypting.
+
 		- parameters:
 			- plaintext: The message that should be encrypted.
+			- padding: A padding, which should be applied to the plaintext.
 			- nonce: A nonce (number used once).
 
 		- returns: An authenticated ciphertext containing the encrypted message.
 	*/
-	public func encrypt(plaintext: Bytes, with nonce: Nonce = Nonce()) -> AuthenticatedCiphertext {
-		var macBytes: Bytes
-		let ciphertextBytes: Bytes
-		(macBytes, ciphertextBytes) = nonce.withUnsafeBytes {
-			noncePtr in
+	public func encrypt(plaintext: Bytes, padding: Padding = .none, with nonce: Nonce = Nonce()) -> AuthenticatedCiphertext {
 
-			return secretKey.withUnsafeBytes {
-				secretKeyPtr in
+		switch padding {
+			case .none:
+				var macBytes: Bytes
+				let ciphertextBytes: Bytes
+				(macBytes, ciphertextBytes) = nonce.withUnsafeBytes {
+					noncePtr in
 
-				return sodium.secretbox.encrypt(plaintext: plaintext, nonce: noncePtr, key: secretKeyPtr)
-			}
+					return secretKey.withUnsafeBytes {
+						secretKeyPtr in
+
+						return sodium.secretbox.encrypt(plaintext: plaintext, nonce: noncePtr, key: secretKeyPtr)
+					}
+				}
+
+				let authenticationCode = AuthenticationCode(bytes: &macBytes)!
+
+				return AuthenticatedCiphertext(nonce: nonce, authenticationCode: authenticationCode, ciphertext: Ciphertext(ciphertextBytes))
+			case let .padded(blockSize):
+				precondition(0 < blockSize)
+
+				let blocks = Blocks(unpadded: plaintext, blockSize: blockSize)!
+				return self.encrypt(plaintext: blocks, with: nonce)
 		}
+	}
 
-		let authenticationCode = AuthenticationCode(bytes: &macBytes)!
+	/**
+		Encrypt padded plaintext blocks.
 
-		return AuthenticatedCiphertext(nonce: nonce, authenticationCode: authenticationCode, ciphertext: Ciphertext(ciphertextBytes))
+		The message can be decrypted by using `decrypt(authenticatedCiphertext:)`
+
+		- note:
+			This function should only be used if you are required to use a
+			specific nonce. Usually `encrypt(plaintext:)` should be preferred.
+
+		- warning:
+			You need to specify the same padding for decryption, i.e., by
+			specifying the block size.
+
+		- parameters:
+			- plaintext: The padded message that should be encrypted.
+			- nonce: A nonce (number used once).
+
+		- returns: An authenticated ciphertext containing the encrypted message.
+	*/
+	public func encrypt(plaintext: Blocks, with nonce: Nonce = Nonce()) -> AuthenticatedCiphertext {
+		return encrypt(plaintext: plaintext.bytes, with: nonce)
 	}
 
 	/**
@@ -335,27 +372,38 @@ public class SecretBox {
 		- parameters:
 			- authenticatedCiphertext: The authenticated ciphertext of the
 				encrypted message.
+			- padding: The padding used for encrypting the message.
 
-		- returns: The decrypted message.
+		- returns: The decrypted message, `nil` if the authentication code is
+			invalid or the message has invalid padding.
 	*/
-	public func decrypt(ciphertext authenticatedCiphertext: AuthenticatedCiphertext) -> Bytes? {
-		return authenticatedCiphertext.authenticationCode.withUnsafeBytes {
-			macPtr in
+	public func decrypt(ciphertext authenticatedCiphertext: AuthenticatedCiphertext, padding: Padding = .none) -> Bytes? {
+		switch padding {
+			case .none:
+				return authenticatedCiphertext.authenticationCode.withUnsafeBytes {
+					macPtr in
 
-			return authenticatedCiphertext.nonce.withUnsafeBytes {
-				noncePtr in
+					return authenticatedCiphertext.nonce.withUnsafeBytes {
+						noncePtr in
 
-				return secretKey.withUnsafeBytes {
-					secretKeyPtr in
+						return secretKey.withUnsafeBytes {
+							secretKeyPtr in
 
-					return sodium.secretbox.decrypt(
-						ciphertext: authenticatedCiphertext.ciphertext.bytes,
-						mac: macPtr,
-						nonce: noncePtr,
-						key: secretKeyPtr
-					)
+							return sodium.secretbox.decrypt(
+								ciphertext: authenticatedCiphertext.ciphertext.bytes,
+								mac: macPtr,
+								nonce: noncePtr,
+								key: secretKeyPtr
+							)
+						}
+					}
 				}
-			}
+			case let .padded(blockSize):
+				guard let bytes = decrypt(ciphertext: authenticatedCiphertext) else {
+					return nil
+				}
+
+				return Blocks(padded: bytes, blockSize: blockSize)?.withoutPadding
 		}
 	}
 }

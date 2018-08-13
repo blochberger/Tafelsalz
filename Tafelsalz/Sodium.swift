@@ -779,6 +779,77 @@ struct Sodium {
 
 	}
 
+	/**
+		Add padding to protect message lengths.
+
+		- warning: Padding has to be applied to plaintext before encryption.
+
+		- precondition: 0 < `blockSize`
+
+		- postcondition: `result.count` % `blockSize` = 0
+
+		- parameters:
+			- unpadded: The unpadded plaintext bytes.
+			- blockSize: The block size in bytes.
+
+		- returns: The padded plaintext bytes.
+	*/
+	func pad(unpadded: Bytes, blockSize: Int) -> Bytes {
+		precondition(0 < blockSize)
+
+		let sBufferTooSmall = -1
+
+		let bufferLength = ((unpadded.count / blockSize) + 1) * blockSize
+		var buffer = unpadded + Bytes(count: bufferLength - unpadded.count)
+		var paddedLength = 0
+		let status = sodium_pad(&paddedLength, &buffer, unpadded.count, blockSize, bufferLength)
+
+		guard status != sBufferTooSmall else {
+			fatalError("Reserved buffer is too small.")
+		}
+
+		guard status == sSuccess else {
+			fatalError("Unhandled status: \(status)")
+		}
+
+		return buffer[..<paddedLength].bytes
+	}
+
+	/**
+		Add padding to protect message lengths.
+
+		- warning: Padding has to be applied to plaintext before encryption.
+
+		- precondition: 0 < `blockSize`
+
+		- postcondition: `result.count` % `blockSize` = 0
+
+		- parameters:
+			- unpadded: The unpadded plaintext bytes.
+			- blockSize: The block size in bytes.
+
+		- returns: The padded plaintext bytes.
+	*/
+	func unpad(padded: Bytes, blockSize: Int) -> Bytes? {
+		precondition(0 < blockSize)
+
+		let sInvalidPadding = -1
+
+		var unpaddedLength = 0
+
+		let status = sodium_unpad(&unpaddedLength, padded, padded.count, blockSize)
+
+		guard status != sInvalidPadding else {
+			return nil
+		}
+
+		guard status == sSuccess else {
+			fatalError("Unhandled status: \(status)")
+		}
+
+		return padded[..<unpaddedLength].bytes
+	}
+
 	// MARK: Utilities
 
 	/**

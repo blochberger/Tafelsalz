@@ -32,6 +32,16 @@ class Examples: XCTestCase {
 		XCTAssertEqual(decrypted, plaintext)
 	}
 
+	func testSymmetricEncryptionWithPadding() {
+		let secretBox = SecretBox()
+		let plaintext = "Hello, World!".utf8Bytes
+		let padding: Padding = .padded(blockSize: 16)
+		let ciphertext = secretBox.encrypt(plaintext: plaintext, padding: padding)
+		let decrypted = secretBox.decrypt(ciphertext: ciphertext, padding: padding)!
+
+		XCTAssertEqual(decrypted, plaintext)
+	}
+
 	func testPasswordHashing() {
 		let password = Password("Correct Horse Battery Staple")!
 		let hashedPassword = password.hash()!

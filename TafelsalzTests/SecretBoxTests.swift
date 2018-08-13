@@ -115,6 +115,23 @@ class SecretBoxTests: XCTestCase {
 		XCTAssertEqual(plaintext, originalPlaintext)
 		XCTAssertEqual(otherPlaintext, originalPlaintext)
 
+		// Test encryption with padding
+		let paddedCiphertext = secretBox.encrypt(plaintext: originalPlaintext, padding: .padded(blockSize: 16))
+
+		XCTAssertGreaterThan(paddedCiphertext.sizeInBytes, ciphertext.sizeInBytes)
+
+		let unpaddedPlaintext = secretBox.decrypt(ciphertext: paddedCiphertext, padding: .padded(blockSize: 16))!
+
+		XCTAssertEqual(unpaddedPlaintext, originalPlaintext)
+
+		// Decryption will not fail, if no padding is specified, but the
+		// plaintext is different.
+		let paddedPlaintext = secretBox.decrypt(ciphertext: paddedCiphertext)
+		XCTAssertNotEqual(paddedPlaintext, originalPlaintext)
+
+		// Decryption should fail, if padding is invalid
+		XCTAssertNil(secretBox.decrypt(ciphertext: paddedCiphertext, padding: .padded(blockSize: 3)))
+
 		// Decryption should not be possible with invalid nonce
 
 		let bytePosInNonce = Int(Random.number(withUpperBound: SecretBox.Nonce.SizeInBytes))
@@ -148,4 +165,5 @@ class SecretBoxTests: XCTestCase {
 		let otherSecretBox = SecretBox()
 		XCTAssertNil(otherSecretBox.decrypt(ciphertext: ciphertext))
 	}
+
 }
