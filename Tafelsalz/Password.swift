@@ -28,6 +28,26 @@ public class Password {
 			This takes about 3.5 seconds on a 2.8 Ghz Core i7 CPU.
 		*/
 		case veryHigh
+
+		/**
+			Helper function to translate the `ComplexityLimit` enum to the
+			values expected by `libsodium`.
+
+			- returns: The complexity limit that can be interpreted by
+				`libsodium`.
+		*/
+		fileprivate var sodiumValue: Int {
+			get {
+				switch self {
+					case .medium:
+						return sodium.pwhash.opslimit_interactive
+					case .high:
+						return sodium.pwhash.opslimit_moderate
+					case .veryHigh:
+						return sodium.pwhash.opslimit_sensitive
+				}
+			}
+		}
 	}
 
 	/**
@@ -55,45 +75,24 @@ public class Password {
 			This requires about 1 GiB memory.
 		*/
 		case veryHigh
-	}
 
-	/**
-		Helper function to translate the `ComplexityLimit` enum to the values
-		expected by `libsodium`.
+		/**
+			Helper function to translate the `MemoryLimit` enum to the values
+			expected by `libsodium`.
 
-		- parameters:
-			- value: The complexity limit that should be translated.
-
-		- returns: The complexity limit that can be interpreted by `libsodium`.
-	*/
-	private static func sodiumValue(_ value: ComplexityLimit) -> Int {
-		switch value {
-			case .medium:
-				return sodium.pwhash.opslimit_interactive
-			case .high:
-				return sodium.pwhash.opslimit_moderate
-			case .veryHigh:
-				return sodium.pwhash.opslimit_sensitive
-		}
-	}
-
-	/**
-		Helper function to translate the `MemoryLimit` enum to the values
-		expected by `libsodium`.
-
-		- parameters:
-			- value: The memory limit that should be translated.
-
-		- returns: The memory limit that can be interpreted by `libsodium`.
-	*/
-	private static func sodiumValue(_ value: MemoryLimit) -> Int {
-		switch value {
-		case .medium:
-			return sodium.pwhash.memlimit_interactive
-		case .high:
-			return sodium.pwhash.memlimit_moderate
-		case .veryHigh:
-			return sodium.pwhash.memlimit_sensitive
+			- returns: The memory limit that can be interpreted by `libsodium`.
+		*/
+		fileprivate var sodiumValue: Int {
+			get {
+				switch self {
+					case .medium:
+						return sodium.pwhash.memlimit_interactive
+					case .high:
+						return sodium.pwhash.memlimit_moderate
+					case .veryHigh:
+						return sodium.pwhash.memlimit_sensitive
+				}
+			}
 		}
 	}
 
@@ -153,8 +152,8 @@ public class Password {
 			return sodium.pwhash.storableString(
 				password: passwordBytesPtr,
 				passwordSizeInBytes: UInt64(sizeInBytes),
-				opslimit: Password.sodiumValue(complexity),
-				memlimit: Password.sodiumValue(memory)
+				opslimit: complexity.sodiumValue,
+				memlimit: memory.sodiumValue
 			)
 		}
 
