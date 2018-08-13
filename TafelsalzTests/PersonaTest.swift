@@ -22,7 +22,7 @@ class PersonaTest: XCTestCase {
 
 		// Set an invalid key
 		let invalidKey = Random.bytes(count: invalidSize == nil ? key1.sizeInBytes - 1 : invalidSize!)
-		XCTAssertNoThrow(try Keychain.update(password: invalidKey.base64EncodedData(), for: item))
+		XCTAssertNoThrow(try Keychain.update(password: invalidKey.b64encode(), for: item))
 
 		XCTAssertThrowsError(try retrieveKey(persona)) {
 			XCTAssertEqual($0 as! Persona.Error, Persona.Error.invalidKey)
@@ -36,7 +36,7 @@ class PersonaTest: XCTestCase {
 		}
 
 		// Manually set a valid key
-		XCTAssertNoThrow(try Keychain.update(password: key1.copyBytes().base64EncodedData(), for: item))
+		XCTAssertNoThrow(try Keychain.update(password: key1.copyBytes().b64encode(), for: item))
 
 		var key2: T! = nil
 		XCTAssertNoThrow(key2 = try retrieveKey(persona))
@@ -118,7 +118,7 @@ class PersonaTest: XCTestCase {
 		let alice = Persona(uniqueName: "Alice")
 
 		metaTestInitializer(persona: alice, type: .secretKey) { SecretBox(persona: $0) }
-		metaTestInitializer(persona: alice, type: .genericHashKey) { GenericHash(bytes: Data("foo".utf8), for: $0) }
+		metaTestInitializer(persona: alice, type: .genericHashKey) { GenericHash(bytes: "foo".utf8Bytes, for: $0) }
 
 		// Cleanup
 		XCTAssertNoThrow(try Persona.forget(alice))

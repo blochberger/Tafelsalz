@@ -13,10 +13,8 @@
 		6018338A1F3CCA5A003AE3D8 /* GenericHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601833881F3CCA5A003AE3D8 /* GenericHash.swift */; };
 		6018338E1F3D0765003AE3D8 /* GenericHashTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6018338D1F3D0765003AE3D8 /* GenericHashTest.swift */; };
 		6018338F1F3D0765003AE3D8 /* GenericHashTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6018338D1F3D0765003AE3D8 /* GenericHashTest.swift */; };
-		601833911F3DAFBF003AE3D8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601833901F3DAFBF003AE3D8 /* Extensions.swift */; };
-		601833921F3DAFBF003AE3D8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601833901F3DAFBF003AE3D8 /* Extensions.swift */; };
-		601833941F3DBFBD003AE3D8 /* ExtensionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601833931F3DBFBD003AE3D8 /* ExtensionsTest.swift */; };
-		601833951F3DBFBD003AE3D8 /* ExtensionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601833931F3DBFBD003AE3D8 /* ExtensionsTest.swift */; };
+		601833941F3DBFBD003AE3D8 /* BytesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601833931F3DBFBD003AE3D8 /* BytesTest.swift */; };
+		601833951F3DBFBD003AE3D8 /* BytesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601833931F3DBFBD003AE3D8 /* BytesTest.swift */; };
 		6023DFC81DE42DA900E0B95E /* HashedPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6023DFC71DE42DA900E0B95E /* HashedPassword.swift */; };
 		603F3C4A1EC313F600FEEBD9 /* Ciphertext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603F3C491EC313F600FEEBD9 /* Ciphertext.swift */; };
 		604AF077200E2996000CE8F0 /* KeyExchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604AF076200E2996000CE8F0 /* KeyExchange.swift */; };
@@ -25,6 +23,8 @@
 		604AF07E200E3FD1000CE8F0 /* KeyExchangeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604AF07C200E3FD1000CE8F0 /* KeyExchangeTest.swift */; };
 		604E24C91DC7720F00942D54 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 604E24C81DC7720F00942D54 /* README.md */; };
 		604E24CC1DC77F5A00942D54 /* Examples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604E24CB1DC77F5A00942D54 /* Examples.swift */; };
+		604ED7DE211DF5F200286D2C /* Bytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604ED7DD211DF5F200286D2C /* Bytes.swift */; };
+		604ED7DF211DF5F200286D2C /* Bytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604ED7DD211DF5F200286D2C /* Bytes.swift */; };
 		607EFC521F8D018B0084692A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607EFC511F8D018B0084692A /* AppDelegate.swift */; };
 		607EFC541F8D018B0084692A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607EFC531F8D018B0084692A /* ViewController.swift */; };
 		607EFC571F8D018B0084692A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607EFC551F8D018B0084692A /* Main.storyboard */; };
@@ -151,14 +151,14 @@
 		6012BC1F1EBE0B5F00E47DB8 /* KeyMaterialTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyMaterialTest.swift; sourceTree = "<group>"; };
 		601833881F3CCA5A003AE3D8 /* GenericHash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericHash.swift; sourceTree = "<group>"; };
 		6018338D1F3D0765003AE3D8 /* GenericHashTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericHashTest.swift; sourceTree = "<group>"; };
-		601833901F3DAFBF003AE3D8 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		601833931F3DBFBD003AE3D8 /* ExtensionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionsTest.swift; sourceTree = "<group>"; };
+		601833931F3DBFBD003AE3D8 /* BytesTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BytesTest.swift; sourceTree = "<group>"; };
 		6023DFC71DE42DA900E0B95E /* HashedPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HashedPassword.swift; sourceTree = "<group>"; };
 		603F3C491EC313F600FEEBD9 /* Ciphertext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ciphertext.swift; sourceTree = "<group>"; };
 		604AF076200E2996000CE8F0 /* KeyExchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyExchange.swift; sourceTree = "<group>"; };
 		604AF07C200E3FD1000CE8F0 /* KeyExchangeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyExchangeTest.swift; sourceTree = "<group>"; };
 		604E24C81DC7720F00942D54 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		604E24CB1DC77F5A00942D54 /* Examples.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Examples.swift; sourceTree = "<group>"; };
+		604ED7DD211DF5F200286D2C /* Bytes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bytes.swift; sourceTree = "<group>"; };
 		607EFC4F1F8D018B0084692A /* TafelsalzTestHost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TafelsalzTestHost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607EFC511F8D018B0084692A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		607EFC531F8D018B0084692A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -366,9 +366,9 @@
 			children = (
 				60C696941DBDF40600CE9435 /* Supporting Files */,
 				60C0765D1F68150300258AB7 /* Internal */,
+				604ED7DD211DF5F200286D2C /* Bytes.swift */,
 				603F3C491EC313F600FEEBD9 /* Ciphertext.swift */,
 				60C696991DBE02A500CE9435 /* EncryptedData.swift */,
-				601833901F3DAFBF003AE3D8 /* Extensions.swift */,
 				601833881F3CCA5A003AE3D8 /* GenericHash.swift */,
 				6023DFC71DE42DA900E0B95E /* HashedPassword.swift */,
 				604AF076200E2996000CE8F0 /* KeyExchange.swift */,
@@ -388,7 +388,7 @@
 			children = (
 				60C696951DBDF41700CE9435 /* Supporting Files */,
 				604E24CB1DC77F5A00942D54 /* Examples.swift */,
-				601833931F3DBFBD003AE3D8 /* ExtensionsTest.swift */,
+				601833931F3DBFBD003AE3D8 /* BytesTest.swift */,
 				6018338D1F3D0765003AE3D8 /* GenericHashTest.swift */,
 				60C211E51EB50AF500882AD0 /* HashedPasswordTest.swift */,
 				604AF07C200E3FD1000CE8F0 /* KeyExchangeTest.swift */,
@@ -773,12 +773,12 @@
 				60C0765A1F67C67000258AB7 /* Sodium.swift in Sources */,
 				6096E78F1F1A67E400E6599F /* Ciphertext.swift in Sources */,
 				6018338A1F3CCA5A003AE3D8 /* GenericHash.swift in Sources */,
+				604ED7DF211DF5F200286D2C /* Bytes.swift in Sources */,
 				6096E78E1F1A67E100E6599F /* KeyMaterial.swift in Sources */,
 				604AF078200E2996000CE8F0 /* KeyExchange.swift in Sources */,
 				6096E78D1F1A67DD00E6599F /* SecretBox.swift in Sources */,
 				6096E7891F1A67D100E6599F /* EncryptedData.swift in Sources */,
 				60C076661F68776600258AB7 /* Memory.swift in Sources */,
-				601833921F3DAFBF003AE3D8 /* Extensions.swift in Sources */,
 				60C076601F684D2300258AB7 /* MasterKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -795,7 +795,7 @@
 				6096E7971F1A680800E6599F /* PersonaTest.swift in Sources */,
 				6096E7931F1A67F100E6599F /* HashedPasswordTest.swift in Sources */,
 				6096E7921F1A67EE00E6599F /* KeyMaterialTest.swift in Sources */,
-				601833951F3DBFBD003AE3D8 /* ExtensionsTest.swift in Sources */,
+				601833951F3DBFBD003AE3D8 /* BytesTest.swift in Sources */,
 				6096E7911F1A67EC00E6599F /* Examples.swift in Sources */,
 				604AF07E200E3FD1000CE8F0 /* KeyExchangeTest.swift in Sources */,
 			);
@@ -812,12 +812,12 @@
 				60C076591F67C67000258AB7 /* Sodium.swift in Sources */,
 				603F3C4A1EC313F600FEEBD9 /* Ciphertext.swift in Sources */,
 				601833891F3CCA5A003AE3D8 /* GenericHash.swift in Sources */,
+				604ED7DE211DF5F200286D2C /* Bytes.swift in Sources */,
 				6012BC1E1EBDF28400E47DB8 /* KeyMaterial.swift in Sources */,
 				604AF077200E2996000CE8F0 /* KeyExchange.swift in Sources */,
 				60C6969A1DBE02A500CE9435 /* EncryptedData.swift in Sources */,
 				60C696971DBDFB3600CE9435 /* SecretBox.swift in Sources */,
 				60C076651F68776600258AB7 /* Memory.swift in Sources */,
-				601833911F3DAFBF003AE3D8 /* Extensions.swift in Sources */,
 				60C0765F1F684D2300258AB7 /* MasterKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -834,7 +834,7 @@
 				6096E7661F1A540300E6599F /* PersonaTest.swift in Sources */,
 				60C211E61EB50AF500882AD0 /* HashedPasswordTest.swift in Sources */,
 				60C211E41EB504E500882AD0 /* PasswordTest.swift in Sources */,
-				601833941F3DBFBD003AE3D8 /* ExtensionsTest.swift in Sources */,
+				601833941F3DBFBD003AE3D8 /* BytesTest.swift in Sources */,
 				60D73F671DC0D91400AAAC59 /* SecretBoxTests.swift in Sources */,
 				604AF07D200E3FD1000CE8F0 /* KeyExchangeTest.swift in Sources */,
 			);

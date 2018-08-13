@@ -34,12 +34,12 @@ class KeyMaterialTest: XCTestCase {
 		minimumSizeInBytes: UInt32,
 		maximumSizeInBytes: UInt32,
 		eq: (T) -> E,
-		with initializer: (inout Data) -> T?
+		with initializer: (inout Bytes) -> T?
 	) {
 		let sizesInBytes = (minimumSizeInBytes == maximumSizeInBytes) ? [minimumSizeInBytes] : [minimumSizeInBytes, maximumSizeInBytes]
 		for sizeInBytes in sizesInBytes {
 			let expectedBytes = Random.bytes(count: sizeInBytes)
-			var bytes = Data(expectedBytes)
+			var bytes = Bytes(expectedBytes)
 			let optionalInstance = initializer(&bytes)
 
 			// Test creating instance from byte sequence with correct size
@@ -54,7 +54,7 @@ class KeyMaterialTest: XCTestCase {
 			XCTAssertEqual(instance.copyBytes(), expectedBytes)
 
 			// Test that passed argument is zeroed
-			XCTAssertEqual(bytes, Data(count: Int(sizeInBytes)))
+			XCTAssertEqual(bytes, Bytes(count: Int(sizeInBytes)))
 
 			XCTAssertEqual(eq(instance), eq(instance))
 		}
@@ -67,27 +67,27 @@ class KeyMaterialTest: XCTestCase {
 		XCTAssertNil(initializer(&tooLong))
 
 		// Test if arguments passed have been wiped unexpectedly
-		XCTAssertNotEqual(tooShort, Data(count: tooShort.count))
-		XCTAssertNotEqual(tooLong, Data(count: tooLong.count))
+		XCTAssertNotEqual(tooShort, Bytes(count: tooShort.count))
+		XCTAssertNotEqual(tooLong, Bytes(count: tooLong.count))
 	}
 
 	static func metaTestCapturingInitializer<T: KeyMaterial, E: Equatable>(
 		of fixedSizeInBytes: UInt32,
 		eq: (T) -> E,
-		with initializer: (inout Data) -> T?
+		with initializer: (inout Bytes) -> T?
 	) {
 		metaTestCapturingInitializer(minimumSizeInBytes: fixedSizeInBytes, maximumSizeInBytes: fixedSizeInBytes, eq: eq, with: initializer)
 	}
 
 	static func metaTestEquality<T: KeyMaterial>(
 		of fixedSizeInBytes: UInt32,
-		withCapturingInitializer initializer: (inout Data) -> T?
+		withCapturingInitializer initializer: (inout Bytes) -> T?
 	) {
 		let bytes = Random.bytes(count: fixedSizeInBytes)
 		let otherBytes = Random.bytes(count: fixedSizeInBytes)
-		var tmpBytes1 = Data(bytes)
-		var tmpBytes2 = Data(bytes)
-		var tmpBytes3 = Data(otherBytes)
+		var tmpBytes1 = Bytes(bytes)
+		var tmpBytes2 = Bytes(bytes)
+		var tmpBytes3 = Bytes(otherBytes)
 		let keyMaterial1 = initializer(&tmpBytes1)!
 		let keyMaterial2 = initializer(&tmpBytes2)!
 		let keyMaterial3 = initializer(&tmpBytes3)!
@@ -132,7 +132,7 @@ class KeyMaterialTest: XCTestCase {
 
 		// Inequality due to different lengths
 		var moreBytes = Random.bytes(count: sizeInBytes + 1)
-		var lessBytes = moreBytes[..<Int(sizeInBytes)]
+		var lessBytes = moreBytes[..<Int(sizeInBytes)].bytes
 		let more = KeyMaterial(bytes: &lessBytes)!
 		let less = KeyMaterial(bytes: &moreBytes)!
 

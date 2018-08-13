@@ -9,7 +9,7 @@ class SecretBoxTests: XCTestCase {
 		typealias SecretKey = SecretBox.SecretKey
 
 		let defaultInitializer = { SecretKey() }
-		let capturingInitializer: (inout Data) -> SecretKey? = { SecretKey(bytes: &$0) }
+		let capturingInitializer: (inout Bytes) -> SecretKey? = { SecretKey(bytes: &$0) }
 
 		KeyMaterialTest.metaTestDefaultInitializer(of: SecretKey.SizeInBytes, eq: { $0.copyBytes() }, with: defaultInitializer)
 		KeyMaterialTest.metaTestCapturingInitializer(of: SecretKey.SizeInBytes, eq: { $0.copyBytes() }, with: capturingInitializer)
@@ -22,7 +22,7 @@ class SecretBoxTests: XCTestCase {
 		typealias Nonce = SecretBox.Nonce
 
 		let defaultInitializer = { Nonce() }
-		let capturingInitializer: (inout Data) -> Nonce? = { Nonce(bytes: &$0) }
+		let capturingInitializer: (inout Bytes) -> Nonce? = { Nonce(bytes: &$0) }
 
 		KeyMaterialTest.metaTestDefaultInitializer(of: Nonce.SizeInBytes, eq: { $0 }, with: defaultInitializer)
 		KeyMaterialTest.metaTestCapturingInitializer(of: Nonce.SizeInBytes, eq: { $0 }, with: capturingInitializer)
@@ -38,7 +38,7 @@ class SecretBoxTests: XCTestCase {
 	func testAuthenticationCode() {
 		typealias AuthenticationCode = SecretBox.AuthenticationCode
 
-		let capturingInitializer: (inout Data) -> AuthenticationCode? = { AuthenticationCode(bytes: &$0) }
+		let capturingInitializer: (inout Bytes) -> AuthenticationCode? = { AuthenticationCode(bytes: &$0) }
 
 		KeyMaterialTest.metaTestCapturingInitializer(of: AuthenticationCode.SizeInBytes, eq: { $0 }, with: capturingInitializer)
 		KeyMaterialTest.metaTestEquality(of: AuthenticationCode.SizeInBytes, withCapturingInitializer: capturingInitializer)
@@ -85,16 +85,16 @@ class SecretBoxTests: XCTestCase {
 
 	func testEncryptionAndDecryption() {
 		let secretBox = SecretBox()
-		let originalPlaintext = Data("Hello, World!".utf8)
-		let ciphertext = secretBox.encrypt(data: originalPlaintext)
+		let originalPlaintext = "Hello, World!".utf8Bytes
+		let ciphertext = secretBox.encrypt(plaintext: originalPlaintext)
 
 		XCTAssertNotEqual(originalPlaintext, ciphertext.bytes)
 
-		let otherCiphertext = secretBox.encrypt(data: originalPlaintext)
+		let otherCiphertext = secretBox.encrypt(plaintext: originalPlaintext)
 
 		// Test for nonce reuse
 		XCTAssertNotEqual(otherCiphertext.nonce, ciphertext.nonce)
-		XCTAssertEqual(secretBox.encrypt(data: originalPlaintext, with: ciphertext.nonce).bytes, ciphertext.bytes)
+		XCTAssertEqual(secretBox.encrypt(plaintext: originalPlaintext, with: ciphertext.nonce).bytes, ciphertext.bytes)
 
 		// Test that a different nonce results in a different authentication code
 		XCTAssertNotEqual(otherCiphertext.authenticationCode, ciphertext.authenticationCode)
@@ -104,8 +104,8 @@ class SecretBoxTests: XCTestCase {
 
 		// Decryption of both ciphertexts should reveal the original plaintext
 
-		let plaintext = secretBox.decrypt(data: ciphertext)
-		let otherPlaintext = secretBox.decrypt(data: otherCiphertext)
+		let plaintext = secretBox.decrypt(ciphertext: ciphertext)
+		let otherPlaintext = secretBox.decrypt(ciphertext: otherCiphertext)
 
 		// Test if decryption did succeed
 		XCTAssertNotNil(plaintext)
@@ -122,7 +122,7 @@ class SecretBoxTests: XCTestCase {
 		dataWithInvalidNonce[bytePosInNonce] = ~dataWithInvalidNonce[bytePosInNonce]
 		let ciphertextWithInvalidNonce = SecretBox.AuthenticatedCiphertext(bytes: dataWithInvalidNonce)!
 
-		XCTAssertNil(secretBox.decrypt(data: ciphertextWithInvalidNonce))
+		XCTAssertNil(secretBox.decrypt(ciphertext: ciphertextWithInvalidNonce))
 
 		// Decryption should not be possible with invalid MAC
 
@@ -131,7 +131,7 @@ class SecretBoxTests: XCTestCase {
 		dataWithInvalidMac[bytePosInMac] = ~dataWithInvalidMac[bytePosInMac]
 		let ciphertextWithInvalidMac = SecretBox.AuthenticatedCiphertext(bytes: dataWithInvalidMac)!
 
-		XCTAssertNil(secretBox.decrypt(data: ciphertextWithInvalidMac))
+		XCTAssertNil(secretBox.decrypt(ciphertext: ciphertextWithInvalidMac))
 
 		// Decryption should not be possible with invalid ciphertext
 
@@ -141,11 +141,11 @@ class SecretBoxTests: XCTestCase {
 		dataWithInvalidCiphertext[bytePosInCiphertext] = ~dataWithInvalidCiphertext[bytePosInCiphertext]
 		let ciphertextWithInvalidBytes = SecretBox.AuthenticatedCiphertext(bytes: dataWithInvalidCiphertext)!
 
-		XCTAssertNil(secretBox.decrypt(data: ciphertextWithInvalidBytes))
+		XCTAssertNil(secretBox.decrypt(ciphertext: ciphertextWithInvalidBytes))
 
 		// Decryption should not be possible with invalid key
 
 		let otherSecretBox = SecretBox()
-		XCTAssertNil(otherSecretBox.decrypt(data: ciphertext))
+		XCTAssertNil(otherSecretBox.decrypt(ciphertext: ciphertext))
 	}
 }

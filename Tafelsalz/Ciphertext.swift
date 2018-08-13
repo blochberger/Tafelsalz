@@ -8,7 +8,7 @@ public struct Ciphertext: EncryptedData {
 	/**
 		The encrypted message.
 	*/
-	public let bytes: Data
+	public let bytes: Bytes
 
 	/**
 		The size of the encrypted message in bytes.
@@ -26,7 +26,7 @@ public struct Ciphertext: EncryptedData {
 			The bytes passed to this functions must be encrypted already. This
 			does not encrypt the bytes, use `SecretBox` or similar for that.
 	*/
-	public init(_ bytes: Data) {
+	public init(_ bytes: Bytes) {
 		self.bytes = bytes
 	}
 }

@@ -86,16 +86,17 @@ public class Persona {
 			The key for the item. A new key, if the item did not exist, the
 			existing key else and `nil` if there was an error.
 	*/
-	private func secret<Key: KeyMaterial>(for type: KeyType, defaultInitializer: () -> Key, capturingInitializer: (_ bytes: inout Data) -> Key?) throws -> Key {
+	private func secret<Key: KeyMaterial>(for type: KeyType, defaultInitializer: () -> Key, capturingInitializer: (_ bytes: inout Bytes) -> Key?) throws -> Key {
 		let item = keychainItem(for: type)
 		do {
 			// Try to read the key from the Keychain
 			let encodedKey: Data = try Keychain.retrievePassword(for: item)
 
-			guard var keyBytes = Data(base64Encoded: encodedKey) else {
+			guard let keyData = Data(base64Encoded: encodedKey) else {
 				throw Error.failedToDecodeKey
 			}
 
+			var keyBytes = Bytes(keyData)
 			guard let key = capturingInitializer(&keyBytes) else {
 				throw Error.invalidKey
 			}
@@ -106,7 +107,7 @@ public class Persona {
 			// add it to the Keychain.
 			let key = defaultInitializer()
 
-			try Keychain.store(password: key.copyBytes().base64EncodedData(), in: item)
+			try Keychain.store(password: key.copyBytes().b64encode(), in: item)
 			return key
 		}
 	}
@@ -128,7 +129,7 @@ public class Persona {
 	*/
 	private func setSecret<Key: KeyMaterial>(key: Key, for type: KeyType) throws {
 		let item = keychainItem(for: type)
-		try Keychain.updateOrCreate(password: key.copyBytes().base64EncodedData(), for: item)
+		try Keychain.updateOrCreate(password: key.copyBytes().b64encode(), for: item)
 	}
 
 	/**

@@ -52,9 +52,9 @@ The secrets for personas are automatically persisted in the system's Keychain. T
 
 ```swift
 let secretBox = SecretBox()
-let plaintext = Data("Hello, World!".utf8)
-let ciphertext = secretBox.encrypt(data: plaintext)
-let decrypted = secretBox.decrypt(data: ciphertext)!
+let plaintext = "Hello, World!".utf8Bytes
+let ciphertext = secretBox.encrypt(plaintext: plaintext)
+let decrypted = secretBox.decrypt(ciphertext: ciphertext)!
 ```
 
 #### Persisted Keys
@@ -68,9 +68,9 @@ let alice = Persona(uniqueName: "Alice")
 let secretBox = SecretBox(persona: alice)!
 
 // Use your SecretBox as usual
-let plaintext = Data("Hello, World!".utf8)
-let ciphertext = secretBox.encrypt(data: plaintext)
-let decrypted = secretBox.decrypt(data: ciphertext)!
+let plaintext = "Hello, World!".utf8Bytes
+let ciphertext = secretBox.encrypt(plaintext: plaintext)
+let decrypted = secretBox.decrypt(ciphertext: ciphertext)!
 
 // Forget the persona and remove all related Keychain entries
 try! Persona.forget(alice)
@@ -96,7 +96,7 @@ if hashedPassword.isVerified(by: password) {
 #### Public Hashing
 
 ```swift
-let data = Data("Hello, World!".utf8)
+let data = "Hello, World!".utf8Bytes
 let hash = GenericHash(bytes: data)
 ```
 
@@ -107,7 +107,7 @@ let hash = GenericHash(bytes: data)
 let alice = Persona(uniqueName: "Alice")
 
 // Generate a personalized hash for that persona
-let data = Data("Hello, World!".utf8)
+let data = "Hello, World!".utf8Bytes
 let hash = GenericHash(bytes: data, for: alice)
 
 // Forget the persona and remove all related Keychain entries

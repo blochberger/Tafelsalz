@@ -21,7 +21,7 @@ public class MasterKey: KeyMaterial {
 		/**
 			The description of the context in bytes.
 		*/
-		public let bytes: Data
+		public let bytes: Bytes
 
 		/**
 			Initialize a context from a given byte array.
@@ -29,7 +29,7 @@ public class MasterKey: KeyMaterial {
 			- parameters:
 				- bytes: The byte array.
 		*/
-		public init?(_ bytes: Data) {
+		public init?(_ bytes: Bytes) {
 			guard UInt32(bytes.count) == Context.SizeInBytes else { return nil }
 
 			self.bytes = bytes
@@ -42,7 +42,7 @@ public class MasterKey: KeyMaterial {
 				- string: The string.
 		*/
 		public init?(_ string: String) {
-			self.init(Data(string.utf8))
+			self.init(string.utf8Bytes)
 		}
 
 	}
@@ -100,7 +100,7 @@ public class MasterKey: KeyMaterial {
 		- parameters:
 			- bytes: A master key.
 	*/
-	public override init?(bytes: inout Data) {
+	public override init?(bytes: inout Bytes) {
 		guard UInt32(bytes.count) == MasterKey.SizeInBytes else { return nil }
 
 		super.init(bytes: &bytes)

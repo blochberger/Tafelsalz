@@ -35,11 +35,11 @@ public class Memory {
 		- parameters:
 			- bytes: The byte array.
 	*/
-	public convenience init(_ bytes: inout Data) {
+	public convenience init(_ bytes: inout Bytes) {
 		self.init(sizeInBytes: UInt32(bytes.count))
 
 		makeReadWritable()
-		bytes.withUnsafeBytes { pointer.copyMemory(from: $0, byteCount: bytes.count) }
+		pointer.copyMemory(from: &bytes, byteCount: bytes.count)
 		makeInaccessible()
 
 		sodium.memory.wipe(&bytes)

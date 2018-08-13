@@ -94,7 +94,7 @@ public class KeyExchange {
 			- parameters:
 				- bytes: A public key.
 		*/
-		public override init?(bytes: inout Data) {
+		public override init?(bytes: inout Bytes) {
 			guard UInt32(bytes.count) == SecretKey.SizeInBytes else {
 				return nil
 			}

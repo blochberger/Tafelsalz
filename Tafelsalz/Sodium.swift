@@ -103,7 +103,7 @@ struct Sodium {
 
 			- returns: The hash.
 		*/
-		func hash(outputSizeInBytes: Int, input: UnsafePointer<UInt8>, inputSizeInBytes: UInt64, key: UnsafePointer<UInt8>? = nil, keySizeInBytes: Int = 0) -> Data {
+		func hash(outputSizeInBytes: Int, input: UnsafePointer<UInt8>, inputSizeInBytes: UInt64, key: UnsafePointer<UInt8>? = nil, keySizeInBytes: Int = 0) -> Bytes {
 			precondition(minimumOutputSizeInBytes <= outputSizeInBytes)
 			precondition(outputSizeInBytes <= maximumOutputSizeInBytes)
 
@@ -113,20 +113,16 @@ struct Sodium {
 			precondition(key == nil || minimumKeySizeInBytes <= keySizeInBytes)
 			precondition(key == nil || keySizeInBytes <= maximumKeySizeInBytes)
 
-			var result = Data(count: outputSizeInBytes)
+			var result = Bytes(count: outputSizeInBytes)
 
-			let status = result.withUnsafeMutableBytes {
-				resultPtr in
-
-				return libsodium.crypto_generichash(
-					resultPtr,
-					outputSizeInBytes,
-					input,
-					inputSizeInBytes,
-					key,
-					keySizeInBytes
-				)
-			}
+			let status = libsodium.crypto_generichash(
+				&result,
+				outputSizeInBytes,
+				input,
+				inputSizeInBytes,
+				key,
+				keySizeInBytes
+			)
 
 			guard status == sSuccess else {
 				fatalError("Unhandled status: \(status)")
@@ -146,7 +142,7 @@ struct Sodium {
 
 			- returns: The hash.
 		*/
-		func hash(input: UnsafePointer<UInt8>, inputSizeInBytes: UInt64) -> Data {
+		func hash(input: UnsafePointer<UInt8>, inputSizeInBytes: UInt64) -> Bytes {
 			return hash(outputSizeInBytes: defaultOutputSizeInBytes, input: input, inputSizeInBytes: inputSizeInBytes)
 		}
 
@@ -214,7 +210,7 @@ struct Sodium {
 				- context: A context.
 				- masterKey: The master key.
 		*/
-		func derive(subKey: UnsafeMutablePointer<UInt8>, subKeySizeInBytes: Int, subKeyId: UInt64, context: Data, masterKey: UnsafePointer<UInt8>) {
+		func derive(subKey: UnsafeMutablePointer<UInt8>, subKeySizeInBytes: Int, subKeyId: UInt64, context: Bytes, masterKey: UnsafePointer<UInt8>) {
 			precondition(minimumSubKeySizeInBytes <= subKeySizeInBytes)
 			precondition(subKeySizeInBytes <= maximumSubKeySizeInBytes)
 			precondition(context.count == contextSizeInBytes)
@@ -226,7 +222,7 @@ struct Sodium {
 					subKey,
 					subKeySizeInBytes,
 					subKeyId,
-					contextPtr,
+					contextPtr.map(Int8.init),
 					masterKey
 				)
 			}
@@ -402,9 +398,9 @@ struct Sodium {
 			- parameters:
 				- bytes: A byte array.
 		*/
-		func wipe(_ bytes: inout Data) {
+		func wipe(_ bytes: inout Bytes) {
 			let length = bytes.count
-			bytes.withUnsafeMutableBytes { wipe($0, amountInBytes: length) }
+			wipe(&bytes, amountInBytes: length)
 		}
 
 		/**
@@ -535,19 +531,15 @@ struct Sodium {
 			precondition([opslimit_interactive, opslimit_moderate, opslimit_sensitive].contains(opslimit))
 			precondition([memlimit_interactive, memlimit_moderate, memlimit_sensitive].contains(memlimit))
 
-			var result = Data(count: sizeOfStorableStringInBytes)
+			var result = Bytes(count: sizeOfStorableStringInBytes).map(Int8.init)
 
-			let status = result.withUnsafeMutableBytes {
-				resultPtr in
-
-				return libsodium.crypto_pwhash_str(
-					resultPtr,
-					password,
-					passwordSizeInBytes,
-					UInt64(opslimit),
-					memlimit
-				)
-			}
+			let status = libsodium.crypto_pwhash_str(
+				&result,
+				password,
+				passwordSizeInBytes,
+				UInt64(opslimit),
+				memlimit
+			)
 
 			guard status != sFailure else { return nil }
 
@@ -555,7 +547,7 @@ struct Sodium {
 				fatalError("Unhandled status: \(status)")
 			}
 
-			return String(data: result, encoding: .ascii)!
+			return String.init(bytes: result.map(UInt8.init), encoding: .ascii)!
 		}
 
 		/**
@@ -634,10 +626,10 @@ struct Sodium {
 
 			- returns: The byte array.
 		*/
-		func bytes(count: Int) -> Data {
-			var data = Data(count: count)
-			data.withUnsafeMutableBytes { bytes($0, sizeInBytes: count) }
-			return data
+		func bytes(count: Int) -> Bytes {
+			var result = Bytes(count: count)
+			bytes(&result, sizeInBytes: count)
+			return result
 		}
 
 		/**
@@ -723,30 +715,18 @@ struct Sodium {
 
 			- returns: A tuple (MAC, ciphertext).
 		*/
-		func encrypt(plaintext: Data, nonce: UnsafePointer<UInt8>, key: UnsafePointer<UInt8>) -> (Data, Data) {
-			var ciphertext = Data(count: plaintext.count)
-			var mac = Data(count: sizeOfMacInBytes)
+		func encrypt(plaintext: Bytes, nonce: UnsafePointer<UInt8>, key: UnsafePointer<UInt8>) -> (Bytes, Bytes) {
+			var ciphertext = Bytes(count: plaintext.count)
+			var mac = Bytes(count: sizeOfMacInBytes)
 
-			let status = ciphertext.withUnsafeMutableBytes {
-				ciphertextPtr in
-
-				return mac.withUnsafeMutableBytes {
-					macPtr in
-
-					return plaintext.withUnsafeBytes {
-						plaintextPtr in
-
-						return libsodium.crypto_secretbox_detached(
-							ciphertextPtr,
-							macPtr,
-							plaintextPtr,
-							UInt64(plaintext.count),
-							nonce,
-							key
-						)
-					}
-				}
-			}
+			let status = libsodium.crypto_secretbox_detached(
+				&ciphertext,
+				&mac,
+				plaintext,
+				UInt64(plaintext.count),
+				nonce,
+				key
+			)
 
 			guard status == sSuccess else {
 				fatalError("Unhandled status: \(status)")
@@ -775,27 +755,19 @@ struct Sodium {
 				The plaintext, `nil` if the integrity of the authenticated
 				ciphertext could not be verified.
 		*/
-		func decrypt(ciphertext: Data, mac: UnsafePointer<UInt8>, nonce: UnsafePointer<UInt8>, key: UnsafePointer<UInt8>) -> Data? {
+		func decrypt(ciphertext: Bytes, mac: UnsafePointer<UInt8>, nonce: UnsafePointer<UInt8>, key: UnsafePointer<UInt8>) -> Bytes? {
 			let sVerificationFailed: Int32 = -1
 
-			var plaintext = Data(count: ciphertext.count)
+			var plaintext = Bytes(count: ciphertext.count)
 
-			let status = plaintext.withUnsafeMutableBytes {
-				plaintextPtr in
-
-				return ciphertext.withUnsafeBytes {
-					ciphertextPtr in
-
-					return libsodium.crypto_secretbox_open_detached(
-						plaintextPtr,
-						ciphertextPtr,
-						mac,
-						UInt64(ciphertext.count),
-						nonce,
-						key
-					)
-				}
-			}
+			let status = libsodium.crypto_secretbox_open_detached(
+				&plaintext,
+				ciphertext,
+				mac,
+				UInt64(ciphertext.count),
+				nonce,
+				key
+			)
 
 			guard status != sVerificationFailed else { return nil }
 
@@ -820,37 +792,28 @@ struct Sodium {
 
 		- returns: The byte array.
 	*/
-	func hex2bin(_ hex: String, ignore: String? = nil) -> Data? {
-		let hexData = Data(hex.utf8)
-		let reservedCapacity = hexData.count / 2
-		var result = Data(count: reservedCapacity)
+	func hex2bin(_ hex: String, ignore: String? = nil) -> Bytes? {
+		let hexBytes = hex.utf8Bytes.map(Int8.init)
+		let reservedCapacity = hexBytes.count / 2
+		var result = Bytes(count: reservedCapacity)
 		var bytesWritten: size_t = 0
-		let ignore_cstr = ignore != nil ? (ignore! as NSString).utf8String : nil
+		let ignoreBytes = ignore?.utf8Bytes.map(Int8.init)
 
-		let status = result.withUnsafeMutableBytes {
-			resultPtr in
-
-			return hexData.withUnsafeBytes {
-				hexPtr in
-
-				return libsodium.sodium_hex2bin(
-					resultPtr,
-					reservedCapacity,
-					hexPtr,
-					hexData.count,
-					ignore_cstr,
-					&bytesWritten,
-					nil
-				)
-			}
-		}
+		let status = libsodium.sodium_hex2bin(
+			&result,
+			reservedCapacity,
+			hexBytes,
+			hexBytes.count,
+			ignoreBytes,
+			&bytesWritten,
+			nil
+		)
 
 		guard status == sSuccess else {
 			return nil
 		}
 
-		result.count = Int(bytesWritten)
-		return result
+		return result[..<bytesWritten].bytes
 	}
 
 	/**
@@ -861,30 +824,70 @@ struct Sodium {
 
 		- returns: The hex-encoded string.
 	*/
-	func bin2hex(_ bin: Data) -> String {
-		let sizeOfResultInBytes = (bin.count * 2) + 1
-		var result = Data(count: sizeOfResultInBytes)
+	func bin2hex(_ bin: Bytes) -> String {
+		let sizeOfResultInBytes = bin.count * 2 + 1
+		var result = Bytes(count: sizeOfResultInBytes).map(Int8.init)
 
-		result.withUnsafeMutableBytes {
-			(resultPtr: UnsafeMutablePointer<Int8>) -> Void in
+		libsodium.sodium_bin2hex(
+			&result,
+			sizeOfResultInBytes,
+			bin,
+			bin.count
+		)
 
-			bin.withUnsafeBytes {
-				(binPtr: UnsafePointer<UInt8>) -> Void in
+		return String(validatingUTF8: result)!
+	}
 
-				let _ = libsodium.sodium_bin2hex(
-					resultPtr,
-					sizeOfResultInBytes,
-					binPtr,
-					bin.count
-				)
-			}
+	/**
+		Converts hex-characters to a byte array.
+
+		- parameters:
+			- b64: The string.
+			- ignore: A string containing characters that should be ignored.
+
+			- returns: The byte array.
+	*/
+	func b64decode(_ b64: String, ignore: String? = nil) -> Bytes? {
+		let variant: Int32 = libsodium.sodium_base64_VARIANT_ORIGINAL
+		let encodedBytes = b64.utf8Bytes.map(Int8.init)
+		let reservedCapacity = encodedBytes.count * 3 / 4 + 1
+		var result = Bytes(count: reservedCapacity)
+		let ignoreBytes = ignore?.utf8Bytes.map(Int8.init)
+		var bytesWritten: size_t = 0
+
+		let status = libsodium.sodium_base642bin(
+			&result,
+			reservedCapacity,
+			encodedBytes,
+			encodedBytes.count,
+			ignoreBytes,
+			&bytesWritten,
+			nil,
+			variant
+		)
+		guard status == sSuccess else {
+			return nil
 		}
 
-		/*
-			The `.dropLast()` strips the trailing `\0` character, which is not
-			needed in Swift `String`s.
-		*/
-		return String(bytes: result.dropLast(), encoding: .ascii)!
+		return result[..<bytesWritten].bytes
+	}
+
+	/**
+		Converts a byte array to a Base64-encoded string.
+
+		- parameters:
+			- bin: The byte array.
+
+		- returns: The Base64-encoded string.
+	*/
+	func b64encode(bytes: Bytes) -> String {
+		let variant: Int32 = libsodium.sodium_base64_VARIANT_ORIGINAL
+		let sizeOfResultInBytes = libsodium.sodium_base64_encoded_len(bytes.count, variant)
+		var result = Bytes(count: sizeOfResultInBytes).map(Int8.init)
+
+		libsodium.sodium_bin2base64(&result, sizeOfResultInBytes, bytes, bytes.count, variant)
+
+		return String(validatingUTF8: result)!
 	}
 
 }

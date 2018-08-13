@@ -119,11 +119,12 @@ public class Password {
 			- encoding: The encoding of the `password` string.
 	*/
 	public init?(_ password: String, using encoding: String.Encoding = .utf8) {
-		guard var passwordBytes = password.data(using: encoding) else {
+		guard let passwordData = password.data(using: encoding) else {
 			// Invalid encoding
 			return nil
 		}
 
+		var passwordBytes = Bytes(passwordData)
 		self.bytes = KeyMaterial(bytes: &passwordBytes)!
 	}
 

@@ -16,7 +16,7 @@ public class KeyMaterial {
 	/**
 		This is the cached fingerprint.
 	*/
-	private var cachedHash: Data? = nil
+	private var cachedHash: Bytes? = nil
 
 	/**
 		Initializes new key material of a given size.
@@ -47,7 +47,7 @@ public class KeyMaterial {
 		- parameters:
 			- bytes: The key material.
 	*/
-	public init?(bytes: inout Data) {
+	public init?(bytes: inout Bytes) {
 		self.memory = Memory(&bytes)
 	}
 
@@ -103,8 +103,8 @@ public class KeyMaterial {
 		- returns: A copy of the key material.
 	*/
 	@inline(__always)
-	public func copyBytes() -> Data {
-		return withUnsafeBytes { Data(bytes: $0, count: Int(sizeInBytes)) }
+	public func copyBytes() -> Bytes {
+		return withUnsafeBytes { Bytes(Data(bytes: $0, count: Int(sizeInBytes))) }
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class KeyMaterial {
 
 		- returns: The fingerprint.
 	*/
-	func fingerprint() -> Data {
+	func fingerprint() -> Bytes {
 		if cachedHash == nil {
 			cachedHash = withUnsafeBytes { sodium.generichash.hash(input: $0, inputSizeInBytes: UInt64(sizeInBytes)) }
 		}
@@ -179,15 +179,7 @@ public class KeyMaterial {
 	*/
 	func isFingerprintEqual(to other: KeyMaterial) -> Bool {
 		let hash = fingerprint()
-		return hash.withUnsafeBytes {
-			lhs in
-
-			return other.fingerprint().withUnsafeBytes {
-				rhs in
-
-				return sodium.memory.areEqual(lhs, rhs, amountInBytes: hash.count)
-			}
-		}
+		return sodium.memory.areEqual(hash, other.fingerprint(), amountInBytes: hash.count)
 	}
 
 }

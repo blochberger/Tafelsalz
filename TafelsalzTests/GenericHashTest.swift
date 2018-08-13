@@ -9,7 +9,7 @@ class GenericHashTest: XCTestCase {
 		typealias Key = GenericHash.Key
 
 		let defaultInitializer = { Key() }
-		let capturingInitializer: (inout Data) -> Key? = { Key(bytes: &$0) }
+		let capturingInitializer: (inout Bytes) -> Key? = { Key(bytes: &$0) }
 
 		KeyMaterialTest.metaTestDefaultInitializer(of: Key.DefaultSizeInBytes, eq: { $0.copyBytes() }, with: defaultInitializer)
 		KeyMaterialTest.metaTestCapturingInitializer(minimumSizeInBytes: Key.MinimumSizeInBytes, maximumSizeInBytes: Key.MaximumSizeInBytes, eq: { $0.copyBytes() }, with: capturingInitializer)
@@ -34,13 +34,13 @@ class GenericHashTest: XCTestCase {
 		typealias Key = GenericHash.Key
 
 		// Testvector taken from https://github.com/BLAKE2/BLAKE2/blob/eec32b7170d8dbe4eb59c9afad2ee9297393fb5b/testvectors/blake2b-kat.txt#L47-L49
-		let input = Data(hex: "000102030405060708090a")!
+		let input = "000102030405060708090a".unhexlify()!
 		let key = Key(hex:  "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f")!
 		let expectedHash = "f228773ce3f3a42b5f144d63237a72d99693adb8837d0e112a8a0f8ffff2c362857ac49c11ec740d1500749dac9b1f4548108bf3155794dcc9e4082849e2b85b"
 		let hash1 = GenericHash(bytes: input, outputSizeInBytes: GenericHash.MaximumSizeInBytes, with: key)!
 		let hash2 = GenericHash(bytes: input, outputSizeInBytes: GenericHash.MaximumSizeInBytes, with: key)!
-		let hash3 = GenericHash(bytes: Data(hex: "000102030405060708090b")!, outputSizeInBytes: GenericHash.MaximumSizeInBytes, with: key)
-		let actualHash = hash1.hex!
+		let hash3 = GenericHash(bytes: "000102030405060708090b".unhexlify()!, outputSizeInBytes: GenericHash.MaximumSizeInBytes, with: key)
+		let actualHash = hash1.hexlify
 
 		XCTAssertEqual(actualHash, expectedHash)
 		XCTAssertEqual(GenericHash(hex: expectedHash)!, hash1)

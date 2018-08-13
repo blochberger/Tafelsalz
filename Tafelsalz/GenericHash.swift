@@ -66,7 +66,7 @@ public class GenericHash {
 			- parameters:
 				- bytes: The key.
 		*/
-		public override init?(bytes: inout Data) {
+		public override init?(bytes: inout Bytes) {
 			guard Key.MinimumSizeInBytes <= UInt32(bytes.count) && UInt32(bytes.count) <= Key.MaximumSizeInBytes else {
 				return nil
 			}
@@ -89,7 +89,7 @@ public class GenericHash {
 			- see: `Data(hex:ignore:)`
 		*/
 		public convenience init?(hex: String, ignore: String? = nil) {
-			guard var bytes = Data(hex: hex, ignore: ignore) else {
+			guard var bytes = hex.unhexlify(ignore: ignore) else {
 				return nil
 			}
 
@@ -131,7 +131,7 @@ public class GenericHash {
 	/**
 		The hash.
 	*/
-	private let bytes: Data
+	private let bytes: Bytes
 
 	/**
 		Hash an arbitrary value.
@@ -152,34 +152,32 @@ public class GenericHash {
 			- outputSizeInBytes: The size of the hash in bytes.
 			- key: A key/salt used to prevent the hash from being guessed.
 	*/
-	public init?(bytes: Data, outputSizeInBytes: UInt32 = GenericHash.DefaultSizeInBytes, with key: Key? = nil) {
+	public init?(bytes: Bytes, outputSizeInBytes: UInt32 = GenericHash.DefaultSizeInBytes, with key: Key? = nil) {
 
 		guard GenericHash.MinimumSizeInBytes <= outputSizeInBytes && outputSizeInBytes <= GenericHash.MaximumSizeInBytes else {
 			return nil
 		}
 
-		let result = bytes.withUnsafeBytes {
-			(bytesPtr: UnsafePointer<UInt8>) -> Data in
+		let result: Bytes
 
-			if let key = key {
-				return key.withUnsafeBytes {
-					(keyPtr: UnsafePointer<UInt8>) -> Data in
+		if let key = key {
+			result = key.withUnsafeBytes {
+				(keyPtr: UnsafePointer<UInt8>) -> Bytes in
 
-					return sodium.generichash.hash(
-						outputSizeInBytes: Int(outputSizeInBytes),
-						input: bytesPtr,
-						inputSizeInBytes: UInt64(bytes.count),
-						key: keyPtr,
-						keySizeInBytes: Int(key.sizeInBytes)
-					)
-				}
-			} else {
 				return sodium.generichash.hash(
 					outputSizeInBytes: Int(outputSizeInBytes),
-					input: bytesPtr,
-					inputSizeInBytes: UInt64(bytes.count)
+					input: bytes,
+					inputSizeInBytes: UInt64(bytes.count),
+					key: keyPtr,
+					keySizeInBytes: Int(key.sizeInBytes)
 				)
 			}
+		} else {
+			result = sodium.generichash.hash(
+				outputSizeInBytes: Int(outputSizeInBytes),
+				input: bytes,
+				inputSizeInBytes: UInt64(bytes.count)
+			)
 		}
 
 		self.bytes = result
@@ -203,7 +201,7 @@ public class GenericHash {
 			- persona: The persona to which the hash is tied to.
 			- outputSizeInBytes: The size of the hash in bytes.
 	*/
-	public convenience init?(bytes: Data, for persona: Persona, outputSizeInBytes: UInt32 = GenericHash.DefaultSizeInBytes) {
+	public convenience init?(bytes: Bytes, for persona: Persona, outputSizeInBytes: UInt32 = GenericHash.DefaultSizeInBytes) {
 		guard let key = try? persona.genericHashKey() else { return nil }
 		self.init(bytes: bytes, outputSizeInBytes: outputSizeInBytes, with: key)
 	}
@@ -215,7 +213,7 @@ public class GenericHash {
 			- hex: The hash as a hex encoded string.
 	*/
 	public init?(hex: String) {
-		guard let bytes = Data(hex: hex) else { return nil }
+		guard let bytes = hex.unhexlify() else { return nil }
 		guard GenericHash.MinimumSizeInBytes <= UInt32(bytes.count) else { return nil }
 		guard UInt32(bytes.count) <= GenericHash.MaximumSizeInBytes else { return nil }
 
@@ -230,7 +228,7 @@ public class GenericHash {
 	/**
 		A hex encoded string representing the hash.
 	*/
-	public var hex: String? { get { return bytes.hex } }
+	public var hexlify: String { get { return bytes.hexlify } }
 }
 
 extension GenericHash: Equatable {
@@ -255,15 +253,7 @@ extension GenericHash: Equatable {
 			return false
 		}
 
-		return lhs.bytes.withUnsafeBytes {
-			lhsPtr in
-
-			return rhs.bytes.withUnsafeBytes {
-				rhsPtr in
-
-				return sodium.memory.areEqual(lhsPtr, rhsPtr, amountInBytes: Int(lhs.sizeInBytes))
-			}
-		}
+		return sodium.memory.areEqual(lhs.bytes, rhs.bytes, amountInBytes: Int(lhs.sizeInBytes))
 	}
 }
 
@@ -278,7 +268,7 @@ extension GenericHash: Hashable {
 	*/
 	public var hashValue: Int {
 		get {
-			return self.bytes.hashValue
+			return Data(self.bytes).hashValue
 		}
 	}
 }

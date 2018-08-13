@@ -93,7 +93,7 @@ public class SecretBox {
 			- parameters:
 				- bytes: A secret key.
 		*/
-		public override init?(bytes: inout Data) {
+		public override init?(bytes: inout Bytes) {
 			guard UInt32(bytes.count) == SecretKey.SizeInBytes else {
 				return nil
 			}
@@ -132,7 +132,7 @@ public class SecretBox {
 			- parameters:
 				- bytes: The nonce.
 		*/
-		public override init?(bytes: inout Data) {
+		public override init?(bytes: inout Bytes) {
 			guard UInt32(bytes.count) == Nonce.SizeInBytes else {
 				return nil
 			}
@@ -163,7 +163,7 @@ public class SecretBox {
 			- parameters:
 				- bytes: The message authentication code.
 		*/
-		public override init?(bytes: inout Data) {
+		public override init?(bytes: inout Bytes) {
 			guard UInt32(bytes.count) == AuthenticationCode.SizeInBytes else {
 				return nil
 			}
@@ -214,13 +214,9 @@ public class SecretBox {
 			The authenticated ciphertext. This includes the nonce,
 			authentication code, and the encryped message.
 		*/
-		public var bytes: Data {
+		public var bytes: Bytes {
 			get {
-				var result = Data()
-				nonce.withUnsafeBytes { result.append($0, count: Int(nonce.sizeInBytes)) }
-				authenticationCode.withUnsafeBytes { result.append($0, count: Int(authenticationCode.sizeInBytes)) }
-				result.append(ciphertext.bytes)
-				return result
+				return nonce.copyBytes() + authenticationCode.copyBytes() + ciphertext.bytes
 			}
 		}
 
@@ -244,20 +240,20 @@ public class SecretBox {
 			- parameters:
 				- bytes: The byte array.
 		*/
-		public init?(bytes: Data) {
+		public init?(bytes: Bytes) {
 			guard bytes.count > Int(AuthenticatedCiphertext.PrefixSizeInBytes) else {
 				return nil
 			}
 
-			var nonceBytes = bytes[..<Int(Nonce.SizeInBytes)]
+			var nonceBytes = bytes[..<Int(Nonce.SizeInBytes)].bytes
 			let nonce = Nonce(bytes: &nonceBytes)!
 
-			var mac = bytes[Int(Nonce.SizeInBytes)..<Int(AuthenticatedCiphertext.PrefixSizeInBytes)]
+			var mac = bytes[Int(Nonce.SizeInBytes)..<Int(AuthenticatedCiphertext.PrefixSizeInBytes)].bytes
 			let authenticationCode = AuthenticationCode(bytes: &mac)!
 
 			self.nonce = nonce
 			self.authenticationCode = authenticationCode
-			self.ciphertext = Ciphertext(bytes[Int(AuthenticatedCiphertext.PrefixSizeInBytes)...])
+			self.ciphertext = Ciphertext(bytes[Int(AuthenticatedCiphertext.PrefixSizeInBytes)...].bytes)
 		}
 	}
 
@@ -307,7 +303,7 @@ public class SecretBox {
 
 		- note:
 			This function should only be used if you are required to use a
-			specific nonce. Usually `encrypt(data:)` should be preferred.
+			specific nonce. Usually `encrypt(plaintext:)` should be preferred.
 
 		- parameters:
 			- plaintext: The message that should be encrypted.
@@ -315,10 +311,10 @@ public class SecretBox {
 
 		- returns: An authenticated ciphertext containing the encrypted message.
 	*/
-	public func encrypt(data plaintext: Data, with nonce: Nonce = Nonce()) -> AuthenticatedCiphertext {
+	public func encrypt(plaintext: Bytes, with nonce: Nonce = Nonce()) -> AuthenticatedCiphertext {
 
-		var macBytes: Data
-		let ciphertextBytes: Data
+		var macBytes: Bytes
+		let ciphertextBytes: Bytes
 		(macBytes, ciphertextBytes) = nonce.withUnsafeBytes {
 			noncePtr in
 
@@ -345,7 +341,7 @@ public class SecretBox {
 
 		- returns: The decrypted message.
 	*/
-	public func decrypt(data authenticatedCiphertext: AuthenticatedCiphertext) -> Data? {
+	public func decrypt(ciphertext authenticatedCiphertext: AuthenticatedCiphertext) -> Bytes? {
 		return authenticatedCiphertext.authenticationCode.withUnsafeBytes {
 			macPtr in
 

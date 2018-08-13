@@ -36,7 +36,7 @@ class MasterKeyTest: XCTestCase {
 
 	func testMasterKeyInitializer() {
 		let defaultInitializer = { MasterKey() }
-		let capturingInitializer: (inout Data) -> MasterKey? = { MasterKey(bytes: &$0) }
+		let capturingInitializer: (inout Bytes) -> MasterKey? = { MasterKey(bytes: &$0) }
 
 		KeyMaterialTest.metaTestDefaultInitializer(of: MasterKey.SizeInBytes, eq: { $0.copyBytes() }, with: defaultInitializer)
 		KeyMaterialTest.metaTestCapturingInitializer(of: MasterKey.SizeInBytes, eq: { $0.copyBytes() }, with: capturingInitializer)

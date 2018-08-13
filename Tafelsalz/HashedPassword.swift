@@ -36,7 +36,7 @@ public struct HashedPassword {
 	/**
 		The hashed password.
 	*/
-	let bytes: Data
+	let bytes: Bytes
 
 	/**
 		Constructs a `HashedPassword` instance from a hashed password.
@@ -44,7 +44,7 @@ public struct HashedPassword {
 		- parameters:
 			- bytes: The hashed password as ASCII decoded string.
 	*/
-	public init?(_ bytes: Data) {
+	public init?(_ bytes: Bytes) {
 		guard bytes.count == Int(HashedPassword.SizeInBytes) else {
 			return nil
 		}
@@ -63,10 +63,11 @@ public struct HashedPassword {
 			- string: The hashed password as ASCII encoded string.
 	*/
 	public init?(_ string: String) {
-		guard let bytes = string.data(using: .ascii) else {
+		guard string.data(using: .ascii) != nil else {
 			return nil
 		}
-		self.init(bytes)
+
+		self.init(string.utf8Bytes)
 	}
 
 	/**
@@ -79,7 +80,7 @@ public struct HashedPassword {
 				The result of `libsodium.crypto_pwhash_str()` is guaranteed to
 				be ASCII-encoded, therefore we can safely force unwrap here.
 			*/
-			return String(data: bytes, encoding: .ascii)!
+			return String(bytes: bytes, encoding: .ascii)!
 		}
 	}
 

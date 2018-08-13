@@ -10,5 +10,5 @@ public protocol EncryptedData {
 	/**
 		The encrypted bytes.
 	*/
-	var bytes: Data { get }
+	var bytes: Bytes { get }
 }
