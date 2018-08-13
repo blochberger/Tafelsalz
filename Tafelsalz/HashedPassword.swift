@@ -75,13 +75,11 @@ public struct HashedPassword {
 		value can be securely stored on disk or in a database.
 	*/
 	public var string: String {
-		get {
-			/*
-				The result of `libsodium.crypto_pwhash_str()` is guaranteed to
-				be ASCII-encoded, therefore we can safely force unwrap here.
-			*/
-			return String(bytes: bytes, encoding: .ascii)!
-		}
+		/*
+			The result of `libsodium.crypto_pwhash_str()` is guaranteed to
+			be ASCII-encoded, therefore we can safely force unwrap here.
+		*/
+		return String(bytes: bytes, encoding: .ascii)!
 	}
 
 	/**

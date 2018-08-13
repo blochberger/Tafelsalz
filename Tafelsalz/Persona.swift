@@ -279,8 +279,6 @@ public class Persona {
 		This is an array that holds all Keychain entries for this persona.
 	*/
 	private var keychainItems: [KeychainItem] {
-		get {
-			return [keychainItem(for: .masterKey), keychainItem(for: .secretKey), keychainItem(for: .genericHashKey)]
-		}
+		return [keychainItem(for: .masterKey), keychainItem(for: .secretKey), keychainItem(for: .genericHashKey)]
 	}
 }

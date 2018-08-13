@@ -6,7 +6,9 @@ public class KeyMaterial {
 	/**
 		The size of the key material in bytes.
 	*/
-	public var sizeInBytes: UInt32 { get { return memory.sizeInBytes } }
+	public var sizeInBytes: UInt32 {
+		return memory.sizeInBytes
+	}
 
 	/**
 		The pointer to the secure memory location.

@@ -215,9 +215,7 @@ public class SecretBox {
 			authentication code, and the encryped message.
 		*/
 		public var bytes: Bytes {
-			get {
-				return nonce.copyBytes() + authenticationCode.copyBytes() + ciphertext.bytes
-			}
+			return nonce.copyBytes() + authenticationCode.copyBytes() + ciphertext.bytes
 		}
 
 		/**

@@ -223,12 +223,16 @@ public class GenericHash {
 	/**
 		The size of the hash in bytes.
 	*/
-	public var sizeInBytes: UInt32 { get { return UInt32(bytes.count) } }
+	public var sizeInBytes: UInt32 {
+		return UInt32(bytes.count)
+	}
 
 	/**
 		A hex encoded string representing the hash.
 	*/
-	public var hexlify: String { get { return bytes.hexlify } }
+	public var hexlify: String {
+		return bytes.hexlify
+	}
 }
 
 extension GenericHash: Equatable {
@@ -267,8 +271,6 @@ extension GenericHash: Hashable {
 			improving performance of data structures.
 	*/
 	public var hashValue: Int {
-		get {
-			return Data(self.bytes).hashValue
-		}
+		return Data(self.bytes).hashValue
 	}
 }
