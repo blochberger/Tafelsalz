@@ -399,8 +399,7 @@ struct Sodium {
 				- bytes: A byte array.
 		*/
 		func wipe(_ bytes: inout Bytes) {
-			let length = bytes.count
-			wipe(&bytes, amountInBytes: length)
+			wipe(&bytes, amountInBytes: bytes.count)
 		}
 
 		/**
