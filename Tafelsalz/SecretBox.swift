@@ -310,7 +310,6 @@ public class SecretBox {
 		- returns: An authenticated ciphertext containing the encrypted message.
 	*/
 	public func encrypt(plaintext: Bytes, with nonce: Nonce = Nonce()) -> AuthenticatedCiphertext {
-
 		var macBytes: Bytes
 		let ciphertextBytes: Bytes
 		(macBytes, ciphertextBytes) = nonce.withUnsafeBytes {

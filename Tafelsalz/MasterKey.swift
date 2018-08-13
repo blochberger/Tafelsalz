@@ -117,7 +117,6 @@ public class MasterKey: KeyMaterial {
 			- context: A context in which the derived key is used.
 	*/
 	public func derive(sizeInBytes: UInt32, with id: UInt64, and context: Context) -> DerivedKey? {
-
 		guard let derivedKey = DerivedKey(sizeInBytes: sizeInBytes) else { return nil }
 
 		withUnsafeBytes {
