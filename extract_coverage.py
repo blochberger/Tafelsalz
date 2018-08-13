@@ -12,7 +12,7 @@ framework = sys.argv[1]
 j = json.load(sys.stdin)
 for i in range(len(j["targets"])):
 	if j["targets"][i]["name"] == framework:
-		print("{0:.0f}".format(j["targets"][i]["coverage"] * 100))
+		print("{0:.0f}".format(j["targets"][i]["lineCoverage"] * 100))
 		exit(0)
 
 exit(1)

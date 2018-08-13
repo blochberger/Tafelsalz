@@ -75,9 +75,7 @@ if [ ${RUN_TESTS} = true ]; then
 		clean\
 		test
 
-	xcov-core\
-		--source build/Logs/Test/*.xccoverage\
-		--output build/coverage.json
+	xcrun xccov view --json build/Logs/Test/*.xccovreport > build/coverage.json
 
 	COVERAGE=$(
 		python3 "extract_coverage.py" "${MODULE}.framework" < build/coverage.json
@@ -102,6 +100,11 @@ if [ ${RUN_TESTS} = true ]; then
 		--progress-bar\
 		--output "${OUTPUT_DIR}/macos/coverage.svg"\
 		"https://img.shields.io/badge/coverage-${COVERAGE}%25-${COLOR}.svg"
+
+	xcov\
+		--html_report\
+		--scheme "${MODULE}_macOS"\
+		--output_directory "${OUTPUT_DIR}/macos/coverage"
 fi
 
 # Commit results
