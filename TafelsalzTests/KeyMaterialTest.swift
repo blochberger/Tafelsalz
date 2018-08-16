@@ -117,13 +117,13 @@ class KeyMaterialTest: XCTestCase {
 		KeyMaterialTest.metaTestDefaultInitializer(of: sizeInBytes, eq: { $0.copyBytes() }) { KeyMaterial(sizeInBytes: sizeInBytes) }
 	}
 
-    func testCapturingInitializer() {
+	func testCapturingInitializer() {
 		let sizeInBytes: UInt32 = 32
 
 		KeyMaterialTest.metaTestCapturingInitializer(of: sizeInBytes, eq: { $0.copyBytes() }) {
 			UInt32($0.count) == sizeInBytes ? KeyMaterial(bytes: &$0) : nil
 		}
-    }
+	}
 
 	func testEquality() {
 		let sizeInBytes: UInt32 = 32

@@ -5,7 +5,7 @@ class SecretBoxTests: XCTestCase {
 
 	// MARK: - SecretBox.SecretKey
 
-    func testSecretKey() {
+	func testSecretKey() {
 		typealias SecretKey = SecretBox.SecretKey
 
 		let defaultInitializer = { SecretKey() }
@@ -14,7 +14,7 @@ class SecretBoxTests: XCTestCase {
 		KeyMaterialTest.metaTestDefaultInitializer(of: SecretKey.SizeInBytes, eq: { $0.copyBytes() }, with: defaultInitializer)
 		KeyMaterialTest.metaTestCapturingInitializer(of: SecretKey.SizeInBytes, eq: { $0.copyBytes() }, with: capturingInitializer)
 		KeyMaterialTest.metaTestEquality(of: SecretKey.SizeInBytes, withCapturingInitializer: capturingInitializer)
-    }
+	}
 
 	// MARK: - SecretBox.Nonce
 
