@@ -43,12 +43,12 @@ struct Sodium {
 	/**
 		Access to the wrapper for generic hashing.
 	*/
-	let generichash = GenericHash()
+	let generichash = SodiumGenericHash()
 
 	/**
 		A wrapper for generic hashing.
 	*/
-	struct GenericHash {
+	struct SodiumGenericHash {
 
 		/**
 			The initializer is disabled.
@@ -153,12 +153,12 @@ struct Sodium {
 	/**
 		Access to the key derivation wrapper.
 	*/
-	let kdf = KeyDerivation()
+	let kdf = SodiumKeyDerivation()
 
 	/**
 		A wrapper for key derivation.
 	*/
-	struct KeyDerivation {
+	struct SodiumKeyDerivation {
 
 		/**
 			The initializer is disabled.
@@ -239,12 +239,12 @@ struct Sodium {
 	/**
 		Access to the wrapper for key exchange.
 	*/
-	let kx = KeyExchange()
+	let kx = SodiumKeyExchange()
 
 	/**
 		A wrapper for key exchange.
 	*/
-	struct KeyExchange {
+	struct SodiumKeyExchange {
 
 		/**
 			The initializer is disabled.
@@ -336,14 +336,14 @@ struct Sodium {
 	/**
 		Access to the secure memory wrapper.
 	*/
-	let memory = Memory()
+	let memory = SodiumMemory()
 
 	/**
 		A wrapper for handling secure memory allocations.
 
 		- see: [`libsodium`: Securing memory allocations](https://download.libsodium.org/doc/helpers/memory_management.html)
 	*/
-	struct Memory {
+	struct SodiumMemory {
 
 		/**
 			The initializer is disabled.
@@ -480,12 +480,12 @@ struct Sodium {
 	/**
 		Access to the password hashing wrapper
 	*/
-	let pwhash = PasswordHash()
+	let pwhash = SodiumPasswordHash()
 
 	/**
 		A wrapper for password hashing.
 	*/
-	struct PasswordHash {
+	struct SodiumPasswordHash {
 
 		/**
 			The initializer is disabled.
@@ -585,17 +585,17 @@ struct Sodium {
 		}
 	}
 
-	// MARK: RandomBytes
+	// MARK: Random
 
 	/**
 		Access to the wrapper for secure random byte generation.
 	*/
-	let random = RandomBytes()
+	let random = SodiumRandom()
 
 	/**
 		A wrapper for generating random bytes securely.
 	*/
-	struct RandomBytes {
+	struct SodiumRandom {
 
 		/**
 			The initializer is disabled.
@@ -659,12 +659,12 @@ struct Sodium {
 	/**
 		Access to the secret box wrapper.
 	*/
-	let secretbox = SecretBox()
+	let secretbox = SodiumSecretBox()
 
 	/**
 		A wrapper for symmetric encryption.
 	*/
-	struct SecretBox {
+	struct SodiumSecretBox {
 
 		/**
 			The initializer is disabled.
