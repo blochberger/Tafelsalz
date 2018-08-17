@@ -779,6 +779,8 @@ struct Sodium {
 
 	}
 
+	// MARK: - Padding
+
 	/**
 		Add padding to protect message lengths.
 
