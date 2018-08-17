@@ -16,6 +16,25 @@ import Keychain
 		or devices, they cannot be used to decrypt secrets of one another. If a
 		persona is removed and re-created with the same name, it cannot be used
 		to decrypt values encrypted for the previous one.
+
+	## Examples
+
+	```swift
+	// Create a persona
+	let alice = Persona(uniqueName: "Alice")
+
+	// Once a secret of that persona is used, it will be persisted in the
+	// system's Keychain.
+	let secretBox = SecretBox(persona: alice)!
+
+	// Use your SecretBox as usual
+	let plaintext = "Hello, World!".utf8Bytes
+	let ciphertext = secretBox.encrypt(plaintext: plaintext)
+	let decrypted = secretBox.decrypt(ciphertext: ciphertext)!
+
+	// Forget the persona and remove all related Keychain entries
+	try! Persona.forget(alice)
+	```
 */
 public class Persona {
 

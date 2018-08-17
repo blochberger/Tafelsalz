@@ -13,9 +13,9 @@
 
 	```swift
 	let secretBox = SecretBox()
-	let plaintext = Data("Hello, World!".utf8)
-	let ciphertext = secretBox.encrypt(data: plaintext)
-	let decrypted = secretBox.decrypt(data: ciphertext)!
+	let plaintext = "Hello, World!".utf8Bytes
+	let ciphertext = secretBox.encrypt(plaintext: plaintext)
+	let decrypted = secretBox.decrypt(ciphertext: ciphertext)!
 	```
 
 	### Persisted Keys
@@ -33,12 +33,26 @@
 	let secretBox = SecretBox(persona: alice)!
 
 	// Use your SecretBox as usual
-	let plaintext = Data("Hello, World!".utf8)
-	let ciphertext = secretBox.encrypt(data: plaintext)
-	let decrypted = secretBox.decrypt(data: ciphertext)!
+	let plaintext = "Hello, World!".utf8Bytes
+	let ciphertext = secretBox.encrypt(plaintext: plaintext)
+	let decrypted = secretBox.decrypt(ciphertext: ciphertext)!
 
 	// Forget the persona and remove all related Keychain entries
 	try! Persona.forget(alice)
+	```
+
+	### Padding
+
+	If you add padding to your messages, the original size of the message is not
+	disclosed in the ciphertext. The ciphertext size will be a multiple of the
+	block size.
+
+	```swift
+	let secretBox = SecretBox()
+	let plaintext = "Hello, World!".utf8Bytes
+	let padding: Padding = .padded(blockSize: 16)
+	let ciphertext = secretBox.encrypt(plaintext: plaintext, padding: padding)
+	let decrypted = secretBox.decrypt(ciphertext: ciphertext, padding: padding)!
 	```
 */
 public class SecretBox {

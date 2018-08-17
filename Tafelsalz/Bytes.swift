@@ -21,6 +21,13 @@ public extension Array where Element == UInt8 {
 		Return byte array as an hex encoded string.
 
 		- postcondition: `bytes` = `bytes.hexlify.unhexlify()`
+
+		## Examples
+
+		```swift
+		let hex = [0xDE, 0xAD, 0xBE, 0xEF].hexlify
+		// hex == "deadbeef"
+		```
 	*/
 	public var hexlify: String {
 		return sodium.bin2hex(self)

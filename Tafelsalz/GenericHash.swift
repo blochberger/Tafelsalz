@@ -5,6 +5,29 @@
 	- warning:
 		Do not use this for hashing passwords, as there is no protection against
 		fast brute-force attacks. Use `HashedPassword` for that purpose.
+
+	## Examples
+
+	### Public Hashing
+
+	```swift
+	let data = "Hello, World!".utf8Bytes
+	let hash = GenericHash(bytes: data)
+	```
+
+	### Private Hashing with Persisted Keys
+
+	```swift
+	// Create a persona
+	let alice = Persona(uniqueName: "Alice")
+
+	// Generate a personalized hash for that persona
+	let data = "Hello, World!".utf8Bytes
+	let hash = GenericHash(bytes: data, for: alice)
+
+	// Forget the persona and remove all related Keychain entries
+	try! Persona.forget(alice)
+	```
 */
 public class GenericHash {
 

@@ -1,5 +1,17 @@
 /**
 	A master key can be used to derive keys for other purposes.
+
+	## Examples
+
+	```swift
+	let context = MasterKey.Context("Examples")!
+	let masterKey = MasterKey()
+	let subKey1 = masterKey.derive(sizeInBytes: MasterKey.DerivedKey.MinimumSizeInBytes, with: 0, and: context)!
+	let subKey2 = masterKey.derive(sizeInBytes: MasterKey.DerivedKey.MinimumSizeInBytes, with: 1, and: context)!
+
+	// You can also derive a key in order to use it with secret boxes
+	let secretBox = SecretBox(secretKey: masterKey.derive(with: 0, and: context))
+	```
 */
 public class MasterKey: KeyMaterial {
 

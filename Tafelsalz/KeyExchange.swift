@@ -59,6 +59,9 @@ public class KeyExchange {
 
 	}
 
+	/**
+		The public key used for the key exchange mechanism.
+	*/
 	public class PublicKey: KeyMaterial {
 
 		/**
@@ -104,6 +107,10 @@ public class KeyExchange {
 
 	}
 
+	/**
+		The session key, that can be used for encryption after a successful key
+		exchange.
+	*/
 	public class SessionKey: KeyMaterial {
 
 		/**

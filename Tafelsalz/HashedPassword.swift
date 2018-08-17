@@ -6,23 +6,15 @@
 	## Example
 
 	```swift
-	// 1. The user somehow enters a password
-	let userInput = "Correct Horse Battery Staple"
-	// 2. You can now indicate that the user input is actually a password.
-	// This will copy the password to a secure memory location.
-	let password = Password(userInput)!
-	// 3. Once you have a password, you can hash it for storing it securely
-	// on disk or in a database.
-	let hashedPassword = password.hash()
-	// 4. The actual value to store, can be derived as follows:
-	let valueToStore = hashedPassword.string
-	// 5. Now if you want to authenticate a user, the first two steps are
-	// equal. You just need to restore the `hashedPassword` from the value
-	// previously stored on disk or in a database.
+	let password = Password("Correct Horse Battery Staple")!
+	let hashedPassword = password.hash()!
+
+	// Store `hashedPassword.string` to database.
+
+	// If a user wants to authenticate, just read it from the database and
+	// verify it against the password given by the user.
 	if hashedPassword.isVerified(by: password) {
 	    // The user is authenticated successfully.
-	} else {
-	    // The user failed to authenticate.
 	}
 	```
 */

@@ -3,6 +3,21 @@
 	copied to a secure memory location, comparison will be performed in constant
 	time to avoid timing attacks and a method for hashing passwords is provided
 	to store them for user authentication purposes.
+
+	## Examples
+
+	```swift
+	let password = Password("Correct Horse Battery Staple")!
+	let hashedPassword = password.hash()!
+
+	// Store `hashedPassword.string` to database.
+
+	// If a user wants to authenticate, just read it from the database and
+	// verify it against the password given by the user.
+	if hashedPassword.isVerified(by: password) {
+	    // The user is authenticated successfully.
+	}
+	```
 */
 public class Password {
 
