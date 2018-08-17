@@ -247,6 +247,22 @@ persona is removed and re-created with the same name, it cannot be used
 to decrypt values encrypted for the previous one.
 
 </div>
+<h2 id='examples' class='heading'>Examples</h2>
+<pre class="highlight swift"><code><span class="c1">// Create a persona</span>
+<span class="k">let</span> <span class="nv">alice</span> <span class="o">=</span> <span class="kt">Persona</span><span class="p">(</span><span class="nv">uniqueName</span><span class="p">:</span> <span class="s">"Alice"</span><span class="p">)</span>
+
+<span class="c1">// Once a secret of that persona is used, it will be persisted in the</span>
+<span class="c1">// system's Keychain.</span>
+<span class="k">let</span> <span class="nv">secretBox</span> <span class="o">=</span> <span class="kt">SecretBox</span><span class="p">(</span><span class="nv">persona</span><span class="p">:</span> <span class="n">alice</span><span class="p">)</span><span class="o">!</span>
+
+<span class="c1">// Use your SecretBox as usual</span>
+<span class="k">let</span> <span class="nv">plaintext</span> <span class="o">=</span> <span class="s">"Hello, World!"</span><span class="o">.</span><span class="n">utf8Bytes</span>
+<span class="k">let</span> <span class="nv">ciphertext</span> <span class="o">=</span> <span class="n">secretBox</span><span class="o">.</span><span class="nf">encrypt</span><span class="p">(</span><span class="nv">plaintext</span><span class="p">:</span> <span class="n">plaintext</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">decrypted</span> <span class="o">=</span> <span class="n">secretBox</span><span class="o">.</span><span class="nf">decrypt</span><span class="p">(</span><span class="nv">ciphertext</span><span class="p">:</span> <span class="n">ciphertext</span><span class="p">)</span><span class="o">!</span>
+
+<span class="c1">// Forget the persona and remove all related Keychain entries</span>
+<span class="k">try!</span> <span class="kt">Persona</span><span class="o">.</span><span class="nf">forget</span><span class="p">(</span><span class="n">alice</span><span class="p">)</span>
+</code></pre>
 
           </div>
         </section>
@@ -281,7 +297,7 @@ to decrypt values encrypted for the previous one.
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/Persona.swift#L25-L35">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/Persona.swift#L44-L54">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -338,7 +354,7 @@ persona cannot be decrypted anymore.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/Persona.swift#L49-L57">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/Persona.swift#L68-L76">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -368,7 +384,7 @@ persona cannot be decrypted anymore.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/Persona.swift#L62">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/Persona.swift#L81">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -418,7 +434,7 @@ will be retrieved from the system&rsquo;s Keychain.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/Persona.swift#L71-L73">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/Persona.swift#L90-L92">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -509,7 +525,7 @@ persona.</p>
 existing key else and <code>nil</code> if there was an error.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/Persona.swift#L89-L113">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/Persona.swift#L108-L132">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -582,7 +598,7 @@ Keychain.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/Persona.swift#L130-L133">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/Persona.swift#L149-L152">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -616,7 +632,7 @@ Keychain.</p>
                         <p>The master key.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/Persona.swift#L140-L142">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/Persona.swift#L159-L161">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -650,7 +666,7 @@ Keychain.</p>
                         <p>The secret key.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/Persona.swift#L149-L151">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/Persona.swift#L168-L170">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -684,7 +700,7 @@ Keychain.</p>
                         <p>The key.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/Persona.swift#L158-L160">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/Persona.swift#L177-L179">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -747,7 +763,7 @@ Keychain.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/Persona.swift#L178-L180">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/Persona.swift#L197-L199">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -809,7 +825,7 @@ Keychain.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/Persona.swift#L197-L199">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/Persona.swift#L216-L218">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -872,7 +888,7 @@ Keychain.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/Persona.swift#L217-L219">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/Persona.swift#L236-L238">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -903,7 +919,7 @@ Keychain.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/Persona.swift#L224-L239">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/Persona.swift#L243-L258">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -934,7 +950,7 @@ the service of the password item in the system&rsquo;s Keychain.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/Persona.swift#L245-L257">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/Persona.swift#L264-L276">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -987,7 +1003,7 @@ the service of the password item in the system&rsquo;s Keychain.</p>
                         <p>The identifier.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/Persona.swift#L267-L269">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/Persona.swift#L286-L288">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1017,7 +1033,7 @@ the service of the password item in the system&rsquo;s Keychain.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/Persona.swift#L274-L276">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/Persona.swift#L293-L295">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1047,7 +1063,7 @@ the service of the password item in the system&rsquo;s Keychain.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/Persona.swift#L281-L283">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/Persona.swift#L300-L302">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1060,7 +1076,7 @@ the service of the password item in the system&rsquo;s Keychain.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2018-08-13)</p>
+      <p>&copy; 2018 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2018-08-17)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

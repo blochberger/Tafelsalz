@@ -23,7 +23,7 @@
         <a class="header-link" href="index.html">
           Tafelsalz Docs
         </a>
-         (96% documented)
+         (97% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -254,7 +254,7 @@ which is a multiple of a given block size.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/Blocks.swift#L32-L89">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/Blocks.swift#L32-L89">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -291,7 +291,7 @@ information as well, such as a message authentication code et cetera.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/Ciphertext.swift#L6-L30">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/Ciphertext.swift#L6-L30">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -317,23 +317,15 @@ information as well, such as a message authentication code et cetera.</p>
 for the purpose of authenticating users. Passwords should not be stored as
 plaintext values to avoid compromise if they get in the wrong hands.</p>
 <h2 id='example' class='heading'>Example</h2>
-<pre class="highlight swift"><code><span class="c1">// 1. The user somehow enters a password</span>
-<span class="k">let</span> <span class="nv">userInput</span> <span class="o">=</span> <span class="s">"Correct Horse Battery Staple"</span>
-<span class="c1">// 2. You can now indicate that the user input is actually a password.</span>
-<span class="c1">// This will copy the password to a secure memory location.</span>
-<span class="k">let</span> <span class="nv">password</span> <span class="o">=</span> <span class="kt">Password</span><span class="p">(</span><span class="n">userInput</span><span class="p">)</span><span class="o">!</span>
-<span class="c1">// 3. Once you have a password, you can hash it for storing it securely</span>
-<span class="c1">// on disk or in a database.</span>
-<span class="k">let</span> <span class="nv">hashedPassword</span> <span class="o">=</span> <span class="n">password</span><span class="o">.</span><span class="nf">hash</span><span class="p">()</span>
-<span class="c1">// 4. The actual value to store, can be derived as follows:</span>
-<span class="k">let</span> <span class="nv">valueToStore</span> <span class="o">=</span> <span class="n">hashedPassword</span><span class="o">.</span><span class="n">string</span>
-<span class="c1">// 5. Now if you want to authenticate a user, the first two steps are</span>
-<span class="c1">// equal. You just need to restore the `hashedPassword` from the value</span>
-<span class="c1">// previously stored on disk or in a database.</span>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">password</span> <span class="o">=</span> <span class="kt">Password</span><span class="p">(</span><span class="s">"Correct Horse Battery Staple"</span><span class="p">)</span><span class="o">!</span>
+<span class="k">let</span> <span class="nv">hashedPassword</span> <span class="o">=</span> <span class="n">password</span><span class="o">.</span><span class="nf">hash</span><span class="p">()</span><span class="o">!</span>
+
+<span class="c1">// Store `hashedPassword.string` to database.</span>
+
+<span class="c1">// If a user wants to authenticate, just read it from the database and</span>
+<span class="c1">// verify it against the password given by the user.</span>
 <span class="k">if</span> <span class="n">hashedPassword</span><span class="o">.</span><span class="nf">isVerified</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="n">password</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// The user is authenticated successfully.</span>
-<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="c1">// The user failed to authenticate.</span>
 <span class="p">}</span>
 </code></pre>
 
@@ -348,7 +340,7 @@ plaintext values to avoid compromise if they get in the wrong hands.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/HashedPassword.swift#L29-L94">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/HashedPassword.swift#L21-L86">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -383,7 +375,7 @@ plaintext values to avoid compromise if they get in the wrong hands.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/Random.swift#L4-L34">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/Random.swift#L4-L34">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -420,7 +412,7 @@ initialized before actually invoking methods.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/Sodium.swift#L19-L963">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/Sodium.swift#L19-L963">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -433,7 +425,7 @@ initialized before actually invoking methods.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2018-08-13)</p>
+      <p>&copy; 2018 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2018-08-17)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

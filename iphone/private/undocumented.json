@@ -1,20 +1,6 @@
 {
   "warnings": [
     {
-      "file": "/Users/blochberger/Development/Tafelsalz/Tafelsalz/KeyExchange.swift",
-      "line": 62,
-      "symbol": "KeyExchange.PublicKey",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/blochberger/Development/Tafelsalz/Tafelsalz/KeyExchange.swift",
-      "line": 107,
-      "symbol": "KeyExchange.SessionKey",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/blochberger/Development/Tafelsalz/Tafelsalz/Sodium.swift",
       "line": 495,
       "symbol": "Sodium.PasswordHash.opslimit_interactive",

@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           Tafelsalz Docs
         </a>
-         (96% documented)
+         (97% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -232,6 +232,22 @@ supported.</p>
 fast brute-force attacks. Use <code><a href="../Structs/HashedPassword.html">HashedPassword</a></code> for that purpose.
 
 </div>
+<h2 id='examples' class='heading'>Examples</h2>
+<h3 id='public-hashing' class='heading'>Public Hashing</h3>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="s">"Hello, World!"</span><span class="o">.</span><span class="n">utf8Bytes</span>
+<span class="k">let</span> <span class="nv">hash</span> <span class="o">=</span> <span class="kt">GenericHash</span><span class="p">(</span><span class="nv">bytes</span><span class="p">:</span> <span class="n">data</span><span class="p">)</span>
+</code></pre>
+<h3 id='private-hashing-with-persisted-keys' class='heading'>Private Hashing with Persisted Keys</h3>
+<pre class="highlight swift"><code><span class="c1">// Create a persona</span>
+<span class="k">let</span> <span class="nv">alice</span> <span class="o">=</span> <span class="kt">Persona</span><span class="p">(</span><span class="nv">uniqueName</span><span class="p">:</span> <span class="s">"Alice"</span><span class="p">)</span>
+
+<span class="c1">// Generate a personalized hash for that persona</span>
+<span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="s">"Hello, World!"</span><span class="o">.</span><span class="n">utf8Bytes</span>
+<span class="k">let</span> <span class="nv">hash</span> <span class="o">=</span> <span class="kt">GenericHash</span><span class="p">(</span><span class="nv">bytes</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="n">alice</span><span class="p">)</span>
+
+<span class="c1">// Forget the persona and remove all related Keychain entries</span>
+<span class="k">try!</span> <span class="kt">Persona</span><span class="o">.</span><span class="nf">forget</span><span class="p">(</span><span class="n">alice</span><span class="p">)</span>
+</code></pre>
 
           </div>
         </section>
@@ -266,7 +282,7 @@ fast brute-force attacks. Use <code><a href="../Structs/HashedPassword.html">Has
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/GenericHash.swift#L14-L114">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/GenericHash.swift#L37-L137">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -296,7 +312,7 @@ fast brute-force attacks. Use <code><a href="../Structs/HashedPassword.html">Has
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/GenericHash.swift#L119">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/GenericHash.swift#L142">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -326,7 +342,7 @@ fast brute-force attacks. Use <code><a href="../Structs/HashedPassword.html">Has
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/GenericHash.swift#L124">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/GenericHash.swift#L147">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -356,7 +372,7 @@ fast brute-force attacks. Use <code><a href="../Structs/HashedPassword.html">Has
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/GenericHash.swift#L129">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/GenericHash.swift#L152">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -442,7 +458,7 @@ a key.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/GenericHash.swift#L155-L184">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/GenericHash.swift#L178-L207">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -527,7 +543,7 @@ purpose.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/GenericHash.swift#L204-L207">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/GenericHash.swift#L227-L230">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -576,7 +592,7 @@ purpose.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/GenericHash.swift#L215-L221">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/GenericHash.swift#L238-L244">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -606,7 +622,7 @@ purpose.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/GenericHash.swift#L226-L228">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/GenericHash.swift#L249-L251">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -636,7 +652,7 @@ purpose.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/GenericHash.swift#L233-L235">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/GenericHash.swift#L256-L258">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -713,7 +729,7 @@ cause for problems.</p>
                         <p><code>true</code> if both hashes are equal, <code>false</code> else.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/GenericHash.swift#L255-L261">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/GenericHash.swift#L278-L284">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -754,7 +770,7 @@ improving performance of data structures.
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/blochberger/Tafelsalz/blob/55d30a56f27eaf336abf329173a769e581cc8184/Tafelsalz/GenericHash.swift#L273-L275">Show on GitHub</a>
+                        <a href="https://github.com/blochberger/Tafelsalz/blob/fa3dca1f245bbbb11982b836d80de82d02f03a23/Tafelsalz/GenericHash.swift#L296-L298">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -767,7 +783,7 @@ improving performance of data structures.
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2018-08-13)</p>
+      <p>&copy; 2018 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2018-08-17)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
