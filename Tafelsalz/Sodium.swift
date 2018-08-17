@@ -492,12 +492,34 @@ struct Sodium {
 		*/
 		fileprivate init() {}
 
+		/**
+			This is the fastest option and should be avoided if possible.
+		*/
 		let opslimit_interactive = libsodium.crypto_pwhash_opslimit_interactive()
+
+		/**
+			This takes about 0.7 seconds on a 2.8 Ghz Core i7 CPU.
+		*/
 		let opslimit_moderate = libsodium.crypto_pwhash_opslimit_moderate()
+
+		/**
+			This takes about 3.5 seconds on a 2.8 Ghz Core i7 CPU.
+		*/
 		let opslimit_sensitive = libsodium.crypto_pwhash_opslimit_sensitive()
 
+		/**
+			This requires about 64 MiB memory.
+		*/
 		let memlimit_interactive = libsodium.crypto_pwhash_memlimit_interactive()
+
+		/**
+			This requires about 256 MiB memory.
+		*/
 		let memlimit_moderate = libsodium.crypto_pwhash_memlimit_moderate()
+
+		/**
+			This requires about 1 GiB memory.
+		*/
 		let memlimit_sensitive = libsodium.crypto_pwhash_memlimit_sensitive()
 
 		/**
