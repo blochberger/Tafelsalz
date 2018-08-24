@@ -891,7 +891,7 @@ struct Sodium {
 		let reservedCapacity = hexBytes.count / 2
 		var result = Bytes(count: reservedCapacity)
 		var bytesWritten: size_t = 0
-		let ignoreBytes = ignore?.utf8Bytes.map(Int8.init)
+		let ignoreBytes = ignore?.cString(using: .utf8)
 
 		let status = libsodium.sodium_hex2bin(
 			&result,
