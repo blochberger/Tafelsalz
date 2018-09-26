@@ -1,11 +1,12 @@
 language: swift
 os: osx
+osx_image: xcode10
+xcode_project: Tafelsalz.xcodeproj
 
 matrix:
   include:
     - name: "macOS"
-      script:
-        - xcodebuild test -sdk macosx -project Tafelsalz.xcodeproj -scheme Tafelsalz_macOS
+      xcode_scheme: Tafelsalz_macOS
     - name: "iOS"
       script:
-       - xcodebuild -sdk iphonesimulator -project Tafelsalz.xcodeproj -scheme Tafelsalz_iOS CODE_SIGNING_REQUIRED=NO
+        - set -o pipefail && xcodebuild -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=12.0,name=iPhone SE' -project Tafelsalz.xcodeproj -scheme Tafelsalz_iOS CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO test | xcpretty
