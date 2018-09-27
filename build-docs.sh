@@ -10,7 +10,6 @@ LAST_COMMIT=$(git log -1 --format='%H')
 GITHUB_FILE_PREFIX="${GITHUB_URL}/blob/${LAST_COMMIT}"
 OUTPUT_DIR="gh-pages"
 
-JAZZY="jazzy"
 JAZZY_THEME="fullwidth"
 
 COMMIT=false
@@ -41,12 +40,23 @@ while [[ $# -gt 0 ]]; do
 	esac
 done
 
+# Check requirements
+if ! [ -x "$(command -v jazzy)" ]; then
+	echo "Did not find 'jazzy'. Please install with: gem install --user-install jazzy" >&2
+	exit 1
+fi
+
+if ! [ -x "$(command -v xcov)" ]; then
+	echo "Did not find 'xcov'. Please install with: gem install --user-install xcov" >&2
+	exit 1
+fi
+
 # Generate documentation
 for SDK in macos iphone; do
 	for MIN_ACL in public private internal; do
 		OUTPUT="${OUTPUT_DIR}/${SDK}/${MIN_ACL}"
 
-		${JAZZY}\
+		jazzy\
 			--clean\
 			--use-safe-filenames\
 			--theme="${JAZZY_THEME}"\
@@ -65,17 +75,28 @@ done # SDK
 
 # Execute unit tests and create test coverage badge
 if [ ${RUN_TESTS} = true ]; then
-	xcodebuild\
-		-quiet\
-		-sdk macosx\
-		-project "${MODULE}.xcodeproj"\
-		-scheme "${MODULE}_macOS"\
-		-enableCodeCoverage YES\
-		-derivedDataPath "build"\
-		clean\
-		test
+	function build {
+		xcodebuild\
+			-quiet\
+			-sdk macosx\
+			-project "${MODULE}.xcodeproj"\
+			-scheme "${MODULE}_macOS"\
+			-enableCodeCoverage YES\
+			-derivedDataPath "build"\
+			clean\
+			test
+	}
 
-	xcrun xccov view --json build/Logs/Test/*.xccovreport > build/coverage.json
+	if [ -x "$(command -v xcpretty)" ]; then
+		set -o pipefail
+		build | xcpretty
+	else
+		build
+	fi
+
+	XCCOVREPORT=$(find build/Logs/Test -name '*.xccovreport' | tail -1)
+
+	xcrun xccov view --json "$XCCOVREPORT" > build/coverage.json
 
 	COVERAGE=$(
 		python3 "extract_coverage.py" "${MODULE}.framework" < build/coverage.json
