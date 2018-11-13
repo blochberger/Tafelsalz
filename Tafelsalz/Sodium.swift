@@ -38,7 +38,7 @@ struct Sodium {
 		}
 	}
 
-	// MARK: GenericHash
+	// MARK: - Generic Hashing
 
 	/**
 		Access to the wrapper for generic hashing.
@@ -148,7 +148,7 @@ struct Sodium {
 
 	}
 
-	// MARK: KeyDerivation
+	// MARK: - Key Derivation
 
 	/**
 		Access to the key derivation wrapper.
@@ -234,7 +234,7 @@ struct Sodium {
 
 	}
 
-	// MARK: Key Exchange
+	// MARK: - Key Exchange
 
 	/**
 		Access to the wrapper for key exchange.
@@ -331,7 +331,7 @@ struct Sodium {
 
 	}
 
-	// MARK: Memory
+	// MARK: - Memory
 
 	/**
 		Access to the secure memory wrapper.
@@ -475,7 +475,7 @@ struct Sodium {
 
 	}
 
-	// MARK: PwHash
+	// MARK: - Password Hashing
 
 	/**
 		Access to the password hashing wrapper
@@ -607,7 +607,7 @@ struct Sodium {
 		}
 	}
 
-	// MARK: Random
+	// MARK: - Random
 
 	/**
 		Access to the wrapper for secure random byte generation.
@@ -676,7 +676,7 @@ struct Sodium {
 
 	}
 
-	// MARK: SecretBox
+	// MARK: - Symmetric Encryption (SecretBox)
 
 	/**
 		Access to the secret box wrapper.
@@ -874,7 +874,7 @@ struct Sodium {
 		return padded[..<unpaddedLength].bytes
 	}
 
-	// MARK: Utilities
+	// MARK: - Utilities
 
 	/**
 		Converts hex-characters to a byte array.
