@@ -52,15 +52,13 @@ public class Password {
 				`libsodium`.
 		*/
 		fileprivate var sodiumValue: Int {
-			get {
-				switch self {
-					case .medium:
-						return sodium.pwhash.opslimit_interactive
-					case .high:
-						return sodium.pwhash.opslimit_moderate
-					case .veryHigh:
-						return sodium.pwhash.opslimit_sensitive
-				}
+			switch self {
+				case .medium:
+					return sodium.pwhash.opslimit_interactive
+				case .high:
+					return sodium.pwhash.opslimit_moderate
+				case .veryHigh:
+					return sodium.pwhash.opslimit_sensitive
 			}
 		}
 	}
@@ -98,15 +96,13 @@ public class Password {
 			- returns: The memory limit that can be interpreted by `libsodium`.
 		*/
 		fileprivate var sodiumValue: Int {
-			get {
-				switch self {
-					case .medium:
-						return sodium.pwhash.memlimit_interactive
-					case .high:
-						return sodium.pwhash.memlimit_moderate
-					case .veryHigh:
-						return sodium.pwhash.memlimit_sensitive
-				}
+			switch self {
+				case .medium:
+					return sodium.pwhash.memlimit_interactive
+				case .high:
+					return sodium.pwhash.memlimit_moderate
+				case .veryHigh:
+					return sodium.pwhash.memlimit_sensitive
 			}
 		}
 	}
