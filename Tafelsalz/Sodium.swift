@@ -528,6 +528,31 @@ struct Sodium {
 		let sizeOfStorableStringInBytes = libsodium.crypto_pwhash_strbytes()
 
 		/**
+			Size of a salt used for password hashing in bytes.
+		*/
+		let sizeOfSaltInBytes = libsodium.crypto_pwhash_saltbytes()
+
+		/**
+			Minimum size for passwords.
+		*/
+		let minimumPasswordLength = libsodium.crypto_pwhash_passwd_min()
+
+		/**
+			Maximum size for passwords.
+		*/
+		let maximumPasswordLength = libsodium.crypto_pwhash_passwd_max()
+
+		/**
+			Minimum size of derived keys in bytes.
+		*/
+		let minimumKeySizeInBytes = libsodium.crypto_pwhash_bytes_min()
+
+		/**
+			Maximum size of derived keys in bytes.
+		*/
+		let maximumKeySizeInBytes = libsodium.crypto_pwhash_bytes_max()
+
+		/**
 			Creates a string that can be used for storing user passwords for the
 			purpose of authentication.
 
@@ -605,6 +630,46 @@ struct Sodium {
 
 			return true
 		}
+
+		/**
+			Derive a key from a given password with a given salt.
+
+			- parameters:
+				- key: A pointer to the memory, where the derived key should be
+					written.
+				- sizeInBytes: The size of the memory area reserved for the
+					`key`.
+				- from password: A pointer to the password, from which the `key`
+					will be derived.
+				- passwordSizeInBytes: The size of the `password` in bytes.
+				- salt: The salt that will be used in order to prevent rainbow
+					table attacks.
+				- opslimit: Complexity limit for hashing.
+				- memlimit: Memory limit for hashing.
+		*/
+		func derive(key: UnsafeMutablePointer<UInt8>, sizeInBytes: UInt64, from password: UnsafePointer<Int8>, passwordSizeInBytes: UInt64, salt: Bytes, opslimit: UInt64, memlimit: Int, algorithm: Int32 = libsodium.crypto_pwhash_alg_default()) {
+			let sComputationFailed = -1
+
+			precondition(minimumKeySizeInBytes <= sizeInBytes)
+			precondition(sizeInBytes <= maximumKeySizeInBytes)
+			precondition(minimumPasswordLength <= passwordSizeInBytes)
+			precondition(passwordSizeInBytes <= maximumKeySizeInBytes)
+			precondition(libsodium.crypto_pwhash_opslimit_min() <= opslimit)
+			precondition(opslimit <= libsodium.crypto_pwhash_opslimit_max())
+			precondition(libsodium.crypto_pwhash_memlimit_min() <= memlimit)
+			precondition(memlimit <= libsodium.crypto_pwhash_memlimit_max())
+
+			let status = libsodium.crypto_pwhash(key, sizeInBytes, password, passwordSizeInBytes, salt, opslimit, memlimit, algorithm)
+
+			guard status != sComputationFailed else {
+				fatalError("Computation failed. This might have been caused by insufficient memory.")
+			}
+
+			guard status == sSuccess else {
+				fatalError("Unhandled status: \(status)")
+			}
+		}
+
 	}
 
 	// MARK: - Random

@@ -126,6 +126,8 @@ try! Persona.forget(alice)
 
 ### Key Derivation
 
+#### Master Key
+
 ```swift
 let context = MasterKey.Context("Examples")!
 let masterKey = MasterKey()
@@ -134,6 +136,26 @@ let subKey2 = masterKey.derive(sizeInBytes: MasterKey.DerivedKey.MinimumSizeInBy
 
 // You can also derive a key in order to use it with secret boxes
 let secretBox = SecretBox(secretKey: masterKey.derive(with: 0, and: context))
+```
+
+#### Password
+
+```swift
+let plaintext = "Hello, World!".utf8Bytes
+let password = Password("Correct Horse Battery Staple")!
+
+// Derive a new key from a password
+let derivedKey1 = password.derive(sizeInBytes: SecretBox.SecretKey.SizeInBytes)!
+let secretBox1 = SecretBox(secretKey: SecretBox.SecretKey(derivedKey1))
+let ciphertext = derivedKey1.publicParameters + secretBox1.encrypt(plaintext: plaintext).bytes
+
+// Derive a previously generated key from a password
+let (salt, complexity, memory) = Password.DerivedKey.extractPublicParameters(bytes: ciphertext)!
+let derivedKey2 = password.derive(sizeInBytes: SecretBox.SecretKey.SizeInBytes, complexity: complexity, memory: memory, salt: salt)!
+let secretBox2 = SecretBox(secretKey: SecretBox.SecretKey(derivedKey2))
+let authenticatedCiphertextBytes = Bytes(ciphertext[Int(Password.DerivedKey.SizeOfPublicParametersInBytes)...])
+let authenticatedCiphertext = SecretBox.AuthenticatedCiphertext(bytes: authenticatedCiphertextBytes)!
+let decrypted = secretBox2.decrypt(ciphertext: authenticatedCiphertext)!
 ```
 
 ### Key Exchange

@@ -61,6 +61,27 @@ public class Password {
 					return sodium.pwhash.opslimit_sensitive
 			}
 		}
+
+		/**
+			Translates a given value from `libsodium` to a corresponding enum
+			value.
+
+			- parameters:
+				- value: The complexity limit that can be interpreted by
+					libsodium.
+		*/
+		fileprivate init?(value: Int) {
+			switch value {
+				case ComplexityLimit.medium.sodiumValue:
+					self = .medium
+				case ComplexityLimit.high.sodiumValue:
+					self = .high
+				case ComplexityLimit.veryHigh.sodiumValue:
+					self = .veryHigh
+				default:
+					return nil
+			}
+		}
 	}
 
 	/**
@@ -104,6 +125,200 @@ public class Password {
 				case .veryHigh:
 					return sodium.pwhash.memlimit_sensitive
 			}
+		}
+
+		/**
+			Translates a given value from `libsodium` to a corresponding enum
+			value.
+
+			- parameters:
+				- value: The complexity limit that can be interpreted by
+					libsodium.
+		*/
+		fileprivate init?(value: Int) {
+			switch value {
+				case MemoryLimit.medium.sodiumValue:
+					self = .medium
+				case MemoryLimit.high.sodiumValue:
+					self = .high
+				case MemoryLimit.veryHigh.sodiumValue:
+					self = .veryHigh
+				default:
+					return nil
+			}
+		}
+	}
+
+	/**
+		A salt should be applied to passwords prior to hashing in order to
+		prevent dictionary attacks. This class represents such a salt.
+	*/
+	public struct Salt {
+
+		/**
+			The size of the salt in bytes.
+		*/
+		public static let SizeInBytes = UInt32(sodium.pwhash.sizeOfSaltInBytes)
+
+		/**
+			The actual salt bytes.
+		*/
+		public let bytes: Bytes
+
+		/**
+			Initializes a random salt.
+		*/
+		public init() {
+			self.bytes = Random.bytes(count: Password.Salt.SizeInBytes)
+		}
+
+		/**
+			Initializes a salt from a byte array.
+
+			- warning: This should only be used to reconstruct salt bytes
+				generated with `Salt()`. Do not use this for hardcoded values.
+
+			- parameters:
+				- bytes: The bytes of the salt.
+		*/
+		public init?(bytes: Bytes) {
+			guard bytes.count == Salt.SizeInBytes else {
+				return nil
+			}
+
+			self.bytes = bytes
+		}
+
+	}
+
+	/**
+		A key that is derived from a `Password`.
+
+		A derived key contains additional information, i.e., the parameters used
+		to derive the key. In order to derive the same key from the password,
+		the same parameters have to be used.
+	*/
+	public class DerivedKey: KeyMaterial {
+
+		/**
+			Minimum size of the derived key in bytes.
+		*/
+		public static let MinimumSizeInBytes = UInt32(sodium.pwhash.minimumKeySizeInBytes)
+
+		/**
+			Maximum size of the derived key in bytes.
+		*/
+		public static let MaximumSizeInBytes = UInt32(sodium.pwhash.maximumKeySizeInBytes)
+
+		/**
+			Size of the public parameters, serialized to a byte array.
+		*/
+		public static let SizeOfPublicParametersInBytes = UInt32(2 * MemoryLayout<UInt32>.size + Int(Salt.SizeInBytes))
+
+		/**
+			The salt used for deriving the key.
+		*/
+		let salt: Salt
+
+		/**
+			The complexity limit used for deriving the key.
+		*/
+		let complexityLimit: ComplexityLimit
+
+		/**
+			The memory limit used for deriving the key.
+		*/
+		let memoryLimit: MemoryLimit
+
+		/**
+			A byte array containing all the parameters required to derive the
+			same key for the given password.
+		*/
+		public var publicParameters: Bytes {
+			var result = Bytes()
+
+			let opslimit = UInt32(complexityLimit.sodiumValue)
+			result.append(UInt8(opslimit >> 24))
+			result.append(UInt8((opslimit >> 16) & 0xFF))
+			result.append(UInt8((opslimit >> 8) & 0xFF))
+			result.append(UInt8(opslimit & 0xFF))
+
+			let memlimit = UInt32(memoryLimit.sodiumValue)
+			result.append(UInt8(memlimit >> 24))
+			result.append(UInt8((memlimit >> 16) & 0xFF))
+			result.append(UInt8((memlimit >> 8) & 0xFF))
+			result.append(UInt8(memlimit & 0xFF))
+
+			result += salt.bytes
+
+			assert(result.count == Int(DerivedKey.SizeOfPublicParametersInBytes))
+
+			return result
+		}
+
+		/**
+			Extract the public parameters from a byte array. The size of the
+			byte array has to be at least `SizeOfPublicParametersInBytes`. The
+			public parameters are extracted from the beginning of the byte
+			array.
+
+			- parameters:
+				- bytes: An array containing serialized public parameters at the
+					beginning.
+
+			- returns: A tuple consisting of the salt, the complexity limit, and
+				the memory limit used for deriving the key. `nil` is returned if
+				the byte sequence cannot be deserialized.
+		*/
+		public static func extractPublicParameters(bytes: Bytes) -> (Salt, ComplexityLimit, MemoryLimit)? {
+			guard DerivedKey.SizeOfPublicParametersInBytes <= UInt32(bytes.count) else {
+				return nil
+			}
+
+			let opslimit = (UInt32(bytes[0]) << 24) + (UInt32(bytes[1]) << 16) + (UInt32(bytes[2]) << 8) + UInt32(bytes[3])
+			let memlimit = (UInt32(bytes[4]) << 24) + (UInt32(bytes[5]) << 16) + (UInt32(bytes[6]) << 8) + UInt32(bytes[7])
+			let saltBytes = Bytes(bytes[8..<(8 + Int(Salt.SizeInBytes))])
+			guard let salt = Salt(bytes: saltBytes) else {
+				return nil
+			}
+
+			guard let complexity = ComplexityLimit(value: Int(opslimit)) else {
+				return nil
+			}
+
+			guard let memory = MemoryLimit(value: Int(memlimit)) else {
+				return nil
+			}
+
+			return (salt, complexity, memory)
+		}
+
+		/**
+			Construct a derived key with an expected size. The actual key is not
+			initialized, but the public parameters are stored already.
+
+			This is used if the parameters are known, but the key has not been
+			derived, yet.
+
+			- parameters:
+				- sizeInBytes: The size of the derived key in bytes.
+				- salt: The salt that will be used for deriving the key.
+				- complexityLimit: The complexity limit that will be used for
+					deriving the key.
+				- memoryLimit: The memory limit that will be used for deriving
+					the key.
+
+			- returns: `nil` if the size of the key is invalid.
+		*/
+		fileprivate init?(sizeInBytes: UInt32, salt: Salt, complexityLimit: ComplexityLimit, memoryLimit: MemoryLimit) {
+			guard DerivedKey.MinimumSizeInBytes <= sizeInBytes else { return nil }
+			guard sizeInBytes <= DerivedKey.MaximumSizeInBytes else { return nil }
+
+			self.salt = salt
+			self.complexityLimit = complexityLimit
+			self.memoryLimit = memoryLimit
+
+			super.init(sizeInBytes: sizeInBytes, initialize: false)
 		}
 	}
 
@@ -192,6 +407,44 @@ public class Password {
 			)
 		}
 	}
+
+	/**
+		Derive a cryptographic key for a given password.
+
+		- parameters:
+			- sizeInBytes: The size of the derived key in bytes.
+			- salt: The salt that will be used for deriving the key.
+			- complexityLimit: The complexity limit that will be used for
+				deriving the key.
+			- memoryLimit: The memory limit that will be used for deriving
+				the key.
+	*/
+	public func derive(sizeInBytes: UInt32, complexity: ComplexityLimit = .high, memory: MemoryLimit = .high, salt: Salt = Salt()) -> DerivedKey? {
+		guard let derivedKey = DerivedKey(sizeInBytes: sizeInBytes, salt: salt, complexityLimit: complexity, memoryLimit: memory) else {
+			return nil
+		}
+
+		derivedKey.withUnsafeMutableBytes {
+			derivedKeyPtr in
+
+			bytes.withUnsafeBytes() {
+				passwordBytesPtr in
+
+				sodium.pwhash.derive(
+					key: derivedKeyPtr,
+					sizeInBytes: UInt64(sizeInBytes),
+					from: passwordBytesPtr,
+					passwordSizeInBytes: UInt64(bytes.sizeInBytes),
+					salt: salt.bytes,
+					opslimit: UInt64(complexity.sodiumValue),
+					memlimit: memory.sodiumValue
+				)
+			}
+		}
+
+		return derivedKey
+	}
+
 }
 
 extension Password: Equatable {

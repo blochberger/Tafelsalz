@@ -51,4 +51,44 @@ class PasswordTest: XCTestCase {
 		XCTAssertNotEqual(more, less)
 		XCTAssertNotEqual(less, more)
 	}
+
+	func testKeyDerivation() {
+		let password1 = Password("Correct Horse Battery Staple")!
+		let password2 = Password("Wrong Horse Battery Staple")!
+		let salt1 = Password.Salt()
+		let salt2 = Password.Salt()
+
+		KMAssertEqual(
+			password1.derive(sizeInBytes: SecretBox.SecretKey.SizeInBytes, complexity: .medium, memory: .medium, salt: salt1)!,
+			password1.derive(sizeInBytes: SecretBox.SecretKey.SizeInBytes, complexity: .medium, memory: .medium, salt: salt1)!
+		)
+
+		KMAssertEqual(
+			password2.derive(sizeInBytes: SecretBox.SecretKey.SizeInBytes, complexity: .medium, memory: .medium, salt: salt1)!,
+			password2.derive(sizeInBytes: SecretBox.SecretKey.SizeInBytes, complexity: .medium, memory: .medium, salt: salt1)!
+		)
+
+		KMAssertNotEqual(
+			password1.derive(sizeInBytes: SecretBox.SecretKey.SizeInBytes, complexity: .medium, memory: .medium, salt: salt1)!,
+			password2.derive(sizeInBytes: SecretBox.SecretKey.SizeInBytes, complexity: .medium, memory: .medium, salt: salt1)!
+		)
+
+		KMAssertNotEqual(
+			password1.derive(sizeInBytes: SecretBox.SecretKey.SizeInBytes, complexity: .medium, memory: .medium, salt: salt1)!,
+			password1.derive(sizeInBytes: SecretBox.SecretKey.SizeInBytes, complexity: .medium, memory: .medium, salt: salt2)!
+		)
+	}
+
+	func testPublicParameters() {
+		let password = Password("Correct Horse Battery Staple")!
+		let derivedKey = password.derive(sizeInBytes: Password.DerivedKey.MinimumSizeInBytes)!
+
+		let serialized = derivedKey.publicParameters
+		let (salt, complexity, memory) = Password.DerivedKey.extractPublicParameters(bytes: serialized)!
+
+		XCTAssertEqual(salt.bytes, derivedKey.salt.bytes)
+		XCTAssertEqual(complexity, derivedKey.complexityLimit)
+		XCTAssertEqual(memory, derivedKey.memoryLimit)
+	}
+
 }

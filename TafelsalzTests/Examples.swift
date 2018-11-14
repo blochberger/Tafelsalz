@@ -76,7 +76,7 @@ class Examples: XCTestCase {
 		XCTAssertNotNil(hash)
 	}
 
-	func testKeyDerivation() {
+	func testMasterKeyBasedKeyDerivation() {
 		let context = MasterKey.Context("Examples")!
 		let masterKey = MasterKey()
 		let subKey1 = masterKey.derive(sizeInBytes: MasterKey.DerivedKey.MinimumSizeInBytes, with: 0, and: context)!
@@ -87,6 +87,26 @@ class Examples: XCTestCase {
 
 		KMAssertNotEqual(subKey1, subKey2)
 		XCTAssertNotNil(secretBox)
+	}
+
+	func testPasswordBasedKeyDerivation() {
+		let plaintext = "Hello, World!".utf8Bytes
+		let password = Password("Correct Horse Battery Staple")!
+
+		// Derive a new key from a password
+		let derivedKey1 = password.derive(sizeInBytes: SecretBox.SecretKey.SizeInBytes)!
+		let secretBox1 = SecretBox(secretKey: SecretBox.SecretKey(derivedKey1))
+		let ciphertext = derivedKey1.publicParameters + secretBox1.encrypt(plaintext: plaintext).bytes
+
+		// Derive a previously generated key from a password
+		let (salt, complexity, memory) = Password.DerivedKey.extractPublicParameters(bytes: ciphertext)!
+		let derivedKey2 = password.derive(sizeInBytes: SecretBox.SecretKey.SizeInBytes, complexity: complexity, memory: memory, salt: salt)!
+		let secretBox2 = SecretBox(secretKey: SecretBox.SecretKey(derivedKey2))
+		let authenticatedCiphertextBytes = Bytes(ciphertext[Int(Password.DerivedKey.SizeOfPublicParametersInBytes)...])
+		let authenticatedCiphertext = SecretBox.AuthenticatedCiphertext(bytes: authenticatedCiphertextBytes)!
+		let decrypted = secretBox2.decrypt(ciphertext: authenticatedCiphertext)!
+
+		XCTAssertEqual(decrypted, plaintext)
 	}
 
 	func testKeyExchange() {
