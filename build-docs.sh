@@ -9,6 +9,7 @@ VERSION=$(git describe --always)
 LAST_COMMIT=$(git log -1 --format='%H')
 GITHUB_FILE_PREFIX="${GITHUB_URL}/blob/${LAST_COMMIT}"
 OUTPUT_DIR="gh-pages"
+DERIVED_DATA_PATH=$(pwd)/build
 
 JAZZY_THEME="fullwidth"
 
@@ -75,6 +76,11 @@ done # SDK
 
 # Execute unit tests and create test coverage badge
 if [ ${RUN_TESTS} = true ]; then
+	# Remove previous intermediates as a workaround for a strange bug preventing
+	# the project being build after `jazzy` did run. Looks like some invalid
+	# caches.
+	rm -rf build Dependencies/Keychain/build
+
 	function build {
 		xcodebuild\
 			-quiet\
@@ -82,8 +88,9 @@ if [ ${RUN_TESTS} = true ]; then
 			-project "${MODULE}.xcodeproj"\
 			-scheme "${MODULE}_macOS"\
 			-enableCodeCoverage YES\
-			-derivedDataPath "build"\
+			-derivedDataPath "${DERIVED_DATA_PATH}"\
 			clean\
+			build\
 			test
 	}
 
@@ -94,12 +101,12 @@ if [ ${RUN_TESTS} = true ]; then
 		build
 	fi
 
-	XCCOVREPORT=$(find build/Logs/Test -name '*.xccovreport' | tail -1)
+	XCCOVREPORT=$(find "${DERIVED_DATA_PATH}/Logs/Test" -name '*.xccovreport' | tail -1)
 
-	xcrun xccov view --json "$XCCOVREPORT" > build/coverage.json
+	xcrun xccov view --json "$XCCOVREPORT" > "${DERIVED_DATA_PATH}/coverage.json"
 
 	COVERAGE=$(
-		python3 "extract_coverage.py" "${MODULE}.framework" < build/coverage.json
+		python3 "extract_coverage.py" "${MODULE}.framework" < "${DERIVED_DATA_PATH}/coverage.json"
 	)
 
 	# See https://github.com/realm/jazzy/blob/a02fe0a86e02e5e0d67e96a05d5040478a8a36a3/lib/jazzy/doc_builder.rb#L239-L253
@@ -126,6 +133,7 @@ if [ ${RUN_TESTS} = true ]; then
 		--html_report\
 		--scheme "${MODULE}_macOS"\
 		--include_targets "${MODULE}.framework"\
+		--derived_data_path "${DERIVED_DATA_PATH}"\
 		--output_directory "${OUTPUT_DIR}/macos/coverage"
 fi
 
@@ -139,4 +147,4 @@ if [ ${COMMIT} = true ]; then
 fi
 
 # Cleanup
-rm -rf build
+rm -rf "${DERIVED_DATA_PATH}" Dependencies/Keychain/build
