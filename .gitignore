@@ -1,5 +1,6 @@
 # Intermediate Files
 *.pyc
+build/
 
 # Github Pages
 gh-pages/
