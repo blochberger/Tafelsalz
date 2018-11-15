@@ -1165,6 +1165,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Dependencies/**",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.uni-hamburg.informatik.blochberger.Tafelsalz.macOS";
 				PRODUCT_NAME = Tafelsalz;
 				SDKROOT = macosx;
@@ -1193,6 +1194,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Dependencies/**",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.uni-hamburg.informatik.blochberger.Tafelsalz.macOS";
 				PRODUCT_NAME = Tafelsalz;
 				SDKROOT = macosx;
