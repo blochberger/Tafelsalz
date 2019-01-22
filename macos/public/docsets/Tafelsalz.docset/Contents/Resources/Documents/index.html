@@ -224,6 +224,8 @@
 </code></pre>
 
 <p>⚠️ <strong>WARNING</strong>: This project will not provide backwards compatibility. The API might change with the purpose of improving it. Changes should stabilize over time. If you need a more backwards compatible framework, I suggest to use <a href="https://github.com/jedisct1/swift-sodium">jedisct1/swift-sodium</a>.</p>
+
+<p>If you simply want to play around with the API, you can try to solve the tasks of the <a href="https://github.com/AppPETs/DCrypt">DCrypt educational stub project</a>.</p>
 <h2 id='concept' class='heading'>Concept</h2>
 
 <p>There are several basic ideas:</p>
@@ -232,14 +234,31 @@
 <li>Let the compiler catch/enforce as much as possible.</li>
 <li>Avoid common mistakes.</li>
 <li>Combine convenience and security.</li>
+<li>Take care of security-related stuff, that a cryptographic library usually does not, e.g., storing credentials securely on the device.</li>
 </ul>
+
+<p>Note that asymmetric encryption as well as stream encryption are not supported, yet (see <a href="https://github.com/blochberger/Tafelsalz/issues/2">https://github.com/blochberger/Tafelsalz/issues/2</a>, <a href="https://github.com/blochberger/Tafelsalz/issues/5">https://github.com/blochberger/Tafelsalz/issues/5</a>).</p>
+<h2 id='features' class='heading'>Features</h2>
 <h3 id='identity-management' class='heading'>Identity Management</h3>
 
 <p>There are basically two different kinds of identities or actors: personas and contacts. For personas you are in posession of the secret keys. For contacts you are only in possession of the public keys.</p>
-<h3 id='persistence-of-secrets' class='heading'>Persistence of Secrets</h3>
 
-<p>The secrets for personas are automatically persisted in the system&rsquo;s Keychain. This is the place, where you want to store your secrets, as storing them in the file system might lead to them being compromised easily.</p>
-<h2 id='examples' class='heading'>Examples</h2>
+<p>Storing credentials is not as easy as it sounds. Many applications do this wrong and store a password for authenticating a user in plaintext or cryptographic keys alongside the encrypted data. Passwords for authenticating a user must not be stored directly, a salted hash should be stored instead, see <em>Password Hashing</em> below. For cryptographic keys it is better to use the credential storage offered by iOS, the <a href="https://developer.apple.com/documentation/security/keychain_services">Keychain services</a>. Credentials stored there are encrypted by the Secure Enclave³. Unfortunately the Keychain services are only accessible by a low-level API, with insufficient documentation by default. Convenience APIs for different tasks have been added.</p>
+
+<p>Personas are app-specific: the bundle identifier of the application is used to distinguish two personas with the same unique name in two different applications. The secrets for personas are automatically generated when they are used for the first time. They are automatically stored in the system&rsquo;s Keychain. If a persona was created earlier, e.g., in a previous session, the keys will be automatically retrieved from the system&rsquo;s Keychain. A <code><a href="Classes/Persona.html">Persona</a></code> instance can be created with:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">alice</span> <span class="o">=</span> <span class="kt">Persona</span><span class="p">(</span><span class="nv">uniqueName</span><span class="p">:</span> <span class="s">"Alice"</span><span class="p">)</span>
+<span class="c1">// No secrets are generated until they are actually used.</span>
+</code></pre>
+
+<p>In order to remove all cryptographic keys of that persona, you can tell your application to forget it:</p>
+<pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="kt">Persona</span><span class="o">.</span><span class="nf">forget</span><span class="p">(</span><span class="n">alice</span><span class="p">)</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+    <span class="c1">// TODO Handle errors, which are either `Persona.Error` or `Keychain.Error`.</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Note that by deleting a persona you will loose access to data encrypted for this persona.</p>
 <h3 id='symmetric-encryption' class='heading'>Symmetric Encryption</h3>
 <h4 id='ephemeral-keys' class='heading'>Ephemeral Keys</h4>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">secretBox</span> <span class="o">=</span> <span class="kt">SecretBox</span><span class="p">()</span>
@@ -248,6 +267,8 @@
 <span class="k">let</span> <span class="nv">decrypted</span> <span class="o">=</span> <span class="n">secretBox</span><span class="o">.</span><span class="nf">decrypt</span><span class="p">(</span><span class="nv">ciphertext</span><span class="p">:</span> <span class="n">ciphertext</span><span class="p">)</span><span class="o">!</span>
 </code></pre>
 <h4 id='persisted-keys' class='heading'>Persisted Keys</h4>
+
+<p>The cryptographic keys in this example are stored within the system&rsquo;s  Keychain. See <em>Identity Management</em> for details.</p>
 <pre class="highlight swift"><code><span class="c1">// Create a persona</span>
 <span class="k">let</span> <span class="nv">alice</span> <span class="o">=</span> <span class="kt">Persona</span><span class="p">(</span><span class="nv">uniqueName</span><span class="p">:</span> <span class="s">"Alice"</span><span class="p">)</span>
 
@@ -259,11 +280,12 @@
 <span class="k">let</span> <span class="nv">plaintext</span> <span class="o">=</span> <span class="s">"Hello, World!"</span><span class="o">.</span><span class="n">utf8Bytes</span>
 <span class="k">let</span> <span class="nv">ciphertext</span> <span class="o">=</span> <span class="n">secretBox</span><span class="o">.</span><span class="nf">encrypt</span><span class="p">(</span><span class="nv">plaintext</span><span class="p">:</span> <span class="n">plaintext</span><span class="p">)</span>
 <span class="k">let</span> <span class="nv">decrypted</span> <span class="o">=</span> <span class="n">secretBox</span><span class="o">.</span><span class="nf">decrypt</span><span class="p">(</span><span class="nv">ciphertext</span><span class="p">:</span> <span class="n">ciphertext</span><span class="p">)</span><span class="o">!</span>
-
-<span class="c1">// Forget the persona and remove all related Keychain entries</span>
-<span class="k">try!</span> <span class="kt">Persona</span><span class="o">.</span><span class="nf">forget</span><span class="p">(</span><span class="n">alice</span><span class="p">)</span>
 </code></pre>
 <h4 id='padding' class='heading'>Padding</h4>
+
+<p>Padding can be used to hide the length of the original message. The size of the ciphertext will be a multiple of the given block size.</p>
+
+<p>Assume you have a client with a known set of possible configurations that are encrypted and stored on a server. If each configuration has a different size, then the server can distinguish the encrypted configurations based on their size. With padding all encrypted configurations can be made indistinguishable by chosing the block size in a way that all encrypted configurations have the same size, by using the size of the largest configuration as block size.</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">secretBox</span> <span class="o">=</span> <span class="kt">SecretBox</span><span class="p">()</span>
 <span class="k">let</span> <span class="nv">plaintext</span> <span class="o">=</span> <span class="s">"Hello, World!"</span><span class="o">.</span><span class="n">utf8Bytes</span>
 <span class="k">let</span> <span class="nv">padding</span><span class="p">:</span> <span class="kt">Padding</span> <span class="o">=</span> <span class="o">.</span><span class="nf">padded</span><span class="p">(</span><span class="nv">blockSize</span><span class="p">:</span> <span class="mi">16</span><span class="p">)</span>
@@ -271,6 +293,8 @@
 <span class="k">let</span> <span class="nv">decrypted</span> <span class="o">=</span> <span class="n">secretBox</span><span class="o">.</span><span class="nf">decrypt</span><span class="p">(</span><span class="nv">ciphertext</span><span class="p">:</span> <span class="n">ciphertext</span><span class="p">,</span> <span class="nv">padding</span><span class="p">:</span> <span class="n">padding</span><span class="p">)</span><span class="o">!</span>
 </code></pre>
 <h3 id='password-hashing' class='heading'>Password Hashing</h3>
+
+<p>If the goal ist to simply authenticate the user, by validating if he knows a previously set password, then this should be used. The password must not be stored directly. A salted hash generated by a password hashing function should be stored instead. That way the actual password is kept secret even if the stored data can be accessed by unauthorized parties.</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">password</span> <span class="o">=</span> <span class="kt">Password</span><span class="p">(</span><span class="s">"Correct Horse Battery Staple"</span><span class="p">)</span><span class="o">!</span>
 <span class="k">let</span> <span class="nv">hashedPassword</span> <span class="o">=</span> <span class="n">password</span><span class="o">.</span><span class="nf">hash</span><span class="p">()</span><span class="o">!</span>
 
@@ -284,10 +308,14 @@
 </code></pre>
 <h3 id='generic-hashing' class='heading'>Generic Hashing</h3>
 <h4 id='public-hashing' class='heading'>Public Hashing</h4>
+
+<p>This can be used to create a hash value of a byte sequence that can be used for checking the byte sequences integrity or for proofing that a specific byte sequence is known, without disclosing the byte sequence. This must not be used for storing password hashes, use what is described in <em>Password Hashing</em> instead.</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="s">"Hello, World!"</span><span class="o">.</span><span class="n">utf8Bytes</span>
 <span class="k">let</span> <span class="nv">hash</span> <span class="o">=</span> <span class="kt">GenericHash</span><span class="p">(</span><span class="nv">bytes</span><span class="p">:</span> <span class="n">data</span><span class="p">)</span>
 </code></pre>
 <h4 id='private-hashing-with-persisted-keys' class='heading'>Private Hashing with Persisted Keys</h4>
+
+<p>Private hashing is similar to public hashing, but the hash value cannot be calculated by other parties.</p>
 <pre class="highlight swift"><code><span class="c1">// Create a persona</span>
 <span class="k">let</span> <span class="nv">alice</span> <span class="o">=</span> <span class="kt">Persona</span><span class="p">(</span><span class="nv">uniqueName</span><span class="p">:</span> <span class="s">"Alice"</span><span class="p">)</span>
 
@@ -309,6 +337,8 @@
 <span class="k">let</span> <span class="nv">secretBox</span> <span class="o">=</span> <span class="kt">SecretBox</span><span class="p">(</span><span class="nv">secretKey</span><span class="p">:</span> <span class="n">masterKey</span><span class="o">.</span><span class="nf">derive</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">and</span><span class="p">:</span> <span class="n">context</span><span class="p">))</span>
 </code></pre>
 <h4 id='password' class='heading'>Password</h4>
+
+<p>This can be used to derive a cryptographic key from a given password. The API is still work-in-progress and needs to be simplified, see <a href="https://github.com/blochberger/Tafelsalz/issues/7">https://github.com/blochberger/Tafelsalz/issues/7</a>.</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">plaintext</span> <span class="o">=</span> <span class="s">"Hello, World!"</span><span class="o">.</span><span class="n">utf8Bytes</span>
 <span class="k">let</span> <span class="nv">password</span> <span class="o">=</span> <span class="kt">Password</span><span class="p">(</span><span class="s">"Correct Horse Battery Staple"</span><span class="p">)</span><span class="o">!</span>
 
@@ -335,11 +365,14 @@
 <span class="c1">// alicesSessionKey == bobsSessionKey</span>
 </code></pre>
 
+<p>There is a demo application available for iOS, which shows how to exchange secrets between two devices with QR codes, using the key exchange mechanism, see <a href="https://github.com/AppPETs/SecretSharing-iOS">SecretSharing-iOS</a>.</p>
+
 <hr>
 
 <ol>
 <li>D. J. Bernstein, T. Lange, and P. Schwabe, <a href="http://dx.doi.org/10.1007/978-3-642-33481-8_9"><strong>The Security Impact of a New Cryptographic Library</strong></a> in <em>Progress in Cryptology – LATINCRYPT 2012 – 2nd International Conference on Cryptology and Information Security in Latin America, Santiago, Chile, October 7-10, 2012. Proceedings</em> (A. Hevia and G. Neven, eds.), pp. 159–176</li>
 <li>M. Green, <a href="http://blog.cryptographyengineering.com/2012/12/the-anatomy-of-bad-idea.html"><strong>The Anatomy of a Bad Idea</strong></a>, 2012</li>
+<li>Apple Inc., <a href="https://www.apple.com/business/docs/iOS_Security_Guide.pdf"><strong>iOS Security – iOS 11</strong></a>, 2018</li>
 </ol>
 
           </div>
@@ -349,8 +382,8 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2018-11-15)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2019 <a class="link" href="https://github.com/blochberger" target="_blank" rel="external">Maximilian Blochberger</a>. All rights reserved. (Last updated: 2019-01-22)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>
