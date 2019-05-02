@@ -13,7 +13,7 @@ public extension Array where Element == UInt8 {
 		- parameters:
 			- count: The size of the byte array in bytes.
 	*/
-	public init(count: Int) {
+	init(count: Int) {
 		self.init(repeating: 0, count: count)
 	}
 
@@ -29,7 +29,7 @@ public extension Array where Element == UInt8 {
 		// hex == "deadbeef"
 		```
 	*/
-	public var hexlify: String {
+	var hexlify: String {
 		return sodium.bin2hex(self)
 	}
 
@@ -40,7 +40,7 @@ public extension Array where Element == UInt8 {
 
 		- returns: A Base64 encoded string.
 	*/
-	public func b64encode() -> String {
+	func b64encode() -> String {
 		return sodium.b64encode(bytes: self)
 	}
 
@@ -51,7 +51,7 @@ public extension ArraySlice where Element == UInt8 {
 	/**
 		Turn the array slice into a byte array.
 	*/
-	public var bytes: Bytes {
+	var bytes: Bytes {
 		return Bytes(self)
 	}
 
@@ -62,7 +62,7 @@ public extension String {
 	/**
 		A UTF-8-encoded byte array representation of the string.
 	*/
-	public var utf8Bytes: Bytes {
+	var utf8Bytes: Bytes {
 		return Bytes(self.utf8)
 	}
 
@@ -75,7 +75,7 @@ public extension String {
 		- returns:
 			A byte array if decoding is successful, `nil` else.
 	*/
-	public func unhexlify(ignore: String? = nil) -> Bytes? {
+	func unhexlify(ignore: String? = nil) -> Bytes? {
 		return sodium.hex2bin(self, ignore: ignore)
 	}
 
@@ -88,7 +88,7 @@ public extension String {
 		- returns:
 			A byte array if decoding is successful, `nil` else.
 	*/
-	public func b64decode(ignore: String? = nil) -> Bytes? {
+	func b64decode(ignore: String? = nil) -> Bytes? {
 		return sodium.b64decode(self, ignore: ignore)
 	}
 

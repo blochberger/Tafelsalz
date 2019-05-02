@@ -292,8 +292,11 @@ extension GenericHash: Hashable {
 		- warning:
 			This is **not** the value of the generic hash but a value used for
 			improving performance of data structures.
+
+		- parameter:
+			- hasher: The hasher.
 	*/
-	public var hashValue: Int {
-		return Data(self.bytes).hashValue
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(self.bytes)
 	}
 }

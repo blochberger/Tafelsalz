@@ -625,37 +625,40 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Universität Hamburg";
 				TargetAttributes = {
 					607EFC4E1F8D018B0084692A = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					6096E76B1F1A654000E6599F = {
 						CreatedOnToolsVersion = 8.3.3;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					6096E7731F1A654100E6599F = {
 						CreatedOnToolsVersion = 8.3.3;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 607EFC4E1F8D018B0084692A;
 					};
 					60C695451DBDE36000CE9435 = {
 						CreatedOnToolsVersion = 8.0;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					60C6954E1DBDE36100CE9435 = {
 						CreatedOnToolsVersion = 8.0;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
 			buildConfigurationList = 60C695401DBDE36000CE9435 /* Build configuration list for PBXProject "Tafelsalz" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -918,6 +921,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "de.uni-hamburg.informatik.blochberger.TafelsalzTestHost";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -937,6 +941,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "de.uni-hamburg.informatik.blochberger.TafelsalzTestHost";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -964,6 +969,7 @@
 				PRODUCT_NAME = Tafelsalz;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -990,6 +996,7 @@
 				PRODUCT_NAME = Tafelsalz;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1008,6 +1015,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/Dependencies/**";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "TafelsalzTests-Swift.h";
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TafelsalzTestHost.app/TafelsalzTestHost";
 			};
 			name = Debug;
@@ -1025,6 +1033,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/Dependencies/**";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "TafelsalzTests-Swift.h";
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TafelsalzTestHost.app/TafelsalzTestHost";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1034,6 +1043,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1096,6 +1106,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1171,6 +1182,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/Dependencies/**";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1198,6 +1210,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/Dependencies/**";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1217,6 +1230,7 @@
 				SDKROOT = macosx;
 				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/Dependencies/**";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "TafelsalzTests-Swift.h";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1236,6 +1250,7 @@
 				SDKROOT = macosx;
 				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/Dependencies/**";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "TafelsalzTests-Swift.h";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
