@@ -1,7 +1,7 @@
-import libsodium
+import Clibsodium
 
 /**
-	A singleton instance of the `libsodium` wrapper.
+	A singleton instance of the `Clibsodium` wrapper.
 */
 let sodium = Sodium()
 
@@ -27,7 +27,7 @@ struct Sodium {
 		let sAlreadyInitialized: Int32 = 1
 		let sFailure: Int32 = -1
 
-		let status = libsodium.sodium_init()
+		let status = Clibsodium.sodium_init()
 
 		guard status != sFailure else {
 			fatalError("Failed to initialize libsodium!")
@@ -58,32 +58,32 @@ struct Sodium {
 		/**
 			The default key size in bytes.
 		*/
-		let defaultKeySizeInBytes = libsodium.crypto_generichash_keybytes()
+		let defaultKeySizeInBytes = Clibsodium.crypto_generichash_keybytes()
 
 		/**
 			The maximum key size in bytes.
 		*/
-		let minimumKeySizeInBytes = libsodium.crypto_generichash_keybytes_min()
+		let minimumKeySizeInBytes = Clibsodium.crypto_generichash_keybytes_min()
 
 		/**
 			The minimum key size in bytes.
 		*/
-		let maximumKeySizeInBytes = libsodium.crypto_generichash_keybytes_max()
+		let maximumKeySizeInBytes = Clibsodium.crypto_generichash_keybytes_max()
 
 		/**
 			The default output size in bytes.
 		*/
-		let defaultOutputSizeInBytes = libsodium.crypto_generichash_bytes()
+		let defaultOutputSizeInBytes = Clibsodium.crypto_generichash_bytes()
 
 		/**
 			The minimum output size in bytes.
 		*/
-		let minimumOutputSizeInBytes = libsodium.crypto_generichash_bytes_min()
+		let minimumOutputSizeInBytes = Clibsodium.crypto_generichash_bytes_min()
 
 		/**
 			The maximum output size in bytes.
 		*/
-		let maximumOutputSizeInBytes = libsodium.crypto_generichash_bytes_max()
+		let maximumOutputSizeInBytes = Clibsodium.crypto_generichash_bytes_max()
 
 		/**
 			Calculates a generic hash for a given memory region.
@@ -115,7 +115,7 @@ struct Sodium {
 
 			var result = Bytes(count: outputSizeInBytes)
 
-			let status = libsodium.crypto_generichash(
+			let status = Clibsodium.crypto_generichash(
 				&result,
 				outputSizeInBytes,
 				input,
@@ -168,22 +168,22 @@ struct Sodium {
 		/**
 			The size of the master key in bytes.
 		*/
-		let masterKeySizeInBytes = libsodium.crypto_kdf_keybytes()
+		let masterKeySizeInBytes = Clibsodium.crypto_kdf_keybytes()
 
 		/**
 			The size of a sub key context in bytes.
 		*/
-		let contextSizeInBytes = libsodium.crypto_kdf_contextbytes()
+		let contextSizeInBytes = Clibsodium.crypto_kdf_contextbytes()
 
 		/**
 			The minimum size of a derived key in bytes.
 		*/
-		let minimumSubKeySizeInBytes = libsodium.crypto_kdf_bytes_min()
+		let minimumSubKeySizeInBytes = Clibsodium.crypto_kdf_bytes_min()
 
 		/**
 			The maximum size of a derived key in bytes.
 		*/
-		let maximumSubKeySizeInBytes = libsodium.crypto_kdf_bytes_max()
+		let maximumSubKeySizeInBytes = Clibsodium.crypto_kdf_bytes_max()
 
 		/**
 			Generate a master key.
@@ -192,7 +192,7 @@ struct Sodium {
 				- pointer: The memory region where the key will be stored.
 		*/
 		func keygen(_ pointer: UnsafeMutablePointer<UInt8>) {
-			libsodium.crypto_kdf_keygen(pointer)
+			Clibsodium.crypto_kdf_keygen(pointer)
 		}
 
 		/**
@@ -218,7 +218,7 @@ struct Sodium {
 			let status = context.withUnsafeBytes {
 				contextPtr in
 
-				return libsodium.crypto_kdf_derive_from_key(
+				return Clibsodium.crypto_kdf_derive_from_key(
 					subKey,
 					subKeySizeInBytes,
 					subKeyId,
@@ -254,17 +254,17 @@ struct Sodium {
 		/**
 			The size of the secret key in bytes.
 		*/
-		let secretKeySizeInBytes = libsodium.crypto_kx_secretkeybytes()
+		let secretKeySizeInBytes = Clibsodium.crypto_kx_secretkeybytes()
 
 		/**
 			The size of the session key in bytes.
 		*/
-		let sessionKeySizeInBytes = libsodium.crypto_kx_sessionkeybytes()
+		let sessionKeySizeInBytes = Clibsodium.crypto_kx_sessionkeybytes()
 
 		/**
 			The size of the public key in bytes.
 		*/
-		let publicKeySizeInBytes = libsodium.crypto_kx_publickeybytes()
+		let publicKeySizeInBytes = Clibsodium.crypto_kx_publickeybytes()
 
 		/**
 			Generate a keypair that can be used for exchanging keys.
@@ -276,7 +276,7 @@ struct Sodium {
 					stored.
 		*/
 		func keypair(publicKeyPtr: UnsafeMutablePointer<UInt8>, secretKeyPtr: UnsafeMutablePointer<UInt8>) {
-			libsodium.crypto_kx_keypair(publicKeyPtr, secretKeyPtr)
+			Clibsodium.crypto_kx_keypair(publicKeyPtr, secretKeyPtr)
 		}
 
 		/**
@@ -301,7 +301,7 @@ struct Sodium {
 			clientSk: UnsafePointer<UInt8>,
 			serverPk: UnsafePointer<UInt8>
 		) -> Int32 {
-			return libsodium.crypto_kx_client_session_keys(rxPtr, txPtr, clientPk, clientSk, serverPk)
+			return Clibsodium.crypto_kx_client_session_keys(rxPtr, txPtr, clientPk, clientSk, serverPk)
 		}
 
 		/**
@@ -326,7 +326,7 @@ struct Sodium {
 			serverSk: UnsafePointer<UInt8>,
 			clientPk: UnsafePointer<UInt8>
 		) -> Int32 {
-			return libsodium.crypto_kx_server_session_keys(rxPtr, txPtr, serverPk, serverSk, clientPk)
+			return Clibsodium.crypto_kx_server_session_keys(rxPtr, txPtr, serverPk, serverSk, clientPk)
 		}
 
 	}
@@ -363,7 +363,7 @@ struct Sodium {
 		func allocate(sizeInBytes: Int) -> UnsafeMutableRawPointer {
 			precondition(0 <= sizeInBytes)
 
-			return libsodium.sodium_malloc(sizeInBytes)!
+			return Clibsodium.sodium_malloc(sizeInBytes)!
 		}
 
 		/**
@@ -373,7 +373,7 @@ struct Sodium {
 				- pointer: A pointer to the guarded memory region.
 		*/
 		func free(_ pointer: UnsafeMutableRawPointer) {
-			libsodium.sodium_free(pointer)
+			Clibsodium.sodium_free(pointer)
 		}
 
 		/**
@@ -389,7 +389,7 @@ struct Sodium {
 		func wipe(_ pointer: UnsafeMutableRawPointer, amountInBytes: Int) {
 			precondition(0 <= amountInBytes)
 
-			libsodium.sodium_memzero(pointer, amountInBytes)
+			Clibsodium.sodium_memzero(pointer, amountInBytes)
 		}
 
 		/**
@@ -420,7 +420,7 @@ struct Sodium {
 
 			let sNotEqual: Int32 = -1
 
-			let status = libsodium.sodium_memcmp(lhs, rhs, amountInBytes)
+			let status = Clibsodium.sodium_memcmp(lhs, rhs, amountInBytes)
 
 			guard status != sNotEqual else { return false }
 
@@ -438,7 +438,7 @@ struct Sodium {
 				- pointer: A pointer to the guarded memory region.
 		*/
 		func make_readonly(_ pointer: UnsafeMutableRawPointer) {
-			let status = libsodium.sodium_mprotect_readonly(pointer)
+			let status = Clibsodium.sodium_mprotect_readonly(pointer)
 
 			guard status == sSuccess else {
 				fatalError("Unhandled status code: \(status)")
@@ -452,7 +452,7 @@ struct Sodium {
 				- pointer: A pointer to the guarded memory region.
 		*/
 		func make_readwritable(_ pointer: UnsafeMutableRawPointer) {
-			let status = libsodium.sodium_mprotect_readwrite(pointer)
+			let status = Clibsodium.sodium_mprotect_readwrite(pointer)
 
 			guard status == sSuccess else {
 				fatalError("Unhandled status code: \(status)")
@@ -466,7 +466,7 @@ struct Sodium {
 				- pointer: A pointer to the guarded memory region.
 		*/
 		func make_inaccessible(_ pointer: UnsafeMutableRawPointer) {
-			let status = libsodium.sodium_mprotect_noaccess(pointer)
+			let status = Clibsodium.sodium_mprotect_noaccess(pointer)
 
 			guard status == sSuccess else {
 				fatalError("Unhandled status code: \(status)")
@@ -495,62 +495,62 @@ struct Sodium {
 		/**
 			This is the fastest option and should be avoided if possible.
 		*/
-		let opslimit_interactive = libsodium.crypto_pwhash_opslimit_interactive()
+		let opslimit_interactive = Clibsodium.crypto_pwhash_opslimit_interactive()
 
 		/**
 			This takes about 0.7 seconds on a 2.8 Ghz Core i7 CPU.
 		*/
-		let opslimit_moderate = libsodium.crypto_pwhash_opslimit_moderate()
+		let opslimit_moderate = Clibsodium.crypto_pwhash_opslimit_moderate()
 
 		/**
 			This takes about 3.5 seconds on a 2.8 Ghz Core i7 CPU.
 		*/
-		let opslimit_sensitive = libsodium.crypto_pwhash_opslimit_sensitive()
+		let opslimit_sensitive = Clibsodium.crypto_pwhash_opslimit_sensitive()
 
 		/**
 			This requires about 64 MiB memory.
 		*/
-		let memlimit_interactive = libsodium.crypto_pwhash_memlimit_interactive()
+		let memlimit_interactive = Clibsodium.crypto_pwhash_memlimit_interactive()
 
 		/**
 			This requires about 256 MiB memory.
 		*/
-		let memlimit_moderate = libsodium.crypto_pwhash_memlimit_moderate()
+		let memlimit_moderate = Clibsodium.crypto_pwhash_memlimit_moderate()
 
 		/**
 			This requires about 1 GiB memory.
 		*/
-		let memlimit_sensitive = libsodium.crypto_pwhash_memlimit_sensitive()
+		let memlimit_sensitive = Clibsodium.crypto_pwhash_memlimit_sensitive()
 
 		/**
 			Size of a storable string in bytes.
 		*/
-		let sizeOfStorableStringInBytes = libsodium.crypto_pwhash_strbytes()
+		let sizeOfStorableStringInBytes = Clibsodium.crypto_pwhash_strbytes()
 
 		/**
 			Size of a salt used for password hashing in bytes.
 		*/
-		let sizeOfSaltInBytes = libsodium.crypto_pwhash_saltbytes()
+		let sizeOfSaltInBytes = Clibsodium.crypto_pwhash_saltbytes()
 
 		/**
 			Minimum size for passwords.
 		*/
-		let minimumPasswordLength = libsodium.crypto_pwhash_passwd_min()
+		let minimumPasswordLength = Clibsodium.crypto_pwhash_passwd_min()
 
 		/**
 			Maximum size for passwords.
 		*/
-		let maximumPasswordLength = libsodium.crypto_pwhash_passwd_max()
+		let maximumPasswordLength = Clibsodium.crypto_pwhash_passwd_max()
 
 		/**
 			Minimum size of derived keys in bytes.
 		*/
-		let minimumKeySizeInBytes = libsodium.crypto_pwhash_bytes_min()
+		let minimumKeySizeInBytes = Clibsodium.crypto_pwhash_bytes_min()
 
 		/**
 			Maximum size of derived keys in bytes.
 		*/
-		let maximumKeySizeInBytes = libsodium.crypto_pwhash_bytes_max()
+		let maximumKeySizeInBytes = Clibsodium.crypto_pwhash_bytes_max()
 
 		/**
 			Creates a string that can be used for storing user passwords for the
@@ -579,7 +579,7 @@ struct Sodium {
 
 			var result = Bytes(count: sizeOfStorableStringInBytes).map(Int8.init)
 
-			let status = libsodium.crypto_pwhash_str(
+			let status = Clibsodium.crypto_pwhash_str(
 				&result,
 				password,
 				passwordSizeInBytes,
@@ -619,7 +619,7 @@ struct Sodium {
 			let status = storableString.data(using: .ascii)!.withUnsafeBytes {
 				strPtr in
 
-				return libsodium.crypto_pwhash_str_verify(strPtr, password, passwordSizeInBytes)
+				return Clibsodium.crypto_pwhash_str_verify(strPtr, password, passwordSizeInBytes)
 			}
 
 			guard status != sVerificationFailed else { return false }
@@ -647,19 +647,19 @@ struct Sodium {
 				- opslimit: Complexity limit for hashing.
 				- memlimit: Memory limit for hashing.
 		*/
-		func derive(key: UnsafeMutablePointer<UInt8>, sizeInBytes: UInt64, from password: UnsafePointer<Int8>, passwordSizeInBytes: UInt64, salt: Bytes, opslimit: UInt64, memlimit: Int, algorithm: Int32 = libsodium.crypto_pwhash_alg_default()) {
+		func derive(key: UnsafeMutablePointer<UInt8>, sizeInBytes: UInt64, from password: UnsafePointer<Int8>, passwordSizeInBytes: UInt64, salt: Bytes, opslimit: UInt64, memlimit: Int, algorithm: Int32 = Clibsodium.crypto_pwhash_alg_default()) {
 			let sComputationFailed = -1
 
 			precondition(minimumKeySizeInBytes <= sizeInBytes)
 			precondition(sizeInBytes <= maximumKeySizeInBytes)
 			precondition(minimumPasswordLength <= passwordSizeInBytes)
 			precondition(passwordSizeInBytes <= maximumKeySizeInBytes)
-			precondition(libsodium.crypto_pwhash_opslimit_min() <= opslimit)
-			precondition(opslimit <= libsodium.crypto_pwhash_opslimit_max())
-			precondition(libsodium.crypto_pwhash_memlimit_min() <= memlimit)
-			precondition(memlimit <= libsodium.crypto_pwhash_memlimit_max())
+			precondition(Clibsodium.crypto_pwhash_opslimit_min() <= opslimit)
+			precondition(opslimit <= Clibsodium.crypto_pwhash_opslimit_max())
+			precondition(Clibsodium.crypto_pwhash_memlimit_min() <= memlimit)
+			precondition(memlimit <= Clibsodium.crypto_pwhash_memlimit_max())
 
-			let status = libsodium.crypto_pwhash(key, sizeInBytes, password, passwordSizeInBytes, salt, opslimit, memlimit, algorithm)
+			let status = Clibsodium.crypto_pwhash(key, sizeInBytes, password, passwordSizeInBytes, salt, opslimit, memlimit, algorithm)
 
 			guard status != sComputationFailed else {
 				fatalError("Computation failed. This might have been caused by insufficient memory.")
@@ -701,7 +701,7 @@ struct Sodium {
 		func bytes(_ pointer: UnsafeMutableRawPointer, sizeInBytes: Int) {
 			precondition(0 <= sizeInBytes)
 
-			libsodium.randombytes_buf(pointer, sizeInBytes)
+			Clibsodium.randombytes_buf(pointer, sizeInBytes)
 		}
 
 		/**
@@ -724,7 +724,7 @@ struct Sodium {
 			- returns: The random number.
 		*/
 		func number() -> UInt32 {
-			return libsodium.randombytes_random()
+			return Clibsodium.randombytes_random()
 		}
 
 		/**
@@ -736,7 +736,7 @@ struct Sodium {
 			- returns: A random number between 0 and `upperBound`.
 		*/
 		func uniform(upperBound: UInt32) -> UInt32 {
-			return libsodium.randombytes_uniform(upperBound)
+			return Clibsodium.randombytes_uniform(upperBound)
 		}
 
 	}
@@ -761,17 +761,17 @@ struct Sodium {
 		/**
 			The size of the key in bytes.
 		*/
-		let sizeOfKeyInBytes = libsodium.crypto_secretbox_keybytes()
+		let sizeOfKeyInBytes = Clibsodium.crypto_secretbox_keybytes()
 
 		/**
 			The size of the nonce in bytes.
 		*/
-		let sizeOfNonceInBytes = libsodium.crypto_secretbox_noncebytes()
+		let sizeOfNonceInBytes = Clibsodium.crypto_secretbox_noncebytes()
 
 		/**
 			The size of the message authentication code (MAC) in bytes.
 		*/
-		let sizeOfMacInBytes = libsodium.crypto_secretbox_macbytes()
+		let sizeOfMacInBytes = Clibsodium.crypto_secretbox_macbytes()
 
 		/**
 			Generates a new symmetric key.
@@ -780,7 +780,7 @@ struct Sodium {
 				- pointer: The memory region where the key will be stored.
 		*/
 		func keygen(_ pointer: UnsafeMutablePointer<UInt8>) {
-			libsodium.crypto_secretbox_keygen(pointer)
+			Clibsodium.crypto_secretbox_keygen(pointer)
 		}
 
 		/**
@@ -805,7 +805,7 @@ struct Sodium {
 			var ciphertext = Bytes(count: plaintext.count)
 			var mac = Bytes(count: sizeOfMacInBytes)
 
-			let status = libsodium.crypto_secretbox_detached(
+			let status = Clibsodium.crypto_secretbox_detached(
 				&ciphertext,
 				&mac,
 				plaintext,
@@ -846,7 +846,7 @@ struct Sodium {
 
 			var plaintext = Bytes(count: ciphertext.count)
 
-			let status = libsodium.crypto_secretbox_open_detached(
+			let status = Clibsodium.crypto_secretbox_open_detached(
 				&plaintext,
 				ciphertext,
 				mac,
@@ -958,7 +958,7 @@ struct Sodium {
 		var bytesWritten: size_t = 0
 		let ignoreBytes = ignore?.cString(using: .utf8)
 
-		let status = libsodium.sodium_hex2bin(
+		let status = Clibsodium.sodium_hex2bin(
 			&result,
 			reservedCapacity,
 			hexBytes,
@@ -987,7 +987,7 @@ struct Sodium {
 		let sizeOfResultInBytes = bin.count * 2 + 1
 		var result = Bytes(count: sizeOfResultInBytes).map(Int8.init)
 
-		libsodium.sodium_bin2hex(
+		Clibsodium.sodium_bin2hex(
 			&result,
 			sizeOfResultInBytes,
 			bin,
@@ -1007,14 +1007,14 @@ struct Sodium {
 			- returns: The byte array.
 	*/
 	func b64decode(_ b64: String, ignore: String? = nil) -> Bytes? {
-		let variant: Int32 = libsodium.sodium_base64_VARIANT_ORIGINAL
+		let variant: Int32 = Clibsodium.sodium_base64_VARIANT_ORIGINAL
 		let encodedBytes = b64.utf8Bytes.map(Int8.init)
 		let reservedCapacity = encodedBytes.count * 3 / 4 + 1
 		var result = Bytes(count: reservedCapacity)
 		let ignoreBytes = ignore?.utf8Bytes.map(Int8.init)
 		var bytesWritten: size_t = 0
 
-		let status = libsodium.sodium_base642bin(
+		let status = Clibsodium.sodium_base642bin(
 			&result,
 			reservedCapacity,
 			encodedBytes,
@@ -1040,11 +1040,11 @@ struct Sodium {
 		- returns: The Base64-encoded string.
 	*/
 	func b64encode(bytes: Bytes) -> String {
-		let variant: Int32 = libsodium.sodium_base64_VARIANT_ORIGINAL
-		let sizeOfResultInBytes = libsodium.sodium_base64_encoded_len(bytes.count, variant)
+		let variant: Int32 = Clibsodium.sodium_base64_VARIANT_ORIGINAL
+		let sizeOfResultInBytes = Clibsodium.sodium_base64_encoded_len(bytes.count, variant)
 		var result = Bytes(count: sizeOfResultInBytes).map(Int8.init)
 
-		libsodium.sodium_bin2base64(&result, sizeOfResultInBytes, bytes, bytes.count, variant)
+		Clibsodium.sodium_bin2base64(&result, sizeOfResultInBytes, bytes, bytes.count, variant)
 
 		return String(validatingUTF8: result)!
 	}
